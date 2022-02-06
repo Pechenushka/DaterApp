@@ -15,6 +15,7 @@ const ChatsStyles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: hp(5),
     flexDirection: 'row',
+    paddingHorizontal: hp(2),
   },
 
   chatListItemAvatarContainer: {
@@ -42,7 +43,7 @@ const ChatsStyles = StyleSheet.create({
   },
 
   chatListItemLastMessageDate: {
-    fontSize: hp(16),
+    fontSize: hp(14),
     fontWeight: '400',
   },
 

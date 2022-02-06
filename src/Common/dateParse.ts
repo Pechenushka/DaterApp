@@ -343,3 +343,28 @@ export const getTimeDate = (dateTimeStamp: number) => {
 
   return `${hours}:${minutes}`;
 };
+
+export const getTimeDateLong = (dateTimeStamp: number) => {
+  const date = new Date(dateTimeStamp);
+  const dateDiference = new Date().getTime() - dateTimeStamp;
+  const currYear = new Date().getFullYear();
+
+  if (dateDiference < 40 * 1000) {
+    return 'just now';
+  }
+
+  if (dateDiference < 60 * 60 * 1000) {
+    return `${Math.ceil(dateDiference / 1000 / 60)} minutes ago`;
+  }
+
+  if (dateDiference > 60 * 60 * 1000 * 24 * 1000) {
+    return `a long time ago`;
+  }
+
+  const hours = `0${date.getHours()}`.slice(-2);
+  const minutes = `0${date.getMinutes()}`.slice(-2);
+  const day = `0${date.getDate()}`.slice(-2);
+  const month = `0${date.getMonth()}`.slice(-2);
+
+  return `${date.getFullYear() === currYear ? '' : `${date.getFullYear()}.`}${month}.${day} ${hours}:${minutes}`;
+};

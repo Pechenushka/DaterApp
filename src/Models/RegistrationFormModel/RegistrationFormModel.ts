@@ -240,6 +240,12 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       return;
     }
 
+    if (password.length < 6) {
+      Alert.alert('Warning!', 'Password must be at least 6 characters');
+      this._signUpButton.disabled = false;
+      return;
+    }
+
     if (country === undefined) {
       Alert.alert('Warning!', 'Select your country');
       this._signUpButton.disabled = false;

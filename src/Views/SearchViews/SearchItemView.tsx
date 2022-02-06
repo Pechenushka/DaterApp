@@ -10,7 +10,7 @@ import {COLORS} from '../../constants/colors';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
 import {app} from '../../Core/AppImpl';
-import {getTimeDate} from '../../Common/dateParse';
+import {getTimeDateLong} from '../../Common/dateParse';
 
 type searchItemViewProps = baseComponentProps & {};
 
@@ -71,7 +71,7 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
 
                 <View style={[BaseStyles.row, BaseStyles.pb10]}>
                   <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
-                  <Text> {getTimeDate(this.model.lastOnline)}</Text>
+                  <Text> {getTimeDateLong(this.model.lastOnline)}</Text>
                 </View>
 
                 <View style={MyAnnouncementStyles.previewMainTextWrapper}>
