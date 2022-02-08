@@ -38,12 +38,12 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
     return this._likeButton;
   }
 
-  public get lastOnline() {
-    return this.props.lastOnline;
-  }
-
   public get writeButton() {
     return this._writeButton;
+  }
+
+  public get lastOnline() {
+    return this.props.lastOnline;
   }
 
   public get authorAvatar() {
