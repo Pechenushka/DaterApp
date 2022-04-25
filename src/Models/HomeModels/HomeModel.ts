@@ -137,7 +137,12 @@ class HomeModel extends BaseModel<homeModelProps> {
   public checkUserStatus = async () => {
     const res = await loadData(UserDataProvider.GetUserStatus, {userId: app.currentUser.userId});
     if (res !== null) {
-      this._userStatus = res.data.status;
+      if (res.statusCode === 200) {
+        this._userStatus = res.data.status;
+        this.forceUpdate();
+        return;
+      }
+      this._userStatus = false;
       this.forceUpdate();
       return;
     }
