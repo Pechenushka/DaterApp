@@ -5,7 +5,7 @@ import {baseComponentProps, componentPropsWithModel, TypedBaseComponent} from '.
 import {MainNavigationView} from './src/Navigation/MainNavigationView';
 import {COLORS} from './src/constants/colors';
 import {app} from './src/Core/AppImpl';
-import messaging from '@react-native-firebase/messaging';
+import messaging, {FirebaseMessagingTypes} from '@react-native-firebase/messaging';
 import {FireBaseHandler} from './src/Core/FireBaseHandler';
 
 type appProps = baseComponentProps & {appName: string};
@@ -22,6 +22,9 @@ class App extends TypedBaseComponent<appProps, AppModel> {
     super.componentDidMount();
     AppState.addEventListener('change', this.model.handleBackground);
     messaging().onMessage(async (remoteMessage: any) => {
+      FireBaseHandler.HandleMessage(remoteMessage);
+    });
+    messaging().setBackgroundMessageHandler(async (remoteMessage: any) => {
       FireBaseHandler.HandleMessage(remoteMessage);
     });
     //await UserDataProvider.requestUserPermission();

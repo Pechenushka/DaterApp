@@ -20,7 +20,24 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
     super(props);
   }
 
+  private getInfoMessage = () => {
+    if (this.model.userStatus === undefined) {
+      return <Text style={HomeScreenStyles.warningTitleText}>{_.lang.servers_are_not_allowed}</Text>;
+    }
+    if (this.model.userStatus === null) {
+      if (app.currentUser.avatar !== undefined && app.currentUser.avatar !== '') {
+        return <Text style={HomeScreenStyles.warningTitleText}>{_.lang.moderation_request_pending}</Text>;
+      }
+      return <Text style={HomeScreenStyles.warningTitleText}>{_.lang.please_request_moderation}</Text>;
+    }
+    if (this.model.userStatus) {
+      return <></>;
+    }
+    return <Text style={HomeScreenStyles.warningTitleText}>{_.lang.profile_not_moderated}</Text>;
+  };
+
   public render() {
+    console.log(this.model.userStatus);
     return (
       <View
         style={[
@@ -29,13 +46,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
           BaseStyles.alignCenter,
           {backgroundColor: this.model.userStatus ? COLORS.MAIN_BLUE : COLORS.WARNING_YELLOW},
         ]}>
-        {this.model.userStatus === null ? (
-          <Text style={HomeScreenStyles.warningTitleText}>{_.lang.servers_are_not_allowed}</Text>
-        ) : this.model.userStatus ? (
-          <></>
-        ) : (
-          <Text style={HomeScreenStyles.warningTitleText}>{_.lang.profile_not_moderated}</Text>
-        )}
+        {this.getInfoMessage()}
         <View style={[HomeScreenStyles.contentContainer]}>
           <View style={[HomeScreenStyles.userInfoContent]}>
             {app.currentUser.avatar !== undefined && app.currentUser.avatar !== '' ? (

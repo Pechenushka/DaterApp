@@ -165,7 +165,7 @@ export type writeMessageResponseDataType = baseResponse & {
 
 export type FireBaseNotification = {
   collapseKey: string;
-  data: {type: 'message' | 'like' | 'match'};
+  data: {type: 'message' | 'like' | 'match' | 'resolveRequest'};
   from: string;
   messageId: string;
   notification: {android: any; body: string; title: string};

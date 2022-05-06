@@ -58,6 +58,13 @@ class FireBaseHandler {
 
         break;
 
+      case 'resolveRequest':
+        if (app.navigator.currentScreen === 'HomeScreen') {
+          //@ts-ignore
+          app.screens.HomeScreen.controller.homeModel.checkUserStatus();
+        }
+        break;
+
       default:
         break;
     }

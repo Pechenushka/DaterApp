@@ -1,6 +1,10 @@
 class AppSettings {
+  private prod = false;
   public get apiEndpoint() {
-    return 'http://192.168.0.103:3001/';
+    if (this.prod) {
+      return 'http://dater.na4u.ru/';
+    }
+    return 'https://c1d2-194-39-226-155.eu.ngrok.io/';
   }
 }
 

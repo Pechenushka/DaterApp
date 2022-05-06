@@ -17,7 +17,7 @@ class HomeModel extends BaseModel<homeModelProps> {
   private _toMyAnnouncement: SimpleButtonModel;
   private _toHelpScreen: SimpleButtonModel;
   private _toSearch: SimpleButtonModel;
-  private _userStatus: boolean | null = true;
+  private _userStatus: boolean | null | undefined = true;
   constructor(props: homeModelProps) {
     super(props);
     this._toChats = new SimpleButtonModel({
@@ -127,7 +127,7 @@ class HomeModel extends BaseModel<homeModelProps> {
       if (response.ok) {
         const result = await response.json();
         app.currentUser.avatar = result.data.url;
-        this.forceUpdate();
+        this.checkUserStatus();
       }
     } catch (error) {
       console.log(error);
@@ -142,7 +142,7 @@ class HomeModel extends BaseModel<homeModelProps> {
         this.forceUpdate();
         return;
       }
-      this._userStatus = false;
+      this._userStatus = undefined;
       this.forceUpdate();
       return;
     }

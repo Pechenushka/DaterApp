@@ -30,6 +30,8 @@ export type localizationPackType = {
   send_your_message: string;
   write_your_message: string;
   servers_are_not_allowed: string;
+  please_request_moderation: string;
+  moderation_request_pending: string;
   profile_not_moderated: string;
   help: string;
   requests: string;
@@ -81,7 +83,9 @@ class Localization {
     your_announcement: 'your announcement',
     your_chats: 'your chats',
     servers_are_not_allowed: 'Servers are not alowed or no internet connection',
-    profile_not_moderated: 'Profile not moderated. Add avatar photo to request moderation',
+    moderation_request_pending: 'Your moderation request waiting to approve',
+    profile_not_moderated: 'Profile not moderated. Your avatar photo is unacceptable. Please change your avatar',
+    please_request_moderation: 'Almoust done! Please request moderation by adding avatar',
     help: 'help',
     requests: 'requests',
     authorization: 'Authorization',
@@ -129,7 +133,9 @@ class Localization {
     your_announcement: 'ваша анкета',
     your_chats: 'ваши чаты',
     servers_are_not_allowed: 'Сервера недоступны или отсутствует подключение к интернету.',
-    profile_not_moderated: 'Профиль не проверен. Добавте аватар чтоб запросить проверку профиля автоматически',
+    moderation_request_pending: 'Ваш запрос на модерацию ожидает одобрения',
+    profile_not_moderated: 'Профиль не проверен. Ваш аватар не прошел проверку смените аватар для повторной проверки',
+    please_request_moderation: 'Почти готово! Добавте свой аватар для того чтоб запросить модерацию профиля',
     help: 'помощь',
     requests: 'запросы',
     authorization: 'Авторизация',
