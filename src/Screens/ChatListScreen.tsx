@@ -8,6 +8,7 @@ import {BottomNavigationView} from '../Views/BottomNavigation/BottomNavigationVi
 import {app} from '../Core/AppImpl';
 import {ChatListController} from '../Controllers/ChatListController';
 import {ChatListView} from '../Views/ChatListViews/ChatListView';
+import {analyticHandler} from '../Core/AnalyticHanler';
 
 class ChatListScreen extends BaseLayoutView<ChatListController> {
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
@@ -36,6 +37,7 @@ class ChatListScreen extends BaseLayoutView<ChatListController> {
   async onFocus(): Promise<void> {
     await super.onFocus();
     await this.controller.chatListModel.init();
+    analyticHandler.trackEvent('chat_list_screen_rendered');
   }
 
   public content() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {LoginController} from '../Controllers/LoginController';
+import {analyticHandler} from '../Core/AnalyticHanler';
 import {app} from '../Core/AppImpl';
 import {baseScreenProps, componentPropsWithModel} from '../Core/BaseComponent';
 import {BaseScreenModel} from '../Core/BaseScreenModel';
@@ -31,6 +32,7 @@ class LoginScreen extends BaseLayoutView<LoginController> {
 
   async onFocus(): Promise<void> {
     await super.onFocus();
+    analyticHandler.trackEvent('login_screen_rendered');
   }
 
   public content() {

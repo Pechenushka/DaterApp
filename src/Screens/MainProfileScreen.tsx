@@ -38,7 +38,7 @@ class MainProfileScreen extends BaseLayoutView<HomeController> {
   async onFocus(): Promise<void> {
     await super.onFocus();
     await this.controller.homeModel.checkUserStatus();
-    analyticHandler.trackEvent('home_screen_rendered', {device: deviceInfoModule.getBrand()});
+    analyticHandler.trackEvent('home_screen_rendered');
   }
 
   public content() {

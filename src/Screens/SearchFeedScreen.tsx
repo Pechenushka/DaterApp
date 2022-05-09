@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import {SearchController} from '../Controllers/SearchControler';
+import {analyticHandler} from '../Core/AnalyticHanler';
 import {app} from '../Core/AppImpl';
 import {baseScreenProps, componentPropsWithModel} from '../Core/BaseComponent';
 import {BaseScreenModel} from '../Core/BaseScreenModel';
@@ -32,6 +33,7 @@ class SearchFeedScreen extends BaseLayoutView<SearchController> {
   async onFocus(): Promise<void> {
     await super.onFocus();
     this.controller.searchModel.update();
+    analyticHandler.trackEvent('search_feed_screen_rendered');
   }
 
   public content() {

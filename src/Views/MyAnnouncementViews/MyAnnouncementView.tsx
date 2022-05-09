@@ -14,6 +14,7 @@ import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {COLORS} from '../../constants/colors';
 import {appSettings} from '../../Common/AppSettings';
 import {_} from '../../Core/Localization';
+import {getAge} from '../../Common/Helpers';
 
 type myAnnouncementViewProps = baseComponentProps & {};
 
@@ -123,7 +124,7 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
                       source={app.currentUser.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
                       style={[BaseStyles.defaultIcon]}
                     />
-                    <Text> {new Date().getFullYear() - new Date(app.currentUser.birthDate || 0).getFullYear()} y.o </Text>
+                    <Text> {getAge(app.currentUser.birthDate || 0)} y.o </Text>
                   </View>
 
                   <View style={MyAnnouncementStyles.previewMainTextWrapper}>

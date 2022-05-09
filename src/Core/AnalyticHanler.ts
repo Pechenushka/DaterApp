@@ -1,10 +1,11 @@
 import analytics from '@react-native-firebase/analytics';
+import deviceInfoModule from 'react-native-device-info';
 
 class AnalyticHandler {
   constructor() {}
 
-  public trackEvent = (eventName: string, params: {device: string}) => {
-    analytics().logEvent(eventName, params);
+  public trackEvent = (eventName: string) => {
+    analytics().logEvent(eventName, {device: deviceInfoModule.getBrand()});
   };
 }
 const analyticHandler = new AnalyticHandler();

@@ -12,6 +12,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {COLORS} from '../../constants/colors';
 import {appSettings} from '../../Common/AppSettings';
 import {_} from '../../Core/Localization';
+import {getAge} from '../../Common/Helpers';
 
 type homeViewProps = baseComponentProps & {};
 
@@ -74,7 +75,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                   style={[BaseStyles.defaultIcon]}
                 />
               </View>
-              <Text>{new Date().getFullYear() - new Date(app.currentUser.birthDate || 0).getFullYear()} y.o </Text>
+              <Text>{getAge(app.currentUser.birthDate || 0)} y.o </Text>
               {app.currentUser.location && (
                 <Text>
                   {app.currentUser.location.country.name}, {app.currentUser.location.region.name},{' '}

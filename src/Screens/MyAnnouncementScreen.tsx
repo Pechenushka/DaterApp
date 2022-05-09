@@ -8,6 +8,7 @@ import {MyAnnouncementController} from '../Controllers/MyAnnouncementController'
 import {MyAnnouncementView} from '../Views/MyAnnouncementViews/MyAnnouncementView';
 import {BottomNavigationView} from '../Views/BottomNavigation/BottomNavigationView';
 import {app} from '../Core/AppImpl';
+import {analyticHandler} from '../Core/AnalyticHanler';
 
 class MyAnnouncementScreen extends BaseLayoutView<MyAnnouncementController> {
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
@@ -39,6 +40,7 @@ class MyAnnouncementScreen extends BaseLayoutView<MyAnnouncementController> {
   async onFocus(): Promise<void> {
     await super.onFocus();
     await this.controller.myAnnouncementModel.loadExistingAnnouncment();
+    analyticHandler.trackEvent('my_announcement_screen_rendered');
   }
 
   public content() {

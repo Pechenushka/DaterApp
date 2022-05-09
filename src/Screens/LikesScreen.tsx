@@ -8,6 +8,7 @@ import {BottomNavigationView} from '../Views/BottomNavigation/BottomNavigationVi
 import {app} from '../Core/AppImpl';
 import {LikesViews} from '../Views/LikesViews/LikesViews';
 import {LikesController} from '../Controllers/LikesController';
+import {analyticHandler} from '../Core/AnalyticHanler';
 
 class LikesScreen extends BaseLayoutView<LikesController> {
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
@@ -36,6 +37,7 @@ class LikesScreen extends BaseLayoutView<LikesController> {
   async onFocus(): Promise<void> {
     await super.onFocus();
     this.controller.likesModel.loadNededList();
+    analyticHandler.trackEvent('likes_screen_rendered');
   }
 
   public content() {

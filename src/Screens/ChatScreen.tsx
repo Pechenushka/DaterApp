@@ -6,6 +6,7 @@ import {BaseLayoutView} from './BaseLayout';
 import {BaseStyles} from '../Styles/BaseStyles';
 import {ChatController} from '../Controllers/ChatController';
 import {ChatView} from '../Views/ChatViews/ChatView';
+import {analyticHandler} from '../Core/AnalyticHanler';
 
 class ChatScreen extends BaseLayoutView<ChatController> {
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
@@ -34,6 +35,7 @@ class ChatScreen extends BaseLayoutView<ChatController> {
   async onFocus(): Promise<void> {
     await super.onFocus();
     await this.controller.chatModel.loadMessges(this.props.route.params.userId);
+    analyticHandler.trackEvent('chat_screen_rendered');
   }
 
   public async onBlur(): Promise<void> {

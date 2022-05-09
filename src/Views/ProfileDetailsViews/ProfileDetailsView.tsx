@@ -11,6 +11,7 @@ import {appSettings} from '../../Common/AppSettings';
 import {_} from '../../Core/Localization';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {SearchStyles} from '../../Styles/SearchStyles';
+import {getAge} from '../../Common/Helpers';
 
 type profileDetailsViewProps = baseComponentProps & {};
 
@@ -103,7 +104,7 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                     style={[BaseStyles.defaultIcon]}
                   />
                 </View>
-                <Text>{new Date().getFullYear() - new Date(this.model.userInfo.birthDate || 0).getFullYear()} y.o </Text>
+                <Text>{getAge(this.model.userInfo.birthDate || 0)} y.o </Text>
 
                 <Text>
                   {this.model.userInfo.countryName}, {this.model.userInfo.regionName}, {this.model.userInfo.cityName}
