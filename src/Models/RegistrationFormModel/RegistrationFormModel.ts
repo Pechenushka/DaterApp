@@ -1,5 +1,6 @@
 import {Alert} from 'react-native';
 import {ICONS} from '../../constants/icons';
+import {analyticHandler} from '../../Core/AnalyticHanler';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {FireBaseHandler} from '../../Core/FireBaseHandler';
@@ -289,6 +290,10 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
         app.currentUser.location = res.data.location;
         app.currentUser.fcm = res.data.fcm;
         await this.autoCreateAnnouncement();
+        analyticHandler.trackEvent('user_created_new-account', {
+          gender: res.data.gender,
+          location: res.data.location.country.name,
+        });
         return;
       }
       Alert.alert(res.statusCode.toString(), res.statusMessage);

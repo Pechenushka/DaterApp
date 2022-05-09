@@ -1,5 +1,6 @@
 import {Alert} from 'react-native';
 import {ICONS} from '../../constants/icons';
+import {analyticHandler} from '../../Core/AnalyticHanler';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {FireBaseHandler} from '../../Core/FireBaseHandler';
@@ -97,6 +98,7 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
         app.navigator.goToMainProfileScreen();
         FireBaseHandler.syncTokenDevice();
         app.navigator.setOnline();
+        analyticHandler.trackEvent('user_authorized', {gender: res.data.gender, location: res.data.location.country.name});
         return;
       }
       Alert.alert(res.statusCode.toString(), res.statusMessage);
