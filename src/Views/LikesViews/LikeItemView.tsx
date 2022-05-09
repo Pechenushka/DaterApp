@@ -10,6 +10,7 @@ import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
 import {LikeItemModel} from '../../Models/LikesModels/LikeItemModel';
 import {getTimeDateLong} from '../../Common/dateParse';
+import {getAge} from '../../Common/Helpers';
 
 type likeItemViewProps = baseComponentProps & {};
 
@@ -64,7 +65,7 @@ class LikeItemView extends TypedBaseComponent<likeItemViewProps, LikeItemModel> 
                   source={this.model.authorGender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
                   style={[BaseStyles.defaultIcon]}
                 />
-                <Text> {new Date().getFullYear() - new Date(this.model.authorBirthDay || 0).getFullYear()} y.o </Text>
+                <Text> {getAge(this.model.authorBirthDay || 0)} y.o </Text>
               </View>
 
               <View style={[BaseStyles.row, BaseStyles.pb10]}>
