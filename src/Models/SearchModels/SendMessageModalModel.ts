@@ -117,8 +117,6 @@ class SendMessageModalModel extends BaseModel<sendMessageModalModelProps> {
 
     const inserRes = await loadData(UserDataProvider.WriteMessage, messageBody);
 
-    console.log(inserRes);
-
     if (inserRes === null) {
       Alert.alert('Warning', _.lang.servers_are_not_allowed);
       this._submitButton.disabled = false;

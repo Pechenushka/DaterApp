@@ -12,11 +12,11 @@ import {StackNavigationOptions} from '@react-navigation/stack';
 import {StackNavigationEventMap, StackNavigationConfig} from '@react-navigation/stack/lib/typescript/src/types';
 import {DrawerNavigationConfig, DrawerNavigationEventMap} from '@react-navigation/drawer/lib/typescript/src/types';
 import {baseScreenCreator} from '../Core/BaseScreen';
-import {SplashScreen} from '../Screens/SplashScreen';
-import {HomeScreen} from '../Screens/HomeScreen';
-import {SearchScreen} from '../Screens/SearchScreen';
+import {LoaderScreen} from '../Screens/LoaderScreen';
+import {MainProfileScreen} from '../Screens/MainProfileScreen';
+import {SearchFeedScreen} from '../Screens/SearchFeedScreen';
 import {LoginScreen} from '../Screens/LoginScreen';
-import {RegistrationScreen} from '../Screens/RegistrationScreen';
+import {CreateNewAccountScreen} from '../Screens/CreateNewAccountScreen';
 import {MyAnnouncementScreen} from '../Screens/MyAnnouncementScreen';
 import {ProfileDetailsScreen} from '../Screens/ProfileDetailsScreen';
 import {LikesScreen} from '../Screens/LikesScreen';
@@ -52,22 +52,23 @@ class Stacks {
   private readonly _stackDrawer: typedDrawerNavigator;
   private readonly _screens: Array<{
     Screen: baseScreenCreator;
+    scrrenName: string;
     options?: object;
   }>;
 
   constructor() {
     this._stackDrawer = createDrawerNavigator();
     this._screens = [
-      {Screen: SplashScreen, options: {swipeEnabled: false}},
-      {Screen: HomeScreen, options: {swipeEnabled: true}},
-      {Screen: SearchScreen, options: {swipeEnabled: true}},
-      {Screen: LoginScreen, options: {swipeEnabled: false}},
-      {Screen: RegistrationScreen, options: {swipeEnabled: false}},
-      {Screen: MyAnnouncementScreen, options: {swipeEnabled: true}},
-      {Screen: ProfileDetailsScreen, options: {swipeEnabled: true}},
-      {Screen: LikesScreen, options: {swipeEnabled: true}},
-      {Screen: ChatListScreen, options: {swipeEnabled: true}},
-      {Screen: ChatScreen, options: {swipeEnabled: true}},
+      {Screen: LoaderScreen, scrrenName: 'LoaderScreen', options: {swipeEnabled: false}},
+      {Screen: MainProfileScreen, scrrenName: 'MainProfileScreen', options: {swipeEnabled: true}},
+      {Screen: SearchFeedScreen, scrrenName: 'SearchFeedScreen', options: {swipeEnabled: true}},
+      {Screen: LoginScreen, scrrenName: 'LoginScreen', options: {swipeEnabled: false}},
+      {Screen: CreateNewAccountScreen, scrrenName: 'CreateNewAccountScreen', options: {swipeEnabled: false}},
+      {Screen: MyAnnouncementScreen, scrrenName: 'MyAnnouncementScreen', options: {swipeEnabled: true}},
+      {Screen: ProfileDetailsScreen, scrrenName: 'ProfileDetailsScreen', options: {swipeEnabled: true}},
+      {Screen: LikesScreen, scrrenName: 'LikesScreen', options: {swipeEnabled: true}},
+      {Screen: ChatListScreen, scrrenName: 'ChatListScreen', options: {swipeEnabled: true}},
+      {Screen: ChatScreen, scrrenName: 'ChatScreen', options: {swipeEnabled: true}},
     ];
   }
 
@@ -79,7 +80,7 @@ class Stacks {
     return this._screens;
   }
 
-  public static initialRouteName = SplashScreen.name;
+  public static initialRouteName = LoaderScreen.name;
 }
 
 export {Stacks};

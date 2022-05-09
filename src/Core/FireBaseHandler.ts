@@ -36,8 +36,6 @@ class FireBaseHandler {
   }
 
   public static async HandleMessage(remoteMessage: FireBaseNotification) {
-    console.log(remoteMessage);
-
     switch (remoteMessage.data.type) {
       case 'message':
         if (app.navigator.currentScreen === 'ChatScreen') {
@@ -59,9 +57,9 @@ class FireBaseHandler {
         break;
 
       case 'resolveRequest':
-        if (app.navigator.currentScreen === 'HomeScreen') {
+        if (app.navigator.currentScreen === 'MainProfileScreen') {
           //@ts-ignore
-          app.screens.HomeScreen.controller.homeModel.checkUserStatus();
+          app.screens.MainProfileScreen.controller.homeModel.checkUserStatus();
         }
         break;
 

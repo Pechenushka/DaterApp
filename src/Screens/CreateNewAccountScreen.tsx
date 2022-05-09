@@ -1,21 +1,17 @@
 import React from 'react';
 import {View} from 'react-native';
+import {RegistrationController} from '../Controllers/RegistrationController';
+import {app} from '../Core/AppImpl';
 import {baseScreenProps, componentPropsWithModel} from '../Core/BaseComponent';
 import {BaseScreenModel} from '../Core/BaseScreenModel';
-import {HomeController} from '../Controllers/HomeController';
-import {BaseLayoutView} from './BaseLayout';
 import {BaseStyles} from '../Styles/BaseStyles';
-import {HomeView} from '../Views/HomeViews/HomeView';
-import {BottomNavigationView} from '../Views/BottomNavigation/BottomNavigationView';
-import {app} from '../Core/AppImpl';
+import {LocalizationView} from '../Views/Components/LocalizationViews/LocalizationView';
+import {RegistrationFormView} from '../Views/RegistrationFormView/RegistrationFormView';
+import {BaseLayoutView} from './BaseLayout';
 
-class HomeScreen extends BaseLayoutView<HomeController> {
+class CreateNewAccountScreen extends BaseLayoutView<RegistrationController> {
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
-    super(props, HomeController);
-  }
-
-  public get allowGoBack() {
-    return false;
+    super(props, RegistrationController);
   }
 
   async componentDidMount() {
@@ -23,7 +19,7 @@ class HomeScreen extends BaseLayoutView<HomeController> {
   }
 
   get screenName() {
-    return 'HomeScreen';
+    return 'CreateNewAccountScreen';
   }
 
   public get showHeaderLeftComponent() {
@@ -35,18 +31,16 @@ class HomeScreen extends BaseLayoutView<HomeController> {
 
   async onFocus(): Promise<void> {
     await super.onFocus();
-    await this.controller.homeModel.checkUserStatus();
   }
 
   public content() {
-    console.log('HomeScreen RENDERED');
     return (
       <View style={[BaseStyles.container]}>
-        <HomeView {...this.childProps(this.controller.homeModel)} />
-        <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
+        <RegistrationFormView {...this.childProps(this.controller.registrationFormModel)} />
+        <LocalizationView {...this.childProps(app.localization)} />
       </View>
     );
   }
 }
 
-export {HomeScreen};
+export {CreateNewAccountScreen};

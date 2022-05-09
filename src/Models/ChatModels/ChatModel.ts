@@ -124,7 +124,6 @@ class ChatModel extends BaseModel<chatModelProps> {
 
   public loadMore = async () => {
     const elemsInScreen = this._offset + this._limit;
-    console.log('loadMore');
     if (!this._loadingNP && Array.from(this.list).length >= elemsInScreen) {
       this._loadingNP = true;
       this._offset += this._limit;
@@ -145,7 +144,7 @@ class ChatModel extends BaseModel<chatModelProps> {
         this._loadingNP = false;
         return;
       }
-      console.log('loadMore', res);
+
       res.data.messages.map(mesgProps => {
         this.list.set(mesgProps.id, this.createMessageModel(mesgProps));
       });

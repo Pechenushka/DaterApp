@@ -99,7 +99,7 @@ class HomeModel extends BaseModel<homeModelProps> {
   };
 
   public toSearchPress = () => {
-    app.navigator.goToSearchScreen();
+    app.navigator.goToSearchFeedScreen();
   };
 
   public toChatsPress = () => {
@@ -109,7 +109,6 @@ class HomeModel extends BaseModel<homeModelProps> {
   public changeAvatar = async () => {
     try {
       const pickedAvatar = await pickSingle({allowMultiSelection: false, type: [types.images]});
-      console.log(pickedAvatar.name);
       if (pickedAvatar.name.split('.').pop() === 'gif') {
         Alert.alert('Warning', 'wrong avatar format');
         return;

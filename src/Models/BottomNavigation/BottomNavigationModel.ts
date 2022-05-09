@@ -49,11 +49,11 @@ class BottomNavigationModel extends BaseModel<bottomNavigationModelProps> {
   }
 
   public onSearchPress = async () => {
-    app.navigator.goToSearchScreen();
+    app.navigator.goToSearchFeedScreen();
   };
 
   public onHomePress = async () => {
-    app.navigator.goToHomeScreen();
+    app.navigator.goToMainProfileScreen();
   };
 
   public onLikesPress = async () => {
@@ -67,7 +67,6 @@ class BottomNavigationModel extends BaseModel<bottomNavigationModelProps> {
   public onRequestPress = async () => {};
 
   public updateCounters = async () => {
-    console.log('COUNTERS');
     loadData(UserDataProvider.GetMessagesCount, {myId: app.currentUser.userId}).then(res => {
       if (res !== null && res.statusCode === 200) {
         this._chatButton.counterModel.count = res.data.count;

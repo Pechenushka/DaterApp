@@ -37,7 +37,6 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
   };
 
   public render() {
-    console.log(this.model.userStatus);
     return (
       <View
         style={[

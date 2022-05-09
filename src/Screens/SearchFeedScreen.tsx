@@ -9,7 +9,7 @@ import {BottomNavigationView} from '../Views/BottomNavigation/BottomNavigationVi
 import {SearchView} from '../Views/SearchViews/SearchView';
 import {BaseLayoutView} from './BaseLayout';
 
-class SearchScreen extends BaseLayoutView<SearchController> {
+class SearchFeedScreen extends BaseLayoutView<SearchController> {
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, SearchController);
   }
@@ -19,7 +19,7 @@ class SearchScreen extends BaseLayoutView<SearchController> {
   }
 
   get screenName() {
-    return 'SearchScreen';
+    return 'SearchFeedScreen';
   }
 
   public get showHeaderLeftComponent() {
@@ -44,4 +44,4 @@ class SearchScreen extends BaseLayoutView<SearchController> {
   }
 }
 
-export {SearchScreen};
+export {SearchFeedScreen};

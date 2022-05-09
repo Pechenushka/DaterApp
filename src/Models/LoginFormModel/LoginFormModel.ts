@@ -5,7 +5,7 @@ import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {FireBaseHandler} from '../../Core/FireBaseHandler';
 import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
-import {RegistrationScreen} from '../../Screens/RegistrationScreen';
+import {CreateNewAccountScreen} from '../../Screens/CreateNewAccountScreen';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {TextInputModel} from '../Components/Inputs/TextInputModel';
 
@@ -73,7 +73,7 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
   };
 
   public onRegistrationPress = async () => {
-    app.navigator.navigate(RegistrationScreen);
+    app.navigator.navigate(CreateNewAccountScreen);
   };
 
   public onSignUpPress = async () => {
@@ -94,7 +94,7 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
         app.currentUser.location = res.data.location;
         app.currentUser.avatar = res.data.avatar;
         app.currentUser.fcm = res.data.fcm;
-        app.navigator.goToHomeScreen();
+        app.navigator.goToMainProfileScreen();
         FireBaseHandler.syncTokenDevice();
         app.navigator.setOnline();
         return;

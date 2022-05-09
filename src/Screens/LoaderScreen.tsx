@@ -6,13 +6,13 @@ import {baseScreenProps, componentPropsWithModel} from '../Core/BaseComponent';
 import {BaseScreenModel} from '../Core/BaseScreenModel';
 import {CONSTANTS} from '../Styles/Variables';
 
-class SplashScreen extends BaseScreen<SplashController> {
+class LoaderScreen extends BaseScreen<SplashController> {
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, SplashController);
   }
 
   public get screenName() {
-    return 'SplashScreen';
+    return 'LoaderScreen';
   }
 
   public render() {
@@ -24,4 +24,4 @@ class SplashScreen extends BaseScreen<SplashController> {
   }
 }
 
-export {SplashScreen};
+export {LoaderScreen};

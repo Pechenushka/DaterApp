@@ -1,5 +1,5 @@
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
-import {HomeScreen} from '../../Screens/HomeScreen';
+import {MainProfileScreen} from '../../Screens/MainProfileScreen';
 import {DrawerItemModel} from './DrawerItem/DrawerItemModel';
 
 type drawerContentModelProps = baseModelProps & {};
@@ -13,7 +13,7 @@ class DrawerContentModel extends BaseModel<drawerContentModelProps> {
     this._drawerButton = new DrawerItemModel({
       id: 'drawer_item_allInkasations',
       label: 'Мої',
-      screenImpl: HomeScreen,
+      screenImpl: MainProfileScreen,
     });
   }
 

@@ -4,10 +4,10 @@ import {readData} from './readData';
 import {app} from './AppImpl';
 import {baseScreenCreator} from './BaseScreen';
 
-import {HomeScreen} from '../Screens/HomeScreen';
-import {SplashScreen} from '../Screens/SplashScreen';
+import {MainProfileScreen} from '../Screens/MainProfileScreen';
+import {LoaderScreen} from '../Screens/LoaderScreen';
 import {LoginScreen} from '../Screens/LoginScreen';
-import {SearchScreen} from '../Screens/SearchScreen';
+import {SearchFeedScreen} from '../Screens/SearchFeedScreen';
 import {MyAnnouncementScreen} from '../Screens/MyAnnouncementScreen';
 import {ProfileDetailsScreen} from '../Screens/ProfileDetailsScreen';
 import {LikesScreen} from '../Screens/LikesScreen';
@@ -15,6 +15,7 @@ import {ChatListScreen} from '../Screens/ChatListScreen';
 import {ChatScreen} from '../Screens/ChatScreen';
 import {FireBaseHandler} from './FireBaseHandler';
 import {loadData, UserDataProvider} from '../DataProvider/UserDataProvider';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 type screenHistoryType = {
   impl: baseScreenCreator;
@@ -43,12 +44,12 @@ class Navigator {
   constructor() {
     this._navigation = null;
     this._state = {
-      prevScreens: [{impl: SplashScreen}],
+      prevScreens: [{impl: LoaderScreen}],
       appState: {
         isBackground: false,
       },
     };
-    this._currentScreen = SplashScreen.name;
+    this._currentScreen = LoaderScreen.name;
     this._startAppWithBackground = false;
   }
 
@@ -61,7 +62,7 @@ class Navigator {
   }
   public get prevScreen() {
     const length = this._state.prevScreens.length;
-    return length > 1 ? this._state.prevScreens[length - 2].impl.name : SplashScreen.name;
+    return length > 1 ? this._state.prevScreens[length - 2].impl.name : LoaderScreen.name;
   }
 
   public set state(value) {
@@ -94,9 +95,9 @@ class Navigator {
 
   public navigateToMainStack(screenImpl: baseScreenCreator, params: object = {}) {
     this._state.prevScreens = [];
-    this.pushScreenToHistory(SplashScreen);
-    if (screenImpl !== HomeScreen) {
-      this.pushScreenToHistory(HomeScreen);
+    this.pushScreenToHistory(LoaderScreen);
+    if (screenImpl !== MainProfileScreen) {
+      this.pushScreenToHistory(MainProfileScreen);
     }
     this.navigate(screenImpl, params);
   }
@@ -135,14 +136,18 @@ class Navigator {
   }
 
   public async navigationUserStartApp() {
-    if (app.currentUser.userId === -1) {
-      app.navigator.navigate(LoginScreen);
-      return;
+    try {
+      if (app.currentUser.userId === -1) {
+        app.navigator.navigate(LoginScreen);
+        return;
+      }
+      this.goToMainProfileScreen();
+      FireBaseHandler.syncTokenDevice();
+      app.bottomNavigation.updateCounters();
+      this.setOnline();
+    } catch (error: any) {
+      crashlytics().recordError(error, 'navigationUserStartApp error');
     }
-    this.goToHomeScreen();
-    FireBaseHandler.syncTokenDevice();
-    app.bottomNavigation.updateCounters();
-    this.setOnline();
   }
 
   // restoreNavigatorState
@@ -159,7 +164,7 @@ class Navigator {
     const stringifyConfig = JSON.stringify(this.state);
     saveData('appState', stringifyConfig).then();
   }
-  private static disabledScreens = [SplashScreen];
+  private static disabledScreens = [LoaderScreen];
 
   public static alwaysCreateNewScreens = [ProfileDetailsScreen];
 
@@ -170,7 +175,7 @@ class Navigator {
       return;
     }
     const screen = this.state.prevScreens[length - 2];
-    if (screen.impl === SplashScreen) {
+    if (screen.impl === LoaderScreen) {
       return;
     }
     if (Navigator.disabledScreens.find(impl => impl === screen.impl) === undefined) {
@@ -206,13 +211,13 @@ class Navigator {
     this.navigation.dispatch(DrawerActions.toggleDrawer());
   }
 
-  public goToHomeScreen() {
-    this.navigate(HomeScreen);
+  public goToMainProfileScreen() {
+    this.navigate(MainProfileScreen);
     app.bottomNavigation.activeIndex = 3;
   }
 
-  public goToSearchScreen() {
-    this.navigate(SearchScreen);
+  public goToSearchFeedScreen() {
+    this.navigate(SearchFeedScreen);
     app.bottomNavigation.activeIndex = 4;
   }
 

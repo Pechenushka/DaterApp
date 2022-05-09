@@ -233,7 +233,6 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
 
   public sanityzeText = async (value: string) => {
     let sanityzed = value.replace(/\D/g, '');
-    console.log('sanityzed', sanityzed);
     if (parseInt(sanityzed, 10) > 100) {
       sanityzed = '100';
     }

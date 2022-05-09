@@ -328,7 +328,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       return;
     }
     Alert.alert('Hooray', 'Your profile succesfuly added');
-    app.navigator.goToHomeScreen();
+    app.navigator.goToMainProfileScreen();
     app.navigator.setOnline();
     FireBaseHandler.syncTokenDevice();
     this._signUpButton.disabled = false;

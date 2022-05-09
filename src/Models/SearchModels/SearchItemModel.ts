@@ -113,7 +113,6 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
       Alert.alert('Warning', res.statusMessage);
       return;
     }
-    console.log('SetUserLike', res);
     this.props.liked = true;
     this.forceUpdate();
   };

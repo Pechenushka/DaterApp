@@ -233,7 +233,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       return;
     }
     Alert.alert('Hooray', 'Your announcment succesfuly added');
-    app.navigator.goToHomeScreen();
+    app.navigator.goToMainProfileScreen();
     this._submitButton.disabled = false;
   };
 
@@ -276,7 +276,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       return;
     }
     Alert.alert('Hooray', 'Your announcment succesfuly edited');
-    app.navigator.goToHomeScreen();
+    app.navigator.goToMainProfileScreen();
     this._editButton.disabled = false;
   };
 

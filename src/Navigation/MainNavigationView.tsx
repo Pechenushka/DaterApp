@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {baseComponentProps, componentPropsWithModel, TypedBaseComponent} from '../Core/BaseComponent';
@@ -15,13 +16,16 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
 
   public render() {
     super.render();
+    app.stacks.screens.map(item => {
+      console.log(item.Screen.name);
+    });
     return (
       <NavigationContainer ref={ref => (app.navigator.navigation = ref)}>
         <app.stacks.stackDrawer.Navigator
           openByDefault={false}
           drawerPosition={'left'}
           drawerType={'front'}
-          screenOptions={{gestureEnabled: true}}
+          screenOptions={{headerShown: false, gestureHandlerProps: {enabled: true}}}
           drawerContent={() => <DrawerContentView {...this.childProps(this.model.drawerContentModel)} />}
           initialRouteName={Stacks.initialRouteName}>
           {app.stacks.screens.map(item => (

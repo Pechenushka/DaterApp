@@ -120,7 +120,6 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
       Alert.alert('Warning', res.statusMessage);
       return;
     }
-    console.log('SetUserLike', res);
     this.props.liked = true;
     this.forceUpdate();
   };
@@ -143,7 +142,6 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
       userToId: this.authorId,
     };
     const res = await loadData(UserDataProvider.SetUserReject, rejectBody);
-    console.log('UserDataProvider.SetUserReject', res);
     if (res === null) {
       Alert.alert('Warning', 'Something went wrong, check your internet connection');
       return;

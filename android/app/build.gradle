@@ -81,6 +81,8 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
+    entryFile: "index.js",
+    extraPackagerArgs: [ '--minify=false' ],
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -136,8 +138,8 @@ android {
         applicationId "com.dater"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
     }
     splits {
         abi {
