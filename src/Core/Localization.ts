@@ -48,6 +48,7 @@ export type localizationPackType = {
   chose_region: string;
   chose_city: string;
   sign_up: string;
+  month: Array<string>;
 };
 
 export type localizationEnum = 'eng' | 'rus';
@@ -101,6 +102,20 @@ class Localization {
     enter_your_name: 'Enter your name',
     repeat_your_password: 'Repeat your password',
     sign_up: 'Sign Up!',
+    month: [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ],
   };
 
   private _rus: localizationPackType = {
@@ -151,6 +166,7 @@ class Localization {
     enter_your_name: 'Введите свое имя',
     repeat_your_password: 'Повторите пароль',
     sign_up: 'Зарегистрироватся!',
+    month: ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'],
   };
 
   private _currLang: localizationEnum = 'eng';

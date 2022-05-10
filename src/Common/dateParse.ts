@@ -1,3 +1,6 @@
+import {app} from '../Core/AppImpl';
+import {_} from '../Core/Localization';
+
 export function convertToUTCString(date: string, timeOffset = '+02:00') {
   if (date === undefined || date === null) {
     return '01.01.1970';
@@ -319,7 +322,7 @@ export const getShortDate = (dateTimeStamp: number) => {
   const hours = `0${date.getHours()}`.slice(-2);
   const minutes = `0${date.getMinutes()}`.slice(-2);
 
-  return `${date.getDate()} ${monthsVidmina[date.getMonth()]} ${hours}:${minutes}`;
+  return `${date.getDate()} ${_.lang.month[date.getMonth()]} ${hours}:${minutes}`;
 };
 
 export const getTimeDate = (dateTimeStamp: number) => {
