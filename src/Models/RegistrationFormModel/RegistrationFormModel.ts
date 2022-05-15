@@ -1,4 +1,5 @@
 import {Alert} from 'react-native';
+import deviceInfoModule from 'react-native-device-info';
 import {ICONS} from '../../constants/icons';
 import {analyticHandler} from '../../Core/AnalyticHanler';
 import {app} from '../../Core/AppImpl';
@@ -276,6 +277,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       regionId: region.id,
       cityId: city.id,
       fcm,
+      mac: deviceInfoModule.getMacAddressSync(),
     };
     const res = await loadData(UserDataProvider.Registration, registrationBody);
     if (res !== null) {
