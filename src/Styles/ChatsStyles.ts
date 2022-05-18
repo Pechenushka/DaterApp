@@ -131,6 +131,20 @@ const ChatsStyles = StyleSheet.create({
     width: hp(25),
     height: hp(25),
   },
+
+  chatListHeaderContainer: {
+    backgroundColor: COLORS.WHITE,
+    padding: hp(5),
+    paddingHorizontal: hp(15),
+    marginVertical: hp(5),
+    borderRadius: 12,
+  },
+
+  chatListHeaderText: {
+    fontSize: hp(18),
+    fontWeight: 'bold',
+    textTransform: 'capitalize',
+  },
 });
 
 export {ChatsStyles};

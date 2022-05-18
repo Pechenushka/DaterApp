@@ -7,6 +7,7 @@ import {COLORS} from '../../constants/colors';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {ChatListItemView} from './ChatListItemView';
 import {_} from '../../Core/Localization';
+import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
 
 type chatListViewProps = baseComponentProps & {};
 
@@ -26,7 +27,12 @@ class ChatListView extends TypedBaseComponent<chatListViewProps, ChatListModel> 
     }
     return (
       <View style={ChatsStyles.chatListMainContainer}>
-        <Text>{_.lang.your_chats}</Text>
+        <ShadowWrapperView style={BaseStyles.mt10}>
+          <View style={ChatsStyles.chatListHeaderContainer}>
+            <Text style={ChatsStyles.chatListHeaderText}>{_.lang.your_chats}</Text>
+          </View>
+        </ShadowWrapperView>
+
         <ScrollView style={BaseStyles.w100} contentContainerStyle={[BaseStyles.w100, BaseStyles.ai_c, BaseStyles.pb100]}>
           {Array.from(this.model.list).map(chatItem => {
             return <ChatListItemView {...this.childProps(chatItem[1])} />;

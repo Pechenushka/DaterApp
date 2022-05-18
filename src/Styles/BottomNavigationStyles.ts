@@ -5,10 +5,10 @@ import {hp} from '../constants/Dimensions';
 const BottomNavigationStyles = StyleSheet.create({
   navButtonContainer: {
     borderColor: COLORS.BLURED_GRAY,
-    borderWidth: 0.5,
-    borderRadius: 8,
-    height: hp(55),
-    width: '23%',
+    borderLeftWidth: 0.5,
+    borderRightWidth: 0.5,
+    height: hp(65),
+    width: '25%',
   },
 
   navButtonContainerActive: {
