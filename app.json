@@ -1,4 +1,8 @@
 {
   "name": "Dater",
-  "displayName": "Dater"
+  "displayName": "Dater",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-6052303679653895~2495583086",
+    "ios_app_id": "ca-app-pub-6052303679653895~2495583086"
+  }
 }

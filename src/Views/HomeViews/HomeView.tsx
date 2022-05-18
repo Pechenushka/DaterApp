@@ -13,6 +13,7 @@ import {COLORS} from '../../constants/colors';
 import {appSettings} from '../../Common/AppSettings';
 import {_} from '../../Core/Localization';
 import {getAge} from '../../Common/Helpers';
+import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 
 type homeViewProps = baseComponentProps & {};
 
@@ -175,6 +176,9 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                 </ShadowWrapperView>
               </View> */}
             </View>
+          </View>
+          <View style={[]}>
+            <BannerAd unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'} size={BannerAdSize.BANNER} />
           </View>
         </View>
       </View>

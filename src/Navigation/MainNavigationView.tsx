@@ -16,9 +16,6 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
 
   public render() {
     super.render();
-    app.stacks.screens.map(item => {
-      console.log(item.Screen.name);
-    });
     return (
       <NavigationContainer ref={ref => (app.navigator.navigation = ref)}>
         <app.stacks.stackDrawer.Navigator

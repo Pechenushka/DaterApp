@@ -7,6 +7,7 @@ import {LoginScreenStyles} from '../../Styles/LoginScreenStyles';
 import {TextInputView} from '../Components/Inputs/TextInputView';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {_} from '../../Core/Localization';
+import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 
 type simpleButtonViewProps = baseComponentProps & {
   styles?: Object;
@@ -21,37 +22,42 @@ class LoginFormView extends TypedBaseComponent<simpleButtonViewProps, LoginFormM
   public render() {
     super.render();
     return (
-      <View style={[LoginScreenStyles.mainContainer, BaseStyles.container]}>
-        <View style={LoginScreenStyles.formContainer}>
-          <Text style={[LoginScreenStyles.mainTitleStyles]}>{_.lang.authorization}</Text>
-          <View style={[LoginScreenStyles.inputsContainer]}>
-            <TextInputView
-              styles={{container: LoginScreenStyles.inputContainer, text: LoginScreenStyles.inputText, icon: {}}}
-              {...this.childProps(this.model.emailInput)}
-            />
-            <TextInputView
-              styles={{
-                container: [LoginScreenStyles.inputContainer, {marginTop: 20}],
-                text: [LoginScreenStyles.inputText, {fontSize: 14}],
-                icon: {},
-              }}
-              {...this.childProps(this.model.passwordInput)}
-            />
+      <>
+        <View style={[LoginScreenStyles.mainContainer, BaseStyles.container]}>
+          <View style={LoginScreenStyles.formContainer}>
+            <Text style={[LoginScreenStyles.mainTitleStyles]}>{_.lang.authorization}</Text>
+            <View style={[LoginScreenStyles.inputsContainer]}>
+              <TextInputView
+                styles={{container: LoginScreenStyles.inputContainer, text: LoginScreenStyles.inputText, icon: {}}}
+                {...this.childProps(this.model.emailInput)}
+              />
+              <TextInputView
+                styles={{
+                  container: [LoginScreenStyles.inputContainer, {marginTop: 20}],
+                  text: [LoginScreenStyles.inputText, {fontSize: 14}],
+                  icon: {},
+                }}
+                {...this.childProps(this.model.passwordInput)}
+              />
 
-            <SimpleButtonView
-              textStyles={[LoginScreenStyles.loginButtonText]}
-              styles={[LoginScreenStyles.loginButton]}
-              {...this.childProps(this.model.signUpButton)}
-            />
-            <Text>-{_.lang.or}-</Text>
-            <SimpleButtonView
-              textStyles={[LoginScreenStyles.registrateButtonText]}
-              styles={[LoginScreenStyles.registrateButton]}
-              {...this.childProps(this.model.registrationButton)}
-            />
+              <SimpleButtonView
+                textStyles={[LoginScreenStyles.loginButtonText]}
+                styles={[LoginScreenStyles.loginButton]}
+                {...this.childProps(this.model.signUpButton)}
+              />
+              <Text>-{_.lang.or}-</Text>
+              <SimpleButtonView
+                textStyles={[LoginScreenStyles.registrateButtonText]}
+                styles={[LoginScreenStyles.registrateButton]}
+                {...this.childProps(this.model.registrationButton)}
+              />
+            </View>
           </View>
         </View>
-      </View>
+        <View style={LoginScreenStyles.mainContainer}>
+          <BannerAd unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'} size={BannerAdSize.BANNER} />
+        </View>
+      </>
     );
   }
 }

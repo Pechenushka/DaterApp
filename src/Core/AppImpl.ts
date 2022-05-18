@@ -10,6 +10,7 @@ import {Stacks} from '../Controllers/Stacks';
 import {MainNavigationModel} from '../Navigation/MainNavigationModel';
 import {BottomNavigationModel} from '../Models/BottomNavigation/BottomNavigationModel';
 import {LocalizationModel} from '../Models/Components/LocalizationModels/LocalizationModel';
+import {adsHandler} from './AdsHandler';
 
 class MainApp implements AppImpl {
   private readonly _model: AppModel;
@@ -41,6 +42,7 @@ class MainApp implements AppImpl {
       id: '_bottomNavigation',
     });
     this._localization = new LocalizationModel({id: '_localization'});
+    adsHandler.init();
   }
   public get model() {
     return this._model;

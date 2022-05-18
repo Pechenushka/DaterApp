@@ -292,7 +292,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
         app.currentUser.location = res.data.location;
         app.currentUser.fcm = res.data.fcm;
         await this.autoCreateAnnouncement();
-        analyticHandler.trackEvent('user_created_new-account', {
+        analyticHandler.trackEvent('user_created_new_account', {
           gender: res.data.gender,
           location: res.data.location.country.name,
         });
