@@ -1,4 +1,6 @@
+import {Linking} from 'react-native';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
+import {_} from '../../Core/Localization';
 import {MainProfileScreen} from '../../Screens/MainProfileScreen';
 import {DrawerItemModel} from './DrawerItem/DrawerItemModel';
 
@@ -12,10 +14,14 @@ class DrawerContentModel extends BaseModel<drawerContentModelProps> {
 
     this._drawerButton = new DrawerItemModel({
       id: 'drawer_item_allInkasations',
-      label: 'Мої',
-      screenImpl: MainProfileScreen,
+      label: _.lang.feedback,
+      onPress: this.onContactUsPress,
     });
   }
+
+  public onContactUsPress = async () => {
+    Linking.openURL('mailto:smsoftfeedback@gmail.com');
+  };
 
   public get drawerButton() {
     return this._drawerButton;

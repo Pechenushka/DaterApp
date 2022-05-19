@@ -99,6 +99,7 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
   };
 
   public onLikeButtonPress = async () => {
+    this.likeButton.disabled = true;
     const likeBody = {
       myId: app.currentUser.userId,
       userToId: this.authorId,
@@ -106,11 +107,13 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
     const res = await loadData(UserDataProvider.SetUserLike, likeBody);
     if (res === null) {
       Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      this.likeButton.disabled = false;
       return;
     }
 
     if (res.statusCode !== 200) {
       Alert.alert('Warning', res.statusMessage);
+      this.likeButton.disabled = false;
       return;
     }
     this.props.liked = true;

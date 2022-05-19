@@ -50,6 +50,7 @@ class TextInputView extends TypedBaseComponent<textInputViewProps, TextInputMode
           textAlignVertical={this.model.numberOfLines > 1 ? 'top' : 'center'}
           value={this.model.value}
           onBlur={this.model.onBlur}
+          caretHidden={false}
         />
         {this.model.showCounter && (
           <TextInputCounterView

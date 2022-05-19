@@ -15,6 +15,7 @@ export type localizationPackType = {
   city: string;
   gender: string;
   age: string;
+  feedback: string;
   something_went_wrong: string;
   location: string;
   my_likes: string;
@@ -49,9 +50,11 @@ export type localizationPackType = {
   chose_city: string;
   sign_up: string;
   month: Array<string>;
+  selectLanguage: string;
+  languageWarning: string;
 };
 
-export type localizationEnum = 'eng' | 'rus';
+export type localizationEnum = 'eng' | 'rus' | 'ua';
 
 class Localization {
   private _eng: localizationPackType = {
@@ -102,6 +105,7 @@ class Localization {
     enter_your_name: 'Enter your name',
     repeat_your_password: 'Repeat your password',
     sign_up: 'Sign Up!',
+    feedback: 'Contact us',
     month: [
       'January',
       'February',
@@ -116,6 +120,8 @@ class Localization {
       'November',
       'December',
     ],
+    selectLanguage: 'Slect your language',
+    languageWarning: 'Changes will be applied after restart',
   };
 
   private _rus: localizationPackType = {
@@ -166,7 +172,77 @@ class Localization {
     enter_your_name: 'Введите свое имя',
     repeat_your_password: 'Повторите пароль',
     sign_up: 'Зарегистрироватся!',
+    feedback: 'Связь с разработчиком',
     month: ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'],
+    selectLanguage: 'Выбери свой язык',
+    languageWarning: 'Изменения вступят в силу после перезапуска',
+  };
+
+  private _ua: localizationPackType = {
+    send: 'відправити',
+    contacts: 'контакти',
+    chats: 'чати',
+    profile_settings: 'налаштування профілю',
+    age: 'вік',
+    announcement_text: 'текст анкети',
+    aply_filters: 'застосувати фільтри',
+    city: 'місто',
+    country: 'країна',
+    edit: 'редагувати',
+    enter_your_message: 'Введіть ваше повідомлення',
+    filters: 'фільтри',
+    gender: 'стать',
+    items_not_found: 'нічого не знайдено',
+    likes: 'лайки',
+    location: 'Локація',
+    matches: 'Співпадання',
+    me_liked: 'Mене лайкнули',
+    my_likes: 'Mої лайки',
+    preview: 'попередній перегляд',
+    region: 'регіон',
+    search: 'пошук',
+    send_your_message: 'відправ своє повідомлення',
+    something_went_wrong: 'щось пішло не так',
+    write_few_words_about_yourself: 'Напишіть коротко про себе',
+    write_your_message: 'Текст повідомлення',
+    your_announcement: 'ваша анкета',
+    your_chats: 'ваші чати',
+    servers_are_not_allowed: 'Сервера недоступні або відсутнє підключення до інтернету.',
+    moderation_request_pending: 'Ваш запит на модерацію очікує одобрення',
+    profile_not_moderated: 'Профіль не провірений. Ваш аватар не пройшов провірку замініть аватар для повторної перевірки',
+    please_request_moderation: 'Майже готово! Добавте свій аватар для того чтоб запросити модерацію профіля',
+    help: 'допомога',
+    requests: 'запити',
+    authorization: 'Авторизація',
+    or: 'або',
+    enter_your_email: 'Введіть свій email',
+    enter_your_password: 'Введіть свій пароль',
+    create_new_account: 'Створіть новый аккаунт',
+    login: 'увійти',
+    chose_city: 'Виберіть місто',
+    chose_country: 'Виберіть країну',
+    chose_region: 'Виберіть регіон',
+    date_of_birth: 'Дата народження',
+    enter_your_name: 'Введіть своє імя',
+    repeat_your_password: 'Повторіть пароль',
+    sign_up: 'Зареєструватися!',
+    feedback: 'Звязок з разробником',
+    month: [
+      'Січня',
+      'Лютого',
+      'Березня',
+      'Квітня',
+      'Травня',
+      'Червня',
+      'Липня',
+      'Серпня',
+      'Вересня',
+      'Жовтня',
+      'Листопада',
+      'Грудня',
+    ],
+    selectLanguage: 'Виберіть свою мову',
+    languageWarning: 'Зміни вступлять в силу після перезапуску',
   };
 
   private _currLang: localizationEnum = 'eng';
@@ -179,6 +255,10 @@ class Localization {
 
   public get rus() {
     return this._rus;
+  }
+
+  public get ua() {
+    return this._ua;
   }
 
   public get lang() {

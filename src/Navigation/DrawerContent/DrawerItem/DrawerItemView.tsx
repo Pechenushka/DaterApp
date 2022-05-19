@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
 
 import {hp, wp} from '../../../constants/Dimensions';
 import {app} from '../../../Core/AppImpl';
 import {TypedBaseComponent, componentPropsWithModel, baseComponentProps} from '../../../Core/BaseComponent';
+import {SimpleButtonView} from '../../../Views/Components/Buttons/SimpleButtonView';
 import {LocalizationView} from '../../../Views/Components/LocalizationViews/LocalizationView';
 import {DrawerItemModel} from './DrawerItemModel';
 
@@ -18,7 +19,9 @@ class DrawerItemView extends TypedBaseComponent<drawerItemViewProps, DrawerItemM
     super.render();
     return (
       <View style={styles.container}>
-        <LocalizationView {...this.childProps(app.localization)} />
+        <TouchableOpacity style={styles.button} onPress={this.model.onPress}>
+          <Text style={styles.label}>{this.model.label}</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -26,6 +29,7 @@ class DrawerItemView extends TypedBaseComponent<drawerItemViewProps, DrawerItemM
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    marginTop: hp(30),
     paddingHorizontal: wp(25),
   },
   button: {

@@ -4,6 +4,7 @@ import {BaseModel, baseModelProps} from '../../../Core/BaseModel';
 import {_} from '../../../Core/Localization';
 import {SimpleButtonModel} from '../Buttons/SimpleButtonModel';
 import RNRestart from 'react-native-restart'; // Import package from node modules
+import {DevSettings} from 'react-native';
 
 type localizationModelProps = baseModelProps & {};
 
@@ -79,7 +80,7 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
     app.currentUser.lang = 'rus';
     _.currLang = 'rus';
     this.visible = false;
-    RNRestart.Restart();
+    DevSettings.reload();
   };
 
   public onGbrPress = () => {
@@ -87,15 +88,15 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
     app.currentUser.lang = 'eng';
     _.currLang = 'eng';
     this.visible = false;
-    RNRestart.Restart();
+    DevSettings.reload();
   };
 
   public onUaPress = () => {
     this._selectionButton.icon = ICONS.uaIcon;
-    app.currentUser.lang = 'rus';
-    _.currLang = 'rus';
+    app.currentUser.lang = 'ua';
+    _.currLang = 'ua';
     this.visible = false;
-    RNRestart.Restart();
+    DevSettings.reload();
   };
 
   public init = async () => {

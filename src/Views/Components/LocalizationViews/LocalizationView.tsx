@@ -4,6 +4,7 @@ import {Modal, Text, View} from 'react-native';
 import {LocalizationModel} from '../../../Models/Components/LocalizationModels/LocalizationModel';
 import {SimpleButtonView} from '../Buttons/SimpleButtonView';
 import {LocalizationStyles} from '../../../Styles/LocalizationStyles';
+import {_} from '../../../Core/Localization';
 
 type localizationViewProps = baseComponentProps & {};
 
@@ -25,7 +26,7 @@ class LocalizationView extends TypedBaseComponent<localizationViewProps, Localiz
         <Modal visible={this.model.visible} transparent={true}>
           <View style={LocalizationStyles.modalBackGroung}>
             <View style={LocalizationStyles.modalContentContainer}>
-              <Text>Select your language</Text>
+              <Text>{_.lang.selectLanguage}</Text>
               <View style={LocalizationStyles.countryButtonsContainer}>
                 <SimpleButtonView
                   styles={LocalizationStyles.countryButtonContainer}
@@ -43,6 +44,7 @@ class LocalizationView extends TypedBaseComponent<localizationViewProps, Localiz
                   {...this.childProps(this.model.uaButton)}
                 />
               </View>
+              <Text>{_.lang.languageWarning}</Text>
             </View>
           </View>
         </Modal>
