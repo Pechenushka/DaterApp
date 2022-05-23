@@ -60,6 +60,7 @@ const MyAnnouncementStyles = StyleSheet.create({
     fontSize: hp(16),
     fontWeight: 'bold',
     color: COLORS.BLACK,
+    textTransform: 'capitalize',
   },
 
   mainTitleText: {
@@ -126,6 +127,7 @@ const MyAnnouncementStyles = StyleSheet.create({
     fontWeight: 'bold',
     color: COLORS.WHITE,
     fontSize: hp(18),
+    textTransform: 'capitalize',
   },
 
   likeButtonContainer: {
