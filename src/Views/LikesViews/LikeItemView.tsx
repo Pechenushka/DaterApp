@@ -9,7 +9,7 @@ import {COLORS} from '../../constants/colors';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
 import {LikeItemModel} from '../../Models/LikesModels/LikeItemModel';
-import {getTimeDateLong} from '../../Common/dateParse';
+import {getShortDate} from '../../Common/dateParse';
 import {getAge} from '../../Common/Helpers';
 
 type likeItemViewProps = baseComponentProps & {};
@@ -70,7 +70,7 @@ class LikeItemView extends TypedBaseComponent<likeItemViewProps, LikeItemModel> 
 
               <View style={[BaseStyles.row, BaseStyles.pb10]}>
                 <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
-                <Text> {getTimeDateLong(this.model.lastOnline)}</Text>
+                <Text> {getShortDate(this.model.lastOnline)}</Text>
               </View>
 
               <View style={MyAnnouncementStyles.previewMainTextWrapper}>

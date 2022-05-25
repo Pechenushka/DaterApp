@@ -11,7 +11,7 @@ import {ICONS} from '../../constants/icons';
 import {appSettings} from '../../Common/AppSettings';
 import {TextInputView} from '../Components/Inputs/TextInputView';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
-import {getTimeDateLong} from '../../Common/dateParse';
+import {getShortDate} from '../../Common/dateParse';
 
 type chatViewProps = baseComponentProps & {};
 
@@ -72,7 +72,7 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
               </View>
               <View style={[BaseStyles.row, BaseStyles.pb10]}>
                 <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
-                <Text> {getTimeDateLong(this.model.companion.lastOnline || 0)}</Text>
+                <Text> {getShortDate(this.model.companion.lastOnline || 0)}</Text>
               </View>
             </View>
           </TouchableOpacity>
