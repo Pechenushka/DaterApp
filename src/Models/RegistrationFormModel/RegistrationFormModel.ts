@@ -1,5 +1,6 @@
 import {Alert} from 'react-native';
 import deviceInfoModule from 'react-native-device-info';
+import {getAge} from '../../Common/Helpers';
 import {ICONS} from '../../constants/icons';
 import {analyticHandler} from '../../Core/AnalyticHanler';
 import {app} from '../../Core/AppImpl';
@@ -262,6 +263,12 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
 
     if (city === undefined) {
       Alert.alert('Warning!', 'Select your city or closest to you');
+      this._signUpButton.disabled = false;
+      return;
+    }
+
+    if (getAge(dateTimeStamp) < 18) {
+      Alert.alert('Warning!', 'You must be over 18 years old');
       this._signUpButton.disabled = false;
       return;
     }
