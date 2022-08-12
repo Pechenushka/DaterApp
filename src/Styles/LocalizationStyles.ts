@@ -3,7 +3,13 @@ import {COLORS} from '../constants/colors';
 import {hp} from '../constants/Dimensions';
 
 const LocalizationStyles = StyleSheet.create({
-  selectButtonContainer: {},
+  selectButtonContainer: {
+    flexDirection: 'row',
+  },
+
+  selectButtonText: {
+    marginLeft: hp(5),
+  },
 
   selectButtonWrapper: {
     position: 'absolute',

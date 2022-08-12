@@ -22,6 +22,7 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
       id: '_selectionButton',
       onPress: this.onSelectionPress,
       icon: ICONS.gbrIcon,
+      text: _.lang.lang_title,
     });
 
     this._rusButton = new SimpleButtonModel({
@@ -103,10 +104,17 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
     switch (app.currentUser.lang) {
       case 'eng':
         this._selectionButton.icon = ICONS.gbrIcon;
+        this._selectionButton.text = _.lang.lang_title;
         break;
 
       case 'rus':
         this._selectionButton.icon = ICONS.rusIcon;
+        this._selectionButton.text = _.lang.lang_title;
+        break;
+
+      case 'ua':
+        this._selectionButton.icon = ICONS.uaIcon;
+        this._selectionButton.text = _.lang.lang_title;
         break;
 
       default:

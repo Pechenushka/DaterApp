@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../../Core/BaseComponent';
 import React from 'react';
 import {Modal, Text, View} from 'react-native';
 import {LocalizationModel} from '../../../Models/Components/LocalizationModels/LocalizationModel';
@@ -20,6 +24,7 @@ class LocalizationView extends TypedBaseComponent<localizationViewProps, Localiz
         <SimpleButtonView
           styles={LocalizationStyles.selectButtonContainer}
           iconStyles={LocalizationStyles.selectButtonIcon}
+          textStyles={LocalizationStyles.selectButtonText}
           {...this.childProps(this.model.selectionButton)}
         />
 

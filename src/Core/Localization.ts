@@ -1,6 +1,7 @@
 import {app} from './AppImpl';
 
 export type localizationPackType = {
+  lang_title: string;
   send: string;
   contacts: string;
   chats: string;
@@ -62,6 +63,7 @@ export type localizationEnum = 'eng' | 'rus' | 'ua';
 
 class Localization {
   private _eng: localizationPackType = {
+    lang_title: 'English',
     send: 'send',
     contacts: 'contacts',
     chats: 'chats',
@@ -134,6 +136,7 @@ class Localization {
   };
 
   private _rus: localizationPackType = {
+    lang_title: 'Русский(страна терорист)',
     send: 'отправить',
     contacts: 'контакты',
     chats: 'чаты',
@@ -207,6 +210,7 @@ class Localization {
   };
 
   private _ua: localizationPackType = {
+    lang_title: 'Українська',
     send: 'відправити',
     contacts: 'контакти',
     chats: 'чати',

@@ -20,6 +20,7 @@ import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
 import {app} from '../../Core/AppImpl';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
 import {SendMessageModalView} from '../SearchViews/SendMessageModalView';
+import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 
 type profileDetailsViewProps = baseComponentProps & {};
 
@@ -224,6 +225,12 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
               )}
             </View>
           )}
+          <View style={[]}>
+            <BannerAd
+              unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'}
+              size={BannerAdSize.BANNER}
+            />
+          </View>
         </View>
       </View>
     );

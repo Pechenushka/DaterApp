@@ -25,6 +25,11 @@ class SimpleButtonModel extends BaseModel<simpleButtonModelProps> {
     return this.props.text || null;
   }
 
+  public set text(Val) {
+    this.props.text = Val ? Val : undefined;
+    this.forceUpdate();
+  }
+
   public get counterModel() {
     return this._counterModel;
   }
