@@ -16,6 +16,7 @@ class ChatModel extends BaseModel<chatModelProps> {
   private _list: Map<number, MessageItemModel> = new Map();
   private _messageInput: TextInputModel;
   private _sendButton: SimpleButtonModel;
+  private _backButton: SimpleButtonModel;
 
   private _companion: companionDataType | null = null;
 
@@ -38,10 +39,20 @@ class ChatModel extends BaseModel<chatModelProps> {
       onPress: this.onSendPress,
       icon: ICONS.sendIcon,
     });
+
+    this._backButton = new SimpleButtonModel({
+      id: '_backButton',
+      onPress: this.onBackPress,
+      icon: ICONS.BackArrowIcon,
+    });
   }
 
   public get loading() {
     return this._loading;
+  }
+
+  public get backButton() {
+    return this._backButton;
   }
 
   public set loading(Val) {
@@ -218,6 +229,10 @@ class ChatModel extends BaseModel<chatModelProps> {
 
   public onprofilePress = async () => {
     app.navigator.goToProfileDetailsScreen(this.companion?.id || -1);
+  };
+
+  public onBackPress = async () => {
+    app.navigator.toGoBack();
   };
 }
 

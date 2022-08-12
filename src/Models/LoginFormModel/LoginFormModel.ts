@@ -95,6 +95,7 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
         app.currentUser.location = res.data.location;
         app.currentUser.avatar = res.data.avatar;
         app.currentUser.fcm = res.data.fcm;
+        app.currentUser.token = res.data.token;
         app.navigator.goToMainProfileScreen();
         FireBaseHandler.syncTokenDevice();
         app.navigator.setOnline();

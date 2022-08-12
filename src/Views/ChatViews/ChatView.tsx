@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {ActivityIndicator, Image, Platform, Text, TouchableOpacity, View} from 'react-native';
 import {ChatModel} from '../../Models/ChatModels/ChatModel';
@@ -34,48 +38,61 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
       <View style={ChatsStyles.chatMainContainer}>
         {/* HEADER */}
         {this.model.companion !== null && (
-          <TouchableOpacity onPress={this.model.onprofilePress} style={ChatsStyles.chatHeaderContainer}>
-            <View style={BaseStyles.w20}>
-              <View style={[ChatsStyles.chatListItemAvatarContainer]}>
-                <Image
-                  ref={ref => {
-                    this.imgRef = ref;
-                  }}
-                  source={
-                    this.model.companion.avatar === undefined || this.model.companion.avatar === ''
-                      ? ICONS.profileIcon
-                      : {
-                          uri: `${appSettings.apiEndpoint}${
-                            this.model.companion.avatar.split('.')[0]
-                          }-compressed.${this.model.companion.avatar.split('.').pop()}`,
-                          cache: 'reload',
-                        }
-                  }
-                  style={ChatsStyles.chatListItemAvatarImage}
-                  onError={() => {
-                    const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
-                    this.imgRef &&
-                      this.imgRef.setNativeProps({
-                        [nativeProp]: [Image.resolveAssetSource(ICONS.profileIcon)], // array
-                      });
-                  }}
-                />
-              </View>
+          <View style={ChatsStyles.chatHeaderContainer}>
+            <View style={[BaseStyles.w10]}>
+              <SimpleButtonView
+                iconStyles={BaseStyles.defaultIcon}
+                {...this.childProps(this.model.backButton)}
+              />
             </View>
-            <View style={[BaseStyles.w40, BaseStyles.h100]}>
-              <View style={[BaseStyles.row, BaseStyles.ai_c]}>
-                <Text style={ChatsStyles.chatListItemUserName}>{this.model.companion.name} </Text>
-                <Image
-                  source={this.model.companion.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
-                  style={[BaseStyles.smallIcon]}
-                />
+            <TouchableOpacity
+              onPress={this.model.onprofilePress}
+              style={[BaseStyles.w90, BaseStyles.row]}>
+              <View style={BaseStyles.w20}>
+                <View style={[ChatsStyles.chatListItemAvatarContainer]}>
+                  <Image
+                    ref={ref => {
+                      this.imgRef = ref;
+                    }}
+                    source={
+                      this.model.companion.avatar === undefined ||
+                      this.model.companion.avatar === ''
+                        ? ICONS.profileIcon
+                        : {
+                            uri: `${appSettings.apiEndpoint}${
+                              this.model.companion.avatar.split('.')[0]
+                            }-compressed.${this.model.companion.avatar.split('.').pop()}`,
+                            cache: 'reload',
+                          }
+                    }
+                    style={ChatsStyles.chatListItemAvatarImage}
+                    onError={() => {
+                      const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
+                      this.imgRef &&
+                        this.imgRef.setNativeProps({
+                          [nativeProp]: [Image.resolveAssetSource(ICONS.profileIcon)], // array
+                        });
+                    }}
+                  />
+                </View>
               </View>
-              <View style={[BaseStyles.row, BaseStyles.pb10]}>
-                <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
-                <Text> {getShortDate(this.model.companion.lastOnline || 0)}</Text>
+              <View style={[BaseStyles.w40, BaseStyles.h100]}>
+                <View style={[BaseStyles.row, BaseStyles.ai_c]}>
+                  <Text style={ChatsStyles.chatListItemUserName}>{this.model.companion.name} </Text>
+                  <Image
+                    source={
+                      this.model.companion.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon
+                    }
+                    style={[BaseStyles.smallIcon]}
+                  />
+                </View>
+                <View style={[BaseStyles.row, BaseStyles.pb10]}>
+                  <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
+                  <Text> {getShortDate(this.model.companion.lastOnline || 0)}</Text>
+                </View>
               </View>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
         )}
 
         <FlatList

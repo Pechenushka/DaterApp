@@ -1,10 +1,10 @@
 class AppSettings {
-  private prod = true;
+  private prod = false;
   public get apiEndpoint() {
     if (this.prod) {
       return 'http://142.132.168.38:3001/';
     }
-    return 'https://e2c9-194-39-226-155.eu.ngrok.io/';
+    return 'http://192.168.0.105:3001/';
   }
 }
 

@@ -233,6 +233,7 @@ class Navigator {
 
   public goToProfileDetailsScreen(userId: number) {
     this.navigate(ProfileDetailsScreen, {userId});
+    app.bottomNavigation.activeIndex = 0;
   }
 
   public goToChatScreen(userId: number) {

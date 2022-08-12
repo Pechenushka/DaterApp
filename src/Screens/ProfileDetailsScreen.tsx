@@ -2,9 +2,11 @@ import React from 'react';
 import {View} from 'react-native';
 import {ProfileDetailsController} from '../Controllers/ProfileDetailsController';
 import {analyticHandler} from '../Core/AnalyticHanler';
+import {app} from '../Core/AppImpl';
 import {baseScreenProps, componentPropsWithModel} from '../Core/BaseComponent';
 import {BaseScreenModel} from '../Core/BaseScreenModel';
 import {BaseStyles} from '../Styles/BaseStyles';
+import {BottomNavigationView} from '../Views/BottomNavigation/BottomNavigationView';
 import {ProfileDetailsView} from '../Views/ProfileDetailsViews/ProfileDetailsView';
 import {BaseLayoutView} from './BaseLayout';
 
@@ -40,6 +42,7 @@ class ProfileDetailsScreen extends BaseLayoutView<ProfileDetailsController> {
     return (
       <View style={[BaseStyles.container]}>
         <ProfileDetailsView {...this.childProps(this.controller.profileModel)} />
+        <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
       </View>
     );
   }

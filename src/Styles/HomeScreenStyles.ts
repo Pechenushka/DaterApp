@@ -134,8 +134,8 @@ const HomeScreenStyles = StyleSheet.create({
   },
 
   actionButtonIcon: {
-    height: hp(20),
-    width: hp(20),
+    height: hp(25),
+    width: hp(25),
     resizeMode: 'contain',
     marginRight: hp(10),
   },

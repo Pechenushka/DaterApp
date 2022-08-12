@@ -22,6 +22,7 @@ export type registrationResponseDataType = baseResponse & {
     checked: boolean;
     avatar: string;
     fcm: string;
+    token: string;
   };
 };
 
@@ -74,12 +75,13 @@ export type userDetailsDataType = {
   contactAccess: boolean;
   countryName: string;
   email: string;
-  gender: string;
+  gender: genderEnum;
   id: number;
   name: string;
   phone: string;
   regionName: string;
   telegram: string;
+  liked: boolean;
 };
 
 export type userMeetingDataType = baseResponse & {

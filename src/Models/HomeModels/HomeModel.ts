@@ -7,6 +7,7 @@ import {appSettings} from '../../Common/AppSettings';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {_} from '../../Core/Localization';
 import {Alert} from 'react-native';
+import {LoginScreen} from '../../Screens/LoginScreen';
 
 type homeModelProps = baseModelProps & {};
 
@@ -108,7 +109,10 @@ class HomeModel extends BaseModel<homeModelProps> {
 
   public changeAvatar = async () => {
     try {
-      const pickedAvatar = await pickSingle({allowMultiSelection: false, type: [types.images]});
+      const pickedAvatar = await pickSingle({
+        allowMultiSelection: false,
+        type: ['.jpeg', '.jpg', '.png'],
+      });
       if (pickedAvatar.name.split('.').pop() === 'gif') {
         Alert.alert('Warning', 'wrong avatar format');
         return;
@@ -116,6 +120,8 @@ class HomeModel extends BaseModel<homeModelProps> {
       let data = new FormData();
       data.append('image', {uri: pickedAvatar.uri, type: 'image/png', name: pickedAvatar.name});
       data.append('userId', app.currentUser.userId);
+      data.append('token', app.currentUser.token);
+
       const response = await fetch(`${appSettings.apiEndpoint}users/set-avatar`, {
         method: 'POST',
         headers: {
@@ -139,6 +145,22 @@ class HomeModel extends BaseModel<homeModelProps> {
       if (res.statusCode === 200) {
         this._userStatus = res.data.status;
         this.forceUpdate();
+        return;
+      }
+
+      if (res.statusCode === 404) {
+        app.navigator.navigate(LoginScreen);
+        app.currentUser.removeItemFromAsyncStorage('secureUserData');
+        app.currentUser.gender = undefined;
+        app.currentUser.userId = -1;
+        app.currentUser.userName = undefined;
+        app.currentUser.email = undefined;
+        app.currentUser.phone = undefined;
+        app.currentUser.birthDate = undefined;
+        app.currentUser.telegram = undefined;
+        app.currentUser.location = undefined;
+        app.currentUser.fcm = undefined;
+        app.currentUser.token = undefined;
         return;
       }
       this._userStatus = undefined;

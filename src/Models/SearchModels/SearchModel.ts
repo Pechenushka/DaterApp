@@ -22,6 +22,7 @@ export type filterType = {
   gender: genderEnum;
   ageFrom: number;
   ageTo: number;
+  approved: boolean,
 };
 
 class SearchModel extends BaseModel<searchModelProps> {
@@ -51,6 +52,7 @@ class SearchModel extends BaseModel<searchModelProps> {
       ageFrom: new Date().setFullYear(new Date().getFullYear() - 18),
       ageTo: new Date().setFullYear(new Date().getFullYear() - 100),
       gender: 'all',
+      approved: false,
     };
     this._filterButton = new SimpleButtonModel({id: '_filterButton', onPress: this.onFilterPress, icon: ICONS.filterIcon});
     this.load();
@@ -110,6 +112,7 @@ class SearchModel extends BaseModel<searchModelProps> {
       ageTo: this._currentFilter.ageTo,
       limit: this._limit,
       offset: this._offset,
+      approved: this._currentFilter.approved,
     };
     const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
     if (searchRes === null) {
@@ -146,6 +149,7 @@ class SearchModel extends BaseModel<searchModelProps> {
       ageTo: this._currentFilter.ageTo,
       limit: this._limit,
       offset: this._offset,
+      approved: this._currentFilter.approved,
     };
     const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
     if (searchRes === null) {
@@ -199,6 +203,7 @@ class SearchModel extends BaseModel<searchModelProps> {
         ageTo: this._currentFilter.ageTo,
         limit: this._limit,
         offset: this._offset,
+        approved: this._currentFilter.approved,
       };
       const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
       if (searchRes === null) {

@@ -51,12 +51,24 @@ const BaseStyles = StyleSheet.create({
     height: '100%',
   },
 
+  h10: {
+    height: '30%',
+  },
+
   w100: {
     width: '100%',
   },
 
   w95: {
     width: '95%',
+  },
+
+  w90: {
+    width: '90%',
+  },
+
+  w80: {
+    width: '80%',
   },
 
   w65: {

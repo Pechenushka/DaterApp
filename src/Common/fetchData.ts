@@ -1,6 +1,7 @@
+import { app } from '../Core/AppImpl';
 import {appSettings} from './AppSettings';
 
-export const fetchData = async (url: string, type: 'GET' | 'POST' | 'PUT', body: object | null = null) => {
+export const fetchData = async (url: string, type: 'GET' | 'POST' | 'PUT', body: object | null = null, needAuth: boolean = false) => {
   // Aboard Fetch Data 15000
   const timeout = 15000;
   const controller = new AbortController();
@@ -8,6 +9,13 @@ export const fetchData = async (url: string, type: 'GET' | 'POST' | 'PUT', body:
     controller.abort();
   }, timeout);
   const endpoint = appSettings.apiEndpoint;
+  if (needAuth) {
+    body.auth = {
+      userId: app.currentUser.userId,
+      token: app.currentUser.token
+    };
+  }
+  console.log('URL', url);
   const response = await fetch(`${endpoint}${url}`, {
     method: type,
     headers: {

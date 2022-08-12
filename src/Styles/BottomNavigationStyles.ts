@@ -4,9 +4,6 @@ import {hp} from '../constants/Dimensions';
 
 const BottomNavigationStyles = StyleSheet.create({
   navButtonContainer: {
-    borderColor: COLORS.BLURED_GRAY,
-    borderLeftWidth: 0.5,
-    borderRightWidth: 0.5,
     height: hp(65),
     width: '25%',
   },
@@ -16,8 +13,8 @@ const BottomNavigationStyles = StyleSheet.create({
   },
   navButtonIcon: {
     resizeMode: 'contain',
-    height: hp(22),
-    width: hp(22),
+    height: hp(27),
+    width: hp(27),
   },
   bottomNavigationContainer: {
     height: hp(65),

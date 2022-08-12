@@ -3,8 +3,10 @@ import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {userDetailsDataType} from '../../Core/DataTypes/BaseTypes';
+import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
+import {SendMessageModalModel} from '../SearchModels/SendMessageModalModel';
 
 type profileDetailsModelProps = baseModelProps & {
   userId: number;
@@ -15,6 +17,12 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
   private _userInfo: userDetailsDataType | null = null;
   private _modalVisible: boolean = false;
   private _closeFullScreenButton: SimpleButtonModel;
+  private _reportButton: SimpleButtonModel;
+  private _blockButton: SimpleButtonModel;
+  private _messageButton: SimpleButtonModel;
+  private _likeButton: SimpleButtonModel;
+  private _backButton: SimpleButtonModel;
+  private _sendMessageModal: SendMessageModalModel;
 
   constructor(props: profileDetailsModelProps) {
     super(props);
@@ -24,6 +32,39 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
       onPress: this.closeFullScreenModal,
       icon: ICONS.deleteIcon,
     });
+
+    this._blockButton = new SimpleButtonModel({
+      id: '_blockButton',
+      onPress: this.onBlockButtonPress,
+      icon: ICONS.BlockIcon,
+      text: _.lang.block_user,
+    });
+    this._reportButton = new SimpleButtonModel({
+      id: '_reportButton',
+      onPress: this.onReportButtonPress,
+      icon: ICONS.ReportIcon,
+      text: _.lang.report_user,
+    });
+    this._messageButton = new SimpleButtonModel({
+      id: '_messageButton',
+      onPress: this.onMessageButtonPress,
+      icon: ICONS.chatIcon,
+      text: _.lang.send_message,
+    });
+    this._likeButton = new SimpleButtonModel({
+      id: '_likeButton',
+      onPress: this.onLikeButtonPress,
+      icon: ICONS.heartIcon,
+      text: _.lang.like,
+    });
+
+    this._backButton = new SimpleButtonModel({
+      id: '_backButton',
+      onPress: this.onBackPress,
+      icon: ICONS.BackArrowIcon,
+    });
+
+    this._sendMessageModal = new SendMessageModalModel({id: '_sendMessageModal'});
   }
 
   public get userId() {
@@ -66,10 +107,37 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
     this.forceUpdate();
   }
 
+  public get reportButton() {
+    return this._reportButton;
+  }
+
+  public get blockButton() {
+    return this._blockButton;
+  }
+
+  public get messageButton() {
+    return this._messageButton;
+  }
+
+  public get likeButton() {
+    return this._likeButton;
+  }
+
+  public get backButton() {
+    return this._backButton;
+  }
+
+  public get sendMessageModal() {
+    return this._sendMessageModal;
+  }
+
   public loadProfile = async (userId: number) => {
     this.loading = true;
     this.userId = userId;
-    const profileRes = await loadData(UserDataProvider.GetUserDatails, {userId});
+    const profileRes = await loadData(UserDataProvider.GetUserDatails, {
+      userId,
+      myId: app.currentUser.userId,
+    });
     if (profileRes === null) {
       Alert.alert('Warning', 'Something went wrong, check your internet connection');
       app.navigator.toGoBack();
@@ -83,6 +151,11 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
     }
 
     this._userInfo = profileRes.data;
+    if (profileRes.data.liked) {
+      this._likeButton.disabled = true;
+      this._likeButton.icon = ICONS.heartIconRed;
+    }
+
     this.loading = false;
   };
 
@@ -92,6 +165,76 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
 
   public closeFullScreenModal = async () => {
     this.modalVisible = false;
+  };
+
+  public onBlockButtonPress = async () => {
+    console.log('block');
+  };
+
+  public onReportButtonPress = async () => {
+    console.log('report');
+  };
+
+  public onMessageButtonPress = async () => {
+    this._messageButton.disabled = true;
+    const res = await loadData(UserDataProvider.IsChatExists, {
+      myId: app.currentUser.userId,
+      userId: this.userId,
+    });
+    if (res === null) {
+      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      this._messageButton.disabled = false;
+      return;
+    }
+
+    if (res.statusCode !== 200) {
+      Alert.alert('Warning', res.statusMessage);
+      this._messageButton.disabled = false;
+      return;
+    }
+
+    if (res.data) {
+      app.navigator.goToChatScreen(this.userId);
+      this._messageButton.disabled = false;
+      return;
+    }
+
+    this.sendMessageModal.userData = {
+      avatar: this._userInfo ? this._userInfo.avatar : '',
+      gender: this._userInfo ? this._userInfo.gender : 'male',
+      name: this._userInfo ? this._userInfo.name : '',
+      userId: this._userInfo ? this._userInfo.id : -1,
+    };
+    this.sendMessageModal.open();
+    this._messageButton.disabled = false;
+  };
+
+  public onLikeButtonPress = async () => {
+    this.likeButton.disabled = true;
+    const likeBody = {
+      myId: app.currentUser.userId,
+      userToId: this.userId,
+    };
+    const res = await loadData(UserDataProvider.SetUserLike, likeBody);
+    if (res === null) {
+      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      this.likeButton.disabled = false;
+      return;
+    }
+
+    if (res.statusCode !== 200) {
+      Alert.alert('Warning', res.statusMessage);
+      this.likeButton.disabled = false;
+      return;
+    }
+    this.likeButton.icon = ICONS.heartIconRed;
+    this.forceUpdate();
+  };
+
+  public onWriteButtonPress = async () => {};
+
+  public onBackPress = async () => {
+    app.navigator.toGoBack();
   };
 }
 

@@ -298,6 +298,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
         app.currentUser.telegram = res.data.telegram;
         app.currentUser.location = res.data.location;
         app.currentUser.fcm = res.data.fcm;
+        app.currentUser.token = res.data.token;
         await this.autoCreateAnnouncement();
         analyticHandler.trackEvent('user_created_new_account', {
           gender: res.data.gender,

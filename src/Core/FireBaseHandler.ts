@@ -1,6 +1,7 @@
 import messaging from '@react-native-firebase/messaging';
 import {Alert} from 'react-native';
 import {loadData, UserDataProvider} from '../DataProvider/UserDataProvider';
+import { LoginScreen } from '../Screens/LoginScreen';
 import {app} from './AppImpl';
 import {FireBaseNotification} from './DataTypes/BaseTypes';
 
@@ -20,6 +21,11 @@ class FireBaseHandler {
       if (res === null) {
         Alert.alert('Warning', 'Sync error');
         return;
+      }
+
+      if (res.statusCode === 404) {
+       app.navigator.navigate(LoginScreen);
+      return;
       }
 
       if (res.statusCode !== 200) {

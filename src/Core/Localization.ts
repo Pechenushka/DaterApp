@@ -52,6 +52,10 @@ export type localizationPackType = {
   month: Array<string>;
   selectLanguage: string;
   languageWarning: string;
+  send_message: string;
+  like: string;
+  block_user: string;
+  report_user: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua';
@@ -88,7 +92,8 @@ class Localization {
     your_chats: 'your chats',
     servers_are_not_allowed: 'Servers are not alowed or no internet connection',
     moderation_request_pending: 'Your moderation request waiting to approve',
-    profile_not_moderated: 'Profile not moderated. Your avatar photo is unacceptable. Please change your avatar',
+    profile_not_moderated:
+      'Profile not moderated. Your avatar photo is unacceptable. Please change your avatar',
     please_request_moderation: 'Almoust done! Please request moderation by adding avatar',
     help: 'help',
     requests: 'requests',
@@ -122,6 +127,10 @@ class Localization {
     ],
     selectLanguage: 'Slect your language',
     languageWarning: 'Changes will be applied after restart',
+    send_message: 'Send Message',
+    like: 'Like',
+    block_user: 'Block User',
+    report_user: 'Report User',
   };
 
   private _rus: localizationPackType = {
@@ -155,8 +164,10 @@ class Localization {
     your_chats: 'ваши чаты',
     servers_are_not_allowed: 'Сервера недоступны или отсутствует подключение к интернету.',
     moderation_request_pending: 'Ваш запрос на модерацию ожидает одобрения',
-    profile_not_moderated: 'Профиль не проверен. Ваш аватар не прошел проверку смените аватар для повторной проверки',
-    please_request_moderation: 'Почти готово! Добавте свой аватар для того чтоб запросить модерацию профиля',
+    profile_not_moderated:
+      'Профиль не проверен. Ваш аватар не прошел проверку смените аватар для повторной проверки',
+    please_request_moderation:
+      'Почти готово! Добавте свой аватар для того чтоб запросить модерацию профиля',
     help: 'помощь',
     requests: 'запросы',
     authorization: 'Авторизация',
@@ -173,9 +184,26 @@ class Localization {
     repeat_your_password: 'Повторите пароль',
     sign_up: 'Зарегистрироватся!',
     feedback: 'Связь с разработчиком',
-    month: ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'],
+    month: [
+      'Января',
+      'Февраля',
+      'Марта',
+      'Апреля',
+      'Мая',
+      'Июня',
+      'Июля',
+      'Августа',
+      'Сентября',
+      'Октября',
+      'Ноября',
+      'Декабря',
+    ],
     selectLanguage: 'Выбери свой язык',
     languageWarning: 'Изменения вступят в силу после перезапуска',
+    send_message: 'Написать',
+    like: 'Лайк',
+    block_user: 'Заблокировать',
+    report_user: 'Пожаловаться',
   };
 
   private _ua: localizationPackType = {
@@ -209,8 +237,10 @@ class Localization {
     your_chats: 'ваші чати',
     servers_are_not_allowed: 'Сервера недоступні або відсутнє підключення до інтернету.',
     moderation_request_pending: 'Ваш запит на модерацію очікує одобрення',
-    profile_not_moderated: 'Профіль не провірений. Ваш аватар не пройшов провірку замініть аватар для повторної перевірки',
-    please_request_moderation: 'Майже готово! Добавте свій аватар для того чтоб запросити модерацію профіля',
+    profile_not_moderated:
+      'Профіль не провірений. Ваш аватар не пройшов провірку замініть аватар для повторної перевірки',
+    please_request_moderation:
+      'Майже готово! Добавте свій аватар для того чтоб запросити модерацію профіля',
     help: 'допомога',
     requests: 'запити',
     authorization: 'Авторизація',
@@ -243,6 +273,10 @@ class Localization {
     ],
     selectLanguage: 'Виберіть свою мову',
     languageWarning: 'Зміни вступлять в силу після перезапуску',
+    send_message: 'Написати',
+    like: 'Лайк',
+    block_user: 'Заблокувати',
+    report_user: 'Поскаржитись',
   };
 
   private _currLang: localizationEnum = 'eng';

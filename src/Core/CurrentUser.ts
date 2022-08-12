@@ -18,6 +18,7 @@ type currentUserStateType = {
   location: userLocationType | undefined;
   fcm: string | undefined;
   lang: localizationEnum;
+  token: string | undefined
 };
 
 type userLocationType = {
@@ -41,6 +42,7 @@ class CurrentUser {
       location: undefined,
       fcm: undefined,
       lang: 'eng',
+      token: undefined,
     };
   }
 
@@ -132,6 +134,14 @@ class CurrentUser {
     this._user.lang = value;
   }
 
+  public get token() {
+    return this._user.token;
+  }
+
+  public set token(value) {
+    this._user.token = value;
+  }
+
   // save user
   public async saveUser() {
     const userData = JSON.stringify(this._user);
@@ -156,6 +166,7 @@ class CurrentUser {
       this._user.location = jsonData.location;
       this._user.fcm = jsonData.fcm;
       this._user.lang = jsonData.lang;
+      this._user.token = jsonData.token;
     }
     await app.localization.init();
   }
