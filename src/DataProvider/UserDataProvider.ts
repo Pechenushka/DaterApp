@@ -122,6 +122,14 @@ class UserDataProvider {
   static async GetLikesCount(body: requestBodyType): Promise<getLikesCountDataType> {
     return fetchData('users/get-user-counters', 'POST', body, true);
   }
+
+  static async BlockUser(body: requestBodyType): Promise<baseResponse> {
+    return fetchData('users/block-user', 'POST', body, true);
+  }
+
+  static async UnblockUser(body: requestBodyType): Promise<baseResponse> {
+    return fetchData('users/unblock-user', 'POST', body, true);
+  }
 }
 
 async function loadData<T extends baseResponse, R extends requestBodyType>(

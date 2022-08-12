@@ -124,6 +124,13 @@ const HomeScreenStyles = StyleSheet.create({
     flexDirection: 'row',
   },
 
+  alertText: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: hp(18),
+    fontWeight: 'bold',
+    color: COLORS.DARK_GARY,
+  },
+
   actionButtonColum: {
     width: '50%',
     alignItems: 'center',

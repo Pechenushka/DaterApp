@@ -82,6 +82,8 @@ export type userDetailsDataType = {
   regionName: string;
   telegram: string;
   liked: boolean;
+  blocked: boolean;
+  blockedBy: boolean;
 };
 
 export type userMeetingDataType = baseResponse & {
@@ -152,6 +154,8 @@ export type companionDataType = {
   id: number;
   name: string;
   lastOnline: number;
+  blocked: boolean;
+  blockedBy: boolean;
 };
 
 export type messageItemDataType = {

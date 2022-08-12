@@ -19,6 +19,7 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
   private _closeFullScreenButton: SimpleButtonModel;
   private _reportButton: SimpleButtonModel;
   private _blockButton: SimpleButtonModel;
+  private _unblockButton: SimpleButtonModel;
   private _messageButton: SimpleButtonModel;
   private _likeButton: SimpleButtonModel;
   private _backButton: SimpleButtonModel;
@@ -38,6 +39,12 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
       onPress: this.onBlockButtonPress,
       icon: ICONS.BlockIcon,
       text: _.lang.block_user,
+    });
+    this._unblockButton = new SimpleButtonModel({
+      id: '_unblockButton',
+      onPress: this.onUnblockButtonPress,
+      icon: ICONS.BlockIcon,
+      text: _.lang.unblock_user,
     });
     this._reportButton = new SimpleButtonModel({
       id: '_reportButton',
@@ -115,6 +122,10 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
     return this._blockButton;
   }
 
+  public get unblockButton() {
+    return this._unblockButton;
+  }
+
   public get messageButton() {
     return this._messageButton;
   }
@@ -156,6 +167,10 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
       this._likeButton.icon = ICONS.heartIconRed;
     }
 
+    if (profileRes.data.blocked) {
+      this._blockButton.disabled = true;
+    }
+
     this.loading = false;
   };
 
@@ -168,7 +183,54 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
   };
 
   public onBlockButtonPress = async () => {
-    console.log('block');
+    this._blockButton.disabled = true;
+    const res = await loadData(UserDataProvider.BlockUser, {
+      userId: app.currentUser.userId,
+      blockedUserId: this.userId,
+    });
+    if (res === null) {
+      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      this._blockButton.disabled = false;
+      return;
+    }
+
+    if (res.statusCode !== 200) {
+      Alert.alert('Warning', res.statusMessage);
+      this._blockButton.disabled = false;
+      return;
+    }
+    if (this.userInfo !== null) {
+      this.userInfo.blocked = true;
+      this.forceUpdate();
+    }
+    this._blockButton.disabled = false;
+  };
+
+  public onUnblockButtonPress = async () => {
+    this._unblockButton.disabled = true;
+    const res = await loadData(UserDataProvider.UnblockUser, {
+      userId: app.currentUser.userId,
+      blockedUserId: this.userId,
+    });
+    if (res === null) {
+      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      this._unblockButton.disabled = false;
+      return;
+    }
+
+    if (res.statusCode !== 200) {
+      Alert.alert('Warning', res.statusMessage);
+      this._unblockButton.disabled = false;
+      return;
+    }
+
+    if (this.userInfo !== null) {
+      this.userInfo.blocked = false;
+      this._blockButton.disabled = false;
+      this.forceUpdate();
+    }
+
+    this._unblockButton.disabled = false;
   };
 
   public onReportButtonPress = async () => {

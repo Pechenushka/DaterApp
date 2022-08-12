@@ -56,6 +56,7 @@ export type localizationPackType = {
   send_message: string;
   like: string;
   block_user: string;
+  unblock_user: string;
   report_user: string;
 };
 
@@ -78,7 +79,7 @@ class Localization {
     enter_your_message: 'Enter your message',
     filters: 'Filters',
     gender: 'gender',
-    items_not_found: 'items not found',
+    items_not_found: 'Items not found',
     likes: 'likes',
     location: 'location',
     me_liked: 'Me Liked',
@@ -132,6 +133,7 @@ class Localization {
     send_message: 'Send Message',
     like: 'Like',
     block_user: 'Block User',
+    unblock_user: 'Unblock User',
     report_user: 'Report User',
   };
 
@@ -150,7 +152,7 @@ class Localization {
     enter_your_message: 'Введите свое сообщение',
     filters: 'фильтры',
     gender: 'пол',
-    items_not_found: 'ничего не найдено',
+    items_not_found: 'Ничего не найдено',
     likes: 'лайки',
     location: 'Локация',
     matches: 'Cовпадения',
@@ -206,6 +208,7 @@ class Localization {
     send_message: 'Написать',
     like: 'Лайк',
     block_user: 'Заблокировать',
+    unblock_user: 'Разблокировать',
     report_user: 'Пожаловаться',
   };
 
@@ -224,10 +227,10 @@ class Localization {
     enter_your_message: 'Введіть ваше повідомлення',
     filters: 'фільтри',
     gender: 'стать',
-    items_not_found: 'нічого не знайдено',
+    items_not_found: 'Нічого не знайдено',
     likes: 'лайки',
     location: 'Локація',
-    matches: 'Співпадання',
+    matches: 'Співпадіння',
     me_liked: 'Mене лайкнули',
     my_likes: 'Mої лайки',
     preview: 'попередній перегляд',
@@ -280,6 +283,7 @@ class Localization {
     send_message: 'Написати',
     like: 'Лайк',
     block_user: 'Заблокувати',
+    unblock_user: 'Розблокувати',
     report_user: 'Поскаржитись',
   };
 

@@ -16,6 +16,7 @@ import {appSettings} from '../../Common/AppSettings';
 import {TextInputView} from '../Components/Inputs/TextInputView';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {getShortDate} from '../../Common/dateParse';
+import {HomeScreenStyles} from '../../Styles/HomeScreenStyles';
 
 type chatViewProps = baseComponentProps & {};
 
@@ -23,6 +24,55 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
   private imgRef: Image | null = null;
   constructor(props: componentPropsWithModel<chatViewProps, ChatModel>) {
     super(props);
+  }
+
+  private getBlockedAlert() {
+    if (this.model.companion) {
+      if (!this.model.companion.blocked && !this.model.companion.blockedBy) {
+        return (
+          <>
+            <TextInputView
+              styles={{
+                container: ChatsStyles.chatMessageInputContainer,
+                icon: {},
+                text: ChatsStyles.chatMessageInputText,
+              }}
+              {...this.childProps(this.model.messageInput)}
+            />
+            <SimpleButtonView
+              iconStyles={ChatsStyles.chatMessageSendButtonIcon}
+              styles={ChatsStyles.chatMessageSendButtonContainer}
+              {...this.childProps(this.model.sendButton)}
+            />
+          </>
+        );
+      }
+      if (this.model.companion.blocked && this.model.companion.blockedBy) {
+        return (
+          <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.alignCenter]}>
+            <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
+            <Text style={[HomeScreenStyles.alertText]}>You block each other!</Text>
+          </View>
+        );
+      }
+      if (this.model.companion.blockedBy) {
+        return (
+          <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.alignCenter]}>
+            <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
+            <Text style={[HomeScreenStyles.alertText]}>You blocked by this user!</Text>
+          </View>
+        );
+      }
+      if (this.model.companion.blocked) {
+        return (
+          <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.alignCenter]}>
+            <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
+            <Text style={[HomeScreenStyles.alertText]}>You block this user!</Text>
+          </View>
+        );
+      }
+    }
+    return <></>;
   }
 
   public render() {
@@ -112,21 +162,7 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
           onScroll={this.model.onScroll}
         />
 
-        <View style={ChatsStyles.chatMessageInputWrapper}>
-          <TextInputView
-            styles={{
-              container: ChatsStyles.chatMessageInputContainer,
-              icon: {},
-              text: ChatsStyles.chatMessageInputText,
-            }}
-            {...this.childProps(this.model.messageInput)}
-          />
-          <SimpleButtonView
-            iconStyles={ChatsStyles.chatMessageSendButtonIcon}
-            styles={ChatsStyles.chatMessageSendButtonContainer}
-            {...this.childProps(this.model.sendButton)}
-          />
-        </View>
+        <View style={ChatsStyles.chatMessageInputWrapper}>{this.getBlockedAlert()}</View>
       </View>
     );
   }

@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
 import {LikesModel} from '../../Models/LikesModels/LikesModel';
@@ -8,6 +12,7 @@ import {BaseStyles} from '../../Styles/BaseStyles';
 import {LikeItemView} from './LikeItemView';
 import {COLORS} from '../../constants/colors';
 import {SendMessageModalView} from '../SearchViews/SendMessageModalView';
+import {_} from '../../Core/Localization';
 
 type likesViewsProps = baseComponentProps & {
   textStyles?: Object;
@@ -47,7 +52,7 @@ class LikesViews extends TypedBaseComponent<likesViewsProps, LikesModel> {
               return <LikeItemView {...this.childProps(likeItem[1])} />;
             })}
 
-            {Array.from(this.model.list).length === 0 && <Text>Items not found</Text>}
+            {Array.from(this.model.list).length === 0 && <Text>{_.lang.items_not_found}</Text>}
           </ScrollView>
         )}
       </View>

@@ -32,6 +32,36 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
     super(props);
   }
 
+  private getBlockedAlert() {
+    if (this.model.userInfo) {
+      if (this.model.userInfo.blocked && this.model.userInfo.blockedBy) {
+        return (
+          <View style={[BaseStyles.row]}>
+            <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
+            <Text style={[HomeScreenStyles.alertText]}>You block each other!</Text>
+          </View>
+        );
+      }
+      if (this.model.userInfo.blockedBy) {
+        return (
+          <View style={[BaseStyles.row]}>
+            <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
+            <Text style={[HomeScreenStyles.alertText]}>You blocked by this user!</Text>
+          </View>
+        );
+      }
+      if (this.model.userInfo.blocked) {
+        return (
+          <View style={[BaseStyles.row]}>
+            <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
+            <Text style={[HomeScreenStyles.alertText]}>You block this user!</Text>
+          </View>
+        );
+      }
+    }
+    return <></>;
+  }
+
   public render() {
     super.render();
     if (this.model.loading) {
@@ -131,7 +161,6 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                     <View style={[HomeScreenStyles.infoItemContainer]}>
                       <Image source={ICONS.emailIconDetail} style={[BaseStyles.defaultIcon]} />
                       <Text style={[HomeScreenStyles.infoItemText]}>
-                        {' '}
                         {this.model.userInfo.email}
                       </Text>
                     </View>
@@ -139,7 +168,6 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                       <View style={[HomeScreenStyles.infoItemContainer]}>
                         <Image source={ICONS.phoneIcon} style={[BaseStyles.defaultIcon]} />
                         <Text style={[HomeScreenStyles.infoItemText]}>
-                          {' '}
                           {this.model.userInfo.phone}
                         </Text>
                       </View>
@@ -149,7 +177,6 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                         <View style={[HomeScreenStyles.infoItemContainer]}>
                           <Image source={ICONS.telegramIcon} style={[BaseStyles.defaultIcon]} />
                           <Text style={[HomeScreenStyles.infoItemText]}>
-                            {' '}
                             {this.model.userInfo.telegram}
                           </Text>
                         </View>
@@ -179,16 +206,29 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                                   />
                                 </ShadowWrapperView>
                               </View> */}
-                    <View style={[HomeScreenStyles.actionButtonWrapper]}>
-                      <ShadowWrapperView>
-                        <SimpleButtonView
-                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
-                          styles={[HomeScreenStyles.actionButtonContainer]}
-                          textStyles={BaseStyles.capitalize}
-                          {...this.childProps(this.model.blockButton)}
-                        />
-                      </ShadowWrapperView>
-                    </View>
+                    {this.model.userInfo.blocked ? (
+                      <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                        <ShadowWrapperView>
+                          <SimpleButtonView
+                            iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                            styles={[HomeScreenStyles.actionButtonContainer]}
+                            textStyles={BaseStyles.capitalize}
+                            {...this.childProps(this.model.unblockButton)}
+                          />
+                        </ShadowWrapperView>
+                      </View>
+                    ) : (
+                      <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                        <ShadowWrapperView>
+                          <SimpleButtonView
+                            iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                            styles={[HomeScreenStyles.actionButtonContainer]}
+                            textStyles={BaseStyles.capitalize}
+                            {...this.childProps(this.model.blockButton)}
+                          />
+                        </ShadowWrapperView>
+                      </View>
+                    )}
                   </View>
                   <View style={[HomeScreenStyles.actionButtonColum]}>
                     <View style={[HomeScreenStyles.actionButtonWrapper]}>
@@ -223,8 +263,10 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                   </View>
                 </View>
               )}
+              <View style={[BaseStyles.mt20]}>{this.getBlockedAlert()}</View>
             </View>
           )}
+
           <View style={[]}>
             <BannerAd
               unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'}
