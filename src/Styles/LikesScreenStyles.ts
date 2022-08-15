@@ -4,7 +4,6 @@ import {hp} from '../constants/Dimensions';
 
 const LikesScreenStyles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: COLORS.SCREEN_BG,
     alignItems: 'center',
     flex: 1,
   },

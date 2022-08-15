@@ -58,6 +58,11 @@ export type localizationPackType = {
   block_user: string;
   unblock_user: string;
   report_user: string;
+  send_report: string;
+  add_comment_to_report: string;
+  must_be_at_least: (chars: number) => string;
+  warning: string;
+  your_report_successfully_sended: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua';
@@ -65,7 +70,7 @@ export type localizationEnum = 'eng' | 'rus' | 'ua';
 class Localization {
   private _eng: localizationPackType = {
     lang_title: 'English',
-    send: 'send',
+    send: 'Send',
     contacts: 'contacts',
     chats: 'chats',
     profile_settings: 'prifile settings',
@@ -135,11 +140,18 @@ class Localization {
     block_user: 'Block User',
     unblock_user: 'Unblock User',
     report_user: 'Report User',
+    send_report: 'Send report',
+    add_comment_to_report: 'Add comment to report',
+    must_be_at_least: (chars: number) => {
+      return `Must be at least ${chars} chars`;
+    },
+    warning: 'Warning',
+    your_report_successfully_sended: 'Your report was successfully sended',
   };
 
   private _rus: localizationPackType = {
     lang_title: 'Русский(страна терорист)',
-    send: 'отправить',
+    send: 'Отправить',
     contacts: 'контакты',
     chats: 'чаты',
     profile_settings: 'настройки анкеты',
@@ -210,17 +222,24 @@ class Localization {
     block_user: 'Заблокировать',
     unblock_user: 'Разблокировать',
     report_user: 'Пожаловаться',
+    send_report: 'Отправить жалобу',
+    add_comment_to_report: 'Добавь коментарий к жалобу',
+    must_be_at_least: (chars: number) => {
+      return `Должно быть минимум ${chars} символов`;
+    },
+    warning: 'Внимание',
+    your_report_successfully_sended: 'Ваша жалоба успешно отправлена',
   };
 
   private _ua: localizationPackType = {
     lang_title: 'Українська',
-    send: 'відправити',
+    send: 'Відправити',
     contacts: 'контакти',
-    chats: 'чати',
-    profile_settings: 'налаштування профілю',
+    chats: 'Чати',
+    profile_settings: 'Налаштування профілю',
     age: 'вік',
-    announcement_text: 'текст анкети',
-    aply_filters: 'застосувати фільтри',
+    announcement_text: 'Текст анкети',
+    aply_filters: 'Застосувати фільтри',
     city: 'місто',
     country: 'країна',
     edit: 'редагувати',
@@ -233,15 +252,15 @@ class Localization {
     matches: 'Співпадіння',
     me_liked: 'Mене лайкнули',
     my_likes: 'Mої лайки',
-    preview: 'попередній перегляд',
+    preview: 'Попередній перегляд',
     region: 'регіон',
     search: 'пошук',
-    send_your_message: 'відправ своє повідомлення',
+    send_your_message: 'Відправ своє повідомлення',
     something_went_wrong: 'щось пішло не так',
     write_few_words_about_yourself: 'Напишіть коротко про себе',
     write_your_message: 'Текст повідомлення',
-    your_announcement: 'ваша анкета',
-    your_chats: 'ваші чати',
+    your_announcement: 'Ваша анкета',
+    your_chats: 'Ваші чати',
     servers_are_not_allowed: 'Сервера недоступні або відсутнє підключення до інтернету.',
     moderation_request_pending: 'Ваш запит на модерацію очікує одобрення',
     profile_not_moderated:
@@ -255,7 +274,7 @@ class Localization {
     enter_your_email: 'Введіть свій email',
     enter_your_password: 'Введіть свій пароль',
     create_new_account: 'Створіть новый аккаунт',
-    login: 'увійти',
+    login: 'Увійти',
     chose_city: 'Виберіть місто',
     chose_country: 'Виберіть країну',
     chose_region: 'Виберіть регіон',
@@ -285,6 +304,13 @@ class Localization {
     block_user: 'Заблокувати',
     unblock_user: 'Розблокувати',
     report_user: 'Поскаржитись',
+    send_report: 'Надіслати скаргу',
+    add_comment_to_report: 'Додайте коментар до скарги',
+    must_be_at_least: (chars: number) => {
+      return `Має бути щонайменше ${chars} символів`;
+    },
+    warning: 'Увага',
+    your_report_successfully_sended: 'Ваша скарга успішно надіслана',
   };
 
   private _currLang: localizationEnum = 'eng';

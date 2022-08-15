@@ -7,6 +7,7 @@ import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {SendMessageModalModel} from '../SearchModels/SendMessageModalModel';
+import {ReportModalModel} from './ReportModalModel';
 
 type profileDetailsModelProps = baseModelProps & {
   userId: number;
@@ -24,6 +25,7 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
   private _likeButton: SimpleButtonModel;
   private _backButton: SimpleButtonModel;
   private _sendMessageModal: SendMessageModalModel;
+  private _reportModal: ReportModalModel;
 
   constructor(props: profileDetailsModelProps) {
     super(props);
@@ -72,6 +74,14 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
     });
 
     this._sendMessageModal = new SendMessageModalModel({id: '_sendMessageModal'});
+
+    this._reportModal = new ReportModalModel({
+      id: '_reportModal',
+      avatar: '',
+      gender: 'male',
+      name: '',
+      userId: -1,
+    });
   }
 
   public get userId() {
@@ -142,6 +152,10 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
     return this._sendMessageModal;
   }
 
+  public get reportModal() {
+    return this._reportModal;
+  }
+
   public loadProfile = async (userId: number) => {
     this.loading = true;
     this.userId = userId;
@@ -170,6 +184,11 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
     if (profileRes.data.blocked) {
       this._blockButton.disabled = true;
     }
+
+    this._reportModal.avatar = profileRes.data.avatar;
+    this._reportModal.userId = profileRes.data.id;
+    this._reportModal.name = profileRes.data.name;
+    this._reportModal.gender = profileRes.data.gender;
 
     this.loading = false;
   };
@@ -234,7 +253,7 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
   };
 
   public onReportButtonPress = async () => {
-    console.log('report');
+    this._reportModal.open();
   };
 
   public onMessageButtonPress = async () => {

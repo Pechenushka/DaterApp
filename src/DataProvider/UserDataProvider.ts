@@ -130,6 +130,10 @@ class UserDataProvider {
   static async UnblockUser(body: requestBodyType): Promise<baseResponse> {
     return fetchData('users/unblock-user', 'POST', body, true);
   }
+
+  static async ReportUser(body: requestBodyType): Promise<baseResponse> {
+    return fetchData('users/report-user', 'POST', body, true);
+  }
 }
 
 async function loadData<T extends baseResponse, R extends requestBodyType>(

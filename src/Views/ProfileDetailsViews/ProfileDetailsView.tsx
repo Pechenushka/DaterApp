@@ -21,6 +21,7 @@ import {app} from '../../Core/AppImpl';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
 import {SendMessageModalView} from '../SearchViews/SendMessageModalView';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
+import {ReportModalView} from './ReportModalView';
 
 type profileDetailsViewProps = baseComponentProps & {};
 
@@ -138,6 +139,7 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
               </Modal>
 
               <SendMessageModalView {...this.childProps(this.model.sendMessageModal)} />
+              <ReportModalView {...this.childProps(this.model.reportModal)} />
 
               <View style={[BaseStyles.alignCenter]}>
                 <View style={[BaseStyles.row]}>
