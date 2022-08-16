@@ -19,6 +19,7 @@ import {
 } from '../Core/DataTypes/BaseTypes';
 import {app} from '../Core/AppImpl';
 import {LoginScreen} from '../Screens/LoginScreen';
+import {BannedScreen} from '../Screens/BannedScreen';
 
 class UserDataProvider {
   // Авторизація користувача
@@ -147,7 +148,7 @@ async function loadData<T extends baseResponse, R extends requestBodyType>(
       return null;
     }
     if (res.statusCode === 410) {
-      // app.navigator.navigate(BannedScreen);
+      app.navigator.navigate(BannedScreen);
       return null;
     }
     if (res.statusCode === 401) {

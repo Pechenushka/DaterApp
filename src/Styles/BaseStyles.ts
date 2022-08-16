@@ -55,6 +55,10 @@ const BaseStyles = StyleSheet.create({
     height: '30%',
   },
 
+  h40px: {
+    height: hp(40),
+  },
+
   w100: {
     width: '100%',
   },
@@ -159,8 +163,16 @@ const BaseStyles = StyleSheet.create({
     marginTop: hp(20),
   },
 
+  mt30: {
+    marginTop: hp(30),
+  },
+
   ta_c: {
     textAlign: 'center',
+  },
+
+  bg_white: {
+    backgroundColor: COLORS.WHITE,
   },
 });
 

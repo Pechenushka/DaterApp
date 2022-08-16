@@ -155,9 +155,18 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       location:
         app.currentUser.location !== undefined
           ? {
-              city: {id: app.currentUser.location.city.id, name: app.currentUser.location.city.name},
-              region: {id: app.currentUser.location.region.id, name: app.currentUser.location.region.name},
-              country: {id: app.currentUser.location.country.id, name: app.currentUser.location.country.name},
+              city: {
+                id: app.currentUser.location.city.id,
+                name: app.currentUser.location.city.name,
+              },
+              region: {
+                id: app.currentUser.location.region.id,
+                name: app.currentUser.location.region.name,
+              },
+              country: {
+                id: app.currentUser.location.country.id,
+                name: app.currentUser.location.country.name,
+              },
             }
           : {
               city: {id: 1, name: 'Uzhorod'},
@@ -168,14 +177,22 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       ageFrom: 18,
       ageTo: 100,
       gender: this._genderSwitcher.value,
+      approved: true,
     };
 
-    newFilters.location.country = this._countrySelection.value !== undefined ? this._countrySelection.value : {id: 0, name: ''};
-    newFilters.location.region = this._regionSelection.value !== undefined ? this._regionSelection.value : {id: 0, name: ''};
-    newFilters.location.city = this._citySelection.value !== undefined ? this._citySelection.value : {id: 0, name: ''};
+    newFilters.location.country =
+      this._countrySelection.value !== undefined ? this._countrySelection.value : {id: 0, name: ''};
+    newFilters.location.region =
+      this._regionSelection.value !== undefined ? this._regionSelection.value : {id: 0, name: ''};
+    newFilters.location.city =
+      this._citySelection.value !== undefined ? this._citySelection.value : {id: 0, name: ''};
 
-    let fromTimeStamp = new Date().setFullYear(new Date().getFullYear() - parseInt(this._fromAgeInput.value, 10) || 18);
-    let toTimeStamp = new Date().setFullYear(new Date().getFullYear() - parseInt(this._toAgeInput.value, 10) || 100);
+    let fromTimeStamp = new Date().setFullYear(
+      new Date().getFullYear() - parseInt(this._fromAgeInput.value, 10) || 18,
+    );
+    let toTimeStamp = new Date().setFullYear(
+      new Date().getFullYear() - parseInt(this._toAgeInput.value, 10) || 100,
+    );
     newFilters.ageFrom = fromTimeStamp;
     newFilters.ageTo = toTimeStamp;
 

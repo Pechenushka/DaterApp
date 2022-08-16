@@ -9,8 +9,14 @@ import {
 } from '@react-navigation/native';
 import {StackNavigationOptions} from '@react-navigation/stack';
 
-import {StackNavigationEventMap, StackNavigationConfig} from '@react-navigation/stack/lib/typescript/src/types';
-import {DrawerNavigationConfig, DrawerNavigationEventMap} from '@react-navigation/drawer/lib/typescript/src/types';
+import {
+  StackNavigationEventMap,
+  StackNavigationConfig,
+} from '@react-navigation/stack/lib/typescript/src/types';
+import {
+  DrawerNavigationConfig,
+  DrawerNavigationEventMap,
+} from '@react-navigation/drawer/lib/typescript/src/types';
 import {baseScreenCreator} from '../Core/BaseScreen';
 import {LoaderScreen} from '../Screens/LoaderScreen';
 import {MainProfileScreen} from '../Screens/MainProfileScreen';
@@ -22,6 +28,9 @@ import {ProfileDetailsScreen} from '../Screens/ProfileDetailsScreen';
 import {LikesScreen} from '../Screens/LikesScreen';
 import {ChatListScreen} from '../Screens/ChatListScreen';
 import {ChatScreen} from '../Screens/ChatScreen';
+import {BannedScreen} from '../Screens/BannedScreen';
+import {PrivacyScreen} from '../Screens/PrivacyScreen';
+import {TermsOfUseScreen} from '../Screens/TermsOfUseScreen';
 
 type typedStackNavigator = TypedNavigator<
   Record<string, object | undefined>,
@@ -33,7 +42,9 @@ type typedStackNavigator = TypedNavigator<
     children,
     screenOptions,
     ...rest
-  }: DefaultNavigatorOptions<StackNavigationOptions> & StackRouterOptions & StackNavigationConfig) => JSX.Element
+  }: DefaultNavigatorOptions<StackNavigationOptions> &
+    StackRouterOptions &
+    StackNavigationConfig) => JSX.Element
 >;
 type typedDrawerNavigator = TypedNavigator<
   Record<string, object | undefined>,
@@ -45,7 +56,9 @@ type typedDrawerNavigator = TypedNavigator<
     children,
     screenOptions,
     ...rest
-  }: DefaultNavigatorOptions<DrawerNavigationOptions> & DrawerRouterOptions & DrawerNavigationConfig) => JSX.Element
+  }: DefaultNavigatorOptions<DrawerNavigationOptions> &
+    DrawerRouterOptions &
+    DrawerNavigationConfig) => JSX.Element
 >;
 
 class Stacks {
@@ -63,12 +76,27 @@ class Stacks {
       {Screen: MainProfileScreen, scrrenName: 'MainProfileScreen', options: {swipeEnabled: true}},
       {Screen: SearchFeedScreen, scrrenName: 'SearchFeedScreen', options: {swipeEnabled: true}},
       {Screen: LoginScreen, scrrenName: 'LoginScreen', options: {swipeEnabled: false}},
-      {Screen: CreateNewAccountScreen, scrrenName: 'CreateNewAccountScreen', options: {swipeEnabled: false}},
-      {Screen: MyAnnouncementScreen, scrrenName: 'MyAnnouncementScreen', options: {swipeEnabled: true}},
-      {Screen: ProfileDetailsScreen, scrrenName: 'ProfileDetailsScreen', options: {swipeEnabled: true}},
+      {
+        Screen: CreateNewAccountScreen,
+        scrrenName: 'CreateNewAccountScreen',
+        options: {swipeEnabled: false},
+      },
+      {
+        Screen: MyAnnouncementScreen,
+        scrrenName: 'MyAnnouncementScreen',
+        options: {swipeEnabled: true},
+      },
+      {
+        Screen: ProfileDetailsScreen,
+        scrrenName: 'ProfileDetailsScreen',
+        options: {swipeEnabled: true},
+      },
       {Screen: LikesScreen, scrrenName: 'LikesScreen', options: {swipeEnabled: true}},
       {Screen: ChatListScreen, scrrenName: 'ChatListScreen', options: {swipeEnabled: true}},
       {Screen: ChatScreen, scrrenName: 'ChatScreen', options: {swipeEnabled: true}},
+      {Screen: BannedScreen, scrrenName: 'BannedScreen', options: {swipeEnabled: true}},
+      {Screen: PrivacyScreen, scrrenName: 'PrivacyScreen', options: {swipeEnabled: true}},
+      {Screen: TermsOfUseScreen, scrrenName: 'TermsOfUseScreen', options: {swipeEnabled: true}},
     ];
   }
 

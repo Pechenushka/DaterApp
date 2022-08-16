@@ -11,6 +11,7 @@ type localizationModelProps = baseModelProps & {};
 class LocalizationModel extends BaseModel<localizationModelProps> {
   private _selectionButton: SimpleButtonModel;
   private _visible: boolean = false;
+  private _closeButton: SimpleButtonModel;
 
   private _rusButton: SimpleButtonModel;
   private _gbrButton: SimpleButtonModel;
@@ -42,10 +43,20 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
       onPress: this.onUaPress,
       icon: ICONS.uaIcon,
     });
+
+    this._closeButton = new SimpleButtonModel({
+      id: '_closeButton',
+      onPress: this.onCloseButtonPress,
+      icon: ICONS.deleteIcon,
+    });
   }
 
   public get selectionButton() {
     return this._selectionButton;
+  }
+
+  public get closeButton() {
+    return this._closeButton;
   }
 
   public get rusButton() {
@@ -98,6 +109,10 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
     _.currLang = 'ua';
     this.visible = false;
     DevSettings.reload();
+  };
+
+  public onCloseButtonPress = async () => {
+    this.visible = false;
   };
 
   public init = async () => {

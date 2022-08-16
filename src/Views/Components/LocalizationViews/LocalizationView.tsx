@@ -9,6 +9,7 @@ import {LocalizationModel} from '../../../Models/Components/LocalizationModels/L
 import {SimpleButtonView} from '../Buttons/SimpleButtonView';
 import {LocalizationStyles} from '../../../Styles/LocalizationStyles';
 import {_} from '../../../Core/Localization';
+import {SearchStyles} from '../../../Styles/SearchStyles';
 
 type localizationViewProps = baseComponentProps & {};
 
@@ -31,6 +32,11 @@ class LocalizationView extends TypedBaseComponent<localizationViewProps, Localiz
         <Modal visible={this.model.visible} transparent={true}>
           <View style={LocalizationStyles.modalBackGroung}>
             <View style={LocalizationStyles.modalContentContainer}>
+              <SimpleButtonView
+                iconStyles={SearchStyles.filterModalCloseIcon}
+                styles={SearchStyles.filterModalCloseContainer}
+                {...this.childProps(this.model.closeButton)}
+              />
               <Text>{_.lang.selectLanguage}</Text>
               <View style={LocalizationStyles.countryButtonsContainer}>
                 <SimpleButtonView
