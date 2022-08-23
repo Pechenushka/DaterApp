@@ -167,6 +167,10 @@ const BaseStyles = StyleSheet.create({
     marginTop: hp(30),
   },
 
+  ml10: {
+    marginLeft: hp(10),
+  },
+
   ta_c: {
     textAlign: 'center',
   },

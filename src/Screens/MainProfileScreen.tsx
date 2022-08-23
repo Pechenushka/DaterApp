@@ -10,6 +10,7 @@ import {BottomNavigationView} from '../Views/BottomNavigation/BottomNavigationVi
 import {app} from '../Core/AppImpl';
 import {analyticHandler} from '../Core/AnalyticHanler';
 import deviceInfoModule from 'react-native-device-info';
+import {ScrollView} from 'react-native-gesture-handler';
 
 class MainProfileScreen extends BaseLayoutView<HomeController> {
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
@@ -44,7 +45,10 @@ class MainProfileScreen extends BaseLayoutView<HomeController> {
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <HomeView {...this.childProps(this.controller.homeModel)} />
+        <ScrollView>
+          <HomeView {...this.childProps(this.controller.homeModel)} />
+        </ScrollView>
+
         <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
       </View>
     );

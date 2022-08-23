@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
@@ -11,13 +15,21 @@ import {GenderSwitcherView} from '../Components/Inputs/GenderSwitcherView';
 import {DropDownView} from '../Components/Inputs/DropDownView';
 import {_} from '../../Core/Localization';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
+import {SwitcherView} from '../Components/Inputs/SwitcherView';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {app} from '../../Core/AppImpl';
+import {TermsOfUseScreen} from '../../Screens/TermsOfUseScreen';
+import {PrivacyScreen} from '../../Screens/PrivacyScreen';
 
 type registrationFormViewProps = baseComponentProps & {
   styles?: Object;
   iconStyles?: Object;
 };
 
-class RegistrationFormView extends TypedBaseComponent<registrationFormViewProps, RegistrationFormModel> {
+class RegistrationFormView extends TypedBaseComponent<
+  registrationFormViewProps,
+  RegistrationFormModel
+> {
   constructor(props: componentPropsWithModel<registrationFormViewProps, RegistrationFormModel>) {
     super(props);
   }
@@ -27,7 +39,9 @@ class RegistrationFormView extends TypedBaseComponent<registrationFormViewProps,
     return (
       <View style={[RegistrationScreenStyles.mainContainer, BaseStyles.container]}>
         <View style={RegistrationScreenStyles.formContainer}>
-          <Text style={[RegistrationScreenStyles.mainTitleStyles]}>{_.lang.create_new_account}</Text>
+          <Text style={[RegistrationScreenStyles.mainTitleStyles]}>
+            {_.lang.create_new_account}
+          </Text>
           <View style={[RegistrationScreenStyles.inputsContainer]}>
             <ScrollView
               showsHorizontalScrollIndicator={false}
@@ -107,6 +121,36 @@ class RegistrationFormView extends TypedBaseComponent<registrationFormViewProps,
                 </View>
               </View>
             </ScrollView>
+            <View
+              style={[
+                BaseStyles.w100,
+                BaseStyles.mt20,
+                BaseStyles.row,
+                BaseStyles.alignCenter,
+                BaseStyles.ml10,
+              ]}>
+              <SwitcherView {...this.childProps(this.model.agreementSwitcher)} />
+              <View style={[RegistrationScreenStyles.agreementTextContainer]}>
+                <Text style={[RegistrationScreenStyles.agreementText]}>{_.lang.i_agree_with}</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    app.navigator.navigate(TermsOfUseScreen);
+                  }}>
+                  <Text style={[RegistrationScreenStyles.agreementTextLink]}>
+                    {_.lang.terms_of_use_title}
+                  </Text>
+                </TouchableOpacity>
+                <Text style={[RegistrationScreenStyles.agreementText]}>{_.lang.and}</Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    app.navigator.navigate(PrivacyScreen);
+                  }}>
+                  <Text style={[RegistrationScreenStyles.agreementTextLink]}>
+                    {_.lang.privacy_policy_title}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
 
             <SimpleButtonView
               textStyles={[RegistrationScreenStyles.loginButtonText]}

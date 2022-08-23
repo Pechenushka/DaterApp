@@ -12,6 +12,7 @@ import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {DatePickerModel} from '../Components/Inputs/DatePickerModel';
 import {dropDownItem, DropDownModel} from '../Components/Inputs/DropDownModel';
 import {GenderSvitcherModel} from '../Components/Inputs/GenderSvitcherModel';
+import {SwitcherModel} from '../Components/Inputs/SwitcherModel';
 import {TextInputModel} from '../Components/Inputs/TextInputModel';
 
 type registrationFormModelProps = baseModelProps & {};
@@ -24,6 +25,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   private _ageInput: DatePickerModel;
   private _genderSwitcher: GenderSvitcherModel;
   private _signUpButton: SimpleButtonModel;
+  private _agreementSwitcher: SwitcherModel;
 
   private _countrySelection: DropDownModel;
   private _regionSelection: DropDownModel;
@@ -70,7 +72,11 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
 
     this._genderSwitcher = new GenderSvitcherModel({id: '_genderSwitcher'});
 
-    this._signUpButton = new SimpleButtonModel({id: '_signUpButton', onPress: this.onSignUpPress, text: _.lang.sign_up});
+    this._signUpButton = new SimpleButtonModel({
+      id: '_signUpButton',
+      onPress: this.onSignUpPress,
+      text: _.lang.sign_up,
+    });
 
     this._countrySelection = new DropDownModel({
       id: '_countrySelection',
@@ -95,10 +101,16 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       onSelectionChange: this.onCityChange,
       disabled: true,
     });
+
+    this._agreementSwitcher = new SwitcherModel({id: '_agreementSwitcher'});
   }
 
   public get userNameInput() {
     return this._userNameInput;
+  }
+
+  public get agreementSwitcher() {
+    return this._agreementSwitcher;
   }
 
   public get emailInput() {
@@ -201,7 +213,19 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
 
   public onSignUpPress = async () => {
     this._signUpButton.disabled = true;
-    const [name, email, password, passwordConfirm, dateTimeStamp, gender, country, region, city, fcm] = [
+    const [
+      name,
+      email,
+      password,
+      passwordConfirm,
+      dateTimeStamp,
+      gender,
+      country,
+      region,
+      city,
+      fcm,
+      agreement,
+    ] = [
       this._userNameInput.value.trim(),
       this._emailInput.value.trim(),
       this._passwordInput.value.trim(),
@@ -212,6 +236,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       this._regionSelection.value,
       this._citySelection.value,
       await FireBaseHandler.getFCMToken(),
+      this._agreementSwitcher.value,
     ];
 
     if (name === '') {
@@ -272,6 +297,12 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       this._signUpButton.disabled = false;
       return;
     }
+
+    if (!agreement) {
+      Alert.alert('Warning!', 'You must agree to the terms of use');
+      this._signUpButton.disabled = false;
+      return;
+    }
     const registrationBody = {
       name: name,
       password: password,
@@ -315,7 +346,11 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   };
 
   public autoCreateAnnouncement = async () => {
-    const [country, region, city] = [this._countrySelection.value, this._regionSelection.value, this._citySelection.value];
+    const [country, region, city] = [
+      this._countrySelection.value,
+      this._regionSelection.value,
+      this._citySelection.value,
+    ];
     if (app.currentUser.location === undefined) {
       Alert.alert('Warning', 'Set up location please');
       this._signUpButton.disabled = false;

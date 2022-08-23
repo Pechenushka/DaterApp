@@ -68,6 +68,9 @@ export type localizationPackType = {
   you_are_banned: string;
   terms_of_use: string;
   privacy_policy_text: string;
+  i_agree_with: string;
+  and: string;
+  privacy_policy_title: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua';
@@ -270,6 +273,9 @@ class Localization {
     We want you to be in control of your information, so we remind you of the following options and tools:
     
     Means of access / update in the service. Account tools and settings will help you access the information you provide to us that is related to your account directly on the Service, as well as correct or remove such information. If you have any questions about these tools and settings, please contact our support team. Device permissions. Mobile platforms may have permission systems for certain types of data and notifications, such as phone contacts, images, location services, push notifications, and advertising identifiers. You can change the settings of the device, giving consent or denying consent to the collection and processing of relevant information or the display of relevant notifications. Of course, if you do not give consent, certain services may lose their functionality. Removal You can stop all information collection by the app by uninstalling it through the standard uninstall process on your device. Please note: deleting the application does NOT terminate the account. To close your account, use the corresponding function on the service. Account closure. The account can be closed by using the corresponding function directly in the service. We also want our users to be aware of their privacy rights.`,
+    i_agree_with: 'I agree with',
+    and: 'and',
+    privacy_policy_title: 'Privacy policy',
   };
 
   private _rus: localizationPackType = {
@@ -471,6 +477,9 @@ class Localization {
     Мы хотим, чтобы у тебя был контроль над своей информацией, поэтому напоминаем о таких доступных возможностях и инструментах:
     
     Средства доступа/обновления в сервисе. Инструменты и настройки аккаунта помогут получить доступ к информации, которую ты нам предоставляешь и которая связана с твоим аккаунтом непосредственно в сервисе, а также исправить или удалить такую ​​информацию. Если у тебя возникли вопросы относительно этих инструментов и настроек, обратитесь в нашу службу поддержки. Разрешения на устройстве. Мобильные платформы могут иметь системы разрешений для определенных типов данных и уведомлений, таких как контакты телефона, изображения, локации, push-уведомления и рекламные идентификаторы. Вы можете изменить настройки устройства, согласовав или отказав в согласии на сбор и обработку соответствующей информации или показ соответствующих уведомлений. Конечно, если не согласиться, определенные сервисы могут потерять свою функциональность. Удаление. Остановить весь сбор информации в приложении можно, удалив его путём стандартного процесса удаления на твоем устройстве. Учти: удаление приложения не прекращает действие аккаунта. Чтобы закрыть свой аккаунт, воспользуйся соответствующей функцией на сервисе. Закрытие аккаунта. Аккаунт можно закрыть, воспользовавшись соответствующей функцией непосредственно в сервисе. Мы также хотим, чтобы наши пользователи знали о своих правах на конфиденциальность.`,
+    i_agree_with: 'Я согласен с',
+    and: 'и',
+    privacy_policy_title: 'Политикой приватности',
   };
 
   private _ua: localizationPackType = {
@@ -672,6 +681,9 @@ class Localization {
     
     Засоби доступу / оновлення в сервісі. Інструменти та налаштування акаунту допоможуть тобі отримати доступ до інформації, яку ти нам надаєш і яка пов'язана із твоїм акаунтом безпосередньо в сервісі, а також виправити чи вилучити таку інформацію. Якщо в тебе виникли питання щодо цих інструментів і налаштувань, звернися до нашої служби підтримки. Дозволи на пристрої. Мобільні платформи можуть мати системи дозволів для певних типів даних і сповіщень, таких як контакти телефона, зображення, сервіси локації, push-сповіщення та рекламні ідентифікатори. Ти можеш змінити налаштування пристрою, надавши згоду чи відмовивши в згоді на збір і обробку відповідної інформації чи показ відповідних сповіщень. Звичайно, якщо не надати згоду, певні сервіси можуть втратити свою функціональність. Видалення. Зупинити весь збір інформації у застосунку можна, видаливши його шляхом стандартного процесу видалення на твоєму пристрої. Зверни увагу: видалення застосунку НЕ припиняє дію акаунту. Щоб закрити свій акаунт, скористайся відповідною функцією на сервісі. Закриття акаунту. Акаунт можна закрити, скориставшись відповідною функцією безпосередньо в сервісі. Ми також хочемо, щоб наші користувачі знали про свої права на конфіденційність.
     `,
+    i_agree_with: 'Я згоден з',
+    and: 'і',
+    privacy_policy_title: 'Політикою приватности',
   };
 
   private _currLang: localizationEnum = 'eng';

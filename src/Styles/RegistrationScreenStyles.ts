@@ -118,6 +118,26 @@ const RegistrationScreenStyles = StyleSheet.create({
     marginBottom: hp(10),
     textTransform: 'capitalize',
   },
+
+  agreementText: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: hp(16),
+    color: COLORS.DARK_GARY,
+    marginLeft: hp(6),
+  },
+
+  agreementTextLink: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: hp(16),
+    color: COLORS.LINK_BLUE,
+    marginLeft: hp(6),
+  },
+
+  agreementTextContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
 });
 
 export {RegistrationScreenStyles};
