@@ -11,6 +11,12 @@ const HomeScreenStyles = StyleSheet.create({
     marginBottom: hp(30),
   },
 
+  menuButton: {
+    position: 'absolute',
+    top: hp(20),
+    left: hp(20),
+  },
+
   searchIcon: {
     resizeMode: 'contain',
     width: hp(20),

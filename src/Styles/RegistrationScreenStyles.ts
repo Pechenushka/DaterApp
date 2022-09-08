@@ -46,7 +46,8 @@ const RegistrationScreenStyles = StyleSheet.create({
   },
   formContainer: {
     width: '86%',
-    marginTop: hp(100),
+    height: '90%',
+    marginTop: hp(50),
     backgroundColor: COLORS.WHITE,
     borderRadius: 22,
     alignItems: 'center',
@@ -60,7 +61,7 @@ const RegistrationScreenStyles = StyleSheet.create({
   inputsContainer: {
     width: '100%',
     alignItems: 'center',
-    maxHeight: hp(450),
+    maxHeight: hp(630),
     paddingHorizontal: wp(20),
   },
 

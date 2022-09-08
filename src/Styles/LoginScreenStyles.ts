@@ -44,7 +44,7 @@ const LoginScreenStyles = StyleSheet.create({
 
   loginButton: {
     marginTop: hp(30),
-    width: '65%',
+    width: '75%',
     height: hp(50),
     backgroundColor: COLORS.GREEN_BUTTON,
     borderRadius: 8,
@@ -60,14 +60,18 @@ const LoginScreenStyles = StyleSheet.create({
 
   registrateButton: {
     width: '75%',
+    height: hp(50),
     borderRadius: 8,
     marginBottom: hp(5),
+    backgroundColor: COLORS.GREEN_BUTTON,
   },
 
   registrateButtonText: {
     fontFamily: 'Roboto-Regular',
-    color: COLORS.LINK_BLUE,
+    color: COLORS.WHITE,
     fontSize: hp(16),
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
   },
 });
 

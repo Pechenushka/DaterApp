@@ -13,6 +13,12 @@ const BaseStyles = StyleSheet.create({
     flex: 1,
   },
 
+  bigIcon: {
+    resizeMode: 'contain',
+    height: hp(25),
+    width: hp(25),
+  },
+
   defaultIcon: {
     resizeMode: 'contain',
     height: hp(20),
@@ -169,6 +175,10 @@ const BaseStyles = StyleSheet.create({
 
   ml10: {
     marginLeft: hp(10),
+  },
+
+  mv5: {
+    marginVertical: hp(5),
   },
 
   ta_c: {

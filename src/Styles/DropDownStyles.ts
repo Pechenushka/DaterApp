@@ -6,7 +6,9 @@ const DropDownStyles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.INPUT_BG,
     borderRadius: 8,
+    paddingVertical: hp(5),
     alignItems: 'center',
+    paddingHorizontal: hp(5),
     justifyContent: 'center',
     flexDirection: 'row',
   },
@@ -20,16 +22,15 @@ const DropDownStyles = StyleSheet.create({
   },
 
   selectedItemText: {
-    fontSize: hp(14),
+    fontSize: hp(16),
   },
 
   itemContainer: {
-    width: '90%',
-    paddingVertical: hp(5),
+    width: '100%',
+    paddingVertical: hp(8),
     backgroundColor: COLORS.INPUT_BG,
     alignItems: 'center',
     borderRadius: 8,
-    marginVertical: hp(3),
   },
 
   actionIcon: {

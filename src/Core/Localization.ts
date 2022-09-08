@@ -81,7 +81,7 @@ class Localization {
     send: 'Send',
     contacts: 'contacts',
     chats: 'chats',
-    profile_settings: 'prifile settings',
+    profile_settings: 'profile settings',
     matches: 'Matches',
     age: 'age',
     announcement_text: 'announcement text',

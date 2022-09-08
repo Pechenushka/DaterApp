@@ -11,6 +11,8 @@ import {app} from '../Core/AppImpl';
 import {analyticHandler} from '../Core/AnalyticHanler';
 import deviceInfoModule from 'react-native-device-info';
 import {ScrollView} from 'react-native-gesture-handler';
+import {SimpleButtonView} from '../Views/Components/Buttons/SimpleButtonView';
+import {HomeScreenStyles} from '../Styles/HomeScreenStyles';
 
 class MainProfileScreen extends BaseLayoutView<HomeController> {
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
@@ -50,6 +52,11 @@ class MainProfileScreen extends BaseLayoutView<HomeController> {
         </ScrollView>
 
         <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
+        <SimpleButtonView
+          styles={[HomeScreenStyles.menuButton]}
+          iconStyles={[BaseStyles.bigIcon]}
+          {...this.childProps(this.controller.menuButton)}
+        />
       </View>
     );
   }
