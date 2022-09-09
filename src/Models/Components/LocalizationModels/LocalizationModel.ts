@@ -16,6 +16,7 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
   private _rusButton: SimpleButtonModel;
   private _gbrButton: SimpleButtonModel;
   private _uaButton: SimpleButtonModel;
+  private _belButton: SimpleButtonModel;
 
   constructor(props: localizationModelProps) {
     super(props);
@@ -30,18 +31,28 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
       id: '_rusButton',
       onPress: this.onRusPress,
       icon: ICONS.rusIcon,
+      text: _.rus.lang_title,
     });
 
     this._gbrButton = new SimpleButtonModel({
       id: '_gbrButton',
       onPress: this.onGbrPress,
       icon: ICONS.gbrIcon,
+      text: _.eng.lang_title,
     });
 
     this._uaButton = new SimpleButtonModel({
       id: '_uaButton',
       onPress: this.onUaPress,
       icon: ICONS.uaIcon,
+      text: _.ua.lang_title,
+    });
+
+    this._belButton = new SimpleButtonModel({
+      id: '_belButton',
+      onPress: this.onBelPress,
+      icon: ICONS.belIcon,
+      text: _.bel.lang_title,
     });
 
     this._closeButton = new SimpleButtonModel({
@@ -69,6 +80,10 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
 
   public get uaButton() {
     return this._uaButton;
+  }
+
+  public get belButton() {
+    return this._belButton;
   }
 
   public get visible() {
@@ -107,6 +122,14 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
     this._selectionButton.icon = ICONS.uaIcon;
     app.currentUser.lang = 'ua';
     _.currLang = 'ua';
+    this.visible = false;
+    DevSettings.reload();
+  };
+
+  public onBelPress = () => {
+    this._selectionButton.icon = ICONS.belIcon;
+    app.currentUser.lang = 'bel';
+    _.currLang = 'bel';
     this.visible = false;
     DevSettings.reload();
   };

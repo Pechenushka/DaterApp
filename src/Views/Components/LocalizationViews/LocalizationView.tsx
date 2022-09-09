@@ -10,6 +10,7 @@ import {SimpleButtonView} from '../Buttons/SimpleButtonView';
 import {LocalizationStyles} from '../../../Styles/LocalizationStyles';
 import {_} from '../../../Core/Localization';
 import {SearchStyles} from '../../../Styles/SearchStyles';
+import {ScrollView} from 'react-native-gesture-handler';
 
 type localizationViewProps = baseComponentProps & {};
 
@@ -38,23 +39,31 @@ class LocalizationView extends TypedBaseComponent<localizationViewProps, Localiz
                 {...this.childProps(this.model.closeButton)}
               />
               <Text>{_.lang.selectLanguage}</Text>
-              <View style={LocalizationStyles.countryButtonsContainer}>
-                <SimpleButtonView
-                  styles={LocalizationStyles.countryButtonContainer}
-                  iconStyles={LocalizationStyles.countryButtonIcon}
-                  {...this.childProps(this.model.rusButton)}
-                />
-                <SimpleButtonView
-                  styles={LocalizationStyles.countryButtonContainer}
-                  iconStyles={LocalizationStyles.countryButtonIcon}
-                  {...this.childProps(this.model.gbrButton)}
-                />
-                <SimpleButtonView
-                  styles={LocalizationStyles.countryButtonContainer}
-                  iconStyles={LocalizationStyles.countryButtonIcon}
-                  {...this.childProps(this.model.uaButton)}
-                />
-              </View>
+              <ScrollView>
+                <View style={LocalizationStyles.countryButtonsContainer}>
+                  <SimpleButtonView
+                    styles={LocalizationStyles.countryButtonContainer}
+                    iconStyles={LocalizationStyles.countryButtonIcon}
+                    {...this.childProps(this.model.rusButton)}
+                  />
+                  <SimpleButtonView
+                    styles={LocalizationStyles.countryButtonContainer}
+                    iconStyles={LocalizationStyles.countryButtonIcon}
+                    {...this.childProps(this.model.gbrButton)}
+                  />
+                  <SimpleButtonView
+                    styles={LocalizationStyles.countryButtonContainer}
+                    iconStyles={LocalizationStyles.countryButtonIcon}
+                    {...this.childProps(this.model.uaButton)}
+                  />
+                  <SimpleButtonView
+                    styles={LocalizationStyles.countryButtonContainer}
+                    iconStyles={LocalizationStyles.countryButtonIcon}
+                    {...this.childProps(this.model.belButton)}
+                  />
+                </View>
+              </ScrollView>
+
               <Text>{_.lang.languageWarning}</Text>
             </View>
           </View>

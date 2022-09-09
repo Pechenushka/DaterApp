@@ -37,6 +37,7 @@ const ICONS = {
   ReportIcon: require('../assets/img/ReportIcon.png'),
   BackArrowIcon: require('../assets/img/BackArrowIcon.png'),
   menuButtonWhiteIcon: require('../assets/img/menuButtonWhite.png'),
+  belIcon: require('../assets/img/belIcon.png'),
 };
 
 export {ICONS};

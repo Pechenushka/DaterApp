@@ -40,6 +40,7 @@ const LoginScreenStyles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: wp(20),
     alignItems: 'center',
+    paddingBottom: hp(20),
   },
 
   loginButton: {

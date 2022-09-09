@@ -298,6 +298,12 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       return;
     }
 
+    if (getAge(dateTimeStamp) > 100) {
+      Alert.alert('Warning!', 'Seriously, you are over 100 years old?');
+      this._signUpButton.disabled = false;
+      return;
+    }
+
     if (!agreement) {
       Alert.alert('Warning!', 'You must agree to the terms of use');
       this._signUpButton.disabled = false;

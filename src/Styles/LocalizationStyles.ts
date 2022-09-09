@@ -36,18 +36,20 @@ const LocalizationStyles = StyleSheet.create({
     alignItems: 'center',
     marginTop: hp(40),
     borderRadius: 10,
+    maxHeight: hp(600),
   },
 
   countryButtonContainer: {
     backgroundColor: COLORS.SCREEN_BG,
     padding: hp(5),
     borderRadius: 10,
+    marginVertical: hp(10),
+    width: hp(320),
   },
 
   countryButtonsContainer: {
     justifyContent: 'space-around',
     width: '95%',
-    flexDirection: 'row',
     marginVertical: hp(10),
   },
 
