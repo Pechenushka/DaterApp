@@ -44,7 +44,9 @@ class DropDownView extends TypedBaseComponent<dropDownViewProps, DropDownModel> 
                 contentContainerStyle={[BaseStyles.w100, BaseStyles.alignCenter]}>
                 {this.model.list.map(item => {
                   return (
-                    <ShadowWrapperView style={[BaseStyles.w90, BaseStyles.jc_c, BaseStyles.mv5]}>
+                    <ShadowWrapperView
+                      key={item.id}
+                      style={[BaseStyles.w90, BaseStyles.jc_c, BaseStyles.mv5]}>
                       <TouchableOpacity
                         style={[DropDownStyles.itemContainer]}
                         key={item.id}

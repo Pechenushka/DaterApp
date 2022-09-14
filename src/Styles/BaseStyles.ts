@@ -145,6 +145,10 @@ const BaseStyles = StyleSheet.create({
     paddingBottom: hp(10),
   },
 
+  pb5: {
+    paddingBottom: hp(5),
+  },
+
   pb70: {
     paddingBottom: hp(70),
   },

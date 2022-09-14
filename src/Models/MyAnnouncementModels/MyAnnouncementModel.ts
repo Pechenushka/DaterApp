@@ -19,6 +19,9 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
   private _regionSelection: DropDownModel;
   private _citySelection: DropDownModel;
 
+  private _sexSelection: DropDownModel;
+  private _goalsSelection: DropDownModel;
+
   private _previewLabelModel: LabelModel;
   private _previewLocationLabelModel: LabelModel;
 
@@ -60,6 +63,33 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       disabled: true,
     });
 
+    this._sexSelection = new DropDownModel({
+      id: '_sexSelection',
+      list: [
+        {id: 0, name: _.lang.genders[0]},
+        {id: 1, name: _.lang.genders[1]},
+        {id: 2, name: _.lang.genders[2]},
+      ],
+      placeholder: 'chose variant',
+      onSelectionChange: this.onSexChange,
+      disabled: false,
+    });
+
+    this._goalsSelection = new DropDownModel({
+      id: '_goalsSelection',
+      list: [
+        {id: 0, name: _.lang.goals[0]},
+        {id: 1, name: _.lang.goals[1]},
+        {id: 2, name: _.lang.goals[2]},
+        {id: 3, name: _.lang.goals[3]},
+        {id: 4, name: _.lang.goals[4]},
+        {id: 5, name: _.lang.goals[5]},
+      ],
+      placeholder: 'chose variant',
+      onSelectionChange: this.onGoalsChange,
+      disabled: false,
+    });
+
     this._previewLabelModel = new LabelModel({id: '_previewLaberModel', text: ''});
 
     this._previewLocationLabelModel = new LabelModel({
@@ -70,8 +100,16 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
           : '',
     });
 
-    this._submitButton = new SimpleButtonModel({id: '_submitButton', onPress: this.onSubbmitPress, text: 'SUBMIT'});
-    this._editButton = new SimpleButtonModel({id: '_editButton', onPress: this.onEditButtonPress, text: _.lang.edit});
+    this._submitButton = new SimpleButtonModel({
+      id: '_submitButton',
+      onPress: this.onSubbmitPress,
+      text: 'SUBMIT',
+    });
+    this._editButton = new SimpleButtonModel({
+      id: '_editButton',
+      onPress: this.onEditButtonPress,
+      text: _.lang.edit,
+    });
   }
 
   public get discribeInput() {
@@ -88,6 +126,14 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
   public get regionSelection() {
     return this._regionSelection;
+  }
+
+  public get sexSelection() {
+    return this._sexSelection;
+  }
+
+  public get goalsSelection() {
+    return this._goalsSelection;
   }
 
   public get previewLabelModel() {
@@ -154,6 +200,14 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
     this.previewLocationLabelModel.text = `${this._countrySelection.value?.name}, ${this._regionSelection.value?.name}, ${item.name}`;
   };
 
+  public onSexChange = async (item: dropDownItem) => {
+    this.forceUpdate();
+  };
+
+  public onGoalsChange = async (item: dropDownItem) => {
+    this.forceUpdate();
+  };
+
   public countryLoad = async () => {
     const res = await loadData(UserDataProvider.GetCountries, {});
     if (res !== null) {
@@ -195,11 +249,13 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
   public onSubbmitPress = async () => {
     this._submitButton.disabled = true;
-    const [text, country, region, city] = [
+    const [text, country, region, city, goal, lookingfor] = [
       this._discribeInput.value.trim(),
       this._countrySelection.value,
       this._regionSelection.value,
       this._citySelection.value,
+      this._goalsSelection.value,
+      this._sexSelection.value,
     ];
     if (app.currentUser.location === undefined) {
       Alert.alert('Warning', 'Set up location please');
@@ -218,6 +274,8 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       regionId: region === undefined ? app.currentUser.location.region.id : region.id,
       cityId: city === undefined ? app.currentUser.location.city.id : city.id,
       text: text,
+      lookingfor: lookingfor === undefined ? null : lookingfor.id,
+      goal: goal === undefined ? null : goal.id,
     };
 
     const res = await loadData(UserDataProvider.CreateMeeting, meetingBody);
@@ -239,11 +297,13 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
   public onEditButtonPress = async () => {
     this._editButton.disabled = true;
-    const [text, country, region, city] = [
+    const [text, country, region, city, goal, lookingfor] = [
       this._discribeInput.value.trim(),
       this._countrySelection.value,
       this._regionSelection.value,
       this._citySelection.value,
+      this._goalsSelection.value,
+      this._sexSelection.value,
     ];
     if (app.currentUser.location === undefined) {
       Alert.alert('Warning', 'Set up location please');
@@ -261,6 +321,8 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       regionId: region === undefined ? app.currentUser.location.region.id : region.id,
       cityId: city === undefined ? app.currentUser.location.city.id : city.id,
       text: text,
+      lookingfor: lookingfor === undefined ? null : lookingfor.id,
+      goal: goal === undefined ? null : goal.id,
     };
 
     const res = await loadData(UserDataProvider.EditMeeting, meetingBody);
@@ -282,7 +344,9 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
   public loadExistingAnnouncment = async () => {
     this.loading = true;
-    const loadResult = await loadData(UserDataProvider.GetUserMeeting, {authorId: app.currentUser.userId});
+    const loadResult = await loadData(UserDataProvider.GetUserMeeting, {
+      authorId: app.currentUser.userId,
+    });
     if (loadResult === null) {
       Alert.alert('Warning', 'Something went wrong, check your internet connection');
       this.loading = false;
@@ -293,6 +357,10 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._discribeInput.value = loadResult.data.text;
       this.previewLabelModel.text = loadResult.data.text;
       this.previewLocationLabelModel.text = `${loadResult.data.countryName}, ${loadResult.data.regionName}, ${loadResult.data.cityName}`;
+      const selectedSex = this._sexSelection.list.find(el => el.id === loadResult.data.lookingfor);
+      this._sexSelection.selectItem(selectedSex);
+      const selectedGoal = this._goalsSelection.list.find(el => el.id === loadResult.data.goal);
+      this._goalsSelection.selectItem(selectedGoal);
     }
 
     this.loading = false;

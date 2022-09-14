@@ -155,6 +155,11 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
         this._selectionButton.text = _.lang.lang_title;
         break;
 
+      case 'bel':
+        this._selectionButton.icon = ICONS.belIcon;
+        this._selectionButton.text = _.lang.lang_title;
+        break;
+
       default:
         break;
     }

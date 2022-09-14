@@ -96,7 +96,7 @@ const RegistrationScreenStyles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: COLORS.WHITE,
     top: hp(-14),
-    width: hp(95),
+    paddingHorizontal: hp(5),
     textAlign: 'center',
   },
 
@@ -105,6 +105,27 @@ const RegistrationScreenStyles = StyleSheet.create({
   },
   selectionsItemContainer: {
     width: '67%',
+  },
+
+  goalsContainer: {
+    width: '95%',
+    alignItems: 'center',
+    paddingBottom: hp(10),
+  },
+
+  goalsItem: {
+    width: '100%',
+    marginTop: hp(20),
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  goaltTitleItem: {
+    width: '35%',
+  },
+
+  goalSelectionItem: {
+    width: '65%',
   },
 
   infoItemWrapper: {

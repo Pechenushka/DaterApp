@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {Image, Text, View, ScrollView, ActivityIndicator, Platform} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
@@ -24,6 +28,33 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
     super(props);
   }
 
+  public getExpectationsIcon() {
+    if (this.model.sexSelection.value?.id === 0) {
+      return <Image source={ICONS.maleIcon} style={[BaseStyles.defaultIcon]} />;
+    }
+
+    if (this.model.sexSelection.value?.id === 1) {
+      return <Image source={ICONS.femaleIcon} style={[BaseStyles.defaultIcon]} />;
+    }
+
+    if (this.model.sexSelection.value?.id === 2) {
+      return (
+        <View style={[BaseStyles.row]}>
+          <Image source={ICONS.maleIcon} style={[BaseStyles.defaultIcon]} />
+          <Text>{_.lang.or}</Text>
+          <Image source={ICONS.femaleIcon} style={[BaseStyles.defaultIcon]} />
+        </View>
+      );
+    }
+
+    return (
+      <Image
+        source={app.currentUser.gender === 'male' ? ICONS.femaleIcon : ICONS.maleIcon}
+        style={[BaseStyles.defaultIcon]}
+      />
+    );
+  }
+
   public render() {
     super.render();
     if (this.model.loading) {
@@ -35,13 +66,17 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
     }
     return (
       <View style={[MyAnnouncementStyles.mainContainer, BaseStyles.container]}>
-        <ScrollView style={BaseStyles.w100} contentContainerStyle={[MyAnnouncementStyles.scrollContentContainer]}>
+        <ScrollView
+          style={BaseStyles.w100}
+          contentContainerStyle={[MyAnnouncementStyles.scrollContentContainer]}>
           <Text style={[MyAnnouncementStyles.mainTitleText]}>
             {this.model.editMode ? _.lang.your_announcement : 'Create announcement'}
           </Text>
           <View style={[MyAnnouncementStyles.inputFormContainer]}>
             <View style={BaseStyles.w95}>
-              <Text style={[MyAnnouncementStyles.describeInputTitleText]}>{_.lang.announcement_text}</Text>
+              <Text style={[MyAnnouncementStyles.describeInputTitleText]}>
+                {_.lang.announcement_text}
+              </Text>
             </View>
 
             <TextInputView
@@ -85,7 +120,31 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
                 </View>
               </View>
             </View>
+
+            <View style={[RegistrationScreenStyles.goalsContainer]}>
+              <Text style={[RegistrationScreenStyles.mainTitleStyles]}>
+                {_.lang.your_expectations}
+              </Text>
+              <View style={RegistrationScreenStyles.goalsItem}>
+                <View style={RegistrationScreenStyles.goaltTitleItem}>
+                  <Text>{_.lang.i_looking_for}:</Text>
+                </View>
+                <View style={[RegistrationScreenStyles.goalSelectionItem]}>
+                  <DropDownView {...this.childProps(this.model.sexSelection)} />
+                </View>
+              </View>
+              <View style={RegistrationScreenStyles.goalsItem}>
+                <View style={RegistrationScreenStyles.goaltTitleItem}>
+                  <Text>{_.lang.your_dating_goals}:</Text>
+                </View>
+
+                <View style={[RegistrationScreenStyles.goalSelectionItem]}>
+                  <DropDownView {...this.childProps(this.model.goalsSelection)} />
+                </View>
+              </View>
+            </View>
           </View>
+          {/** PREWIEV */}
           <Text style={[MyAnnouncementStyles.mainTitleText]}>{_.lang.preview}</Text>
           <View style={[MyAnnouncementStyles.previewContainer]}>
             <View style={[BaseStyles.w100, BaseStyles.ai_fs]}>
@@ -118,15 +177,26 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
                   </View>
                 </View>
                 <View style={[BaseStyles.jc_c, BaseStyles.w100]}>
-                  <View style={[BaseStyles.row, BaseStyles.pb10]}>
-                    <Text style={MyAnnouncementStyles.userNameText}>{app.currentUser.userName} </Text>
+                  <View style={[BaseStyles.row, BaseStyles.pb5]}>
+                    <Text style={MyAnnouncementStyles.userNameText}>
+                      {app.currentUser.userName}{' '}
+                    </Text>
                     <Image
                       source={app.currentUser.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
                       style={[BaseStyles.defaultIcon]}
                     />
                     <Text> {getAge(app.currentUser.birthDate || 0)} y.o </Text>
                   </View>
-
+                  <View style={[MyAnnouncementStyles.goalPreviewContainer]}>
+                    <Text> {_.lang.i_looking_for} </Text>
+                    {this.getExpectationsIcon()}
+                    {this.model.goalsSelection.value !== undefined && (
+                      <Text>
+                        {' '}
+                        {_.lang.for} {this.model.goalsSelection.value.name}
+                      </Text>
+                    )}
+                  </View>
                   <View style={MyAnnouncementStyles.previewMainTextWrapper}>
                     {this.model.previewLabelModel.text !== '' && (
                       <View style={MyAnnouncementStyles.previewMainTextContainer}>
@@ -137,7 +207,10 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
                   {app.currentUser.location && (
                     <View style={[MyAnnouncementStyles.previewLocationContainer]}>
                       <Image source={ICONS.locationIcon} style={[BaseStyles.defaultIcon]} />
-                      <LabelView textStyles={[BaseStyles.ta_c]} {...this.childProps(this.model.previewLocationLabelModel)} />
+                      <LabelView
+                        textStyles={[BaseStyles.ta_c]}
+                        {...this.childProps(this.model.previewLocationLabelModel)}
+                      />
                     </View>
                   )}
                 </View>

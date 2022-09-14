@@ -14,7 +14,7 @@ const rus: localizationPackType = {
   edit: 'редактировать',
   enter_your_message: 'Введите свое сообщение',
   filters: 'фильтры',
-  gender: 'пол',
+  gender: 'ваш пол',
   items_not_found: 'Ничего не найдено',
   likes: 'лайки',
   location: 'Локация',
@@ -202,6 +202,13 @@ const rus: localizationPackType = {
   i_agree_with: 'Я согласен с',
   and: 'и',
   privacy_policy_title: 'Политикой приватности',
+  goals: ['создания семьи', 'путишествий', 'флирта', 'общения', 'дружбы', 'секса'],
+  i_looking_for: 'Я ищу',
+  for: 'для',
+  genders: ['Мужчину', 'Женщину', 'Мужчину или Женщину'],
+  your_expectations: 'Ваши ожидания',
+  your_dating_goals: 'Ваши цели знакомства',
+  it_is_you: 'Это вы!',
 };
 
 export {rus};

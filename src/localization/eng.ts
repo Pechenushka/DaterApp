@@ -15,7 +15,7 @@ const eng: localizationPackType = {
   edit: 'edit',
   enter_your_message: 'Enter your message',
   filters: 'Filters',
-  gender: 'gender',
+  gender: 'your gender',
   items_not_found: 'Items not found',
   likes: 'likes',
   location: 'location',
@@ -200,6 +200,13 @@ const eng: localizationPackType = {
   i_agree_with: 'I agree with',
   and: 'and',
   privacy_policy_title: 'Privacy policy',
+  goals: ['family building', 'travels', 'flirting', 'chatting', 'friendship', 'sex'],
+  i_looking_for: `I'm looking for`,
+  for: 'for',
+  genders: ['Male', 'Female', 'Male or Female'],
+  your_expectations: 'Your expectations',
+  your_dating_goals: 'Your dating goals',
+  it_is_you: 'It is you!',
 };
 
 export {eng};

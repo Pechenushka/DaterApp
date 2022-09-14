@@ -51,6 +51,8 @@ export type searchItemDataType = baseResponse & {
   checked: boolean;
   liked: boolean;
   lastOnline: number;
+  lookingfor: number;
+  goal: number;
 };
 
 export type userStatusResponseDataType = baseResponse & {
@@ -93,6 +95,8 @@ export type userMeetingDataType = baseResponse & {
     id: number;
     regionName: string;
     text: string;
+    lookingfor: number;
+    goal: number;
   };
 };
 

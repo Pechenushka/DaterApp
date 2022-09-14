@@ -80,9 +80,9 @@ class DropDownModel extends BaseModel<dropDownModelProps> {
     this.opened = false;
   };
 
-  public selectItem = async (item: dropDownItem) => {
+  public selectItem = async (item: dropDownItem | undefined) => {
     this._value = item;
-    this.props.onSelectionChange(item);
+    item && this.props.onSelectionChange(item);
     this.close();
   };
 

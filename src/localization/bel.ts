@@ -14,7 +14,7 @@ const bel: localizationPackType = {
   edit: 'рэдагаваць',
   enter_your_message: 'Увядзіце паведамленне',
   filters: 'фільтры',
-  gender: 'сэкс',
+  gender: 'ваш пол',
   items_not_found: 'Нічога не знойдзена',
   likes: 'лайки',
   location: 'Размяшчэнне',
@@ -205,6 +205,13 @@ const bel: localizationPackType = {
   i_agree_with: 'Я згодны з',
   and: 'і',
   privacy_policy_title: 'Палітыка прыватнасці',
+  goals: [`стварэнне сям'і`, 'падарожжаў', 'флірту', 'зносін', 'дружбы', 'сэксу'],
+  i_looking_for: 'Я шукаю',
+  for: 'для',
+  genders: ['Мужчыну', 'Жанчыну', 'Мужчыну або Жанчыну'],
+  your_expectations: 'Вашыя чаканні',
+  your_dating_goals: 'Вашы мэты знаёмстваў',
+  it_is_you: 'Гэта вы!',
 };
 
 export {bel};

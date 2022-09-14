@@ -57,7 +57,7 @@ const MyAnnouncementStyles = StyleSheet.create({
 
   describeInputTitleText: {
     marginBottom: hp(7),
-    fontSize: hp(16),
+    fontSize: hp(20),
     fontWeight: 'bold',
     color: COLORS.BLACK,
     textTransform: 'capitalize',
@@ -101,6 +101,12 @@ const MyAnnouncementStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: '60%',
+  },
+
+  goalPreviewContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: hp(10),
   },
 
   previewMainTextWrapper: {

@@ -69,6 +69,13 @@ export type localizationPackType = {
   i_agree_with: string;
   and: string;
   privacy_policy_title: string;
+  goals: Array<string>;
+  i_looking_for: string;
+  for: string;
+  genders: Array<string>;
+  your_expectations: string;
+  your_dating_goals: string;
+  it_is_you: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua' | 'bel' | 'pl';

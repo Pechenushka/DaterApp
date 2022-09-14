@@ -2,6 +2,7 @@ import {Alert} from 'react-native';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
+import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {genderEnum} from '../Components/Inputs/GenderSvitcherModel';
@@ -21,6 +22,8 @@ type likeItemModelProps = baseModelProps & {
   checked: boolean;
   lastOnline: number;
   liked: boolean;
+  lookingfor: number;
+  goal: number;
   onItemReject: (itemId: number) => Promise<void>;
   onSendMessagePress: (user: shortUserDataType) => Promise<void>;
 };
@@ -32,9 +35,21 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
 
   constructor(props: likeItemModelProps) {
     super(props);
-    this._likeButton = new SimpleButtonModel({id: '_likeButton', onPress: this.onLikeButtonPress, icon: ICONS.heartIcon});
-    this._rejectButton = new SimpleButtonModel({id: '_rejectButton', onPress: this.onRejectButtonPress, icon: ICONS.deleteIcon});
-    this._writeButton = new SimpleButtonModel({id: '_writeButton', onPress: this.onWriteButtonPress, icon: ICONS.chatIcon});
+    this._likeButton = new SimpleButtonModel({
+      id: '_likeButton',
+      onPress: this.onLikeButtonPress,
+      icon: ICONS.heartIcon,
+    });
+    this._rejectButton = new SimpleButtonModel({
+      id: '_rejectButton',
+      onPress: this.onRejectButtonPress,
+      icon: ICONS.deleteIcon,
+    });
+    this._writeButton = new SimpleButtonModel({
+      id: '_writeButton',
+      onPress: this.onWriteButtonPress,
+      icon: ICONS.chatIcon,
+    });
   }
 
   public get likeButton() {
@@ -99,6 +114,14 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
 
   public get liked() {
     return this.props.liked;
+  }
+
+  public get lookingfor() {
+    return this.props.lookingfor;
+  }
+
+  public get goal() {
+    return _.lang.goals[this.props.goal];
   }
 
   public onItemPress = async () => {

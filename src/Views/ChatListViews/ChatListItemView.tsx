@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {Image, Platform, Text, TouchableOpacity, View} from 'react-native';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
@@ -19,7 +23,9 @@ class ChatListItemView extends TypedBaseComponent<chatListItemViewProps, ChatLis
   public render() {
     super.render();
     return (
-      <TouchableOpacity style={ChatsStyles.chatListItemContaiter} onPress={this.model.onChatItemPress}>
+      <TouchableOpacity
+        style={ChatsStyles.chatListItemContaiter}
+        onPress={this.model.onChatItemPress}>
         <View style={BaseStyles.w20}>
           <View style={[ChatsStyles.chatListItemAvatarContainer]}>
             <Image
@@ -30,9 +36,9 @@ class ChatListItemView extends TypedBaseComponent<chatListItemViewProps, ChatLis
                 this.model.avatar === undefined || this.model.avatar === ''
                   ? ICONS.profileIcon
                   : {
-                      uri: `${appSettings.apiEndpoint}${this.model.avatar.split('.')[0]}-compressed.${this.model.avatar
-                        .split('.')
-                        .pop()}`,
+                      uri: `${appSettings.apiEndpoint}${
+                        this.model.avatar.split('.')[0]
+                      }-compressed.${this.model.avatar.split('.').pop()}`,
                       cache: 'reload',
                     }
               }
@@ -50,22 +56,34 @@ class ChatListItemView extends TypedBaseComponent<chatListItemViewProps, ChatLis
         <View style={[BaseStyles.w40, BaseStyles.h100]}>
           <View style={[BaseStyles.row, BaseStyles.ai_c]}>
             <Text style={ChatsStyles.chatListItemUserName}>{this.model.name} </Text>
-            <Image source={this.model.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon} style={[BaseStyles.smallIcon]} />
+            <Image
+              source={this.model.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
+              style={[BaseStyles.smallIcon]}
+            />
           </View>
 
-          <Text style={[ChatsStyles.chatListItemLastMessageDate]}>{this.model.lastMessage}</Text>
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={2}
+            style={[ChatsStyles.chatListItemLastMessageDate]}>
+            {this.model.lastMessage}
+          </Text>
         </View>
 
         <View style={[BaseStyles.w10, BaseStyles.alignCenter]}>
           {this.model.unreadCount > 0 && (
             <View style={[ChatsStyles.chatListItemUnreaaCountContainer]}>
-              <Text style={[ChatsStyles.chatListItemUnreaaCountText]}>{this.model.unreadCount}</Text>
+              <Text style={[ChatsStyles.chatListItemUnreaaCountText]}>
+                {this.model.unreadCount}
+              </Text>
             </View>
           )}
         </View>
 
         <View style={[BaseStyles.w30, BaseStyles.ai_c]}>
-          <Text style={[ChatsStyles.chatListItemLastMessageDate]}>{getShortDate(this.model.lastMessageDate)}</Text>
+          <Text style={[ChatsStyles.chatListItemLastMessageDate]}>
+            {getShortDate(this.model.lastMessageDate)}
+          </Text>
         </View>
       </TouchableOpacity>
     );

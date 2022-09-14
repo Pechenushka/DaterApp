@@ -14,7 +14,7 @@ const ua: localizationPackType = {
   edit: 'редагувати',
   enter_your_message: 'Введіть ваше повідомлення',
   filters: 'фільтри',
-  gender: 'стать',
+  gender: 'ваша стать',
   items_not_found: 'Нічого не знайдено',
   likes: 'лайки',
   location: 'Локація',
@@ -202,6 +202,13 @@ const ua: localizationPackType = {
   i_agree_with: 'Я згоден з',
   and: 'і',
   privacy_policy_title: 'Політикою приватности',
+  goals: [`створення сім'ї`, 'подорожей', 'флірту', 'спілкування', 'дружби', 'сексу'],
+  i_looking_for: 'Я шукаю',
+  for: 'для',
+  genders: ['Чоловіка', 'Жінку', 'Чоловіка чи Жінку'],
+  your_expectations: 'Ваші очікування',
+  your_dating_goals: 'Ваша мета знайомства',
+  it_is_you: 'Це ви!',
 };
 
 export {ua};
