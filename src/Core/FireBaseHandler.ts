@@ -1,7 +1,8 @@
+import {firebase} from '@react-native-firebase/crashlytics';
 import messaging from '@react-native-firebase/messaging';
 import {Alert} from 'react-native';
 import {loadData, UserDataProvider} from '../DataProvider/UserDataProvider';
-import { LoginScreen } from '../Screens/LoginScreen';
+import {LoginScreen} from '../Screens/LoginScreen';
 import {app} from './AppImpl';
 import {FireBaseNotification} from './DataTypes/BaseTypes';
 
@@ -9,33 +10,41 @@ class FireBaseHandler {
   constructor() {}
 
   public static async syncTokenDevice() {
-    const curToken = await messaging().getToken();
-    console.log('curToken', curToken);
-    if (app.currentUser.fcm !== undefined && app.currentUser.fcm !== curToken) {
-      const syncBody = {
-        fcm: curToken,
-        userId: app.currentUser.userId,
-      };
-      const res = await loadData(UserDataProvider.SyncFCMToken, syncBody);
+    try {
+      const curToken = await messaging().getToken();
+      console.log('curToken', curToken);
+      if (app.currentUser.fcm !== undefined && app.currentUser.fcm !== curToken) {
+        const syncBody = {
+          fcm: curToken,
+          userId: app.currentUser.userId,
+        };
+        const res = await loadData(UserDataProvider.SyncFCMToken, syncBody);
 
-      if (res === null) {
-        Alert.alert('Warning', 'Sync error');
-        return;
+        if (res === null) {
+          Alert.alert('Warning', 'Sync error');
+          return;
+        }
+
+        if (res.statusCode === 404) {
+          app.navigator.navigate(LoginScreen);
+          return;
+        }
+
+        if (res.statusCode !== 200) {
+          Alert.alert('Warning', res.statusMessage);
+          return;
+        }
+
+        app.currentUser.fcm = res.data.fcm;
       }
-
-      if (res.statusCode === 404) {
-       app.navigator.navigate(LoginScreen);
-      return;
-      }
-
-      if (res.statusCode !== 200) {
-        Alert.alert('Warning', res.statusMessage);
-        return;
-      }
-
-      app.currentUser.fcm = res.data.fcm;
+    } catch (error) {
+      FireBaseHandler.logError(error);
     }
   }
+
+  public static logError = async (error: any) => {
+    firebase.crashlytics().recordError(error);
+  };
 
   public static async getFCMToken() {
     return await messaging().getToken();

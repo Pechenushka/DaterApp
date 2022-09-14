@@ -107,7 +107,6 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
     app.currentUser.lang = 'rus';
     _.currLang = 'rus';
     this.visible = false;
-    DevSettings.reload();
   };
 
   public onGbrPress = () => {
@@ -115,7 +114,6 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
     app.currentUser.lang = 'eng';
     _.currLang = 'eng';
     this.visible = false;
-    DevSettings.reload();
   };
 
   public onUaPress = () => {
@@ -123,7 +121,6 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
     app.currentUser.lang = 'ua';
     _.currLang = 'ua';
     this.visible = false;
-    DevSettings.reload();
   };
 
   public onBelPress = () => {
@@ -131,7 +128,6 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
     app.currentUser.lang = 'bel';
     _.currLang = 'bel';
     this.visible = false;
-    DevSettings.reload();
   };
 
   public onCloseButtonPress = async () => {
