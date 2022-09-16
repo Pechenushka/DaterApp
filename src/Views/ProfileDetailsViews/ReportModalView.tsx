@@ -45,7 +45,9 @@ class ReportModalView extends TypedBaseComponent<reportModalViewProps, ReportMod
                         this.imgRef = ref;
                       }}
                       source={
-                        this.model.avatar === undefined || this.model.avatar === ''
+                        this.model.avatar === undefined ||
+                        this.model.avatar === '' ||
+                        this.model.avatar
                           ? ICONS.profileIcon
                           : {
                               uri: `${appSettings.apiEndpoint}${

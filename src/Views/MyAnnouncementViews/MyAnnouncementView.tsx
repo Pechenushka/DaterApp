@@ -156,7 +156,9 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
                         this.imgRef = ref;
                       }}
                       source={
-                        app.currentUser.avatar === undefined || app.currentUser.avatar === ''
+                        app.currentUser.avatar === undefined ||
+                        app.currentUser.avatar === '' ||
+                        app.currentUser.avatar === null
                           ? ICONS.profileIcon
                           : {
                               uri: `${appSettings.apiEndpoint}${

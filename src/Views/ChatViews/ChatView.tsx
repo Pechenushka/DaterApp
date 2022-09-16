@@ -106,7 +106,8 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
                     }}
                     source={
                       this.model.companion.avatar === undefined ||
-                      this.model.companion.avatar === ''
+                      this.model.companion.avatar === '' ||
+                      this.model.companion.avatar === null
                         ? ICONS.profileIcon
                         : {
                             uri: `${appSettings.apiEndpoint}${

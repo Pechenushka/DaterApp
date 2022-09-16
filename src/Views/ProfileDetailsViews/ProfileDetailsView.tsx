@@ -85,7 +85,9 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                     this.imgRef = ref;
                   }}
                   source={
-                    this.model.userInfo.avatar === undefined || this.model.userInfo.avatar === ''
+                    this.model.userInfo.avatar === undefined ||
+                    this.model.userInfo.avatar === '' ||
+                    this.model.userInfo.avatar === null
                       ? ICONS.profileIcon
                       : {
                           uri: `${appSettings.apiEndpoint}${

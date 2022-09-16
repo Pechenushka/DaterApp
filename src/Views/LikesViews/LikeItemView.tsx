@@ -72,7 +72,9 @@ class LikeItemView extends TypedBaseComponent<likeItemViewProps, LikeItemModel> 
                     this.imgRef = ref;
                   }}
                   source={
-                    this.model.authorAvatar === undefined || this.model.authorAvatar === ''
+                    this.model.authorAvatar === undefined ||
+                    this.model.authorAvatar === '' ||
+                    this.model.authorAvatar === null
                       ? ICONS.profileIcon
                       : {
                           uri: `${appSettings.apiEndpoint}${

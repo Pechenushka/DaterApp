@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {Image, Text, View} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
@@ -24,13 +28,19 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
 
   private getInfoMessage = () => {
     if (this.model.userStatus === undefined) {
-      return <Text style={HomeScreenStyles.warningTitleText}>{_.lang.servers_are_not_allowed}</Text>;
+      return (
+        <Text style={HomeScreenStyles.warningTitleText}>{_.lang.servers_are_not_allowed}</Text>
+      );
     }
     if (this.model.userStatus === null) {
       if (app.currentUser.avatar !== undefined && app.currentUser.avatar !== '') {
-        return <Text style={HomeScreenStyles.warningTitleText}>{_.lang.moderation_request_pending}</Text>;
+        return (
+          <Text style={HomeScreenStyles.warningTitleText}>{_.lang.moderation_request_pending}</Text>
+        );
       }
-      return <Text style={HomeScreenStyles.warningTitleText}>{_.lang.please_request_moderation}</Text>;
+      return (
+        <Text style={HomeScreenStyles.warningTitleText}>{_.lang.please_request_moderation}</Text>
+      );
     }
     if (this.model.userStatus) {
       return <></>;
@@ -50,20 +60,26 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
         {this.getInfoMessage()}
         <View style={[HomeScreenStyles.contentContainer]}>
           <View style={[HomeScreenStyles.userInfoContent]}>
-            {app.currentUser.avatar !== undefined && app.currentUser.avatar !== '' ? (
-              <TouchableOpacity onPress={this.model.changeAvatar} style={[HomeScreenStyles.avatarContainer]}>
+            {app.currentUser.avatar !== undefined &&
+            app.currentUser.avatar !== '' &&
+            app.currentUser.avatar !== null ? (
+              <TouchableOpacity
+                onPress={this.model.changeAvatar}
+                style={[HomeScreenStyles.avatarContainer]}>
                 <Image
                   source={{
-                    uri: `${appSettings.apiEndpoint}${app.currentUser.avatar.split('.')[0]}-compressed.${app.currentUser.avatar
-                      .split('.')
-                      .pop()}`,
+                    uri: `${appSettings.apiEndpoint}${
+                      app.currentUser.avatar.split('.')[0]
+                    }-compressed.${app.currentUser.avatar.split('.').pop()}`,
                     cache: 'reload',
                   }}
                   style={HomeScreenStyles.avatarImage}
                 />
               </TouchableOpacity>
             ) : (
-              <TouchableOpacity onPress={this.model.changeAvatar} style={[HomeScreenStyles.avatarContainer]}>
+              <TouchableOpacity
+                onPress={this.model.changeAvatar}
+                style={[HomeScreenStyles.avatarContainer]}>
                 <Image source={ICONS.addPhotoIcon} style={HomeScreenStyles.addAvatarIcon} />
               </TouchableOpacity>
             )}
@@ -178,7 +194,10 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
             </View>
           </View>
           <View style={[]}>
-            <BannerAd unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'} size={BannerAdSize.BANNER} />
+            <BannerAd
+              unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'}
+              size={BannerAdSize.BANNER}
+            />
           </View>
         </View>
       </View>

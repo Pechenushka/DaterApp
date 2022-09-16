@@ -33,7 +33,9 @@ class ChatListItemView extends TypedBaseComponent<chatListItemViewProps, ChatLis
                 this.imgRef = ref;
               }}
               source={
-                this.model.avatar === undefined || this.model.avatar === ''
+                this.model.avatar === undefined ||
+                this.model.avatar === '' ||
+                this.model.avatar === null
                   ? ICONS.profileIcon
                   : {
                       uri: `${appSettings.apiEndpoint}${

@@ -74,7 +74,9 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
                       this.imgRef = ref;
                     }}
                     source={
-                      this.model.authorAvatar === undefined || this.model.authorAvatar === ''
+                      this.model.authorAvatar === undefined ||
+                      this.model.authorAvatar === '' ||
+                      this.model.authorAvatar === null
                         ? ICONS.profileIcon
                         : {
                             uri: `${appSettings.apiEndpoint}${

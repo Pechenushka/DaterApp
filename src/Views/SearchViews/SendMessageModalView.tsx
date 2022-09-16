@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {View, Modal, Text, Image, Platform} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
@@ -14,7 +18,10 @@ import {_} from '../../Core/Localization';
 
 type sendMessageModalViewProps = baseComponentProps & {};
 
-class SendMessageModalView extends TypedBaseComponent<sendMessageModalViewProps, SendMessageModalModel> {
+class SendMessageModalView extends TypedBaseComponent<
+  sendMessageModalViewProps,
+  SendMessageModalModel
+> {
   private imgRef: Image | null = null;
   constructor(props: componentPropsWithModel<sendMessageModalViewProps, SendMessageModalModel>) {
     super(props);
@@ -42,7 +49,9 @@ class SendMessageModalView extends TypedBaseComponent<sendMessageModalViewProps,
                           this.imgRef = ref;
                         }}
                         source={
-                          this.model.userData.avatar === undefined || this.model.userData.avatar === ''
+                          this.model.userData.avatar === undefined ||
+                          this.model.userData.avatar === '' ||
+                          this.model.userData.avatar === null
                             ? ICONS.profileIcon
                             : {
                                 uri: `${appSettings.apiEndpoint}${
@@ -64,9 +73,13 @@ class SendMessageModalView extends TypedBaseComponent<sendMessageModalViewProps,
                   </View>
 
                   <View style={[BaseStyles.row, BaseStyles.ai_c]}>
-                    <Text style={ChatsStyles.chatListItemUserName}>{this.model.userData.name} </Text>
+                    <Text style={ChatsStyles.chatListItemUserName}>
+                      {this.model.userData.name}{' '}
+                    </Text>
                     <Image
-                      source={this.model.userData.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
+                      source={
+                        this.model.userData.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon
+                      }
                       style={[BaseStyles.smallIcon]}
                     />
                   </View>
