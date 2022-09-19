@@ -267,6 +267,19 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._submitButton.disabled = false;
       return;
     }
+    if (country !== undefined) {
+      if (region === undefined) {
+        Alert.alert('Warning', 'Select region');
+        this._submitButton.disabled = false;
+        return;
+      }
+
+      if (city === undefined) {
+        Alert.alert('Warning', 'Select city');
+        this._submitButton.disabled = false;
+        return;
+      }
+    }
     const meetingBody = {
       authorId: app.currentUser.userId,
       timestamp: new Date().getTime(),
