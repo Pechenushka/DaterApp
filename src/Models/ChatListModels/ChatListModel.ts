@@ -1,6 +1,9 @@
+import {ICONS} from '../../constants/icons';
+import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {chatItemDataType} from '../../Core/DataTypes/BaseTypes';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
+import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {ChatListItemModel} from './ChatListItemModel';
 
 type chatListModelProps = baseModelProps & {};
@@ -8,8 +11,14 @@ type chatListModelProps = baseModelProps & {};
 class ChatListModel extends BaseModel<chatListModelProps> {
   private _loading: boolean = false;
   private _list: Map<number, ChatListItemModel> = new Map();
+  private _menuButton: SimpleButtonModel;
   constructor(props: chatListModelProps) {
     super(props);
+    this._menuButton = new SimpleButtonModel({
+      id: '_menuButton',
+      onPress: this.onMenuPress,
+      icon: ICONS.menuButtonWhiteIcon,
+    });
   }
 
   public get loading() {
@@ -27,6 +36,14 @@ class ChatListModel extends BaseModel<chatListModelProps> {
   public get list() {
     return this._list;
   }
+
+  public get menuButton() {
+    return this._menuButton;
+  }
+
+  public onMenuPress = () => {
+    app.navigator.openDrawer();
+  };
 
   public init = async () => {
     this.loading = true;

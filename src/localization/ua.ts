@@ -52,20 +52,7 @@ const ua: localizationPackType = {
   repeat_your_password: 'Повторіть пароль',
   sign_up: 'Зареєструватися!',
   feedback: 'Звязок з разробником',
-  month: [
-    'Січня',
-    'Лютого',
-    'Березня',
-    'Квітня',
-    'Травня',
-    'Червня',
-    'Липня',
-    'Серпня',
-    'Вересня',
-    'Жовтня',
-    'Листопада',
-    'Грудня',
-  ],
+  month: ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'],
   selectLanguage: 'Виберіть свою мову',
   languageWarning: 'Зміни вступлять в силу після перезапуску',
   send_message: 'Написати',
@@ -209,6 +196,8 @@ const ua: localizationPackType = {
   your_expectations: 'Ваші очікування',
   your_dating_goals: 'Ваша мета знайомства',
   it_is_you: 'Це ви!',
+  choose_variant: 'Оберіть варіант',
+  our_telegram: 'Наш telegram',
 };
 
 export {ua};

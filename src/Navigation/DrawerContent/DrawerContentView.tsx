@@ -26,6 +26,10 @@ class DrawerContentView extends TypedBaseComponent<drawerContentViewProps, Drawe
     Linking.openURL('mailto:smsoftfeedback@gmail.com');
   };
 
+  public onTelegramPress = async () => {
+    Linking.openURL('http://t.me/dater_dates');
+  };
+
   public onPrivacyPress = async () => {
     app.navigator.navigate(PrivacyScreen);
   };
@@ -52,6 +56,11 @@ class DrawerContentView extends TypedBaseComponent<drawerContentViewProps, Drawe
           <View style={this.styles.container}>
             <TouchableOpacity style={this.styles.button} onPress={this.onTermsPress}>
               <Text style={this.styles.label}>{_.lang.terms_of_use_title}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={this.styles.container}>
+            <TouchableOpacity style={this.styles.button} onPress={this.onTelegramPress}>
+              <Text style={this.styles.label}>{_.lang.our_telegram}</Text>
             </TouchableOpacity>
           </View>
         </View>

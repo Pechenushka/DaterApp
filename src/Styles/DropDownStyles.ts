@@ -28,7 +28,7 @@ const DropDownStyles = StyleSheet.create({
   itemContainer: {
     width: '100%',
     paddingVertical: hp(8),
-    backgroundColor: COLORS.INPUT_BG,
+    backgroundColor: COLORS.WHITE,
     alignItems: 'center',
     borderRadius: 8,
   },

@@ -52,20 +52,7 @@ const rus: localizationPackType = {
   repeat_your_password: 'Повторите пароль',
   sign_up: 'Зарегистрироватся!',
   feedback: 'Связь с разработчиком',
-  month: [
-    'Января',
-    'Февраля',
-    'Марта',
-    'Апреля',
-    'Мая',
-    'Июня',
-    'Июля',
-    'Августа',
-    'Сентября',
-    'Октября',
-    'Ноября',
-    'Декабря',
-  ],
+  month: ['Янв', 'Фев', 'Мар', 'Апр', 'Мая', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
   selectLanguage: 'Выбери свой язык',
   languageWarning: 'Изменения вступят в силу после перезапуска',
   send_message: 'Написать',
@@ -209,6 +196,8 @@ const rus: localizationPackType = {
   your_expectations: 'Ваши ожидания',
   your_dating_goals: 'Ваши цели знакомства',
   it_is_you: 'Это вы!',
+  choose_variant: 'Выберите вариант',
+  our_telegram: 'Наш telegram',
 };
 
 export {rus};

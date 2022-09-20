@@ -51,20 +51,7 @@ const eng: localizationPackType = {
   repeat_your_password: 'Repeat your password',
   sign_up: 'Sign Up!',
   feedback: 'Contact us',
-  month: [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ],
+  month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
   selectLanguage: 'Slect your language',
   languageWarning: 'Changes will be applied after restart',
   send_message: 'Send Message',
@@ -207,6 +194,8 @@ const eng: localizationPackType = {
   your_expectations: 'Your expectations',
   your_dating_goals: 'Your dating goals',
   it_is_you: 'It is you!',
+  choose_variant: 'Choose variant',
+  our_telegram: 'Our telegram',
 };
 
 export {eng};

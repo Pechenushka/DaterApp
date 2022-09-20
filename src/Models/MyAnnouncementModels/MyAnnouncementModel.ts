@@ -70,7 +70,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
         {id: 1, name: _.lang.genders[1]},
         {id: 2, name: _.lang.genders[2]},
       ],
-      placeholder: 'chose variant',
+      placeholder: _.lang.choose_variant,
       onSelectionChange: this.onSexChange,
       disabled: false,
     });
@@ -85,7 +85,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
         {id: 4, name: _.lang.goals[4]},
         {id: 5, name: _.lang.goals[5]},
       ],
-      placeholder: 'chose variant',
+      placeholder: _.lang.choose_variant,
       onSelectionChange: this.onGoalsChange,
       disabled: false,
     });

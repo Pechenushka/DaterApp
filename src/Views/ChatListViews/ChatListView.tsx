@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
 import {ChatListModel} from '../../Models/ChatListModels/ChatListModel';
@@ -8,6 +12,7 @@ import {BaseStyles} from '../../Styles/BaseStyles';
 import {ChatListItemView} from './ChatListItemView';
 import {_} from '../../Core/Localization';
 import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
+import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 
 type chatListViewProps = baseComponentProps & {};
 
@@ -27,13 +32,22 @@ class ChatListView extends TypedBaseComponent<chatListViewProps, ChatListModel> 
     }
     return (
       <View style={ChatsStyles.chatListMainContainer}>
-        <ShadowWrapperView style={BaseStyles.mt10}>
-          <View style={ChatsStyles.chatListHeaderContainer}>
+        <View style={ChatsStyles.chatListHeaderContainer}>
+          <View style={[BaseStyles.w10]}>
+            <SimpleButtonView
+              styles={[ChatsStyles.chatListHeaderMenuButton]}
+              iconStyles={[BaseStyles.bigIcon]}
+              {...this.childProps(this.model.menuButton)}
+            />
+          </View>
+          <View style={[BaseStyles.w80, BaseStyles.ai_c]}>
             <Text style={ChatsStyles.chatListHeaderText}>{_.lang.your_chats}</Text>
           </View>
-        </ShadowWrapperView>
+        </View>
 
-        <ScrollView style={BaseStyles.w100} contentContainerStyle={[BaseStyles.w100, BaseStyles.ai_c, BaseStyles.pb100]}>
+        <ScrollView
+          style={BaseStyles.w100}
+          contentContainerStyle={[BaseStyles.w100, BaseStyles.ai_c, BaseStyles.pb100]}>
           {Array.from(this.model.list).map(chatItem => {
             return <ChatListItemView {...this.childProps(chatItem[1])} />;
           })}

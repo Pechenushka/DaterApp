@@ -76,6 +76,8 @@ export type localizationPackType = {
   your_expectations: string;
   your_dating_goals: string;
   it_is_you: string;
+  choose_variant: string;
+  our_telegram: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua' | 'bel' | 'pl';

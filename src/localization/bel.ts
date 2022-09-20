@@ -51,20 +51,7 @@ const bel: localizationPackType = {
   repeat_your_password: 'Паўтарыце пароль',
   sign_up: 'Зарэгістравацца!',
   feedback: 'Зносіны з распрацоўшчыкам',
-  month: [
-    'Студзень',
-    'Люты',
-    'Сакавік',
-    'Красавік',
-    'Мая',
-    'Чэрвень',
-    'Ліпень',
-    'Жнівень',
-    'Верасень',
-    'Кастрычніка',
-    'Лістапад',
-    'Снежань',
-  ],
+  month: ['Сту', 'Лют', 'Сак', 'Кра', 'Мая', 'Чэр', 'Ліп', 'Жні', 'Вер', 'Кас', 'Ліс', 'Сне'],
   selectLanguage: 'Выберыце сваю мову',
   languageWarning: 'Змены ўступяць у сілу пасля перазапуску',
   send_message: 'Пішыце',
@@ -212,6 +199,8 @@ const bel: localizationPackType = {
   your_expectations: 'Вашыя чаканні',
   your_dating_goals: 'Вашы мэты знаёмстваў',
   it_is_you: 'Гэта вы!',
+  choose_variant: 'Абярыце варыянт',
+  our_telegram: 'Наш telegram',
 };
 
 export {bel};

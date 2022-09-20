@@ -133,18 +133,22 @@ const ChatsStyles = StyleSheet.create({
   },
 
   chatListHeaderContainer: {
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLORS.MAIN_BLUE,
     padding: hp(5),
     paddingHorizontal: hp(15),
-    marginVertical: hp(5),
-    borderRadius: 12,
+    paddingVertical: hp(20),
+    width: '100%',
+    flexDirection: 'row',
   },
 
   chatListHeaderText: {
     fontSize: hp(18),
     fontWeight: 'bold',
     textTransform: 'capitalize',
+    color: COLORS.WHITE,
   },
+
+  chatListHeaderMenuButton: {},
 });
 
 export {ChatsStyles};
