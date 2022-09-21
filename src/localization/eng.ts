@@ -57,7 +57,7 @@ const eng: localizationPackType = {
   send_message: 'Send Message',
   like: 'Like',
   block_user: 'Block User',
-  unblock_user: 'Unblock User',
+  unblock_user: 'Unblock User/Content',
   report_user: 'Report User',
   send_report: 'Send report',
   add_comment_to_report: 'Add comment to report',
