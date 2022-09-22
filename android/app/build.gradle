@@ -138,8 +138,8 @@ android {
         applicationId "com.dater"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 16
-        versionName "1.4.6"
+        versionCode 17
+        versionName "1.4.7"
     }
     splits {
         abi {
