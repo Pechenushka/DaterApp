@@ -8,6 +8,7 @@ import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {FireBaseHandler} from '../../Core/FireBaseHandler';
 import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
+import {GoogleSignInModel} from '../Components/AuthComponents/GoogleSignInModel';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {DatePickerModel} from '../Components/Inputs/DatePickerModel';
 import {dropDownItem, DropDownModel} from '../Components/Inputs/DropDownModel';
@@ -30,6 +31,15 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   private _countrySelection: DropDownModel;
   private _regionSelection: DropDownModel;
   private _citySelection: DropDownModel;
+  private _curentStep: number = 1;
+
+  private _step1NextButton: SimpleButtonModel;
+
+  private _step2NextButton: SimpleButtonModel;
+  private _step2PrevButton: SimpleButtonModel;
+
+  private _step3PrevButton: SimpleButtonModel;
+  private _googleIdToken: string | null = null;
 
   constructor(props: registrationFormModelProps) {
     super(props);
@@ -57,6 +67,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       secure: true,
       showLeftIcon: true,
       leftIcon: ICONS.lockIcon,
+      onIconPress: this.onPasswordIconPress,
     });
 
     this._repeatPasswordInput = new TextInputModel({
@@ -66,6 +77,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       secure: true,
       showLeftIcon: true,
       leftIcon: ICONS.lockIcon,
+      onIconPress: this.onRepeatPasswordIconPress,
     });
 
     this._ageInput = new DatePickerModel({id: '_ageInput', mode: 'date'});
@@ -103,6 +115,30 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
     });
 
     this._agreementSwitcher = new SwitcherModel({id: '_agreementSwitcher'});
+
+    this._step1NextButton = new SimpleButtonModel({
+      id: '_step1NextButton',
+      onPress: this.onStep1NextPress,
+      text: `${_.lang.next} >`,
+    });
+
+    this._step2NextButton = new SimpleButtonModel({
+      id: '_step2NextButton',
+      onPress: this.onStep2NextPress,
+      text: `${_.lang.next} >`,
+    });
+
+    this._step2PrevButton = new SimpleButtonModel({
+      id: '_step2PrevButton',
+      onPress: this.onStep2PrevPress,
+      text: `< ${_.lang.prev}`,
+    });
+
+    this._step3PrevButton = new SimpleButtonModel({
+      id: '_step3PrevButton',
+      onPress: this.onStep3PrevPress,
+      text: `< ${_.lang.prev}`,
+    });
   }
 
   public get userNameInput() {
@@ -148,6 +184,153 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   public get regionSelection() {
     return this._regionSelection;
   }
+
+  public get curentStep() {
+    return this._curentStep;
+  }
+
+  public set curentStep(Val) {
+    this._curentStep = Val;
+    this.forceUpdate();
+  }
+
+  public get step1NextButton() {
+    return this._step1NextButton;
+  }
+
+  public get step2NextButton() {
+    return this._step2NextButton;
+  }
+
+  public get step2PrevButton() {
+    return this._step2PrevButton;
+  }
+
+  public get step3PrevButton() {
+    return this._step3PrevButton;
+  }
+
+  public onPasswordIconPress = async () => {
+    if (this._passwordInput.secure) {
+      this._passwordInput.secure = false;
+      this._passwordInput.leftIcon = ICONS.eyeIcon;
+      return;
+    }
+    this._passwordInput.secure = true;
+    this._passwordInput.leftIcon = ICONS.lockIcon;
+  };
+
+  public onRepeatPasswordIconPress = async () => {
+    if (this._repeatPasswordInput.secure) {
+      this._repeatPasswordInput.secure = false;
+      this._repeatPasswordInput.leftIcon = ICONS.eyeIcon;
+      return;
+    }
+    this._repeatPasswordInput.secure = true;
+    this._repeatPasswordInput.leftIcon = ICONS.lockIcon;
+  };
+
+  public firsStepValidation = async () => {
+    const [name, email, password, passwordConfirm] = [
+      this._userNameInput.value.trim(),
+      this._emailInput.value.trim(),
+      this._passwordInput.value.trim(),
+      this._repeatPasswordInput.value.trim(),
+    ];
+
+    if (name === '') {
+      Alert.alert('Warning!', 'Name can not be empty');
+      return false;
+    }
+
+    if (email === '') {
+      Alert.alert('Warning!', 'Email can not be empty');
+      return false;
+    }
+
+    if (password === '') {
+      Alert.alert('Warning!', 'Password can not be empty');
+      return false;
+    }
+    if (passwordConfirm === '') {
+      Alert.alert('Warning!', 'Password Confirm can not be empty');
+      return false;
+    }
+
+    if (password !== passwordConfirm) {
+      Alert.alert('Warning!', 'Confirm password dos not match');
+      return false;
+    }
+
+    if (password.length < 6) {
+      Alert.alert('Warning!', 'Password must be at least 6 characters');
+      return false;
+    }
+
+    const res = await loadData(UserDataProvider.CheckEmail, {email: email});
+
+    if (res === null) {
+      Alert.alert('Warning', 'Something was wrong');
+      return false;
+    }
+
+    if (res.statusCode !== 200) {
+      Alert.alert('Warning', res.statusMessage);
+      return false;
+    }
+    return true;
+  };
+
+  public secondStepValidation = async () => {
+    const [dateTimeStamp] = [this._ageInput.value.getTime()];
+    if (getAge(dateTimeStamp) < 18) {
+      Alert.alert('Warning!', 'You must be over 18 years old');
+      return false;
+    }
+
+    if (getAge(dateTimeStamp) > 100) {
+      Alert.alert('Warning!', 'Seriously, you are over 100 years old?');
+      return false;
+    }
+    return true;
+  };
+
+  public thirdStepValidation = async () => {};
+
+  public onStep1NextPress = async () => {
+    const validated = await this.firsStepValidation();
+    if (validated) {
+      this.curentStep = 2;
+    }
+  };
+
+  public onStep2NextPress = async () => {
+    const validated = await this.secondStepValidation();
+    if (validated) {
+      this.curentStep = 3;
+    }
+  };
+
+  public onStep2PrevPress = async () => {
+    if (this._googleIdToken) {
+      return;
+    }
+    this.curentStep = 1;
+  };
+
+  public onStep3PrevPress = async () => {
+    this.curentStep = 2;
+  };
+
+  public onGoogleSignUp = async (userData: {email: string; name: string; password: string}) => {
+    this._userNameInput.value = userData.name;
+    this._emailInput.value = userData.email;
+    this._passwordInput.value = userData.password;
+    this._repeatPasswordInput.value = userData.password;
+    this._googleIdToken = userData.password;
+    this._step2PrevButton.disabled = true;
+    this.curentStep = 2;
+  };
 
   public onUserNameChange = async (newValue: string) => {
     newValue;
@@ -322,6 +505,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       cityId: city.id,
       fcm,
       mac: deviceInfoModule.getMacAddressSync(),
+      google_token: this._googleIdToken,
     };
     const res = await loadData(UserDataProvider.Registration, registrationBody);
     if (res !== null) {

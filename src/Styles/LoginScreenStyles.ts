@@ -4,7 +4,7 @@ import {hp, wp} from '../constants/Dimensions';
 
 const LoginScreenStyles = StyleSheet.create({
   mainTitleStyles: {
-    paddingTop: hp(50),
+    paddingTop: hp(30),
     color: COLORS.BLACK,
     fontSize: hp(22),
     fontWeight: 'bold',
@@ -36,7 +36,7 @@ const LoginScreenStyles = StyleSheet.create({
   },
 
   inputsContainer: {
-    paddingTop: hp(30),
+    paddingTop: hp(25),
     width: '100%',
     paddingHorizontal: wp(20),
     alignItems: 'center',
@@ -44,27 +44,34 @@ const LoginScreenStyles = StyleSheet.create({
   },
 
   loginButton: {
-    marginTop: hp(30),
-    width: '75%',
-    height: hp(50),
-    backgroundColor: COLORS.GREEN_BUTTON,
+    marginTop: hp(20),
+    width: '100%',
+    height: hp(40),
+    backgroundColor: COLORS.MAIN_BLUE,
     borderRadius: 8,
   },
 
   loginButtonText: {
     fontFamily: 'Roboto-Regular',
     color: COLORS.WHITE,
-    fontSize: hp(18),
+    fontSize: hp(16),
     fontWeight: 'bold',
     textTransform: 'uppercase',
   },
 
   registrateButton: {
-    width: '75%',
-    height: hp(50),
+    width: '100%',
+    height: hp(40),
     borderRadius: 8,
     marginBottom: hp(5),
-    backgroundColor: COLORS.GREEN_BUTTON,
+    backgroundColor: COLORS.MAIN_BLUE,
+  },
+
+  googleSignInButton: {
+    width: '100%',
+    height: hp(50),
+    borderRadius: 8,
+    marginTop: hp(10),
   },
 
   registrateButtonText: {

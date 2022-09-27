@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {View, ActivityIndicator, Text, Image, FlatList} from 'react-native';
 import {SearchModel} from '../../Models/SearchModels/SearchModel';
@@ -30,14 +34,14 @@ class SearchView extends TypedBaseComponent<searchViewProps, SearchModel> {
     return (
       <View style={BaseStyles.container}>
         <View style={[SearchStyles.headerContainer]}>
-          <View style={BaseStyles.row}>
+          <View style={[BaseStyles.row, BaseStyles.alignCenter]}>
             <Image style={BaseStyles.defaultIcon} source={ICONS.locationIcon} />
             <Text>
               {this.model.currentFilter.location.country.name}
-              {'>'}
-              {this.model.currentFilter.location.region.name}
-              {'>'}
-              {this.model.currentFilter.location.city.name}
+              {this.model.currentFilter.location.region.name !== '' &&
+                ` > ${this.model.currentFilter.location.region.name}`}
+              {this.model.currentFilter.location.city.name !== '' &&
+                ` > ${this.model.currentFilter.location.city.name}`}
             </Text>
           </View>
           <SimpleButtonView
@@ -60,6 +64,9 @@ class SearchView extends TypedBaseComponent<searchViewProps, SearchModel> {
           data={Array.from(this.model.list).map(searchItem => {
             return searchItem[1];
           })}
+          maxToRenderPerBatch={10}
+          initialNumToRender={10}
+          windowSize={5}
         />
       </View>
     );

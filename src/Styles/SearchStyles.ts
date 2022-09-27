@@ -43,6 +43,7 @@ const SearchStyles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: hp(22),
     marginTop: hp(10),
+    textTransform: 'capitalize',
   },
 
   filterModalCloseIcon: {
@@ -62,7 +63,7 @@ const SearchStyles = StyleSheet.create({
     paddingVertical: hp(9),
     paddingHorizontal: hp(30),
     borderRadius: 8,
-    backgroundColor: COLORS.GREEN_BUTTON,
+    backgroundColor: COLORS.MAIN_BLUE,
     marginVertical: hp(12),
   },
 
@@ -74,7 +75,7 @@ const SearchStyles = StyleSheet.create({
 
   filterModalAgeInputContainer: {
     borderRadius: 8,
-    backgroundColor: COLORS.BLURED_GRAY,
+    backgroundColor: COLORS.INPUT_BG,
     width: hp(40),
     marginHorizontal: hp(5),
     maxWidth: hp(70),
@@ -96,6 +97,44 @@ const SearchStyles = StyleSheet.create({
   sendMessageModalMessageInputText: {
     width: '100%',
     maxHeight: hp(180),
+  },
+
+  likeButtonContainer: {
+    borderRadius: 50,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  likeButtonIcon: {
+    resizeMode: 'contain',
+    height: hp(30),
+    width: hp(30),
+  },
+
+  likeButtonWrapper: {
+    borderRadius: 5,
+    height: '48%',
+    width: '100%',
+    backgroundColor: COLORS.MAIN_BLUE,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  searchItemContainer: {
+    backgroundColor: COLORS.WHITE,
+    alignItems: 'center',
+    borderRadius: 8,
+    width: '97%',
+  },
+
+  locationFilterContainer: {
+    borderRadius: 10,
+    borderColor: COLORS.PLACEHOLDER,
+    borderWidth: 1,
+    width: '95%',
+    marginTop: hp(40),
+    alignItems: 'center',
   },
 });
 

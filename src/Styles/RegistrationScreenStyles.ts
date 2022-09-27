@@ -10,6 +10,12 @@ const RegistrationScreenStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
+  hintTextStyles: {
+    color: COLORS.BLACK,
+    fontSize: hp(12),
+    marginLeft: hp(5),
+  },
+
   inputContainer: {
     width: '100%',
     borderRadius: 8,
@@ -31,13 +37,13 @@ const RegistrationScreenStyles = StyleSheet.create({
     fontWeight: 'bold',
     marginRight: hp(10),
     textTransform: 'capitalize',
+    width: '45%',
   },
 
   dateContainer: {
     width: '100%',
     flexDirection: 'row',
     marginTop: hp(20),
-    alignItems: 'center',
   },
 
   mainContainer: {
@@ -46,7 +52,6 @@ const RegistrationScreenStyles = StyleSheet.create({
   },
   formContainer: {
     width: '86%',
-    height: '90%',
     marginTop: hp(50),
     backgroundColor: COLORS.WHITE,
     borderRadius: 22,
@@ -61,22 +66,21 @@ const RegistrationScreenStyles = StyleSheet.create({
   inputsContainer: {
     width: '100%',
     alignItems: 'center',
-    maxHeight: hp(630),
     paddingHorizontal: wp(20),
   },
 
   loginButton: {
     marginTop: hp(30),
-    width: '75%',
-    height: hp(50),
-    backgroundColor: COLORS.GREEN_BUTTON,
+    width: '96%',
+    height: hp(40),
+    backgroundColor: COLORS.MAIN_BLUE,
     borderRadius: 8,
   },
 
   loginButtonText: {
     fontFamily: 'Roboto-Regular',
     color: COLORS.WHITE,
-    fontSize: hp(18),
+    fontSize: hp(14),
     fontWeight: 'bold',
     textTransform: 'uppercase',
   },
@@ -85,7 +89,7 @@ const RegistrationScreenStyles = StyleSheet.create({
     borderRadius: 10,
     borderColor: COLORS.PLACEHOLDER,
     borderWidth: 1,
-    width: hp(250),
+    width: '95%',
     marginTop: hp(40),
     alignItems: 'center',
   },

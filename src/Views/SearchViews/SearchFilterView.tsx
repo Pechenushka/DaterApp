@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {View, Modal, Text} from 'react-native';
 
@@ -33,7 +37,7 @@ class SearchFilterView extends TypedBaseComponent<searchFilterViewProps, SearchF
 
             <Text style={SearchStyles.filterModalMainTilte}>{_.lang.filters}</Text>
 
-            <View style={[RegistrationScreenStyles.locationContainer]}>
+            <View style={[SearchStyles.locationFilterContainer]}>
               <Text style={[RegistrationScreenStyles.locationTitleText]}>{_.lang.location}</Text>
 
               <View style={[RegistrationScreenStyles.infoItemWrapper]}>
@@ -63,7 +67,7 @@ class SearchFilterView extends TypedBaseComponent<searchFilterViewProps, SearchF
                 </View>
               </View>
             </View>
-            <View style={BaseStyles.w65}>
+            <View style={BaseStyles.w95}>
               <View style={[RegistrationScreenStyles.dateContainer]}>
                 <Text style={[RegistrationScreenStyles.dateText]}>{_.lang.gender}:</Text>
                 <GenderSwitcherView {...this.childProps(this.model.genderSwitcher)} />

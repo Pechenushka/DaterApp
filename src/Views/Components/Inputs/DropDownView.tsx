@@ -12,6 +12,7 @@ import {DropDownStyles} from '../../../Styles/DropDownStyles';
 import {ScrollView} from 'react-native-gesture-handler';
 import {BaseStyles} from '../../../Styles/BaseStyles';
 import {ShadowWrapperView} from '../Wrappers/ShadowWrapperView';
+import {_} from '../../../Core/Localization';
 
 type dropDownViewProps = baseComponentProps & {};
 
@@ -31,14 +32,14 @@ class DropDownView extends TypedBaseComponent<dropDownViewProps, DropDownModel> 
         ) : (
           <Text style={[DropDownStyles.selectedItemText]}>{this.model.placeholder}</Text>
         )}
-        <Image source={ICONS.dropDownIcon} style={DropDownStyles.actionIcon} />
+        <Image source={ICONS.dropDownIconWhite} style={DropDownStyles.actionIcon} />
         <Modal visible={this.model.opened} transparent={true}>
           <TouchableOpacity
             style={[DropDownStyles.modalContainer]}
             activeOpacity={1}
             onPress={this.model.close}>
             <View style={[DropDownStyles.modalContentContainer]}>
-              {this.model.list.length === 0 && <Text>No items found</Text>}
+              {this.model.list.length === 0 && <Text>{_.lang.items_not_found}</Text>}
               <ScrollView
                 style={BaseStyles.w100}
                 contentContainerStyle={[BaseStyles.w100, BaseStyles.alignCenter]}>

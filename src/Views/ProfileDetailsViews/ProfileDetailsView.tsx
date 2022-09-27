@@ -22,6 +22,8 @@ import {ChatsStyles} from '../../Styles/ChatsStyles';
 import {SendMessageModalView} from '../SearchViews/SendMessageModalView';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {ReportModalView} from './ReportModalView';
+import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
+import {getShortDate} from '../../Common/dateParse';
 
 type profileDetailsViewProps = baseComponentProps & {};
 
@@ -61,6 +63,36 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
       }
     }
     return <></>;
+  }
+
+  public getExpectationsIcon() {
+    if (this.model.userInfo === null) {
+      return;
+    }
+    if (this.model.userInfo.lookingfor === 0) {
+      return <Image source={ICONS.maleIcon} style={[BaseStyles.defaultIcon]} />;
+    }
+
+    if (this.model.userInfo.lookingfor === 1) {
+      return <Image source={ICONS.femaleIcon} style={[BaseStyles.defaultIcon]} />;
+    }
+
+    if (this.model.userInfo.lookingfor === 2) {
+      return (
+        <View style={[BaseStyles.row]}>
+          <Image source={ICONS.maleIcon} style={[BaseStyles.defaultIcon]} />
+          <Text>{_.lang.or}</Text>
+          <Image source={ICONS.femaleIcon} style={[BaseStyles.defaultIcon]} />
+        </View>
+      );
+    }
+
+    return (
+      <Image
+        source={this.model.userInfo.gender === 'male' ? ICONS.femaleIcon : ICONS.maleIcon}
+        style={[BaseStyles.defaultIcon]}
+      />
+    );
   }
 
   public render() {
@@ -155,10 +187,34 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                 </View>
                 <Text>{getAge(this.model.userInfo.birthDate || 0)} y.o </Text>
 
-                <Text>
-                  {this.model.userInfo.countryName}, {this.model.userInfo.regionName},{' '}
-                  {this.model.userInfo.cityName}
-                </Text>
+                <View style={[MyAnnouncementStyles.previewLocationContainer]}>
+                  <Image source={ICONS.locationIcon} style={[BaseStyles.defaultIcon]} />
+                  <Text style={BaseStyles.ta_c} ellipsizeMode="tail" numberOfLines={1}>
+                    {this.model.userInfo.countryName}, {this.model.userInfo.regionName},{' '}
+                    {this.model.userInfo.cityName}
+                  </Text>
+                </View>
+                <View style={[BaseStyles.row, BaseStyles.pb10]}>
+                  <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
+                  <Text> {getShortDate(this.model.userInfo.lastOnline)}</Text>
+                </View>
+                <View style={[MyAnnouncementStyles.goalPreviewContainer]}>
+                  <Text> {_.lang.i_looking_for} </Text>
+                  {this.getExpectationsIcon()}
+                  {this.model.userInfo.goal !== undefined && (
+                    <Text>
+                      {' '}
+                      {_.lang.for} {_.lang.goals[this.model.userInfo.goal]}
+                    </Text>
+                  )}
+                </View>
+                <View style={MyAnnouncementStyles.previewMainTextWrapper}>
+                  {this.model.userInfo.text !== '' && (
+                    <View style={MyAnnouncementStyles.previewMainTextContainer}>
+                      <Text>{this.model.userInfo.text}</Text>
+                    </View>
+                  )}
+                </View>
                 {this.model.userInfo.contactAccess && (
                   <View style={[HomeScreenStyles.contactsContainer]}>
                     <Text style={[HomeScreenStyles.contactsTitleText]}>{_.lang.contacts}</Text>

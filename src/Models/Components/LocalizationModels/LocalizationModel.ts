@@ -104,6 +104,7 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
 
   public onRusPress = () => {
     this._selectionButton.icon = ICONS.rusIcon;
+    this._selectionButton.text = _.rus.lang_title;
     app.currentUser.lang = 'rus';
     _.currLang = 'rus';
     this.visible = false;
@@ -111,6 +112,7 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
 
   public onGbrPress = () => {
     this._selectionButton.icon = ICONS.gbrIcon;
+    this._selectionButton.text = _.eng.lang_title;
     app.currentUser.lang = 'eng';
     _.currLang = 'eng';
     this.visible = false;
@@ -118,6 +120,7 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
 
   public onUaPress = () => {
     this._selectionButton.icon = ICONS.uaIcon;
+    this._selectionButton.text = _.ua.lang_title;
     app.currentUser.lang = 'ua';
     _.currLang = 'ua';
     this.visible = false;
@@ -125,6 +128,7 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
 
   public onBelPress = () => {
     this._selectionButton.icon = ICONS.belIcon;
+    this._selectionButton.text = _.bel.lang_title;
     app.currentUser.lang = 'bel';
     _.currLang = 'bel';
     this.visible = false;

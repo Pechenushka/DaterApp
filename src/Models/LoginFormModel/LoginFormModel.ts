@@ -7,6 +7,7 @@ import {FireBaseHandler} from '../../Core/FireBaseHandler';
 import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {CreateNewAccountScreen} from '../../Screens/CreateNewAccountScreen';
+import {GoogleSignInModel} from '../Components/AuthComponents/GoogleSignInModel';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {TextInputModel} from '../Components/Inputs/TextInputModel';
 
@@ -17,6 +18,8 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
   private _passwordInput: TextInputModel;
   private _signUpButton: SimpleButtonModel;
   private _registrationButton: SimpleButtonModel;
+  private _googleSignIn: GoogleSignInModel;
+
   constructor(props: loginFormModelProps) {
     super(props);
     this._emailInput = new TextInputModel({
@@ -28,6 +31,8 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
       keyboardType: 'email-address',
     });
 
+    this._googleSignIn = new GoogleSignInModel({id: '_googleSignIn'});
+
     this._passwordInput = new TextInputModel({
       id: '_passwordInput',
       onChangeText: this.onPasswordChange,
@@ -35,6 +40,7 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
       secure: true,
       showLeftIcon: true,
       leftIcon: ICONS.lockIcon,
+      onIconPress: this.onPasswordIconPress,
     });
 
     this._signUpButton = new SimpleButtonModel({
@@ -64,6 +70,20 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
   public get registrationButton() {
     return this._registrationButton;
   }
+
+  public get googleSignIn() {
+    return this._googleSignIn;
+  }
+
+  public onPasswordIconPress = async () => {
+    if (this._passwordInput.secure) {
+      this._passwordInput.secure = false;
+      this._passwordInput.leftIcon = ICONS.eyeIcon;
+      return;
+    }
+    this._passwordInput.secure = true;
+    this._passwordInput.leftIcon = ICONS.lockIcon;
+  };
 
   public onUserEmailChange = async (newValue: string) => {
     newValue;
@@ -99,7 +119,10 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
         app.navigator.goToMainProfileScreen();
         FireBaseHandler.syncTokenDevice();
         app.navigator.setOnline();
-        analyticHandler.trackEvent('user_authorized', {gender: res.data.gender, location: res.data.location.country.name});
+        analyticHandler.trackEvent('user_authorized', {
+          gender: res.data.gender,
+          location: res.data.location.country.name,
+        });
         return;
       }
       Alert.alert(res.statusCode.toString(), res.statusMessage);

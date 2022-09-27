@@ -20,7 +20,8 @@ class BottomNavigationModel extends BaseModel<bottomNavigationModelProps> {
     this._searchButton = new SimpleButtonModel({
       id: '_searchButton',
       onPress: this.onSearchPress,
-      icon: ICONS.searchIconGray,
+      icon: ICONS.searchIconBlack,
+      activeIcon: ICONS.searchIconWhite,
     });
 
     this._requestButton = new SimpleButtonModel({
@@ -33,18 +34,21 @@ class BottomNavigationModel extends BaseModel<bottomNavigationModelProps> {
       id: '_chatButton',
       onPress: this.onChatPress,
       icon: ICONS.chatIcon,
+      activeIcon: ICONS.chatIconWhite,
     });
 
     this._likesButton = new SimpleButtonModel({
       id: '_likesButton',
       onPress: this.onLikesPress,
       icon: ICONS.heartIcon,
+      activeIcon: ICONS.heartIconWhite,
     });
 
     this._homeButton = new SimpleButtonModel({
       id: '_homeButton',
       onPress: this.onHomePress,
       icon: ICONS.homeIcon,
+      activeIcon: ICONS.homeIconWhite,
     });
   }
 
@@ -75,7 +79,8 @@ class BottomNavigationModel extends BaseModel<bottomNavigationModelProps> {
 
     loadData(UserDataProvider.GetLikesCount, {myId: app.currentUser.userId}).then(resLikes => {
       if (resLikes !== null && resLikes.statusCode === 200) {
-        this._likesButton.counterModel.count = resLikes.data.likesCount + resLikes.data.matchesCount;
+        this._likesButton.counterModel.count =
+          resLikes.data.likesCount + resLikes.data.matchesCount;
       }
     });
   };

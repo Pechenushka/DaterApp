@@ -79,9 +79,9 @@ const MyAnnouncementStyles = StyleSheet.create({
   },
 
   avatarContainer: {
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLORS.INPUT_BG,
     borderRadius: 90,
-    borderColor: COLORS.WHITE,
+    borderColor: COLORS.INPUT_BG,
     borderWidth: 2,
     width: hp(110),
     height: hp(110),
@@ -100,7 +100,7 @@ const MyAnnouncementStyles = StyleSheet.create({
     marginVertical: hp(5),
     flexDirection: 'row',
     alignItems: 'center',
-    width: '60%',
+    width: '65%',
   },
 
   goalPreviewContainer: {

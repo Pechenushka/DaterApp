@@ -174,6 +174,7 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
       app.navigator.toGoBack();
       return;
     }
+    console.log('profileRes.data', profileRes.data);
 
     this._userInfo = profileRes.data;
     if (profileRes.data.liked) {

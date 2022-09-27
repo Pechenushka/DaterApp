@@ -124,12 +124,14 @@ const ChatsStyles = StyleSheet.create({
     height: hp(50),
     backgroundColor: COLORS.MAIN_BLUE,
     borderRadius: 50,
+    alignItems: 'center',
   },
 
   chatMessageSendButtonIcon: {
     resizeMode: 'contain',
-    width: hp(25),
-    height: hp(25),
+    width: hp(28),
+    height: hp(28),
+    marginLeft: hp(5),
   },
 
   chatListHeaderContainer: {

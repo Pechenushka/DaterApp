@@ -49,7 +49,8 @@ class Localization {
     }
     this._currLang = Val;
     app.mainNavigationModel.forceUpdate();
-
+    app.localization.forceUpdate();
+    app.forseUpdateAll();
     // Immediately reload the React Native Bundle
   }
 }

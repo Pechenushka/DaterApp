@@ -90,6 +90,17 @@ class MainApp implements AppImpl {
     return model;
   }
 
+  public forseUpdateAll = () => {
+    Object.values(this._screens).forEach(screen => {
+      screen.forceUpdate();
+    });
+
+    Object.values(this._screenModels).forEach(screen => {
+      screen.modified = true;
+      screen.forceUpdate();
+    });
+  };
+
   public get screens() {
     return this._screens;
   }

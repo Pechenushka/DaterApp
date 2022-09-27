@@ -55,7 +55,7 @@ class HomeModel extends BaseModel<homeModelProps> {
       id: '_toSearch',
       onPress: this.toSearchPress,
       text: _.lang.search,
-      icon: ICONS.searchIconGray,
+      icon: ICONS.searchIconBlack,
     });
   }
 

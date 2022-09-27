@@ -7,18 +7,21 @@ type simpleButtonModelProps = baseModelProps & {
   text?: string;
   icon?: ImageSourcePropType;
   disabled?: boolean;
+  activeIcon?: ImageSourcePropType;
 };
 
 class SimpleButtonModel extends BaseModel<simpleButtonModelProps> {
   private _disabled: boolean;
   private _counterModel: SimpleCounterModel;
   private _icon: ImageSourcePropType | null;
+  private _iconActive: ImageSourcePropType | null;
 
   constructor(props: simpleButtonModelProps) {
     super(props);
     this._disabled = props.disabled !== undefined ? props.disabled : false;
     this._counterModel = new SimpleCounterModel({id: '_counterModel', count: 0});
     this._icon = props.icon !== undefined ? props.icon : null;
+    this._iconActive = props.activeIcon !== undefined ? props.activeIcon : null;
   }
 
   public get text() {
@@ -44,6 +47,10 @@ class SimpleButtonModel extends BaseModel<simpleButtonModelProps> {
     }
     this._icon = Val;
     this.forceUpdate();
+  }
+
+  public get iconActive() {
+    return this._iconActive;
   }
 
   public get disabled() {

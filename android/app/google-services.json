@@ -14,7 +14,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "557289905378-rlh7qov2gboar17k9ac3g39sjgq1rpqi.apps.googleusercontent.com",
+          "client_id": "557289905378-42n1e6sh75nclir01aurq06bchq3ji6d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dater",
+            "certificate_hash": "46682b965120f081567b133ef554575c112376a2"
+          }
+        },
+        {
+          "client_id": "557289905378-nlnftpnl0h2l948990bqf7nvklcp2slf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dater",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "557289905378-jobei0mqcc6romeufmme9eg1d02mrdv0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +43,37 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "557289905378-rlh7qov2gboar17k9ac3g39sjgq1rpqi.apps.googleusercontent.com",
+              "client_id": "557289905378-jobei0mqcc6romeufmme9eg1d02mrdv0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-6052303679653895~2495583086"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557289905378:android:8b3d433cb4054e2e80d2bb",
+        "android_client_info": {
+          "package_name": "com.dateradmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557289905378-jobei0mqcc6romeufmme9eg1d02mrdv0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ3bI82jCq0S_nPmVlsDzqGGcxdo6mcYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557289905378-jobei0mqcc6romeufmme9eg1d02mrdv0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

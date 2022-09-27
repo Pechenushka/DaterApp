@@ -9,7 +9,9 @@ const BottomNavigationStyles = StyleSheet.create({
   },
 
   navButtonContainerActive: {
-    backgroundColor: COLORS.INPUT_BG,
+    backgroundColor: COLORS.MAIN_BLUE,
+    borderTopEndRadius: 12,
+    borderTopStartRadius: 12,
   },
   navButtonIcon: {
     resizeMode: 'contain',
@@ -24,8 +26,9 @@ const BottomNavigationStyles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: hp(10),
     backgroundColor: COLORS.WHITE,
+    borderTopEndRadius: 12,
+    borderTopStartRadius: 12,
   },
 
   bottomNavigationCounter: {
@@ -34,13 +37,21 @@ const BottomNavigationStyles = StyleSheet.create({
     right: hp(6),
     backgroundColor: COLORS.MAIN_BLUE,
     borderRadius: 50,
-    height: hp(20),
-    width: hp(20),
+    height: hp(25),
+    width: hp(25),
+  },
+
+  bottomNavigationCounterActive: {
+    backgroundColor: COLORS.WHITE,
   },
 
   bottomNavigationCounterText: {
     color: COLORS.WHITE,
     fontWeight: 'bold',
+  },
+
+  bottomNavigationCounterTextActive: {
+    color: COLORS.BLACK,
   },
 });
 

@@ -31,6 +31,10 @@ class UserDataProvider {
     return fetchData('users/registration', 'POST', body);
   }
 
+  static async CheckEmail(body: requestBodyType): Promise<registrationResponseDataType> {
+    return fetchData('users/check-email', 'POST', body);
+  }
+
   static async SearchRequest(body: requestBodyType): Promise<searchResponseDataType> {
     return fetchData('search', 'POST', body);
   }

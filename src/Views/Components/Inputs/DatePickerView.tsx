@@ -1,6 +1,10 @@
 import React from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {baseComponentProps, componentPropsWithModel, TypedBaseComponent} from '../../../Core/BaseComponent';
+import {
+  baseComponentProps,
+  componentPropsWithModel,
+  TypedBaseComponent,
+} from '../../../Core/BaseComponent';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {dateTimeToDateString} from '../../../Common/dateParse';
 import {ICONS} from '../../../constants/icons';
@@ -20,8 +24,10 @@ class DatePickerView extends TypedBaseComponent<datePickerViewProps, DatePickerM
       <View style={[DatePickerStyle.container]}>
         <TouchableOpacity onPress={this.model.show}>
           <View style={[BaseStyles.row, BaseStyles.alignCenter]}>
-            <Text style={[DatePickerStyle.valueText]}>{dateTimeToDateString(this.model.value)}</Text>
-            <Image source={ICONS.calendarIcon} style={BaseStyles.defaultIcon} />
+            <Text style={[DatePickerStyle.valueText]}>
+              {dateTimeToDateString(this.model.value)}
+            </Text>
+            <Image source={ICONS.calendarIcon} style={BaseStyles.bigIcon} />
           </View>
         </TouchableOpacity>
         {this.model.isVisible && (

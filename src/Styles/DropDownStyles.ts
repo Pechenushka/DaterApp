@@ -4,11 +4,10 @@ import {hp} from '../constants/Dimensions';
 
 const DropDownStyles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.INPUT_BG,
+    backgroundColor: COLORS.MAIN_BLUE,
     borderRadius: 8,
-    paddingVertical: hp(5),
+    height: hp(30),
     alignItems: 'center',
-    paddingHorizontal: hp(5),
     justifyContent: 'center',
     flexDirection: 'row',
   },
@@ -16,19 +15,20 @@ const DropDownStyles = StyleSheet.create({
   disabledCover: {
     backgroundColor: COLORS.BLURED_GRAY2,
     position: 'absolute',
-    height: '100%',
+    height: hp(30),
     width: '100%',
-    borderRadius: 8,
   },
 
   selectedItemText: {
     fontSize: hp(16),
+    color: COLORS.WHITE,
+    fontWeight: 'bold',
   },
 
   itemContainer: {
     width: '100%',
     paddingVertical: hp(8),
-    backgroundColor: COLORS.WHITE,
+    backgroundColor: COLORS.MAIN_BLUE,
     alignItems: 'center',
     borderRadius: 8,
   },

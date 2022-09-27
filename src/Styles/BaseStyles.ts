@@ -81,6 +81,10 @@ const BaseStyles = StyleSheet.create({
     width: '80%',
   },
 
+  w70: {
+    width: '70%',
+  },
+
   w65: {
     width: '65%',
   },

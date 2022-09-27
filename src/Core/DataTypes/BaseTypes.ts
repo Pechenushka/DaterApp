@@ -86,6 +86,10 @@ export type userDetailsDataType = {
   liked: boolean;
   blocked: boolean;
   blockedBy: boolean;
+  text: string;
+  lastOnline: number;
+  lookingfor: number;
+  goal: number;
 };
 
 export type userMeetingDataType = baseResponse & {

@@ -6,7 +6,13 @@ import {TextInputCounterModel} from './TextInputCounterModel';
 type textInputModelProps = baseModelProps & {
   defaultValue?: string;
   editable?: boolean;
-  keyboardType?: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad';
+  keyboardType?:
+    | 'default'
+    | 'number-pad'
+    | 'decimal-pad'
+    | 'numeric'
+    | 'email-address'
+    | 'phone-pad';
   maxLength?: number;
   onChangeText: (newValue: string) => Promise<void>;
   onSubmitEditing?: () => Promise<void>;
@@ -19,12 +25,19 @@ type textInputModelProps = baseModelProps & {
   leftIcon?: ImageSourcePropType;
   numberOfLines?: number;
   showCounter?: boolean;
+  onIconPress?: () => void;
 };
 
 class TextInputModel extends BaseModel<textInputModelProps> {
   private _defaultValue: string;
   private _editable: boolean;
-  private _keyboardType: 'default' | 'number-pad' | 'decimal-pad' | 'numeric' | 'email-address' | 'phone-pad';
+  private _keyboardType:
+    | 'default'
+    | 'number-pad'
+    | 'decimal-pad'
+    | 'numeric'
+    | 'email-address'
+    | 'phone-pad';
   private _maxLength: number;
   private _placeholder: string;
   private _placeholderTextColor: string;
@@ -42,11 +55,14 @@ class TextInputModel extends BaseModel<textInputModelProps> {
     super(props);
     this._defaultValue = this.props.defaultValue !== undefined ? this.props.defaultValue : '';
     this._editable = this.props.editable !== undefined ? this.props.editable : true;
-    this._keyboardType = this.props.keyboardType !== undefined ? this.props.keyboardType : 'default';
+    this._keyboardType =
+      this.props.keyboardType !== undefined ? this.props.keyboardType : 'default';
     this._maxLength = this.props.maxLength !== undefined ? this.props.maxLength : 100;
     this._placeholder = this.props.placeholder !== undefined ? this.props.placeholder : '';
     this._placeholderTextColor =
-      this.props.placeholderTextColor !== undefined ? this.props.placeholderTextColor : COLORS.PLACEHOLDER;
+      this.props.placeholderTextColor !== undefined
+        ? this.props.placeholderTextColor
+        : COLORS.PLACEHOLDER;
     this._textAlign = this.props.textAlign !== undefined ? this.props.textAlign : 'left';
     this._secure = this.props.secure !== undefined ? this.props.secure : false;
     this._showLeftIcon = this.props.showLeftIcon !== undefined ? this.props.showLeftIcon : false;
@@ -89,12 +105,28 @@ class TextInputModel extends BaseModel<textInputModelProps> {
     return this._secure;
   }
 
+  public set secure(Val) {
+    if (Val === this._secure) {
+      return;
+    }
+    this._secure = Val;
+    this.forceUpdate();
+  }
+
   public get showLeftIcon() {
     return this._showLeftIcon;
   }
 
   public get leftIcon() {
     return this._leftIcon;
+  }
+
+  public set leftIcon(Val) {
+    if (Val === this._leftIcon) {
+      return;
+    }
+    this._leftIcon = Val;
+    this.forceUpdate();
   }
 
   public get numberOfLines() {

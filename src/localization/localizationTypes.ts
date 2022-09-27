@@ -13,6 +13,7 @@ export type localizationPackType = {
   region: string;
   city: string;
   gender: string;
+  your_gender: string;
   age: string;
   feedback: string;
   privacy_rules: string;
@@ -78,6 +79,10 @@ export type localizationPackType = {
   it_is_you: string;
   choose_variant: string;
   our_telegram: string;
+  stepof: (curentStep: number, numberOfSteps: number) => string;
+  hints: Array<string>;
+  prev: string;
+  next: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua' | 'bel' | 'pl';

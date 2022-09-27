@@ -15,7 +15,8 @@ const eng: localizationPackType = {
   edit: 'edit',
   enter_your_message: 'Enter your message',
   filters: 'Filters',
-  gender: 'your gender',
+  gender: 'gender',
+  your_gender: 'your gender',
   items_not_found: 'Items not found',
   likes: 'likes',
   location: 'location',
@@ -57,8 +58,8 @@ const eng: localizationPackType = {
   send_message: 'Send Message',
   like: 'Like',
   block_user: 'Block User',
-  unblock_user: 'Unblock User/Content',
-  report_user: 'Report User',
+  unblock_user: 'Unblock User',
+  report_user: 'Report User/Content',
   send_report: 'Send report',
   add_comment_to_report: 'Add comment to report',
   must_be_at_least: (chars: number) => {
@@ -70,9 +71,9 @@ const eng: localizationPackType = {
   privacy_rules: 'Privacy',
   terms_of_use_title: 'Terms of use',
   terms_of_use: `Community Guidelines
-  Welcome to the Dater community. If you’re honest, kind and respectful to others, you’ll always be welcome here. If you choose not to be, you may not last. Our goal is to allow users to express themselves freely as long as it doesn’t offend others. Everyone is held to the same standard on Dater. We’re asking you to be considerate, think before you act, and abide by our community guidelines both on and offline. You heard that right: your offline behavior can lead to termination of your Dater account.
-  Below is a list of our community policies. If you violate any of these policies, you might be banned from Dater. Seriously, don’t make us Swipe Left on you—because there will be no do-overs once we do. We encourage you to report any behavior that violates our policies.
-  Dater is not for:
+  Welcome to the Meebo community. If you’re honest, kind and respectful to others, you’ll always be welcome here. If you choose not to be, you may not last. Our goal is to allow users to express themselves freely as long as it doesn’t offend others. Everyone is held to the same standard on Meebo. We’re asking you to be considerate, think before you act, and abide by our community guidelines both on and offline. You heard that right: your offline behavior can lead to termination of your Meebo account.
+  Below is a list of our community policies. If you violate any of these policies, you might be banned from Meebo. Seriously, don’t make us Swipe Left on you—because there will be no do-overs once we do. We encourage you to report any behavior that violates our policies.
+  Meebo is not for:
 
   Nudity/Sexual Content
 
@@ -82,7 +83,7 @@ const eng: localizationPackType = {
   
   Violence and Physical Harm
   
-  We do not tolerate violent, graphic, or gory content on Dater, or any actions or content that advocate for or threaten violence of any sort, including threatening or promoting terrorism. Physical assault, coercion, and any acts of violence are strictly prohibited.
+  We do not tolerate violent, graphic, or gory content on Meebo, or any actions or content that advocate for or threaten violence of any sort, including threatening or promoting terrorism. Physical assault, coercion, and any acts of violence are strictly prohibited.
   Content that advocates for or glorifies suicide or self-harm is also not allowed. In these situations, we may take a number of steps to assist the user, including reaching out with crisis resources.
   
   Hate Speech
@@ -92,41 +93,41 @@ const eng: localizationPackType = {
   Don’t publicly broadcast any private information, yours or anyone else’s. This includes social security numbers, passports, passwords, financial information or unlisted contact information, such as phone numbers, email addresses, home/work address.
   
   Spam
-  Don’t be fake. Be real instead. Don’t use Dater to drive people to external websites via a link or otherwise.
+  Don’t be fake. Be real instead. Don’t use Meebo to drive people to external websites via a link or otherwise.
   
   Promotion or Solicitation
-  Soliciting other users is prohibited on Dater. It’s fine to invite your matches to something that you’re doing, but if the purpose of your profile is to advertise your event or business, non-profit, political campaign, contest, or to conduct research, we may delete your account. While we’re excited that you’re doing a comedy show next week, please don’t use Dater to promote it.
+  Soliciting other users is prohibited on Meebo. It’s fine to invite your matches to something that you’re doing, but if the purpose of your profile is to advertise your event or business, non-profit, political campaign, contest, or to conduct research, we may delete your account. While we’re excited that you’re doing a comedy show next week, please don’t use Meebo to promote it.
   
   Prostitution and Trafficking
-  Promoting or advocating for commercial sexual services, human trafficking or other non-consensual sexual acts is strictly prohibited and will result in your account being banned from Dater.
+  Promoting or advocating for commercial sexual services, human trafficking or other non-consensual sexual acts is strictly prohibited and will result in your account being banned from Meebo.
   
   Scamming
-  Dater has a zero-tolerance policy on predatory behavior of any kind. Anyone attempting to get other users’ private information for fraudulent or illegal activity may be banned. Any user caught sharing their own financial account information (PayPal, Venmo, etc.) for the purpose of receiving money from other users may also be banned from Dater.
+  Meebo has a zero-tolerance policy on predatory behavior of any kind. Anyone attempting to get other users’ private information for fraudulent or illegal activity may be banned. Any user caught sharing their own financial account information (PayPal, Venmo, etc.) for the purpose of receiving money from other users may also be banned from Meebo.
   
   Impersonation
   Be yourself! Don’t pretend to be someone else.
-  Do not impersonate, or otherwise misrepresent affiliation, connection or association with, any person or entity. This includes parody accounts. While we think your Mike Pence profile is hilarious, you aren’t Mike Pence. And if you are, what are you doing on Dater?
+  Do not impersonate, or otherwise misrepresent affiliation, connection or association with, any person or entity. This includes parody accounts. While we think your Mike Pence profile is hilarious, you aren’t Mike Pence. And if you are, what are you doing on Meebo?
  
   Minors
-  You must be 18 years of age or older to use Dater. As such, we do not allow images of unaccompanied minors. If you want to post photos of your children, please make sure that you are in the photo as well. If you see a profile that includes an unaccompanied minor, encourages harm to a minor, or depicts a minor in a sexual or suggestive way, please report it immediately.
+  You must be 18 years of age or older to use Meebo. As such, we do not allow images of unaccompanied minors. If you want to post photos of your children, please make sure that you are in the photo as well. If you see a profile that includes an unaccompanied minor, encourages harm to a minor, or depicts a minor in a sexual or suggestive way, please report it immediately.
   
   Copyright and Trademark Infringement
-  If it’s not yours, don’t post it. If your Dater profile includes any work that is copyrighted or trademarked by others, don’t display it, unless you are allowed to do so.
+  If it’s not yours, don’t post it. If your Meebo profile includes any work that is copyrighted or trademarked by others, don’t display it, unless you are allowed to do so.
   
   Illegal Usage
-  Don’t use Dater to do anything illegal. If it’s illegal IRL, it’s illegal on Dater.
+  Don’t use Meebo to do anything illegal. If it’s illegal IRL, it’s illegal on Meebo.
   
   One Person, One Account
-  Dater accounts cannot have multiple owners, so don’t create an account with your friend or significant other. Additionally, please don’t maintain multiple Dater accounts.
+  Meebo accounts cannot have multiple owners, so don’t create an account with your friend or significant other. Additionally, please don’t maintain multiple Meebo accounts.
   
   Third Party Apps
-  The use of any apps created by anyone other than Dater that claim to offer our service or unlock special Dater features (like auto-swipers) is not allowed.
+  The use of any apps created by anyone other than Meebo that claim to offer our service or unlock special Meebo features (like auto-swipers) is not allowed.
   
   Account Dormancy
-  Dater is fun to use... all the time! Use Dater at the lake, use Dater while eating cake. Use Dater when you’re out, use Dater when in doubt! But, if you don’t log in to your Dater account in 2 years, we may delete your account for inactivity.
+  Meebo is fun to use... all the time! Use Meebo at the lake, use Meebo while eating cake. Use Meebo when you’re out, use Meebo when in doubt! But, if you don’t log in to your Meebo account in 2 years, we may delete your account for inactivity.
   `,
-  privacy_policy_text: `Dater Privacy
-  OUR COMMITMENT TO YOU At Dater, your privacy is our highest priority. It is at the heart of developing and creating the services and products you know and love. All so that you have the opportunity to fully trust them and focus on new important acquaintances.
+  privacy_policy_text: `Meebo Privacy
+  OUR COMMITMENT TO YOU At Meebo, your privacy is our highest priority. It is at the heart of developing and creating the services and products you know and love. All so that you have the opportunity to fully trust them and focus on new important acquaintances.
   
   We appreciate the fact that you trust us with your information, and we treat it responsibly.
   
@@ -136,14 +137,14 @@ const eng: localizationPackType = {
   
   Our commitment to safety. We have people who care about the security of your data. We regularly update our security practices and invest in the industry to strengthen the protection of your information.
   
-  Privacy Policy Welcome to Dater's Privacy Policy. Thank you for taking the time to get to know her.
+  Privacy Policy Welcome to Meebo's Privacy Policy. Thank you for taking the time to get to know her.
   
   We appreciate that you trust us with your information, and we intend to keep that trust. First, we want you to understand what information we collect, why we collect it, how it is used, and what choices you have about your data. In this policy, we describe our privacy practices in plain language and try to avoid legal and technical terminology as much as possible.
   
   EFFECTIVE DATE: May 17, 2022.
   
   Where our Privacy Policy applies
-  This privacy policy applies to applications, events and other services operated by the Dater brand. For simplicity in this privacy policy, we refer to all of these as our services. For even greater clarity, we have added a link to this privacy policy on all relevant services.
+  This privacy policy applies to applications, events and other services operated by the Meebo brand. For simplicity in this privacy policy, we refer to all of these as our services. For even greater clarity, we have added a link to this privacy policy on all relevant services.
   
   Some services may require their own unique privacy policy. If a particular service has its own privacy policy, that policy applies, not the current one.
 
@@ -196,6 +197,16 @@ const eng: localizationPackType = {
   it_is_you: 'It is you!',
   choose_variant: 'Choose variant',
   our_telegram: 'Our telegram',
+  stepof: (curentStep, numberOfSteps) => {
+    return `Step ${curentStep} of ${numberOfSteps}`;
+  },
+  hints: [
+    'Please provide basic information about yourself',
+    'Please enter your date of birth and your gender',
+    'Almoust done! Enter your location and press Sign Up!',
+  ],
+  prev: 'prev',
+  next: 'next',
 };
 
 export {eng};

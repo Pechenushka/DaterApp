@@ -36,12 +36,12 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
     this._likeButton = new SimpleButtonModel({
       id: '_likeButton',
       onPress: this.onLikeButtonPress,
-      icon: ICONS.heartIcon,
+      icon: ICONS.heartIconWhite,
     });
     this._writeButton = new SimpleButtonModel({
       id: '_writeButton',
       onPress: this.onWriteButtonPress,
-      icon: ICONS.chatIcon,
+      icon: ICONS.chatIconWhite,
     });
   }
 

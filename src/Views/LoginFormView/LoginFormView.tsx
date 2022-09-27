@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {Text, View} from 'react-native';
 import {LoginFormModel} from '../../Models/LoginFormModel/LoginFormModel';
@@ -8,6 +12,8 @@ import {TextInputView} from '../Components/Inputs/TextInputView';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {_} from '../../Core/Localization';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
+import {GoogleSignInModel} from '../../Models/Components/AuthComponents/GoogleSignInModel';
+import {GoogleSignInView} from '../Components/AuthComponents/GoogleSignInView';
 
 type simpleButtonViewProps = baseComponentProps & {
   styles?: Object;
@@ -27,12 +33,16 @@ class LoginFormView extends TypedBaseComponent<simpleButtonViewProps, LoginFormM
           <Text style={[LoginScreenStyles.mainTitleStyles]}>{_.lang.authorization}</Text>
           <View style={[LoginScreenStyles.inputsContainer]}>
             <TextInputView
-              styles={{container: LoginScreenStyles.inputContainer, text: LoginScreenStyles.inputText, icon: {}}}
+              styles={{
+                container: LoginScreenStyles.inputContainer,
+                text: LoginScreenStyles.inputText,
+                icon: {},
+              }}
               {...this.childProps(this.model.emailInput)}
             />
             <TextInputView
               styles={{
-                container: [LoginScreenStyles.inputContainer, {marginTop: 20}],
+                container: [LoginScreenStyles.inputContainer, BaseStyles.mt20],
                 text: [LoginScreenStyles.inputText, {fontSize: 14}],
                 icon: {},
               }}
@@ -49,6 +59,11 @@ class LoginFormView extends TypedBaseComponent<simpleButtonViewProps, LoginFormM
               textStyles={[LoginScreenStyles.registrateButtonText]}
               styles={[LoginScreenStyles.registrateButton]}
               {...this.childProps(this.model.registrationButton)}
+            />
+
+            <GoogleSignInView
+              styles={[LoginScreenStyles.googleSignInButton]}
+              {...this.childProps(this.model.googleSignIn)}
             />
           </View>
         </View>

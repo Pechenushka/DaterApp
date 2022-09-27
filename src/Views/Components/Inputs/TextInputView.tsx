@@ -1,9 +1,14 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../../Core/BaseComponent';
 import React from 'react';
 import {Image, TextInput, View} from 'react-native';
 import {TextInputModel} from '../../../Models/Components/Inputs/TextInputModel';
 import {BaseStyles} from '../../../Styles/BaseStyles';
 import {TextInputCounterView} from './TextInputCounterView';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 type textInputViewProps = baseComponentProps & {
   styles?: {
@@ -23,15 +28,36 @@ class TextInputView extends TypedBaseComponent<textInputViewProps, TextInputMode
   public render() {
     super.render();
     return (
-      <View style={[BaseStyles.InputContainer, this.props.styles !== undefined ? this.props.styles.container : {}]}>
-        {this.model.showLeftIcon && this.model.leftIcon !== null && (
-          <View style={BaseStyles.defaultIconContainer}>
-            <Image
-              style={[this.props.styles !== undefined ? this.props.styles.icon : {}, BaseStyles.defaultIcon]}
-              source={this.model.leftIcon}
-            />
-          </View>
-        )}
+      <View
+        style={[
+          BaseStyles.InputContainer,
+          this.props.styles !== undefined ? this.props.styles.container : {},
+        ]}>
+        {this.model.showLeftIcon &&
+          this.model.leftIcon !== null &&
+          (this.model.props.onIconPress !== undefined ? (
+            <View style={BaseStyles.defaultIconContainer}>
+              <TouchableOpacity onPress={this.model.props.onIconPress}>
+                <Image
+                  style={[
+                    this.props.styles !== undefined ? this.props.styles.icon : {},
+                    BaseStyles.defaultIcon,
+                  ]}
+                  source={this.model.leftIcon}
+                />
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <View style={BaseStyles.defaultIconContainer}>
+              <Image
+                style={[
+                  this.props.styles !== undefined ? this.props.styles.icon : {},
+                  BaseStyles.defaultIcon,
+                ]}
+                source={this.model.leftIcon}
+              />
+            </View>
+          ))}
         <TextInput
           ref={ref => {
             this.model.ref = ref;
@@ -44,7 +70,10 @@ class TextInputView extends TypedBaseComponent<textInputViewProps, TextInputMode
           placeholder={this.model.placeholder}
           placeholderTextColor={this.model.placeholderTextColor}
           textAlign={this.model.textAlign}
-          style={[this.props.styles !== undefined ? this.props.styles.text : {}, {paddingHorizontal: 5, paddingVertical: 0}]}
+          style={[
+            this.props.styles !== undefined ? this.props.styles.text : {},
+            {paddingHorizontal: 5, paddingVertical: 0},
+          ]}
           secureTextEntry={this.model.secure}
           multiline={this.model.numberOfLines > 1}
           textAlignVertical={this.model.numberOfLines > 1 ? 'top' : 'center'}
@@ -54,8 +83,14 @@ class TextInputView extends TypedBaseComponent<textInputViewProps, TextInputMode
         />
         {this.model.showCounter && (
           <TextInputCounterView
-            countContainerStyles={[this.props.counterConteinerStyles !== undefined ? this.props.counterConteinerStyles : {}]}
-            countTextStyles={[this.props.counterTextStyles !== undefined ? this.props.counterTextStyles : {}]}
+            countContainerStyles={[
+              this.props.counterConteinerStyles !== undefined
+                ? this.props.counterConteinerStyles
+                : {},
+            ]}
+            countTextStyles={[
+              this.props.counterTextStyles !== undefined ? this.props.counterTextStyles : {},
+            ]}
             {...this.childProps(this.model.conterModel)}
           />
         )}

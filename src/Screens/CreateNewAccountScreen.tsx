@@ -13,6 +13,7 @@ import {BaseLayoutView} from './BaseLayout';
 class CreateNewAccountScreen extends BaseLayoutView<RegistrationController> {
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, RegistrationController);
+    console.log(props.route.params);
   }
 
   async componentDidMount() {
@@ -32,6 +33,10 @@ class CreateNewAccountScreen extends BaseLayoutView<RegistrationController> {
 
   async onFocus(): Promise<void> {
     await super.onFocus();
+    if (this.props.route.params.email) {
+      //@ts-ignore
+      this.controller.registrationFormModel.onGoogleSignUp(this.props.route.params);
+    }
     analyticHandler.trackEvent('create_new_account_screen_rendered');
   }
 
