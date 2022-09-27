@@ -16,7 +16,7 @@ class GoogleSignInModel extends BaseModel<googleSignInModelProps> {
 
   public onPress = async () => {
     GoogleSignin.configure({
-      webClientId: '557289905378-jobei0mqcc6romeufmme9eg1d02mrdv0.apps.googleusercontent.com',
+      webClientId: '557289905378-3iorgmfsoq6onvgefhlshe3sfttje0gn.apps.googleusercontent.com',
     });
     const signinobj = await GoogleSignin.signIn();
 

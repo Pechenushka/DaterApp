@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "557289905378-42n1e6sh75nclir01aurq06bchq3ji6d.apps.googleusercontent.com",
+          "client_id": "557289905378-arb0bvo8ujtopfrchiote7i6nuvka2tv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.dater",
@@ -30,7 +30,7 @@
           }
         },
         {
-          "client_id": "557289905378-jobei0mqcc6romeufmme9eg1d02mrdv0.apps.googleusercontent.com",
+          "client_id": "557289905378-3iorgmfsoq6onvgefhlshe3sfttje0gn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -43,7 +43,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "557289905378-jobei0mqcc6romeufmme9eg1d02mrdv0.apps.googleusercontent.com",
+              "client_id": "557289905378-3iorgmfsoq6onvgefhlshe3sfttje0gn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -60,7 +60,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "557289905378-jobei0mqcc6romeufmme9eg1d02mrdv0.apps.googleusercontent.com",
+          "client_id": "557289905378-3iorgmfsoq6onvgefhlshe3sfttje0gn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -73,7 +73,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "557289905378-jobei0mqcc6romeufmme9eg1d02mrdv0.apps.googleusercontent.com",
+              "client_id": "557289905378-3iorgmfsoq6onvgefhlshe3sfttje0gn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
