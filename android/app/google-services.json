@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "557289905378-fr42a4phs1v9r6237dj18dlh9jlogk3f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dater",
+            "certificate_hash": "4ba23aa7ef8c760f90db08d50e7838f3d87a0633"
+          }
+        },
+        {
           "client_id": "557289905378-nlnftpnl0h2l948990bqf7nvklcp2slf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
