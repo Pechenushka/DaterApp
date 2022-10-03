@@ -15,6 +15,7 @@ import {SimpleButtonView} from '../Views/Components/Buttons/SimpleButtonView';
 import {HomeScreenStyles} from '../Styles/HomeScreenStyles';
 
 class MainProfileScreen extends BaseLayoutView<HomeController> {
+  private _refMod: HomeView | null = null;
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, HomeController);
   }
@@ -44,11 +45,22 @@ class MainProfileScreen extends BaseLayoutView<HomeController> {
     analyticHandler.trackEvent('home_screen_rendered');
   }
 
+  public updateModel = async () => {
+    await this.controller.homeModel.checkUserStatus();
+    this._refMod && this._refMod.updateAnyWay();
+    this.forceUpdate();
+  };
+
   public content() {
     return (
       <View style={[BaseStyles.container]}>
         <ScrollView>
-          <HomeView {...this.childProps(this.controller.homeModel)} />
+          <HomeView
+            ref={ref => {
+              this._refMod = ref;
+            }}
+            {...this.childProps(this.controller.homeModel)}
+          />
         </ScrollView>
 
         <BottomNavigationView {...this.childProps(app.bottomNavigation)} />

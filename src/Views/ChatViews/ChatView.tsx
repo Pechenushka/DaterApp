@@ -75,8 +75,16 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
     return <></>;
   }
 
+  public updateAnyWay = () => {
+    this.shouldBeTotalyUpdated = true;
+    this.forceUpdate();
+    this.shouldBeTotalyUpdated = false;
+  };
+
   public render() {
-    super.render();
+    if (!this.shouldBeTotalyUpdated) {
+      super.render();
+    }
     if (this.model.loading) {
       return (
         <View style={[BaseStyles.w100, BaseStyles.h100, BaseStyles.alignCenter]}>

@@ -1,7 +1,11 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {baseComponentProps, componentPropsWithModel, TypedBaseComponent} from '../Core/BaseComponent';
+import {
+  baseComponentProps,
+  componentPropsWithModel,
+  TypedBaseComponent,
+} from '../Core/BaseComponent';
 import {app} from '../Core/AppImpl';
 import {Stacks} from '../Controllers/Stacks';
 import {DrawerContentView} from './DrawerContent/DrawerContentView';
@@ -23,11 +27,18 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
           drawerPosition={'left'}
           drawerType={'front'}
           screenOptions={{headerShown: false, gestureHandlerProps: {enabled: true}}}
-          drawerContent={() => <DrawerContentView {...this.childProps(this.model.drawerContentModel)} />}
+          drawerContent={() => (
+            <DrawerContentView {...this.childProps(this.model.drawerContentModel)} />
+          )}
           initialRouteName={Stacks.initialRouteName}>
           {app.stacks.screens.map(item => (
-            <app.stacks.stackDrawer.Screen key={item.Screen.name} name={item.Screen.name} options={item.options}>
-              {props => <item.Screen {...props} {...this.childProps(app.setScreenModel(item.Screen))} />}
+            <app.stacks.stackDrawer.Screen
+              key={item.Screen.name}
+              name={item.Screen.name}
+              options={item.options}>
+              {props => (
+                <item.Screen {...props} {...this.childProps(app.setScreenModel(item.Screen))} />
+              )}
             </app.stacks.stackDrawer.Screen>
           ))}
         </app.stacks.stackDrawer.Navigator>

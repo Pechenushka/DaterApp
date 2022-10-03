@@ -11,14 +11,18 @@ import {RegistrationFormView} from '../Views/RegistrationFormView/RegistrationFo
 import {BaseLayoutView} from './BaseLayout';
 
 class CreateNewAccountScreen extends BaseLayoutView<RegistrationController> {
+  private _refMod: RegistrationFormView | null = null;
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, RegistrationController);
-    console.log(props.route.params);
   }
 
   async componentDidMount() {
     super.componentDidMount();
   }
+
+  public updateModel = () => {
+    this._refMod && this._refMod.updateAnyWay();
+  };
 
   get screenName() {
     return 'CreateNewAccountScreen';
@@ -43,7 +47,12 @@ class CreateNewAccountScreen extends BaseLayoutView<RegistrationController> {
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <RegistrationFormView {...this.childProps(this.controller.registrationFormModel)} />
+        <RegistrationFormView
+          ref={ref => {
+            this._refMod = ref;
+          }}
+          {...this.childProps(this.controller.registrationFormModel)}
+        />
         <LocalizationView {...this.childProps(app.localization)} />
       </View>
     );

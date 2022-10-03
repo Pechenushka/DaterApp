@@ -31,6 +31,15 @@ class HomeController extends AccountController {
   public onMenuPress = () => {
     app.navigator.openDrawer();
   };
+
+  public forceUpdate = () => {
+    this._homeModel = new HomeModel({id: '_homeModel'});
+    this._menuButton = new SimpleButtonModel({
+      id: '_menuButton',
+      onPress: this.onMenuPress,
+      icon: ICONS.menuButtonWhiteIcon,
+    });
+  };
 }
 
 export {HomeController};

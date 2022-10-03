@@ -209,6 +209,7 @@ const bel: localizationPackType = {
   ],
   prev: 'папярэдні',
   next: 'наступны',
+  delete_accaunt: 'Выдаліць уліковы запіс',
 };
 
 export {bel};

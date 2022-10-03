@@ -51,6 +51,14 @@ class Localization {
     app.mainNavigationModel.forceUpdate();
     app.localization.forceUpdate();
     app.forseUpdateAll();
+    setTimeout(() => {
+      app.forseUpdateAll();
+    }, 30);
+
+    setTimeout(() => {
+      app.forseUpdateAll();
+    }, 60);
+
     // Immediately reload the React Native Bundle
   }
 }

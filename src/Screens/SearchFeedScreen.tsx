@@ -11,6 +11,7 @@ import {SearchView} from '../Views/SearchViews/SearchView';
 import {BaseLayoutView} from './BaseLayout';
 
 class SearchFeedScreen extends BaseLayoutView<SearchController> {
+  private _refMod: SearchView | null = null;
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, SearchController);
   }
@@ -36,10 +37,21 @@ class SearchFeedScreen extends BaseLayoutView<SearchController> {
     analyticHandler.trackEvent('search_feed_screen_rendered');
   }
 
+  public updateModel = async () => {
+    this.controller.searchModel.update();
+    this._refMod && this._refMod.updateAnyWay();
+    this.forceUpdate();
+  };
+
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <SearchView {...this.childProps(this.controller.searchModel)} />
+        <SearchView
+          ref={ref => {
+            this._refMod = ref;
+          }}
+          {...this.childProps(this.controller.searchModel)}
+        />
         <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
       </View>
     );

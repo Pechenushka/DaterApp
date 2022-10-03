@@ -13,6 +13,10 @@ class ChatController extends BaseController {
   public get chatModel() {
     return this._chatModel;
   }
+
+  public forceUpdate = () => {
+    this._chatModel = new ChatModel({id: '_chatModel'});
+  };
 }
 
 export {ChatController};

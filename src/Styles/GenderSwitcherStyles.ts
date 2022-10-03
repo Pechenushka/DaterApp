@@ -7,13 +7,16 @@ const GenderSwitcherStyles = StyleSheet.create({
     backgroundColor: COLORS.INPUT_BG,
     borderRadius: 8,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     flexDirection: 'row',
+    width: '100%',
   },
 
   itemContainer: {
-    paddingHorizontal: hp(10),
+    paddingHorizontal: hp(16),
     paddingVertical: hp(5),
+    borderWidth: 0.7,
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -21,8 +24,7 @@ const GenderSwitcherStyles = StyleSheet.create({
   itemContainerActive: {
     backgroundColor: COLORS.WHITE,
     borderWidth: 0.7,
-    borderRadius: 8,
-    borderColor: COLORS.PLACEHOLDER,
+    borderColor: COLORS.MAIN_BLUE,
   },
 });
 

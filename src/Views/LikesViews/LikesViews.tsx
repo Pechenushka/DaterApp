@@ -23,8 +23,16 @@ class LikesViews extends TypedBaseComponent<likesViewsProps, LikesModel> {
     super(props);
   }
 
+  public updateAnyWay = () => {
+    this.shouldBeTotalyUpdated = true;
+    this.forceUpdate();
+    this.shouldBeTotalyUpdated = false;
+  };
+
   public render() {
-    super.render();
+    if (!this.shouldBeTotalyUpdated) {
+      super.render();
+    }
     return (
       <View style={LikesScreenStyles.mainContainer}>
         <View>

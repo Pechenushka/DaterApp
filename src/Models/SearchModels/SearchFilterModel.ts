@@ -72,6 +72,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
     this._genderSwitcher = new GenderSvitcherModel({
       id: '_genderSwitcer',
       allMode: true,
+      default: 'all',
     });
 
     this._genderSwitcher.setGender('all');
@@ -176,7 +177,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       myId: app.currentUser.userId,
       ageFrom: 18,
       ageTo: 100,
-      gender: this._genderSwitcher.value,
+      gender: this._genderSwitcher.value || 'all',
       approved: true,
     };
 

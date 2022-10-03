@@ -32,8 +32,12 @@ class TermsOfUseScreen extends BaseLayoutView<TermsOfUseController> {
 
   async onFocus(): Promise<void> {
     await super.onFocus();
-    analyticHandler.trackEvent('banned_screen_rendered');
+    analyticHandler.trackEvent('terms_of_use_screen_rendered');
   }
+
+  public updateModel = async () => {
+    this.forceUpdate();
+  };
 
   public content() {
     return (

@@ -139,6 +139,10 @@ class UserDataProvider {
   static async ReportUser(body: requestBodyType): Promise<baseResponse> {
     return fetchData('users/report-user', 'POST', body, true);
   }
+
+  static async DeleteUserById(body: requestBodyType): Promise<baseResponse> {
+    return fetchData(`users/by-user`, 'DELETE', body, true);
+  }
 }
 
 async function loadData<T extends baseResponse, R extends requestBodyType>(

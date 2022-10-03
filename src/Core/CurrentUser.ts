@@ -3,8 +3,8 @@ import {readData} from './readData';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {genderEnum} from '../Models/Components/Inputs/GenderSvitcherModel';
 import {locationItemType} from './DataTypes/BaseTypes';
-import {localizationEnum} from './Localization';
 import {app} from './AppImpl';
+import {localizationEnum} from '../localization/localizationTypes';
 
 type currentUserStateType = {
   userId: number;
@@ -18,7 +18,7 @@ type currentUserStateType = {
   location: userLocationType | undefined;
   fcm: string | undefined;
   lang: localizationEnum;
-  token: string | undefined
+  token: string | undefined;
 };
 
 type userLocationType = {
@@ -45,6 +45,24 @@ class CurrentUser {
       token: undefined,
     };
   }
+
+  public clearUser = () => {
+    this._user = {
+      userId: -1,
+      userName: undefined,
+      gender: undefined,
+      email: undefined,
+      phone: undefined,
+      telegram: undefined,
+      birthDate: undefined,
+      avatar: undefined,
+      location: undefined,
+      fcm: undefined,
+      lang: this.lang,
+      token: undefined,
+    };
+    this.saveUser();
+  };
 
   public get userId() {
     return this._user.userId;

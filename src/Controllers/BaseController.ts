@@ -19,6 +19,8 @@ class BaseController {
   public get name() {
     return this._props.name;
   }
+
+  public forceUpdate = () => {};
 }
 
 export {BaseController};

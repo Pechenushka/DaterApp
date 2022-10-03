@@ -207,6 +207,7 @@ const eng: localizationPackType = {
   ],
   prev: 'prev',
   next: 'next',
+  delete_accaunt: 'Delete account',
 };
 
 export {eng};

@@ -63,8 +63,6 @@ class LocalizationView extends TypedBaseComponent<localizationViewProps, Localiz
                   />
                 </View>
               </ScrollView>
-
-              <Text>{_.lang.languageWarning}</Text>
             </View>
           </View>
         </Modal>

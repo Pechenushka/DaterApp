@@ -13,6 +13,10 @@ class RegistrationController extends BaseController {
   public get registrationFormModel() {
     return this._registrationFormModel;
   }
+
+  public forceUpdate = () => {
+    this._registrationFormModel = new RegistrationFormModel({id: '_registrationFormModel'});
+  };
 }
 
 export {RegistrationController};

@@ -174,12 +174,16 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
       app.navigator.toGoBack();
       return;
     }
-    console.log('profileRes.data', profileRes.data);
 
     this._userInfo = profileRes.data;
     if (profileRes.data.liked) {
       this._likeButton.disabled = true;
       this._likeButton.icon = ICONS.heartIconRed;
+    }
+
+    if (!profileRes.data.liked) {
+      this._likeButton.disabled = false;
+      this._likeButton.icon = ICONS.heartIcon;
     }
 
     if (profileRes.data.blocked) {

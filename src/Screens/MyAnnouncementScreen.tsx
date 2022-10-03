@@ -11,6 +11,7 @@ import {app} from '../Core/AppImpl';
 import {analyticHandler} from '../Core/AnalyticHanler';
 
 class MyAnnouncementScreen extends BaseLayoutView<MyAnnouncementController> {
+  private _refMod: MyAnnouncementView | null = null;
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, MyAnnouncementController);
   }
@@ -43,10 +44,21 @@ class MyAnnouncementScreen extends BaseLayoutView<MyAnnouncementController> {
     analyticHandler.trackEvent('my_announcement_screen_rendered');
   }
 
+  public updateModel = async () => {
+    await this.controller.myAnnouncementModel.loadExistingAnnouncment();
+    this._refMod && this._refMod.updateAnyWay();
+    this.forceUpdate();
+  };
+
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <MyAnnouncementView {...this.childProps(this.controller.myAnnouncementModel)} />
+        <MyAnnouncementView
+          ref={ref => {
+            this._refMod = ref;
+          }}
+          {...this.childProps(this.controller.myAnnouncementModel)}
+        />
         <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
       </View>
     );

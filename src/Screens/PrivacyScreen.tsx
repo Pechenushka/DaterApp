@@ -31,8 +31,12 @@ class PrivacyScreen extends BaseLayoutView<PrivacyConctroller> {
 
   async onFocus(): Promise<void> {
     await super.onFocus();
-    analyticHandler.trackEvent('banned_screen_rendered');
+    analyticHandler.trackEvent('privacy_screen_rendered');
   }
+
+  public updateModel = async () => {
+    this.forceUpdate();
+  };
 
   public content() {
     return (

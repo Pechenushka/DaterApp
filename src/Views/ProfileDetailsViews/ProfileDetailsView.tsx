@@ -95,8 +95,16 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
     );
   }
 
+  public updateAnyWay = () => {
+    this.shouldBeTotalyUpdated = true;
+    this.forceUpdate();
+    this.shouldBeTotalyUpdated = false;
+  };
+
   public render() {
-    super.render();
+    if (!this.shouldBeTotalyUpdated) {
+      super.render();
+    }
     if (this.model.loading) {
       return (
         <View style={[BaseStyles.w100, BaseStyles.h100, BaseStyles.alignCenter]}>
@@ -201,7 +209,7 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                 <View style={[MyAnnouncementStyles.goalPreviewContainer]}>
                   <Text> {_.lang.i_looking_for} </Text>
                   {this.getExpectationsIcon()}
-                  {this.model.userInfo.goal !== undefined && (
+                  {this.model.userInfo.goal !== undefined && this.model.userInfo.goal !== null && (
                     <Text>
                       {' '}
                       {_.lang.for} {_.lang.goals[this.model.userInfo.goal]}

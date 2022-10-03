@@ -35,6 +35,12 @@ class RegistrationFormView extends TypedBaseComponent<
     super(props);
   }
 
+  public updateAnyWay = () => {
+    this.shouldBeTotalyUpdated = true;
+    this.forceUpdate();
+    this.shouldBeTotalyUpdated = false;
+  };
+
   private getCurrentStepForm = (curentStep: number) => {
     if (curentStep === 1) {
       return (
@@ -99,7 +105,9 @@ class RegistrationFormView extends TypedBaseComponent<
 
             <View style={[RegistrationScreenStyles.dateContainer]}>
               <Text style={[RegistrationScreenStyles.dateText]}>{_.lang.your_gender}:</Text>
-              <GenderSwitcherView {...this.childProps(this.model.genderSwitcher)} />
+              <View style={[BaseStyles.w50]}>
+                <GenderSwitcherView {...this.childProps(this.model.genderSwitcher)} />
+              </View>
             </View>
           </View>
           <View
@@ -217,7 +225,9 @@ class RegistrationFormView extends TypedBaseComponent<
   };
 
   public render() {
-    super.render();
+    if (!this.shouldBeTotalyUpdated) {
+      super.render();
+    }
     return (
       <View style={[RegistrationScreenStyles.mainContainer, BaseStyles.container]}>
         <Text style={[RegistrationScreenStyles.mainTitleStyles]}>{_.lang.create_new_account}</Text>

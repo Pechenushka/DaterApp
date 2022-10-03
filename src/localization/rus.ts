@@ -209,6 +209,7 @@ const rus: localizationPackType = {
   ],
   prev: 'назад',
   next: 'далее',
+  delete_accaunt: 'Удалить аккаунт',
 };
 
 export {rus};

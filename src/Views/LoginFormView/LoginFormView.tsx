@@ -24,9 +24,16 @@ class LoginFormView extends TypedBaseComponent<simpleButtonViewProps, LoginFormM
   constructor(props: componentPropsWithModel<simpleButtonViewProps, LoginFormModel>) {
     super(props);
   }
+  public updateAnyWay = () => {
+    this.shouldBeTotalyUpdated = true;
+    this.forceUpdate();
+    this.shouldBeTotalyUpdated = false;
+  };
 
   public render() {
-    super.render();
+    if (!this.shouldBeTotalyUpdated) {
+      super.render();
+    }
     return (
       <View style={[LoginScreenStyles.mainContainer, BaseStyles.container]}>
         <View style={LoginScreenStyles.formContainer}>

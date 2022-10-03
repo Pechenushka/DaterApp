@@ -13,6 +13,10 @@ class SearchController extends BaseController {
   public get searchModel() {
     return this._searchModel;
   }
+
+  public forceUpdate = () => {
+    this._searchModel = new SearchModel({id: '_searchModel'});
+  };
 }
 
 export {SearchController};

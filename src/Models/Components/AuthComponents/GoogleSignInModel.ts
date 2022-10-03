@@ -25,7 +25,6 @@ class GoogleSignInModel extends BaseModel<googleSignInModelProps> {
       password: signinobj.idToken,
     };
     const res = await loadData(UserDataProvider.Auth, authBody);
-    console.log(res);
     if (res === null) {
       Alert.alert('Warning', 'Something was wrong');
       return;

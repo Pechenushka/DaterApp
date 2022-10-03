@@ -11,6 +11,7 @@ import {LikesController} from '../Controllers/LikesController';
 import {analyticHandler} from '../Core/AnalyticHanler';
 
 class LikesScreen extends BaseLayoutView<LikesController> {
+  private _refMod: LikesViews | null = null;
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, LikesController);
   }
@@ -40,10 +41,20 @@ class LikesScreen extends BaseLayoutView<LikesController> {
     analyticHandler.trackEvent('likes_screen_rendered');
   }
 
+  public updateModel = async () => {
+    await this.controller.likesModel.loadNededList();
+    this._refMod && this._refMod.updateAnyWay();
+  };
+
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <LikesViews {...this.childProps(this.controller.likesModel)} />
+        <LikesViews
+          ref={ref => {
+            this._refMod = ref;
+          }}
+          {...this.childProps(this.controller.likesModel)}
+        />
         <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
       </View>
     );

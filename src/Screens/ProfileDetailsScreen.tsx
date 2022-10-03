@@ -11,6 +11,7 @@ import {ProfileDetailsView} from '../Views/ProfileDetailsViews/ProfileDetailsVie
 import {BaseLayoutView} from './BaseLayout';
 
 class ProfileDetailsScreen extends BaseLayoutView<ProfileDetailsController> {
+  private _refMod: ProfileDetailsView | null = null;
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, ProfileDetailsController, {userId: props.route.params.userId});
   }
@@ -38,10 +39,21 @@ class ProfileDetailsScreen extends BaseLayoutView<ProfileDetailsController> {
 
   public async onBlur(): Promise<void> {}
 
+  public updateModel = async () => {
+    await this.controller.profileModel.loadProfile(this.props.route.params.userId);
+    this._refMod && this._refMod.updateAnyWay();
+    this.forceUpdate();
+  };
+
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <ProfileDetailsView {...this.childProps(this.controller.profileModel)} />
+        <ProfileDetailsView
+          ref={ref => {
+            this._refMod = ref;
+          }}
+          {...this.childProps(this.controller.profileModel)}
+        />
         <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
       </View>
     );

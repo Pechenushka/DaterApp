@@ -23,6 +23,14 @@ class PrivacyConctroller extends BaseController {
   public onBackPress = async () => {
     app.navigator.toGoBack();
   };
+
+  public forceUpdate = () => {
+    this._backButton = new SimpleButtonModel({
+      id: '_backButton',
+      onPress: this.onBackPress,
+      icon: ICONS.BackArrowIcon,
+    });
+  };
 }
 
 export {PrivacyConctroller};

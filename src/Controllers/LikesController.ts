@@ -13,6 +13,10 @@ class LikesController extends BaseController {
   public get likesModel() {
     return this._likesModel;
   }
+
+  public forceUpdate = () => {
+    this._likesModel = new LikesModel({id: '_likesModel'});
+  };
 }
 
 export {LikesController};

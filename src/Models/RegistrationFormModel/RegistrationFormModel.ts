@@ -31,7 +31,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   private _countrySelection: DropDownModel;
   private _regionSelection: DropDownModel;
   private _citySelection: DropDownModel;
-  private _curentStep: number = 1;
+  private _curentStep: number = 2;
 
   private _step1NextButton: SimpleButtonModel;
 
@@ -49,6 +49,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       placeholder: _.lang.enter_your_name,
       showLeftIcon: true,
       leftIcon: ICONS.profileIcon,
+      maxLength: 35,
     });
 
     this._emailInput = new TextInputModel({
@@ -58,6 +59,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       showLeftIcon: true,
       leftIcon: ICONS.emailIcon,
       keyboardType: 'email-address',
+      maxLength: 40,
     });
 
     this._passwordInput = new TextInputModel({
@@ -282,7 +284,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   };
 
   public secondStepValidation = async () => {
-    const [dateTimeStamp] = [this._ageInput.value.getTime()];
+    const [dateTimeStamp, gender] = [this._ageInput.value.getTime(), this._genderSwitcher.value];
     if (getAge(dateTimeStamp) < 18) {
       Alert.alert('Warning!', 'You must be over 18 years old');
       return false;
@@ -290,6 +292,11 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
 
     if (getAge(dateTimeStamp) > 100) {
       Alert.alert('Warning!', 'Seriously, you are over 100 years old?');
+      return false;
+    }
+
+    if (gender === null) {
+      Alert.alert('Warning!', 'Provide your gender');
       return false;
     }
     return true;
@@ -483,6 +490,12 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
 
     if (getAge(dateTimeStamp) > 100) {
       Alert.alert('Warning!', 'Seriously, you are over 100 years old?');
+      this._signUpButton.disabled = false;
+      return;
+    }
+
+    if (gender === null) {
+      Alert.alert('Warning!', 'Provide your gender');
       this._signUpButton.disabled = false;
       return;
     }

@@ -11,6 +11,7 @@ import {ChatListView} from '../Views/ChatListViews/ChatListView';
 import {analyticHandler} from '../Core/AnalyticHanler';
 
 class ChatListScreen extends BaseLayoutView<ChatListController> {
+  private _refMod: ChatListView | null = null;
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, ChatListController);
   }
@@ -40,10 +41,20 @@ class ChatListScreen extends BaseLayoutView<ChatListController> {
     analyticHandler.trackEvent('chat_list_screen_rendered');
   }
 
+  public updateModel = async () => {
+    await this.controller.chatListModel.init();
+    this._refMod && this._refMod.updateAnyWay();
+  };
+
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <ChatListView {...this.childProps(this.controller.chatListModel)} />
+        <ChatListView
+          ref={ref => {
+            this._refMod = ref;
+          }}
+          {...this.childProps(this.controller.chatListModel)}
+        />
         <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
       </View>
     );

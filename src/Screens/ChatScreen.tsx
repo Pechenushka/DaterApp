@@ -9,6 +9,7 @@ import {ChatView} from '../Views/ChatViews/ChatView';
 import {analyticHandler} from '../Core/AnalyticHanler';
 
 class ChatScreen extends BaseLayoutView<ChatController> {
+  private _refMod: ChatView | null = null;
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, ChatController);
   }
@@ -42,10 +43,20 @@ class ChatScreen extends BaseLayoutView<ChatController> {
     await this.controller.chatModel.onBlur();
   }
 
+  public updateModel = async () => {
+    await this.controller.chatModel.loadMessges(this.props.route.params.userId);
+    this._refMod && this._refMod.updateAnyWay();
+  };
+
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <ChatView {...this.childProps(this.controller.chatModel)} />
+        <ChatView
+          ref={ref => {
+            this._refMod = ref;
+          }}
+          {...this.childProps(this.controller.chatModel)}
+        />
         {/* <BottomNavigationView {...this.childProps(app.bottomNavigation)} /> */}
       </View>
     );

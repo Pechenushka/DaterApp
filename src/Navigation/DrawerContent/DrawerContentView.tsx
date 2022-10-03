@@ -1,5 +1,5 @@
 import React from 'react';
-import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {hp, wp} from '../../constants/Dimensions';
 import {app} from '../../Core/AppImpl';
 import {
@@ -8,6 +8,8 @@ import {
   baseComponentProps,
 } from '../../Core/BaseComponent';
 import {_} from '../../Core/Localization';
+import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
+import {LoginScreen} from '../../Screens/LoginScreen';
 import {PrivacyScreen} from '../../Screens/PrivacyScreen';
 import {TermsOfUseScreen} from '../../Screens/TermsOfUseScreen';
 import {BaseStyles} from '../../Styles/BaseStyles';
@@ -28,6 +30,24 @@ class DrawerContentView extends TypedBaseComponent<drawerContentViewProps, Drawe
 
   public onTelegramPress = async () => {
     Linking.openURL('http://t.me/dater_dates');
+  };
+
+  public onDeleteAccPress = async () => {
+    Alert.alert('Attention', 'Are you shore you want to delete account?', [
+      {
+        text: 'No',
+        onPress: () => {},
+        style: 'cancel',
+      },
+      {
+        text: 'Yes',
+        onPress: async () => {
+          await loadData(UserDataProvider.DeleteUserById, {});
+          app.currentUser.clearUser();
+          app.navigator.navigate(LoginScreen);
+        },
+      },
+    ]);
   };
 
   public onPrivacyPress = async () => {
@@ -61,6 +81,11 @@ class DrawerContentView extends TypedBaseComponent<drawerContentViewProps, Drawe
           <View style={this.styles.container}>
             <TouchableOpacity style={this.styles.button} onPress={this.onTelegramPress}>
               <Text style={this.styles.label}>{_.lang.our_telegram}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={this.styles.container}>
+            <TouchableOpacity style={this.styles.button} onPress={this.onDeleteAccPress}>
+              <Text style={this.styles.label}>{_.lang.delete_accaunt}</Text>
             </TouchableOpacity>
           </View>
         </View>

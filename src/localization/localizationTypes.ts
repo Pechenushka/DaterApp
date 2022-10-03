@@ -83,6 +83,7 @@ export type localizationPackType = {
   hints: Array<string>;
   prev: string;
   next: string;
+  delete_accaunt: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua' | 'bel' | 'pl';

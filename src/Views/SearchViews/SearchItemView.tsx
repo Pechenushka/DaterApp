@@ -100,10 +100,15 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
               </View>
               <View style={[BaseStyles.jc_c, BaseStyles.w60]}>
                 <View style={[BaseStyles.row]}>
-                  <Text style={MyAnnouncementStyles.userNameText}>{this.model.authorName} </Text>
+                  <Text
+                    ellipsizeMode="tail"
+                    numberOfLines={1}
+                    style={[MyAnnouncementStyles.userNameText, BaseStyles.w60]}>
+                    {this.model.authorName}
+                  </Text>
                   <Image
                     source={this.model.authorGender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
-                    style={[BaseStyles.defaultIcon]}
+                    style={[BaseStyles.defaultIcon, BaseStyles.ml10]}
                   />
                   <Text> {getAge(this.model.authorBirthDay || 0)} y.o </Text>
                 </View>

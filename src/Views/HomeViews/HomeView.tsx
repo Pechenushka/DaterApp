@@ -48,7 +48,16 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
     return <Text style={HomeScreenStyles.warningTitleText}>{_.lang.profile_not_moderated}</Text>;
   };
 
+  public updateAnyWay = () => {
+    this.shouldBeTotalyUpdated = true;
+    this.forceUpdate();
+    this.shouldBeTotalyUpdated = false;
+  };
+
   public render() {
+    if (!this.shouldBeTotalyUpdated) {
+      super.render();
+    }
     return (
       <View
         style={[

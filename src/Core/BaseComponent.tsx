@@ -12,7 +12,10 @@ export type baseComponentProps = {
   screen?: BaseScreen<BaseController>;
 };
 
-export type componentPropsWithModel<P extends baseComponentProps, T extends BaseModel<baseModelProps>> = P & {
+export type componentPropsWithModel<
+  P extends baseComponentProps,
+  T extends BaseModel<baseModelProps>,
+> = P & {
   /**
    * Модель компонента @typeof T
    */
@@ -34,11 +37,11 @@ export type baseScreenProps = baseComponentProps & {
 
 let currentKey = 0;
 
-abstract class TypedBaseComponent<P extends baseComponentProps, T extends BaseModel<baseModelProps>> extends Component<
-  componentPropsWithModel<P, T>,
-  {},
-  any
-> {
+abstract class TypedBaseComponent<
+  P extends baseComponentProps,
+  T extends BaseModel<baseModelProps>,
+> extends Component<componentPropsWithModel<P, T>, {}, any> {
+  public shouldBeTotalyUpdated: boolean = false;
   constructor(props: componentPropsWithModel<P, T>) {
     super(props);
     this.setComponent();
@@ -86,7 +89,10 @@ abstract class TypedBaseComponent<P extends baseComponentProps, T extends BaseMo
     return props;
   }
 
-  public childPropsWithFreeKey<M extends BaseModel<baseModelProps>>(model: M, ...parentIds: string[]) {
+  public childPropsWithFreeKey<M extends BaseModel<baseModelProps>>(
+    model: M,
+    ...parentIds: string[]
+  ) {
     const props = this.childProps(model, ...parentIds);
     props.key += this.nextKey();
     return props;
@@ -153,7 +159,10 @@ abstract class TypedBaseComponent<P extends baseComponentProps, T extends BaseMo
     return this.props.model.getModified(this.props.id);
   }
 
-  public render(): JSX.Element | null {
+  public render(shouldBeTotalyUpdated: boolean = false): JSX.Element | null {
+    if (shouldBeTotalyUpdated) {
+      return null;
+    }
     if (this.props.model !== void 0) {
       this.model.setModified(this.props.id, false);
     }

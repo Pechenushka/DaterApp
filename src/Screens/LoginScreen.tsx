@@ -11,9 +11,14 @@ import {LoginFormView} from '../Views/LoginFormView/LoginFormView';
 import {BaseLayoutView} from './BaseLayout';
 
 class LoginScreen extends BaseLayoutView<LoginController> {
+  private _refMod: LoginFormView | null = null;
   constructor(props: componentPropsWithModel<baseScreenProps, BaseScreenModel>) {
     super(props, LoginController);
   }
+
+  public updateModel = () => {
+    this._refMod && this._refMod.updateAnyWay();
+  };
 
   async componentDidMount() {
     super.componentDidMount();
@@ -38,7 +43,12 @@ class LoginScreen extends BaseLayoutView<LoginController> {
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <LoginFormView {...this.childProps(this.controller.loginFormModel)} />
+        <LoginFormView
+          ref={ref => {
+            this._refMod = ref;
+          }}
+          {...this.childProps(this.controller.loginFormModel)}
+        />
         <LocalizationView {...this.childProps(app.localization)} />
       </View>
     );

@@ -209,6 +209,7 @@ const ua: localizationPackType = {
   ],
   prev: 'назад',
   next: 'далі',
+  delete_accaunt: 'Видалити аккаунт',
 };
 
 export {ua};

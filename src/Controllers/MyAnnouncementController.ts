@@ -14,6 +14,10 @@ class MyAnnouncementController extends AccountController {
   public get myAnnouncementModel() {
     return this._myAnnouncementModel;
   }
+
+  public forceUpdate = () => {
+    this._myAnnouncementModel = new MyAnnouncementModel({id: '_myAnnouncementModel'});
+  };
 }
 
 export {MyAnnouncementController};

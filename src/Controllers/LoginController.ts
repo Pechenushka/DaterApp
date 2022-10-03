@@ -13,6 +13,10 @@ class LoginController extends BaseController {
   public get loginFormModel() {
     return this._loginFormModel;
   }
+
+  public forceUpdate = async () => {
+    this._loginFormModel = new LoginFormModel({id: '_loginFormModel'});
+  };
 }
 
 export {LoginController};
