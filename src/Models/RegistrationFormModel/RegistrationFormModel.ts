@@ -31,7 +31,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   private _countrySelection: DropDownModel;
   private _regionSelection: DropDownModel;
   private _citySelection: DropDownModel;
-  private _curentStep: number = 2;
+  private _curentStep: number = 1;
 
   private _step1NextButton: SimpleButtonModel;
 
