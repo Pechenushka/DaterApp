@@ -1,4 +1,4 @@
-import {Alert, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
+import {Alert, FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
@@ -6,6 +6,7 @@ import {locationItemType, searchItemDataType} from '../../Core/DataTypes/BaseTyp
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {genderEnum} from '../Components/Inputs/GenderSvitcherModel';
+import {ProfileDetailsModalModel} from './ProfileDetailsModalModel';
 import {SearchFilterModel} from './SearchFilterModel';
 import {SearchItemModel} from './SearchItemModel';
 import {SendMessageModalModel, shortUserDataType} from './SendMessageModalModel';
@@ -22,7 +23,7 @@ export type filterType = {
   gender: genderEnum;
   ageFrom: number;
   ageTo: number;
-  approved: boolean,
+  approved: boolean;
 };
 
 class SearchModel extends BaseModel<searchModelProps> {
@@ -32,6 +33,8 @@ class SearchModel extends BaseModel<searchModelProps> {
   private _filterButton: SimpleButtonModel;
   private _filterModal: SearchFilterModel;
   private _sendMessageModal: SendMessageModalModel;
+  private _profileDetailsModal: ProfileDetailsModalModel;
+  public FlatListRef: FlatList | null = null;
 
   private _limit: number = 30;
   private _offset: number = 0;
@@ -54,10 +57,23 @@ class SearchModel extends BaseModel<searchModelProps> {
       gender: 'all',
       approved: false,
     };
-    this._filterButton = new SimpleButtonModel({id: '_filterButton', onPress: this.onFilterPress, icon: ICONS.filterIcon});
+    this._filterButton = new SimpleButtonModel({
+      id: '_filterButton',
+      onPress: this.onFilterPress,
+      icon: ICONS.filterIcon,
+    });
     this.load();
-    this._filterModal = new SearchFilterModel({id: '_filterModal', submitFilters: this.setNewFilters});
+    this._filterModal = new SearchFilterModel({
+      id: '_filterModal',
+      submitFilters: this.setNewFilters,
+    });
     this._sendMessageModal = new SendMessageModalModel({id: '_sendMessageModal'});
+    this._profileDetailsModal = new ProfileDetailsModalModel({
+      id: '_profileDetailsModal',
+      onLikedPress: this.onItemLikePress,
+      onNextPress: this.onProfileDetailsNextPress,
+      onPrevPress: this.onProfileDetailsPrevPress,
+    });
   }
 
   public get list() {
@@ -96,6 +112,10 @@ class SearchModel extends BaseModel<searchModelProps> {
 
   public get sendMessageModal() {
     return this._sendMessageModal;
+  }
+
+  public get profileDetailsModal() {
+    return this._profileDetailsModal;
   }
 
   public load = async () => {
@@ -233,7 +253,11 @@ class SearchModel extends BaseModel<searchModelProps> {
   };
 
   public createSearchItem = (props: searchItemDataType) => {
-    return new SearchItemModel({...props, onSendMessagePress: this.onSendMessagePress});
+    return new SearchItemModel({
+      ...props,
+      onSendMessagePress: this.onSendMessagePress,
+      onItemPress: this.onSearchItemPress,
+    });
   };
 
   public onFilterPress = async () => {
@@ -241,7 +265,10 @@ class SearchModel extends BaseModel<searchModelProps> {
   };
 
   public onSendMessagePress = async (user: shortUserDataType) => {
-    const res = await loadData(UserDataProvider.IsChatExists, {myId: app.currentUser.userId, userId: user.userId});
+    const res = await loadData(UserDataProvider.IsChatExists, {
+      myId: app.currentUser.userId,
+      userId: user.userId,
+    });
     if (res === null) {
       Alert.alert('Warning', 'Something went wrong, check your internet connection');
       return;
@@ -259,6 +286,82 @@ class SearchModel extends BaseModel<searchModelProps> {
 
     this.sendMessageModal.userData = user;
     this.sendMessageModal.open();
+  };
+
+  public onItemLikePress = (authorId: number) => {
+    const findedAnnouncement = Array.from(this.list.values()).find(el => el.authorId === authorId);
+    if (findedAnnouncement !== undefined) {
+      findedAnnouncement.liked = true;
+      findedAnnouncement.forceUpdate();
+    }
+    this.forceUpdate();
+  };
+
+  public onSearchItemPress = async (user: searchItemDataType) => {
+    this.profileDetailsModal.userData = user;
+    this.profileDetailsModal.open();
+  };
+
+  public onProfileDetailsNextPress = async () => {
+    const arrayOfUsers = Array.from(this.list.values());
+    const currIndex = arrayOfUsers.findIndex(
+      el => this._profileDetailsModal.userData?.authorId === el.authorId,
+    );
+    const nextUser = arrayOfUsers[currIndex + 1];
+    if (nextUser !== undefined) {
+      this._profileDetailsModal.userData = {
+        authorAvatar: nextUser.authorAvatar,
+        authorBirthDay: nextUser.authorBirthDay,
+        authorGender: nextUser.authorGender,
+        authorId: nextUser.authorId,
+        authorName: nextUser.authorName,
+        cityName: nextUser.cityName,
+        countryName: nextUser.countryName,
+        id: +nextUser.id,
+        regionName: nextUser.regionName,
+        text: nextUser.text,
+        checked: nextUser.checked,
+        liked: nextUser.liked,
+        lastOnline: nextUser.lastOnline,
+        lookingfor: nextUser.lookingfor,
+        goal: nextUser.props.goal,
+        blocked: nextUser.props.blocked,
+        blockedBy: nextUser.props.blockedBy,
+      };
+      this._profileDetailsModal.forceUpdate();
+      this.FlatListRef && this.FlatListRef.scrollToItem({item: nextUser, animated: true});
+    }
+  };
+
+  public onProfileDetailsPrevPress = async () => {
+    const arrayOfUsers = Array.from(this.list.values());
+    const currIndex = arrayOfUsers.findIndex(
+      el => this._profileDetailsModal.userData?.authorId === el.authorId,
+    );
+    const prevUser = arrayOfUsers[currIndex - 1];
+    if (prevUser !== undefined) {
+      this._profileDetailsModal.userData = {
+        authorAvatar: prevUser.authorAvatar,
+        authorBirthDay: prevUser.authorBirthDay,
+        authorGender: prevUser.authorGender,
+        authorId: prevUser.authorId,
+        authorName: prevUser.authorName,
+        cityName: prevUser.cityName,
+        countryName: prevUser.countryName,
+        id: +prevUser.id,
+        regionName: prevUser.regionName,
+        text: prevUser.text,
+        checked: prevUser.checked,
+        liked: prevUser.liked,
+        lastOnline: prevUser.lastOnline,
+        lookingfor: prevUser.lookingfor,
+        goal: prevUser.props.goal,
+        blocked: prevUser.props.blocked,
+        blockedBy: prevUser.props.blockedBy,
+      };
+      this._profileDetailsModal.forceUpdate();
+      this.FlatListRef && this.FlatListRef.scrollToItem({item: prevUser, animated: true});
+    }
   };
 }
 

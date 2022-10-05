@@ -30,6 +30,13 @@ class SearchFeedScreen extends BaseLayoutView<SearchController> {
   public get showHeaderRightComponent() {
     return false;
   }
+  public onBackPress(): void {
+    if (this.controller.searchModel.profileDetailsModal.visible) {
+      this.controller.searchModel.profileDetailsModal.close();
+    } else {
+      app.navigator.toGoBack();
+    }
+  }
 
   async onFocus(): Promise<void> {
     await super.onFocus();

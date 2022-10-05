@@ -2,30 +2,18 @@ import {Alert} from 'react-native';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
+import {searchItemDataType} from '../../Core/DataTypes/BaseTypes';
 import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {genderEnum} from '../Components/Inputs/GenderSvitcherModel';
 import {shortUserDataType} from './SendMessageModalModel';
 
-type searchItemModelProps = baseModelProps & {
-  authorAvatar: string;
-  authorBirthDay: number;
-  authorGender: genderEnum;
-  authorId: number;
-  authorName: string;
-  cityName: string;
-  countryName: string;
-  id: number;
-  regionName: string;
-  text: string;
-  checked: boolean;
-  liked: boolean;
-  lastOnline: number;
-  lookingfor: number;
-  goal: number;
-  onSendMessagePress: (user: shortUserDataType) => Promise<void>;
-};
+type searchItemModelProps = baseModelProps &
+  searchItemDataType & {
+    onSendMessagePress: (user: shortUserDataType) => Promise<void>;
+    onItemPress: (user: searchItemDataType) => Promise<void>;
+  };
 
 class SearchItemModel extends BaseModel<searchItemModelProps> {
   private _likeButton: SimpleButtonModel;
@@ -105,6 +93,11 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
     return this.props.liked;
   }
 
+  public set liked(Val) {
+    this.props.liked = Val;
+    this.forceUpdate();
+  }
+
   public get lookingfor() {
     return this.props.lookingfor;
   }
@@ -114,7 +107,27 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
   }
 
   public onItemPress = async () => {
-    app.navigator.goToProfileDetailsScreen(this.authorId);
+    this.props.onItemPress &&
+      this.props.onItemPress({
+        authorAvatar: this.props.authorAvatar,
+        authorBirthDay: this.props.authorBirthDay,
+        authorGender: this.props.authorGender,
+        authorId: this.props.authorId,
+        authorName: this.props.authorName,
+        cityName: this.props.cityName,
+        countryName: this.props.countryName,
+        id: this.props.id,
+        regionName: this.props.regionName,
+        text: this.props.text,
+        checked: this.props.checked,
+        liked: this.props.liked,
+        lastOnline: this.props.lastOnline,
+        lookingfor: this.props.lookingfor,
+        goal: this.props.goal,
+        blocked: this.props.blocked,
+        blockedBy: this.props.blockedBy,
+      });
+    // app.navigator.goToProfileDetailsScreen(this.authorId);
   };
 
   public onLikeButtonPress = async () => {

@@ -317,8 +317,6 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
     this.forceUpdate();
   };
 
-  public onWriteButtonPress = async () => {};
-
   public onBackPress = async () => {
     app.navigator.toGoBack();
   };

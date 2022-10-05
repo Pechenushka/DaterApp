@@ -1,5 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {ProfileDetailsController} from '../Controllers/ProfileDetailsController';
 import {analyticHandler} from '../Core/AnalyticHanler';
 import {app} from '../Core/AppImpl';
@@ -48,12 +50,14 @@ class ProfileDetailsScreen extends BaseLayoutView<ProfileDetailsController> {
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <ProfileDetailsView
-          ref={ref => {
-            this._refMod = ref;
-          }}
-          {...this.childProps(this.controller.profileModel)}
-        />
+        <ScrollView contentContainerStyle={[BaseStyles.pb70]}>
+          <ProfileDetailsView
+            ref={ref => {
+              this._refMod = ref;
+            }}
+            {...this.childProps(this.controller.profileModel)}
+          />
+        </ScrollView>
         <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
       </View>
     );

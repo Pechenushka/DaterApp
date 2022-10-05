@@ -37,7 +37,7 @@ export type searchResponseDataType = baseResponse & {
   data: Array<searchItemDataType>;
 };
 
-export type searchItemDataType = baseResponse & {
+export type searchItemDataType = {
   authorAvatar: string;
   authorBirthDay: number;
   authorGender: genderEnum;
@@ -53,6 +53,8 @@ export type searchItemDataType = baseResponse & {
   lastOnline: number;
   lookingfor: number;
   goal: number;
+  blocked: boolean;
+  blockedBy: boolean;
 };
 
 export type userStatusResponseDataType = baseResponse & {

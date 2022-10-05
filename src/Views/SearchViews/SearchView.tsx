@@ -14,6 +14,7 @@ import {SearchStyles} from '../../Styles/SearchStyles';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {SearchFilterView} from './SearchFilterView';
 import {SendMessageModalView} from './SendMessageModalView';
+import {ProfileDetailsModalView} from './ProfileDetailsModalView';
 
 type searchViewProps = baseComponentProps & {};
 
@@ -61,8 +62,12 @@ class SearchView extends TypedBaseComponent<searchViewProps, SearchModel> {
 
         <SearchFilterView {...this.childProps(this.model.filterModal)} />
         <SendMessageModalView {...this.childProps(this.model.sendMessageModal)} />
+        <ProfileDetailsModalView {...this.childProps(this.model.profileDetailsModal)} />
 
         <FlatList
+          ref={ref => {
+            this.model.FlatListRef = ref;
+          }}
           style={[BaseStyles.w100]}
           contentContainerStyle={[BaseStyles.w100, BaseStyles.pb70]}
           onScroll={this.model.onScroll}
@@ -75,6 +80,7 @@ class SearchView extends TypedBaseComponent<searchViewProps, SearchModel> {
           maxToRenderPerBatch={10}
           initialNumToRender={10}
           windowSize={5}
+          getItemLayout={(data, index) => ({length: 135, offset: 135 * index, index})}
         />
       </View>
     );
