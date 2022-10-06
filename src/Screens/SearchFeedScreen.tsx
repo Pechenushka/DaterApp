@@ -41,7 +41,12 @@ class SearchFeedScreen extends BaseLayoutView<SearchController> {
   async onFocus(): Promise<void> {
     await super.onFocus();
     this.controller.searchModel.update();
+    this.controller.searchModel.profileDetailsModal.close();
     analyticHandler.trackEvent('search_feed_screen_rendered');
+  }
+
+  async onBlur() {
+    this.controller.searchModel.profileDetailsModal.close();
   }
 
   public updateModel = async () => {

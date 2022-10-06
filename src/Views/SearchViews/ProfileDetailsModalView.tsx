@@ -18,6 +18,7 @@ import {app} from '../../Core/AppImpl';
 import {HomeScreenStyles} from '../../Styles/HomeScreenStyles';
 import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
+import {SendMessageModalView} from './SendMessageModalView';
 
 type profileDetailsModalViewProps = baseComponentProps & {};
 
@@ -240,6 +241,9 @@ class ProfileDetailsModalView extends TypedBaseComponent<
                 </View>
               )}
             </ScrollView>
+
+            <SendMessageModalView {...this.childProps(this.model.sendMessageModal)} />
+
             <SimpleButtonView
               iconStyles={ProfileDetailsStyles.profileModalCloseIcon}
               styles={ProfileDetailsStyles.profileModalCloseContainer}

@@ -61,8 +61,8 @@ class SearchView extends TypedBaseComponent<searchViewProps, SearchModel> {
         </View>
 
         <SearchFilterView {...this.childProps(this.model.filterModal)} />
-        <SendMessageModalView {...this.childProps(this.model.sendMessageModal)} />
         <ProfileDetailsModalView {...this.childProps(this.model.profileDetailsModal)} />
+        <SendMessageModalView {...this.childProps(this.model.sendMessageModal)} />
 
         <FlatList
           ref={ref => {
