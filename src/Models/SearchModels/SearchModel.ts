@@ -327,6 +327,7 @@ class SearchModel extends BaseModel<searchModelProps> {
         goal: nextUser.props.goal,
         blocked: nextUser.props.blocked,
         blockedBy: nextUser.props.blockedBy,
+        online_status: nextUser.props.online_status,
       };
       this._profileDetailsModal.forceUpdate();
       this.FlatListRef && this.FlatListRef.scrollToItem({item: nextUser, animated: true});
@@ -358,6 +359,7 @@ class SearchModel extends BaseModel<searchModelProps> {
         goal: prevUser.props.goal,
         blocked: prevUser.props.blocked,
         blockedBy: prevUser.props.blockedBy,
+        online_status: prevUser.props.online_status,
       };
       this._profileDetailsModal.forceUpdate();
       this.FlatListRef && this.FlatListRef.scrollToItem({item: prevUser, animated: true});

@@ -102,6 +102,10 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
     return this.props.lookingfor;
   }
 
+  public get online_status() {
+    return this.props.online_status;
+  }
+
   public get goal() {
     return _.lang.goals[this.props.goal];
   }
@@ -126,6 +130,7 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
         goal: this.props.goal,
         blocked: this.props.blocked,
         blockedBy: this.props.blockedBy,
+        online_status: this.props.online_status,
       });
     // app.navigator.goToProfileDetailsScreen(this.authorId);
   };

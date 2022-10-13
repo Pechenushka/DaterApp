@@ -12,6 +12,7 @@ type chatListItemModelProps = baseModelProps & {
   name: string;
   unreadCount: number;
   userId: number;
+  online_status: boolean;
 };
 
 class ChatListItemModel extends BaseModel<chatListItemModelProps> {
@@ -37,6 +38,10 @@ class ChatListItemModel extends BaseModel<chatListItemModelProps> {
 
   public get lastMessageDate() {
     return this.props.lastMessageDate;
+  }
+
+  public get online_status() {
+    return this.props.online_status;
   }
 
   public get name() {

@@ -19,6 +19,7 @@ import {COLORS} from '../../constants/colors';
 import {appSettings} from '../../Common/AppSettings';
 import {_} from '../../Core/Localization';
 import {getAge} from '../../Common/Helpers';
+import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
 
 type myAnnouncementViewProps = baseComponentProps & {};
 
@@ -158,33 +159,7 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
             <View style={[BaseStyles.w100, BaseStyles.ai_fs]}>
               <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.jc_sb]}>
                 <View style={[BaseStyles.ai_c, BaseStyles.w30]}>
-                  <View style={[MyAnnouncementStyles.avatarContainer]}>
-                    <Image
-                      ref={ref => {
-                        this.imgRef = ref;
-                      }}
-                      source={
-                        app.currentUser.avatar === undefined ||
-                        app.currentUser.avatar === '' ||
-                        app.currentUser.avatar === null
-                          ? ICONS.profileIcon
-                          : {
-                              uri: `${appSettings.apiEndpoint}${
-                                app.currentUser.avatar.split('.')[0]
-                              }-compressed.${app.currentUser.avatar.split('.').pop()}`,
-                              cache: 'reload',
-                            }
-                      }
-                      style={MyAnnouncementStyles.avatarImage}
-                      onError={() => {
-                        const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
-                        this.imgRef &&
-                          this.imgRef.setNativeProps({
-                            [nativeProp]: [Image.resolveAssetSource(ICONS.profileIcon)], // array
-                          });
-                      }}
-                    />
-                  </View>
+                  <RoundAvatarView id="RoundAvatar" imagePath={app.currentUser.avatar} size={90} />
                 </View>
                 <View style={[BaseStyles.jc_c, BaseStyles.w100]}>
                   <View style={[BaseStyles.row, BaseStyles.pb5]}>

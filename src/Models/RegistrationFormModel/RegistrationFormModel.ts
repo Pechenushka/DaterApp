@@ -7,6 +7,7 @@ import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {FireBaseHandler} from '../../Core/FireBaseHandler';
 import {_} from '../../Core/Localization';
+import {SocketHandler} from '../../Core/Socket';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {GoogleSignInModel} from '../Components/AuthComponents/GoogleSignInModel';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
@@ -538,6 +539,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
           gender: res.data.gender,
           location: res.data.location.country.name,
         });
+        SocketHandler.connect();
         return;
       }
       Alert.alert(res.statusCode.toString(), res.statusMessage);

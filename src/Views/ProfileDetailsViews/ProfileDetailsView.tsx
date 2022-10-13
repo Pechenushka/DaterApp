@@ -24,6 +24,7 @@ import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {ReportModalView} from './ReportModalView';
 import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
 import {getShortDate} from '../../Common/dateParse';
+import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
 
 type profileDetailsViewProps = baseComponentProps & {};
 
@@ -117,33 +118,12 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
         <View style={[HomeScreenStyles.contentContainer]}>
           {this.model.userInfo !== null && (
             <View style={[HomeScreenStyles.userInfoContent]}>
-              <TouchableOpacity
-                onPress={this.model.openFullScreenModal}
-                style={[HomeScreenStyles.avatarContainer]}>
-                <Image
-                  ref={ref => {
-                    this.imgRef = ref;
-                  }}
-                  source={
-                    this.model.userInfo.avatar === undefined ||
-                    this.model.userInfo.avatar === '' ||
-                    this.model.userInfo.avatar === null
-                      ? ICONS.profileIcon
-                      : {
-                          uri: `${appSettings.apiEndpoint}${
-                            this.model.userInfo.avatar.split('.')[0]
-                          }-compressed.${this.model.userInfo.avatar.split('.').pop()}`,
-                          cache: 'reload',
-                        }
-                  }
-                  style={HomeScreenStyles.avatarImage}
-                  onError={() => {
-                    const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
-                    this.imgRef &&
-                      this.imgRef.setNativeProps({
-                        [nativeProp]: [Image.resolveAssetSource(ICONS.profileIcon)], // array
-                      });
-                  }}
+              <TouchableOpacity onPress={this.model.openFullScreenModal}>
+                <RoundAvatarView
+                  id="RoundAvatar"
+                  imagePath={this.model.userInfo.avatar}
+                  size={120}
+                  isOnline={this.model.userInfo.online_status}
                 />
               </TouchableOpacity>
 

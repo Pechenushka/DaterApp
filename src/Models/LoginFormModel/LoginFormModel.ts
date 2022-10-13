@@ -5,6 +5,7 @@ import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {FireBaseHandler} from '../../Core/FireBaseHandler';
 import {_} from '../../Core/Localization';
+import {SocketHandler} from '../../Core/Socket';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {CreateNewAccountScreen} from '../../Screens/CreateNewAccountScreen';
 import {GoogleSignInModel} from '../Components/AuthComponents/GoogleSignInModel';
@@ -123,6 +124,7 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
           gender: res.data.gender,
           location: res.data.location.country.name,
         });
+        SocketHandler.connect();
         return;
       }
       Alert.alert(res.statusCode.toString(), res.statusMessage);

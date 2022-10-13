@@ -24,6 +24,7 @@ type likeItemModelProps = baseModelProps & {
   liked: boolean;
   lookingfor: number;
   goal: number;
+  online_status: boolean;
   onItemReject: (itemId: number) => Promise<void>;
   onSendMessagePress: (user: shortUserDataType) => Promise<void>;
 };
@@ -118,6 +119,10 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
 
   public get lookingfor() {
     return this.props.lookingfor;
+  }
+
+  public get online_status() {
+    return this.props.online_status;
   }
 
   public get goal() {

@@ -55,6 +55,7 @@ export type searchItemDataType = {
   goal: number;
   blocked: boolean;
   blockedBy: boolean;
+  online_status: boolean;
 };
 
 export type userStatusResponseDataType = baseResponse & {
@@ -92,6 +93,7 @@ export type userDetailsDataType = {
   lastOnline: number;
   lookingfor: number;
   goal: number;
+  online_status: boolean;
 };
 
 export type userMeetingDataType = baseResponse & {
@@ -129,6 +131,7 @@ export type chatItemDataType = {
   name: string;
   unreadCount: number;
   userId: number;
+  online_status: boolean;
 };
 
 export type getMesagesDataType = baseResponse & {
@@ -166,6 +169,7 @@ export type companionDataType = {
   lastOnline: number;
   blocked: boolean;
   blockedBy: boolean;
+  online_status: boolean;
 };
 
 export type messageItemDataType = {

@@ -18,6 +18,7 @@ import {getShortDate} from '../../Common/dateParse';
 import {getAge} from '../../Common/Helpers';
 import {_} from '../../Core/Localization';
 import {SearchStyles} from '../../Styles/SearchStyles';
+import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
 
 type searchItemViewProps = baseComponentProps & {};
 
@@ -70,33 +71,12 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
           <View style={[BaseStyles.w100, BaseStyles.ai_fs, BaseStyles.h100]}>
             <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.jc_sb, BaseStyles.h100, ,]}>
               <View style={[BaseStyles.ai_c, BaseStyles.w30, BaseStyles.jc_c]}>
-                <View style={[MyAnnouncementStyles.avatarContainer]}>
-                  <Image
-                    ref={ref => {
-                      this.imgRef = ref;
-                    }}
-                    source={
-                      this.model.authorAvatar === undefined ||
-                      this.model.authorAvatar === '' ||
-                      this.model.authorAvatar === null
-                        ? ICONS.profileIcon
-                        : {
-                            uri: `${appSettings.apiEndpoint}${
-                              this.model.authorAvatar.split('.')[0]
-                            }-compressed.${this.model.authorAvatar.split('.').pop()}`,
-                            cache: 'reload',
-                          }
-                    }
-                    style={MyAnnouncementStyles.avatarImage}
-                    onError={() => {
-                      const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
-                      this.imgRef &&
-                        this.imgRef.setNativeProps({
-                          [nativeProp]: [Image.resolveAssetSource(ICONS.profileIcon)], // array
-                        });
-                    }}
-                  />
-                </View>
+                <RoundAvatarView
+                  id="RoundAvatar"
+                  imagePath={this.model.authorAvatar}
+                  size={95}
+                  isOnline={this.model.online_status}
+                />
               </View>
               <View style={[BaseStyles.jc_c, BaseStyles.w60]}>
                 <View style={[BaseStyles.row]}>

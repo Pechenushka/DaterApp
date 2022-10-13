@@ -93,6 +93,7 @@ class MainApp implements AppImpl {
   public forseUpdateAll = () => {
     Object.values(this._screens).forEach(screen => {
       screen.controller.forceUpdate && screen.controller.forceUpdate();
+      //@ts-ignore
       screen.updateModel && screen.updateModel();
     });
   };

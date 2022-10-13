@@ -16,6 +16,7 @@ import {ChatScreen} from '../Screens/ChatScreen';
 import {FireBaseHandler} from './FireBaseHandler';
 import {loadData, UserDataProvider} from '../DataProvider/UserDataProvider';
 import crashlytics from '@react-native-firebase/crashlytics';
+import {SocketHandler} from './Socket';
 
 type screenHistoryType = {
   impl: baseScreenCreator;
@@ -122,14 +123,17 @@ class Navigator {
         //
         await this.navigationUserStartApp();
         this._startAppWithBackground = false;
+        SocketHandler.connect();
         break;
       case 'active':
         await app.currentUser.restoreUserData();
         await this.navigationUserStartApp();
+        SocketHandler.connect();
         // this.restoreNavigatorState();
         break;
       case 'background':
         await app.currentUser.saveUser();
+        SocketHandler.disconnect();
         //this.saveNavigatorState();
         break;
     }

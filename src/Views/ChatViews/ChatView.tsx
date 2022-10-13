@@ -17,6 +17,7 @@ import {TextInputView} from '../Components/Inputs/TextInputView';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {getShortDate} from '../../Common/dateParse';
 import {HomeScreenStyles} from '../../Styles/HomeScreenStyles';
+import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
 
 type chatViewProps = baseComponentProps & {};
 
@@ -107,33 +108,12 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
               onPress={this.model.onprofilePress}
               style={[BaseStyles.w90, BaseStyles.row]}>
               <View style={BaseStyles.w20}>
-                <View style={[ChatsStyles.chatListItemAvatarContainer]}>
-                  <Image
-                    ref={ref => {
-                      this.imgRef = ref;
-                    }}
-                    source={
-                      this.model.companion.avatar === undefined ||
-                      this.model.companion.avatar === '' ||
-                      this.model.companion.avatar === null
-                        ? ICONS.profileIcon
-                        : {
-                            uri: `${appSettings.apiEndpoint}${
-                              this.model.companion.avatar.split('.')[0]
-                            }-compressed.${this.model.companion.avatar.split('.').pop()}`,
-                            cache: 'reload',
-                          }
-                    }
-                    style={ChatsStyles.chatListItemAvatarImage}
-                    onError={() => {
-                      const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
-                      this.imgRef &&
-                        this.imgRef.setNativeProps({
-                          [nativeProp]: [Image.resolveAssetSource(ICONS.profileIcon)], // array
-                        });
-                    }}
-                  />
-                </View>
+                <RoundAvatarView
+                  id="RoundAvatar"
+                  imagePath={this.model.companion.avatar}
+                  size={50}
+                  isOnline={this.model.companion.online_status}
+                />
               </View>
               <View style={[BaseStyles.w40, BaseStyles.h100]}>
                 <View style={[BaseStyles.row, BaseStyles.ai_c]}>

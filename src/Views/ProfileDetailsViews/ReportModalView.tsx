@@ -15,6 +15,7 @@ import {TextInputView} from '../Components/Inputs/TextInputView';
 import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
 import {_} from '../../Core/Localization';
 import {ReportModalModel} from '../../Models/ProfileDetailsModels/ReportModalModel';
+import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
 
 type reportModalViewProps = baseComponentProps & {};
 
@@ -39,33 +40,7 @@ class ReportModalView extends TypedBaseComponent<reportModalViewProps, ReportMod
             <View style={[BaseStyles.w95, BaseStyles.alignCenter]}>
               <View style={SearchStyles.sendMessageModalUserContainer}>
                 <View style={BaseStyles.w30}>
-                  <View style={[ChatsStyles.chatListItemAvatarContainer]}>
-                    <Image
-                      ref={ref => {
-                        this.imgRef = ref;
-                      }}
-                      source={
-                        this.model.avatar === undefined ||
-                        this.model.avatar === '' ||
-                        this.model.avatar
-                          ? ICONS.profileIcon
-                          : {
-                              uri: `${appSettings.apiEndpoint}${
-                                this.model.avatar.split('.')[0]
-                              }-compressed.${this.model.avatar.split('.').pop()}`,
-                              cache: 'reload',
-                            }
-                      }
-                      style={ChatsStyles.chatListItemAvatarImage}
-                      onError={() => {
-                        const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
-                        this.imgRef &&
-                          this.imgRef.setNativeProps({
-                            [nativeProp]: [Image.resolveAssetSource(ICONS.profileIcon)], // array
-                          });
-                      }}
-                    />
-                  </View>
+                  <RoundAvatarView id="RoundAvatar" imagePath={this.model.avatar} size={50} />
                 </View>
 
                 <View style={[BaseStyles.row, BaseStyles.ai_c]}>

@@ -11,6 +11,7 @@ import {appSettings} from '../../Common/AppSettings';
 import {ICONS} from '../../constants/icons';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {getShortDate} from '../../Common/dateParse';
+import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
 
 type chatListItemViewProps = baseComponentProps & {};
 
@@ -27,33 +28,12 @@ class ChatListItemView extends TypedBaseComponent<chatListItemViewProps, ChatLis
         style={ChatsStyles.chatListItemContaiter}
         onPress={this.model.onChatItemPress}>
         <View style={BaseStyles.w20}>
-          <View style={[ChatsStyles.chatListItemAvatarContainer]}>
-            <Image
-              ref={ref => {
-                this.imgRef = ref;
-              }}
-              source={
-                this.model.avatar === undefined ||
-                this.model.avatar === '' ||
-                this.model.avatar === null
-                  ? ICONS.profileIcon
-                  : {
-                      uri: `${appSettings.apiEndpoint}${
-                        this.model.avatar.split('.')[0]
-                      }-compressed.${this.model.avatar.split('.').pop()}`,
-                      cache: 'reload',
-                    }
-              }
-              style={ChatsStyles.chatListItemAvatarImage}
-              onError={() => {
-                const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
-                this.imgRef &&
-                  this.imgRef.setNativeProps({
-                    [nativeProp]: [Image.resolveAssetSource(ICONS.profileIcon)], // array
-                  });
-              }}
-            />
-          </View>
+          <RoundAvatarView
+            id="RoundAvatar"
+            imagePath={this.model.avatar}
+            size={50}
+            isOnline={this.model.online_status}
+          />
         </View>
         <View style={[BaseStyles.w40, BaseStyles.h100]}>
           <View style={[BaseStyles.row, BaseStyles.ai_c]}>
