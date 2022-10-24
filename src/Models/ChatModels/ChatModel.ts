@@ -5,8 +5,10 @@ import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {companionDataType, messageItemDataType} from '../../Core/DataTypes/BaseTypes';
 import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
+import {ChatListScreen} from '../../Screens/ChatListScreen';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {TextInputModel} from '../Components/Inputs/TextInputModel';
+import {ChatContextMenuModel} from './ChatContextMenuModel';
 import {MessageItemModel} from './MessageItemModel';
 
 type chatModelProps = baseModelProps & {};
@@ -17,6 +19,8 @@ class ChatModel extends BaseModel<chatModelProps> {
   private _messageInput: TextInputModel;
   private _sendButton: SimpleButtonModel;
   private _backButton: SimpleButtonModel;
+  private _openContextMenuButton: SimpleButtonModel;
+  private _contextMenuModal: ChatContextMenuModel;
 
   private _companion: companionDataType | null = null;
 
@@ -45,6 +49,20 @@ class ChatModel extends BaseModel<chatModelProps> {
       onPress: this.onBackPress,
       icon: ICONS.BackArrowIcon,
     });
+
+    this._openContextMenuButton = new SimpleButtonModel({
+      id: '_openContextMenuButton',
+      onPress: this.onDotsPress,
+      icon: ICONS.dostIcon,
+    });
+
+    this._contextMenuModal = new ChatContextMenuModel({
+      id: '_contextMenuModal',
+      onBlockUser: this.onUserBlockPress,
+      onUnblockUser: this.onUnblockButtonPress,
+      onChatDelete: this.onChatDeletePress,
+      blocked: false,
+    });
   }
 
   public get loading() {
@@ -53,6 +71,14 @@ class ChatModel extends BaseModel<chatModelProps> {
 
   public get backButton() {
     return this._backButton;
+  }
+
+  public get openContextMenuButton() {
+    return this._openContextMenuButton;
+  }
+
+  public get contextMenuModal() {
+    return this._contextMenuModal;
   }
 
   public set loading(Val) {
@@ -111,6 +137,7 @@ class ChatModel extends BaseModel<chatModelProps> {
     });
 
     this._companion = res.data.companion;
+    this._contextMenuModal.blocked = res.data.companion.blocked;
 
     this.loading = false;
   };
@@ -233,6 +260,72 @@ class ChatModel extends BaseModel<chatModelProps> {
 
   public onBackPress = async () => {
     app.navigator.toGoBack();
+  };
+
+  public onDotsPress = async () => {
+    this._contextMenuModal.open();
+  };
+
+  public onUserBlockPress = async () => {
+    if (this.companion !== null) {
+      const res = await loadData(UserDataProvider.BlockUser, {
+        userId: app.currentUser.userId,
+        blockedUserId: this.companion.id,
+      });
+      if (res === null) {
+        Alert.alert('Warning', 'Something went wrong, check your internet connection');
+        return;
+      }
+
+      if (res.statusCode !== 200) {
+        Alert.alert('Warning', res.statusMessage);
+        return;
+      }
+
+      this.companion.blocked = true;
+      this._contextMenuModal.blocked = true;
+      this.forceUpdate();
+    }
+  };
+
+  public onUnblockButtonPress = async () => {
+    if (this.companion !== null) {
+      const res = await loadData(UserDataProvider.UnblockUser, {
+        userId: app.currentUser.userId,
+        blockedUserId: this.companion.id,
+      });
+      if (res === null) {
+        Alert.alert('Warning', 'Something went wrong, check your internet connection');
+        return;
+      }
+
+      if (res.statusCode !== 200) {
+        Alert.alert('Warning', res.statusMessage);
+        return;
+      }
+
+      this.companion.blocked = false;
+      this._contextMenuModal.blocked = false;
+      this.forceUpdate();
+    }
+  };
+
+  public onChatDeletePress = async () => {
+    const msgBody = {
+      myId: app.currentUser.userId,
+      userId: this._companion?.id,
+    };
+    const res = await loadData(UserDataProvider.DeleteChat, msgBody);
+
+    if (res === null) {
+      Alert.alert('Warning', _.lang.servers_are_not_allowed);
+      return;
+    }
+    if (res.statusCode !== 200) {
+      Alert.alert('Warning', res.statusMessage);
+      return;
+    }
+    app.navigator.navigate(ChatListScreen);
   };
 }
 

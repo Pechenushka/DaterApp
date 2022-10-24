@@ -56,6 +56,9 @@ class FireBaseHandler {
         if (app.navigator.currentScreen === 'ChatScreen') {
           //@ts-ignore
           app.screens.ChatScreen.controller.chatModel.receiveMessage();
+        } else if (app.navigator.currentScreen === 'ChatListScreen') {
+          //@ts-ignore
+          app.screens.ChatListScreen.controller.chatListModel.update();
         } else {
           app.bottomNavigation.updateCounters();
         }

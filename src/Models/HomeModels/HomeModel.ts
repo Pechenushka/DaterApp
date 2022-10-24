@@ -19,6 +19,7 @@ class HomeModel extends BaseModel<homeModelProps> {
   private _toHelpScreen: SimpleButtonModel;
   private _toSearch: SimpleButtonModel;
   private _userStatus: boolean | null | undefined = true;
+  private _deleteAvatar: SimpleButtonModel;
   constructor(props: homeModelProps) {
     super(props);
     this._toChats = new SimpleButtonModel({
@@ -57,10 +58,20 @@ class HomeModel extends BaseModel<homeModelProps> {
       text: _.lang.search,
       icon: ICONS.searchIconBlack,
     });
+
+    this._deleteAvatar = new SimpleButtonModel({
+      id: '_deleteAvatar',
+      onPress: this.onDeleteAvatarPress,
+      icon: ICONS.deleteIcon,
+    });
   }
 
   public get toChats() {
     return this._toChats;
+  }
+
+  public get deleteAvatar() {
+    return this._deleteAvatar;
   }
 
   public get userStatus() {
@@ -134,6 +145,28 @@ class HomeModel extends BaseModel<homeModelProps> {
         app.currentUser.avatar = result.data.url;
         this.checkUserStatus();
       }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  public onDeleteAvatarPress = async () => {
+    try {
+      Alert.alert(_.lang.warning, _.lang.delete_avatar_question, [
+        {
+          text: _.lang.no,
+          onPress: () => {},
+          style: 'cancel',
+        },
+        {
+          text: _.lang.yes,
+          onPress: async () => {
+            await loadData(UserDataProvider.DeleteUserAvatar, {});
+            app.currentUser.avatar = '';
+            this.forceUpdate();
+          },
+        },
+      ]);
     } catch (error) {
       console.log(error);
     }

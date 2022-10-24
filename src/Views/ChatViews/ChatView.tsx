@@ -18,6 +18,7 @@ import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {getShortDate} from '../../Common/dateParse';
 import {HomeScreenStyles} from '../../Styles/HomeScreenStyles';
 import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
+import {ChatContextMenuView} from './ChatContextMenuView';
 
 type chatViewProps = baseComponentProps & {};
 
@@ -106,7 +107,7 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
             </View>
             <TouchableOpacity
               onPress={this.model.onprofilePress}
-              style={[BaseStyles.w90, BaseStyles.row]}>
+              style={[BaseStyles.w80, BaseStyles.row]}>
               <View style={BaseStyles.w20}>
                 <RoundAvatarView
                   id="RoundAvatar"
@@ -131,9 +132,15 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
                 </View>
               </View>
             </TouchableOpacity>
+            <View style={[BaseStyles.w10]}>
+              <SimpleButtonView
+                iconStyles={BaseStyles.defaultIcon}
+                {...this.childProps(this.model.openContextMenuButton)}
+              />
+            </View>
           </View>
         )}
-
+        <ChatContextMenuView {...this.childProps(this.model.contextMenuModal)} />
         <FlatList
           style={[BaseStyles.w100]}
           contentContainerStyle={[BaseStyles.pb70]}

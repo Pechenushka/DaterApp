@@ -72,19 +72,33 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
             {app.currentUser.avatar !== undefined &&
             app.currentUser.avatar !== '' &&
             app.currentUser.avatar !== null ? (
-              <TouchableOpacity
-                onPress={this.model.changeAvatar}
-                style={[HomeScreenStyles.avatarContainer]}>
-                <Image
-                  source={{
-                    uri: `${appSettings.apiEndpoint}${
-                      app.currentUser.avatar.split('.')[0]
-                    }-compressed.${app.currentUser.avatar.split('.').pop()}`,
-                    cache: 'reload',
-                  }}
-                  style={HomeScreenStyles.avatarImage}
-                />
-              </TouchableOpacity>
+              <View>
+                <TouchableOpacity
+                  onPress={this.model.changeAvatar}
+                  style={[HomeScreenStyles.avatarContainer]}>
+                  <Image
+                    source={{
+                      uri: `${appSettings.apiEndpoint}${app.currentUser.avatar}`,
+                      cache: 'reload',
+                    }}
+                    style={HomeScreenStyles.avatarImage}
+                  />
+                </TouchableOpacity>
+                <View
+                  style={{
+                    position: 'absolute',
+                    bottom: 10,
+                    right: 10,
+                  }}>
+                  <ShadowWrapperView borderRadius={60}>
+                    <SimpleButtonView
+                      iconStyles={[BaseStyles.defaultIcon]}
+                      styles={[HomeScreenStyles.deleteAvatarButtonContainer]}
+                      {...this.childProps(this.model.deleteAvatar)}
+                    />
+                  </ShadowWrapperView>
+                </View>
+              </View>
             ) : (
               <TouchableOpacity
                 onPress={this.model.changeAvatar}

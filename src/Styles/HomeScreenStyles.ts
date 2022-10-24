@@ -97,7 +97,7 @@ const HomeScreenStyles = StyleSheet.create({
   avatarImage: {
     width: hp(150),
     height: hp(150),
-    resizeMode: 'contain',
+    resizeMode: 'cover',
   },
 
   fullScreenImage: {
@@ -128,6 +128,11 @@ const HomeScreenStyles = StyleSheet.create({
     height: hp(60),
     width: hp(180),
     flexDirection: 'row',
+  },
+
+  deleteAvatarButtonContainer: {
+    height: hp(32),
+    width: hp(32),
   },
 
   alertText: {

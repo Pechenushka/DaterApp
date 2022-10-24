@@ -10,7 +10,7 @@ type chatListModelProps = baseModelProps & {};
 
 class ChatListModel extends BaseModel<chatListModelProps> {
   private _loading: boolean = false;
-  private _list: Map<number, ChatListItemModel> = new Map();
+  private _list: Array<ChatListItemModel> = [];
   private _menuButton: SimpleButtonModel;
   constructor(props: chatListModelProps) {
     super(props);
@@ -49,11 +49,24 @@ class ChatListModel extends BaseModel<chatListModelProps> {
     this.loading = true;
     const res = await loadData(UserDataProvider.GetUserChats, {});
     if (res !== null && res.statusCode === 200) {
-      res.data.forEach(chatItem => {
-        this.list.set(chatItem.id, this.createChatItem(chatItem));
+      this._list = res.data.map(chatItem => {
+        return this.createChatItem(chatItem);
       });
     }
     this.loading = false;
+  };
+
+  public update = async () => {
+    const res = await loadData(UserDataProvider.GetUserChats, {});
+    if (res !== null && res.statusCode === 200) {
+      this._list = [];
+      this.forceUpdate();
+      this._list = res.data.map(chatItem => {
+        return this.createChatItem(chatItem);
+      });
+    }
+    this.forceUpdate();
+    console.log('UPDATED');
   };
 
   public createChatItem = (props: chatItemDataType) => {

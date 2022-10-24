@@ -161,6 +161,10 @@ const BaseStyles = StyleSheet.create({
     paddingBottom: hp(100),
   },
 
+  pb150: {
+    paddingBottom: hp(150),
+  },
+
   mr10: {
     marginRight: hp(10),
   },

@@ -84,6 +84,11 @@ export type localizationPackType = {
   prev: string;
   next: string;
   delete_accaunt: string;
+  delete_avatar_question: string;
+  delete_accaunt_question: string;
+  yes: string;
+  no: string;
+  delete_chat: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua' | 'bel' | 'pl';

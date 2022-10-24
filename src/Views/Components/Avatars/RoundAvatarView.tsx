@@ -38,9 +38,7 @@ const RoundAvatarView = (props: roundAvatarViewProps) => {
             props.imagePath === undefined || props.imagePath === '' || props.imagePath === null
               ? ICONS.profileIcon
               : {
-                  uri: `${appSettings.apiEndpoint}${
-                    props.imagePath.split('.')[0]
-                  }-compressed.${props.imagePath.split('.').pop()}`,
+                  uri: `${appSettings.apiEndpoint}${props.imagePath}`,
                   cache: 'reload',
                 }
           }

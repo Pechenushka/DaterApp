@@ -143,6 +143,14 @@ class UserDataProvider {
   static async DeleteUserById(body: requestBodyType): Promise<baseResponse> {
     return fetchData(`users/by-user`, 'DELETE', body, true);
   }
+
+  static async DeleteUserAvatar(body: requestBodyType): Promise<baseResponse> {
+    return fetchData(`users/delete-avatar`, 'POST', body, true);
+  }
+
+  static async DeleteChat(body: requestBodyType): Promise<baseResponse> {
+    return fetchData(`chats/delete-chat`, 'POST', body, true);
+  }
 }
 
 async function loadData<T extends baseResponse, R extends requestBodyType>(

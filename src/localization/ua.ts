@@ -210,6 +210,11 @@ const ua: localizationPackType = {
   prev: 'назад',
   next: 'далі',
   delete_accaunt: 'Видалити аккаунт',
+  delete_accaunt_question: 'Ви впевнені що хочете видалити акаунт?',
+  delete_avatar_question: 'Ви впевнені що хочете видалити свій аватар?',
+  no: 'ні',
+  yes: 'так',
+  delete_chat: 'Видалити чат',
 };
 
 export {ua};

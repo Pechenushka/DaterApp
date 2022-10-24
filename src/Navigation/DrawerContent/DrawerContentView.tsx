@@ -33,14 +33,14 @@ class DrawerContentView extends TypedBaseComponent<drawerContentViewProps, Drawe
   };
 
   public onDeleteAccPress = async () => {
-    Alert.alert('Attention', 'Are you shore you want to delete account?', [
+    Alert.alert(_.lang.warning, _.lang.delete_accaunt_question, [
       {
-        text: 'No',
+        text: _.lang.no,
         onPress: () => {},
         style: 'cancel',
       },
       {
-        text: 'Yes',
+        text: _.lang.yes,
         onPress: async () => {
           await loadData(UserDataProvider.DeleteUserById, {});
           app.currentUser.clearUser();

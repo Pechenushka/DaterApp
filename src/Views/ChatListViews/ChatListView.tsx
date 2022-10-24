@@ -55,9 +55,9 @@ class ChatListView extends TypedBaseComponent<chatListViewProps, ChatListModel> 
 
         <ScrollView
           style={BaseStyles.w100}
-          contentContainerStyle={[BaseStyles.w100, BaseStyles.ai_c, BaseStyles.pb100]}>
-          {Array.from(this.model.list).map(chatItem => {
-            return <ChatListItemView {...this.childProps(chatItem[1])} />;
+          contentContainerStyle={[BaseStyles.w100, BaseStyles.ai_c, BaseStyles.pb150]}>
+          {this.model.list.map(chatItem => {
+            return <ChatListItemView {...this.childProps(chatItem)} />;
           })}
         </ScrollView>
       </View>

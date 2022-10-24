@@ -210,6 +210,11 @@ const bel: localizationPackType = {
   prev: 'папярэдні',
   next: 'наступны',
   delete_accaunt: 'Выдаліць уліковы запіс',
+  delete_accaunt_question: 'Вы ўпэўнены, што хочаце выдаліць уліковы запіс?',
+  delete_avatar_question: 'Вы ўпэўнены, што хочаце выдаліць свой аватар?',
+  no: 'не',
+  yes: 'так',
+  delete_chat: 'Выдаліць чат',
 };
 
 export {bel};

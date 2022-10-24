@@ -117,7 +117,9 @@ const ChatsStyles = StyleSheet.create({
     paddingHorizontal: hp(8),
   },
 
-  chatMessageInputText: {},
+  chatMessageInputText: {
+    width: '100%',
+  },
 
   chatMessageSendButtonContainer: {
     width: hp(50),
@@ -151,6 +153,31 @@ const ChatsStyles = StyleSheet.create({
   },
 
   chatListHeaderMenuButton: {},
+
+  contextMenuModalContainer: {
+    flex: 1,
+  },
+
+  modalContentContainer: {
+    paddingHorizontal: hp(8),
+    paddingVertical: hp(8),
+    width: '55%',
+    top: '7%',
+    right: '2%',
+    position: 'absolute',
+  },
+
+  modalActionButton: {
+    borderRadius: 8,
+    width: '100%',
+    paddingVertical: hp(8),
+  },
+
+  modalActionButtonSeparator: {
+    width: '100%',
+    height: 1,
+    backgroundColor: COLORS.BLURED_GRAY2,
+  },
 });
 
 export {ChatsStyles};

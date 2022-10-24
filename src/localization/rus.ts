@@ -210,6 +210,11 @@ const rus: localizationPackType = {
   prev: 'назад',
   next: 'далее',
   delete_accaunt: 'Удалить аккаунт',
+  delete_accaunt_question: 'Вы уверены что хотите удалить аккаунт?',
+  delete_avatar_question: 'Вы уверены что хотите удалить свой аватар?',
+  no: 'нет',
+  yes: 'да',
+  delete_chat: 'Удалить чат',
 };
 
 export {rus};

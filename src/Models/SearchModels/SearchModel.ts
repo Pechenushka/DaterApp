@@ -150,6 +150,7 @@ class SearchModel extends BaseModel<searchModelProps> {
       this.list.set(searchItemProps.id, this.createSearchItem(searchItemProps));
     });
     this._initialLoad = false;
+    this.FlatListRef?.scrollToOffset({offset: 0, animated: true});
     this.forceUpdate();
   };
 
@@ -203,6 +204,7 @@ class SearchModel extends BaseModel<searchModelProps> {
     itemsToDelete.forEach(itemIndex => {
       this.list.delete(itemIndex);
     });
+    this.FlatListRef?.scrollToOffset({offset: 0, animated: true});
     this.forceUpdate();
   };
 

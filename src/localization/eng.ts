@@ -208,6 +208,11 @@ const eng: localizationPackType = {
   prev: 'prev',
   next: 'next',
   delete_accaunt: 'Delete account',
+  delete_accaunt_question: 'Are you sure you want to delete account?',
+  delete_avatar_question: 'Are you sure you want to delete your avatar?',
+  no: 'no',
+  yes: 'yes',
+  delete_chat: 'Delete chat',
 };
 
 export {eng};
