@@ -9,6 +9,7 @@ import {TextInputModel} from '../../../Models/Components/Inputs/TextInputModel';
 import {BaseStyles} from '../../../Styles/BaseStyles';
 import {TextInputCounterView} from './TextInputCounterView';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {COLORS} from '../../../constants/colors';
 
 type textInputViewProps = baseComponentProps & {
   styles?: {
@@ -72,7 +73,7 @@ class TextInputView extends TypedBaseComponent<textInputViewProps, TextInputMode
           textAlign={this.model.textAlign}
           style={[
             this.props.styles !== undefined ? this.props.styles.text : {},
-            {paddingHorizontal: 5, paddingVertical: 0},
+            {paddingHorizontal: 5, paddingVertical: 0, color: COLORS.BLACK},
           ]}
           secureTextEntry={this.model.secure}
           multiline={this.model.numberOfLines > 1}

@@ -58,7 +58,7 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
   public render() {
     super.render();
     return (
-      <View style={[BaseStyles.w100, BaseStyles.ai_c, {height: 135}, BaseStyles.mt10]}>
+      <View style={[BaseStyles.w100, BaseStyles.ai_c, {height: 142}, BaseStyles.mt10]}>
         <TouchableOpacity
           style={[
             SearchStyles.searchItemContainer,

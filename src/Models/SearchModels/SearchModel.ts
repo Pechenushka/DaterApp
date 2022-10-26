@@ -54,7 +54,7 @@ class SearchModel extends BaseModel<searchModelProps> {
       myId: app.currentUser.userId,
       ageFrom: new Date().setFullYear(new Date().getFullYear() - 18),
       ageTo: new Date().setFullYear(new Date().getFullYear() - 100),
-      gender: 'all',
+      gender: app.currentUser.gender === 'female' ? 'male' : 'female',
       approved: false,
     };
     this._filterButton = new SimpleButtonModel({

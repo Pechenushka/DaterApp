@@ -215,6 +215,9 @@ const bel: localizationPackType = {
   no: 'не',
   yes: 'так',
   delete_chat: 'Выдаліць чат',
+  all_cities: 'Усе гарады',
+  all_countries: 'Усе краіны',
+  all_regions: 'Усе рэгіёны',
 };
 
 export {bel};

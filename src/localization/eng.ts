@@ -213,6 +213,9 @@ const eng: localizationPackType = {
   no: 'no',
   yes: 'yes',
   delete_chat: 'Delete chat',
+  all_cities: 'All cities',
+  all_countries: 'All countries',
+  all_regions: 'All regions',
 };
 
 export {eng};

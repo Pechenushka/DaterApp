@@ -215,6 +215,9 @@ const rus: localizationPackType = {
   no: 'нет',
   yes: 'да',
   delete_chat: 'Удалить чат',
+  all_cities: 'Все города',
+  all_countries: 'Все страны',
+  all_regions: 'Все регионы',
 };
 
 export {rus};

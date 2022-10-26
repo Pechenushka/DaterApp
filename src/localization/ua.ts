@@ -215,6 +215,9 @@ const ua: localizationPackType = {
   no: 'ні',
   yes: 'так',
   delete_chat: 'Видалити чат',
+  all_cities: 'Всі міста',
+  all_countries: 'Всі країни',
+  all_regions: 'Всі регіони',
 };
 
 export {ua};

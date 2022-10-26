@@ -89,6 +89,9 @@ export type localizationPackType = {
   yes: string;
   no: string;
   delete_chat: string;
+  all_regions: string;
+  all_cities: string;
+  all_countries: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua' | 'bel' | 'pl';

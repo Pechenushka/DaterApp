@@ -5,7 +5,7 @@ import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {dropDownItem, DropDownModel} from '../Components/Inputs/DropDownModel';
-import {GenderSvitcherModel} from '../Components/Inputs/GenderSvitcherModel';
+import {genderEnum, GenderSvitcherModel} from '../Components/Inputs/GenderSvitcherModel';
 import {TextInputModel} from '../Components/Inputs/TextInputModel';
 import {filterType} from './SearchModel';
 
@@ -45,6 +45,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       placeholder: _.lang.chose_country,
       listLoader: this.countryLoad,
       onSelectionChange: this.onCountryChange,
+      defaultItem: {id: 0, name: _.lang.all_countries},
     });
 
     this._regionSelection = new DropDownModel({
@@ -53,6 +54,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       placeholder: _.lang.chose_region,
       onSelectionChange: this.onRegionChange,
       disabled: true,
+      defaultItem: {id: 0, name: _.lang.all_regions},
     });
 
     this._citySelection = new DropDownModel({
@@ -61,6 +63,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       placeholder: _.lang.chose_city,
       onSelectionChange: this.onCityChange,
       disabled: true,
+      defaultItem: {id: 0, name: _.lang.all_cities},
     });
 
     if (app.currentUser.location !== undefined) {
@@ -72,10 +75,9 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
     this._genderSwitcher = new GenderSvitcherModel({
       id: '_genderSwitcer',
       allMode: true,
-      default: 'all',
+      default: app.currentUser.gender === 'female' ? 'male' : 'female',
     });
-
-    this._genderSwitcher.setGender('all');
+    this._genderSwitcher.setGender(app.currentUser.gender === 'female' ? 'male' : 'female');
 
     this._fromAgeInput = new TextInputModel({
       id: '_fromAgeInput',

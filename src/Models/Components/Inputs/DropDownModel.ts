@@ -6,6 +6,7 @@ type dropDownModelProps = baseModelProps & {
   list: Array<dropDownItem>;
   onSelectionChange: (item: dropDownItem) => Promise<void>;
   disabled?: boolean;
+  defaultItem?: dropDownItem;
 };
 
 export type dropDownItem = {id: number; name: string};
@@ -18,7 +19,7 @@ class DropDownModel extends BaseModel<dropDownModelProps> {
   private _disabled: boolean;
   constructor(props: dropDownModelProps) {
     super(props);
-    this._list = props.list;
+    this._list = props.defaultItem !== undefined ? [props.defaultItem, ...props.list] : props.list;
     this._placeholder = props.placeholder;
     this._disabled = props.disabled !== undefined ? props.disabled : false;
     this.initValues();
@@ -67,7 +68,10 @@ class DropDownModel extends BaseModel<dropDownModelProps> {
 
   public initValues = async () => {
     if (this.props.listLoader !== undefined) {
-      this._list = await this.props.listLoader();
+      this._list =
+        this.props.defaultItem !== undefined
+          ? [this.props.defaultItem, ...(await this.props.listLoader())]
+          : await this.props.listLoader();
       this.forceUpdate();
     }
   };
