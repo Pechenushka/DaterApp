@@ -41,7 +41,9 @@ const ICONS = {
   BackArrowIcon: require('../assets/img/BackArrowIcon.png'),
   menuButtonWhiteIcon: require('../assets/img/menuButtonWhite.png'),
   belIcon: require('../assets/img/belIcon.png'),
+  plIcon: require('../assets/img/plIcon.png'),
   dostIcon: require('../assets/img/dotsIcon.png'),
+  chatBg: require('../assets/img/chatBG.jpg'),
 };
 
 export {ICONS};

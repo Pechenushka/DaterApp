@@ -218,6 +218,9 @@ const ua: localizationPackType = {
   all_cities: 'Всі міста',
   all_countries: 'Всі країни',
   all_regions: 'Всі регіони',
+  choose_gender: 'Виберіть стать',
+  iam_man: 'Я чоловік',
+  iam_women: 'Я жінка',
 };
 
 export {ua};

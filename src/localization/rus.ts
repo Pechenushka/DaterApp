@@ -218,6 +218,9 @@ const rus: localizationPackType = {
   all_cities: 'Все города',
   all_countries: 'Все страны',
   all_regions: 'Все регионы',
+  choose_gender: 'Выберите пол',
+  iam_man: 'Я мужчина',
+  iam_women: 'Я женщина',
 };
 
 export {rus};

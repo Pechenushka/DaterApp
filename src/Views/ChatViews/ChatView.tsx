@@ -4,7 +4,14 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {ActivityIndicator, Image, Platform, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Image,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {ChatModel} from '../../Models/ChatModels/ChatModel';
 import {COLORS} from '../../constants/colors';
 import {BaseStyles} from '../../Styles/BaseStyles';
@@ -141,24 +148,26 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
           </View>
         )}
         <ChatContextMenuView {...this.childProps(this.model.contextMenuModal)} />
-        <FlatList
-          style={[BaseStyles.w100]}
-          contentContainerStyle={[BaseStyles.pb70]}
-          data={Array.from(this.model.list)
-            .sort((a, b) => {
-              return b[0] - a[0];
-            })
-            .map(msgItem => {
-              return msgItem[1];
-            })}
-          renderItem={msgItem => {
-            return <MessageItemView {...this.childProps(msgItem.item)} />;
-          }}
-          inverted={true}
-          onScroll={this.model.onScroll}
-        />
+        <ImageBackground source={ICONS.chatBg} style={{flex: 1, width: '100%'}} resizeMode="cover">
+          <FlatList
+            style={[BaseStyles.w100]}
+            contentContainerStyle={[BaseStyles.pb70]}
+            data={Array.from(this.model.list)
+              .sort((a, b) => {
+                return b[0] - a[0];
+              })
+              .map(msgItem => {
+                return msgItem[1];
+              })}
+            renderItem={msgItem => {
+              return <MessageItemView {...this.childProps(msgItem.item)} />;
+            }}
+            inverted={true}
+            onScroll={this.model.onScroll}
+          />
 
-        <View style={ChatsStyles.chatMessageInputWrapper}>{this.getBlockedAlert()}</View>
+          <View style={ChatsStyles.chatMessageInputWrapper}>{this.getBlockedAlert()}</View>
+        </ImageBackground>
       </View>
     );
   }

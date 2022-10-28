@@ -106,7 +106,7 @@ class RegistrationFormView extends TypedBaseComponent<
             <View style={[RegistrationScreenStyles.dateContainer]}>
               <Text style={[RegistrationScreenStyles.dateText]}>{_.lang.your_gender}:</Text>
               <View style={[BaseStyles.w50]}>
-                <GenderSwitcherView {...this.childProps(this.model.genderSwitcher)} />
+                <DropDownView {...this.childProps(this.model.genderSelection)} />
               </View>
             </View>
           </View>

@@ -125,7 +125,7 @@ const MyAnnouncementStyles = StyleSheet.create({
     paddingHorizontal: hp(100),
     paddingVertical: hp(15),
     marginVertical: hp(5),
-    backgroundColor: COLORS.GREEN_BUTTON,
+    backgroundColor: COLORS.MAIN_BLUE,
     borderRadius: 8,
   },
 

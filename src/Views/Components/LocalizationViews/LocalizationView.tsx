@@ -61,6 +61,11 @@ class LocalizationView extends TypedBaseComponent<localizationViewProps, Localiz
                     iconStyles={LocalizationStyles.countryButtonIcon}
                     {...this.childProps(this.model.belButton)}
                   />
+                  <SimpleButtonView
+                    styles={LocalizationStyles.countryButtonContainer}
+                    iconStyles={LocalizationStyles.countryButtonIcon}
+                    {...this.childProps(this.model.plButton)}
+                  />
                 </View>
               </ScrollView>
             </View>

@@ -79,7 +79,7 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
                 />
               </View>
               <View style={[BaseStyles.jc_c, BaseStyles.w60]}>
-                <View style={[BaseStyles.row]}>
+                <View style={[BaseStyles.row, BaseStyles.mt10]}>
                   <Text
                     ellipsizeMode="tail"
                     numberOfLines={1}
@@ -93,7 +93,7 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
                   <Text> {getAge(this.model.authorBirthDay || 0)} y.o </Text>
                 </View>
 
-                <View style={[MyAnnouncementStyles.goalPreviewContainer]}>
+                <View style={[BaseStyles.row, BaseStyles.ai_c, BaseStyles.pb5]}>
                   <Text ellipsizeMode="tail" numberOfLines={1}>
                     <Text> {_.lang.i_looking_for} </Text>
                     {this.getExpectationsIcon()}

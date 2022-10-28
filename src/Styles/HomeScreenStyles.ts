@@ -128,6 +128,7 @@ const HomeScreenStyles = StyleSheet.create({
     height: hp(60),
     width: hp(180),
     flexDirection: 'row',
+    flexWrap: 'wrap',
   },
 
   deleteAvatarButtonContainer: {

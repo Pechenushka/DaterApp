@@ -92,6 +92,9 @@ export type localizationPackType = {
   all_regions: string;
   all_cities: string;
   all_countries: string;
+  choose_gender: string;
+  iam_man: string;
+  iam_women: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua' | 'bel' | 'pl';

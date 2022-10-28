@@ -1,6 +1,7 @@
 import {bel} from '../localization/bel';
 import {eng} from '../localization/eng';
 import {localizationEnum} from '../localization/localizationTypes';
+import {pl} from '../localization/pl';
 import {rus} from '../localization/rus';
 import {ua} from '../localization/ua';
 import {app} from './AppImpl';
@@ -10,6 +11,7 @@ class Localization {
   private _eng = eng;
   private _rus = rus;
   private _bel = bel;
+  private _pl = pl;
 
   private _currLang: localizationEnum = 'eng';
 
@@ -32,7 +34,7 @@ class Localization {
   }
 
   public get pl() {
-    return this._ua;
+    return this._pl;
   }
 
   public get lang() {

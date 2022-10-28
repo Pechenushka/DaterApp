@@ -25,13 +25,13 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   private _passwordInput: TextInputModel;
   private _repeatPasswordInput: TextInputModel;
   private _ageInput: DatePickerModel;
-  private _genderSwitcher: GenderSvitcherModel;
   private _signUpButton: SimpleButtonModel;
   private _agreementSwitcher: SwitcherModel;
 
   private _countrySelection: DropDownModel;
   private _regionSelection: DropDownModel;
   private _citySelection: DropDownModel;
+  private _genderSelection: DropDownModel;
   private _curentStep: number = 1;
 
   private _step1NextButton: SimpleButtonModel;
@@ -85,7 +85,15 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
 
     this._ageInput = new DatePickerModel({id: '_ageInput', mode: 'date'});
 
-    this._genderSwitcher = new GenderSvitcherModel({id: '_genderSwitcher'});
+    this._genderSelection = new DropDownModel({
+      id: '_genderSelection',
+      list: [
+        {id: 1, name: _.lang.iam_man},
+        {id: 2, name: _.lang.iam_women},
+      ],
+      placeholder: _.lang.choose_gender,
+      onSelectionChange: this.onCityChange,
+    });
 
     this._signUpButton = new SimpleButtonModel({
       id: '_signUpButton',
@@ -172,8 +180,8 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
     return this._ageInput;
   }
 
-  public get genderSwitcher() {
-    return this._genderSwitcher;
+  public get genderSelection() {
+    return this._genderSelection;
   }
 
   public get countrySelection() {
@@ -285,7 +293,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   };
 
   public secondStepValidation = async () => {
-    const [dateTimeStamp, gender] = [this._ageInput.value.getTime(), this._genderSwitcher.value];
+    const [dateTimeStamp, gender] = [this._ageInput.value.getTime(), this._genderSelection.value];
     if (getAge(dateTimeStamp) < 18) {
       Alert.alert('Warning!', 'You must be over 18 years old');
       return false;
@@ -296,7 +304,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       return false;
     }
 
-    if (gender === null) {
+    if (gender === undefined) {
       Alert.alert('Warning!', 'Provide your gender');
       return false;
     }
@@ -422,7 +430,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       this._passwordInput.value.trim(),
       this._repeatPasswordInput.value.trim(),
       this._ageInput.value.getTime(),
-      this.genderSwitcher.value,
+      this._genderSelection.value,
       this._countrySelection.value,
       this._regionSelection.value,
       this._citySelection.value,
@@ -495,7 +503,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       return;
     }
 
-    if (gender === null) {
+    if (gender === undefined) {
       Alert.alert('Warning!', 'Provide your gender');
       this._signUpButton.disabled = false;
       return;
@@ -510,7 +518,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       name: name,
       password: password,
       email: email,
-      gender: gender,
+      gender: gender.id === 1 ? 'male' : 'female',
       birthDate: dateTimeStamp,
       telegram: '',
       phone: '',

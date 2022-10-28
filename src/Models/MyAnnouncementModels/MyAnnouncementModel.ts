@@ -262,11 +262,6 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._submitButton.disabled = false;
       return;
     }
-    if (text.length === 0) {
-      Alert.alert('Warning', 'Write few words about yourself');
-      this._submitButton.disabled = false;
-      return;
-    }
     if (country !== undefined) {
       if (region === undefined) {
         Alert.alert('Warning', 'Select region');
@@ -286,7 +281,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       countryId: country === undefined ? app.currentUser.location.country.id : country.id,
       regionId: region === undefined ? app.currentUser.location.region.id : region.id,
       cityId: city === undefined ? app.currentUser.location.city.id : city.id,
-      text: text,
+      text: text || '',
       lookingfor: lookingfor === undefined ? null : lookingfor.id,
       goal: goal === undefined ? null : goal.id,
     };
@@ -323,17 +318,13 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._editButton.disabled = false;
       return;
     }
-    if (text.length === 0) {
-      Alert.alert('Warning', 'Write few words about yourself');
-      this._editButton.disabled = false;
-      return;
-    }
+
     const meetingBody = {
       authorId: app.currentUser.userId,
       countryId: country === undefined ? app.currentUser.location.country.id : country.id,
       regionId: region === undefined ? app.currentUser.location.region.id : region.id,
       cityId: city === undefined ? app.currentUser.location.city.id : city.id,
-      text: text,
+      text: text || '',
       lookingfor: lookingfor === undefined ? null : lookingfor.id,
       goal: goal === undefined ? null : goal.id,
     };

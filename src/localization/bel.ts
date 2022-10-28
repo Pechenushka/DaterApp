@@ -218,6 +218,9 @@ const bel: localizationPackType = {
   all_cities: 'Усе гарады',
   all_countries: 'Усе краіны',
   all_regions: 'Усе рэгіёны',
+  choose_gender: 'Выберыце пол',
+  iam_man: 'Я мужчына',
+  iam_women: 'Я жанчына',
 };
 
 export {bel};

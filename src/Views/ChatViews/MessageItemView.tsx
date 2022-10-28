@@ -1,4 +1,8 @@
-import {TypedBaseComponent, baseComponentProps, componentPropsWithModel} from '../../Core/BaseComponent';
+import {
+  TypedBaseComponent,
+  baseComponentProps,
+  componentPropsWithModel,
+} from '../../Core/BaseComponent';
 import React from 'react';
 import {Text, View} from 'react-native';
 import {MessageItemModel} from '../../Models/ChatModels/MessageItemModel';
@@ -28,7 +32,7 @@ class MessageItemView extends TypedBaseComponent<messageItemViewProps, MessageIt
   private getMsgContainerCollor = (userId: number): object => {
     if (userId === app.currentUser.userId) {
       return {
-        backgroundColor: COLORS.WHITE,
+        backgroundColor: COLORS.SCREEN_BG_NOT_BLURED,
       };
     }
     return {
@@ -56,8 +60,12 @@ class MessageItemView extends TypedBaseComponent<messageItemViewProps, MessageIt
     return (
       <View style={[ChatsStyles.chatMessageWrapper, this.msgAlign]}>
         <View style={[ChatsStyles.chatMessageContainer, this.msgAlign, this.msgContainerColor]}>
-          <Text style={[ChatsStyles.chatMessageText, this.msgTextColor]}>{this.model.messageText}</Text>
-          <Text style={[ChatsStyles.chatMessageDateText, this.msgTextColor]}>{getTimeDate(this.model.timestamp)}</Text>
+          <Text style={[ChatsStyles.chatMessageText, this.msgTextColor]}>
+            {this.model.messageText}
+          </Text>
+          <Text style={[ChatsStyles.chatMessageDateText, this.msgTextColor]}>
+            {getTimeDate(this.model.timestamp)}
+          </Text>
         </View>
       </View>
     );

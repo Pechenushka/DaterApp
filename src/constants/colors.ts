@@ -12,5 +12,6 @@ const COLORS = {
   BLURED_GRAY2: 'rgba(240,240,240,0.6)',
   WARNING_YELLOW: 'rgba(240,200,10,0.6)',
   DARK_GARY: 'rgba(100,100,100,1)',
+  SCREEN_BG_NOT_BLURED: 'rgba(225,225,225, 1)',
 };
 export {COLORS};
