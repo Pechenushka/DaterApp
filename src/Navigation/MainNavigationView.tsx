@@ -23,7 +23,6 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
     return (
       <NavigationContainer ref={ref => (app.navigator.navigation = ref)}>
         <app.stacks.stackDrawer.Navigator
-          openByDefault={false}
           drawerPosition={'left'}
           drawerType={'front'}
           screenOptions={{headerShown: false, gestureHandlerProps: {enabled: true}}}
