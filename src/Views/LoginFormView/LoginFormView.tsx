@@ -11,8 +11,6 @@ import {LoginScreenStyles} from '../../Styles/LoginScreenStyles';
 import {TextInputView} from '../Components/Inputs/TextInputView';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {_} from '../../Core/Localization';
-import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
-import {GoogleSignInModel} from '../../Models/Components/AuthComponents/GoogleSignInModel';
 import {GoogleSignInView} from '../Components/AuthComponents/GoogleSignInView';
 
 type simpleButtonViewProps = baseComponentProps & {

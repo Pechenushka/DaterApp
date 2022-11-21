@@ -4,14 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {
-  ActivityIndicator,
-  Image,
-  ImageBackground,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ActivityIndicator, Image, Text, TouchableOpacity, View} from 'react-native';
 import {ChatModel} from '../../Models/ChatModels/ChatModel';
 import {COLORS} from '../../constants/colors';
 import {BaseStyles} from '../../Styles/BaseStyles';
@@ -19,7 +12,6 @@ import {MessageItemView} from './MessageItemView';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
 import {FlatList} from 'react-native-gesture-handler';
 import {ICONS} from '../../constants/icons';
-import {appSettings} from '../../Common/AppSettings';
 import {TextInputView} from '../Components/Inputs/TextInputView';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {getShortDate} from '../../Common/dateParse';
@@ -148,26 +140,26 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
           </View>
         )}
         <ChatContextMenuView {...this.childProps(this.model.contextMenuModal)} />
-        <ImageBackground source={ICONS.chatBg} style={{flex: 1, width: '100%'}} resizeMode="cover">
-          <FlatList
-            style={[BaseStyles.w100]}
-            contentContainerStyle={[BaseStyles.pb70]}
-            data={Array.from(this.model.list)
-              .sort((a, b) => {
-                return b[0] - a[0];
-              })
-              .map(msgItem => {
-                return msgItem[1];
-              })}
-            renderItem={msgItem => {
-              return <MessageItemView {...this.childProps(msgItem.item)} />;
-            }}
-            inverted={true}
-            onScroll={this.model.onScroll}
-          />
+        {/* <ImageBackground source={ICONS.chatBg} style={{flex: 1, width: '100%'}} resizeMode="cover"> */}
+        <FlatList
+          style={[BaseStyles.w100]}
+          contentContainerStyle={[BaseStyles.pb70]}
+          data={Array.from(this.model.list)
+            .sort((a, b) => {
+              return b[0] - a[0];
+            })
+            .map(msgItem => {
+              return msgItem[1];
+            })}
+          renderItem={msgItem => {
+            return <MessageItemView {...this.childProps(msgItem.item)} />;
+          }}
+          inverted={true}
+          onScroll={this.model.onScroll}
+        />
 
-          <View style={ChatsStyles.chatMessageInputWrapper}>{this.getBlockedAlert()}</View>
-        </ImageBackground>
+        <View style={ChatsStyles.chatMessageInputWrapper}>{this.getBlockedAlert()}</View>
+        {/* </ImageBackground> */}
       </View>
     );
   }

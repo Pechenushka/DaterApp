@@ -39,11 +39,21 @@ const ICONS = {
   BlockIcon: require('../assets/img/BlockIcon.png'),
   ReportIcon: require('../assets/img/ReportIcon.png'),
   BackArrowIcon: require('../assets/img/BackArrowIcon.png'),
+  BackArrowIconWhite: require('../assets/img/BackArrowIconWhite.png'),
   menuButtonWhiteIcon: require('../assets/img/menuButtonWhite.png'),
   belIcon: require('../assets/img/belIcon.png'),
   plIcon: require('../assets/img/plIcon.png'),
   dostIcon: require('../assets/img/dotsIcon.png'),
   chatBg: require('../assets/img/chatBG.jpg'),
+  addPhotoThumb: require('../assets/img/addPhotoThumb.png'),
+  deletePhotoIcon: require('../assets/img/deletePhotoIcon.png'),
+  addPhotoIconWhite: require('../assets/img/addPhotoIconWhite.png'),
+  closeIcon: require('../assets/img/closeIcon.png'),
+  reportIconGray: require('../assets/img/reportIconGray.png'),
+  anonymusIcon: require('../assets/img/anonymousIcon.png'),
+  anonymusIconBlack: require('../assets/img/anonymousIconBlack.png'),
+  closeIconWhite: require('../assets/img/closeIconWhite.png'),
+  checkIconWhite: require('../assets/img/checkIconWhite.png'),
 };
 
 export {ICONS};

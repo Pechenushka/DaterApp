@@ -32,7 +32,7 @@ class MessageItemView extends TypedBaseComponent<messageItemViewProps, MessageIt
   private getMsgContainerCollor = (userId: number): object => {
     if (userId === app.currentUser.userId) {
       return {
-        backgroundColor: COLORS.SCREEN_BG_NOT_BLURED,
+        backgroundColor: COLORS.WHITE,
       };
     }
     return {

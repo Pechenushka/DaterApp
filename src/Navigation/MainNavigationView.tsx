@@ -10,6 +10,7 @@ import {app} from '../Core/AppImpl';
 import {Stacks} from '../Controllers/Stacks';
 import {DrawerContentView} from './DrawerContent/DrawerContentView';
 import {MainNavigationModel} from './MainNavigationModel';
+import {PhotoViewerView} from '../Views/Components/PhotoViewer/PhotoViewerView';
 
 type mainNavigationViewProps = baseComponentProps & {};
 
@@ -41,6 +42,7 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
             </app.stacks.stackDrawer.Screen>
           ))}
         </app.stacks.stackDrawer.Navigator>
+        <PhotoViewerView {...this.childProps(app.photoViewer)} />
       </NavigationContainer>
     );
   }

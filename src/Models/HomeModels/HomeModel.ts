@@ -1,7 +1,7 @@
 import {ICONS} from '../../constants/icons';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
-import {pickSingle, types} from 'react-native-document-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {app} from '../../Core/AppImpl';
 import {appSettings} from '../../Common/AppSettings';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
@@ -18,6 +18,8 @@ class HomeModel extends BaseModel<homeModelProps> {
   private _toMyAnnouncement: SimpleButtonModel;
   private _toHelpScreen: SimpleButtonModel;
   private _toSearch: SimpleButtonModel;
+  private _toPhotoGallery: SimpleButtonModel;
+  private _toPhotoAccessRequests: SimpleButtonModel;
   private _userStatus: boolean | null | undefined = true;
   private _deleteAvatar: SimpleButtonModel;
   constructor(props: homeModelProps) {
@@ -46,6 +48,21 @@ class HomeModel extends BaseModel<homeModelProps> {
       text: _.lang.profile_settings,
       icon: ICONS.docIcon,
     });
+
+    this._toPhotoGallery = new SimpleButtonModel({
+      id: '_toPhotoGallery',
+      onPress: this.toPhotoGalleryPress,
+      text: _.lang.photo_gallery,
+      icon: ICONS.addPhotoIcon,
+    });
+
+    this._toPhotoAccessRequests = new SimpleButtonModel({
+      id: '_toPhotoAccessRequests',
+      onPress: this.toPhotoAccesRequestsPress,
+      text: _.lang.photo_access_requests,
+      icon: ICONS.anonymusIconBlack,
+    });
+
     this._toHelpScreen = new SimpleButtonModel({
       id: '_toHelpScreen',
       onPress: this.toResponsesPress,
@@ -64,6 +81,7 @@ class HomeModel extends BaseModel<homeModelProps> {
       onPress: this.onDeleteAvatarPress,
       icon: ICONS.deleteIcon,
     });
+    this.updateRequestCount();
   }
 
   public get toChats() {
@@ -90,6 +108,14 @@ class HomeModel extends BaseModel<homeModelProps> {
     return this._toMyAnnouncement;
   }
 
+  public get toPhotoGallery() {
+    return this._toPhotoGallery;
+  }
+
+  public get toPhotoAccessRequests() {
+    return this._toPhotoAccessRequests;
+  }
+
   public get toHelpScreen() {
     return this._toHelpScreen;
   }
@@ -110,6 +136,14 @@ class HomeModel extends BaseModel<homeModelProps> {
     app.navigator.goToMyAnnouncementScreen();
   };
 
+  public toPhotoGalleryPress = () => {
+    app.navigator.goToPhotoGallaryScreen();
+  };
+
+  public toPhotoAccesRequestsPress = () => {
+    app.navigator.goToPhotoAccesRequestsScreen();
+  };
+
   public toSearchPress = () => {
     app.navigator.goToSearchFeedScreen();
   };
@@ -120,30 +154,38 @@ class HomeModel extends BaseModel<homeModelProps> {
 
   public changeAvatar = async () => {
     try {
-      const pickedAvatar = await pickSingle({
-        allowMultiSelection: false,
-        type: ['.jpeg', '.jpg', '.png'],
+      const pickedAvatar = await launchImageLibrary({
+        mediaType: 'photo',
       });
-      if (pickedAvatar.name.split('.').pop() === 'gif') {
-        Alert.alert('Warning', 'wrong avatar format');
-        return;
-      }
-      let data = new FormData();
-      data.append('image', {uri: pickedAvatar.uri, type: 'image/png', name: pickedAvatar.name});
-      data.append('userId', app.currentUser.userId);
-      data.append('token', app.currentUser.token);
+      if (pickedAvatar.assets !== undefined && pickedAvatar.assets.length > 0) {
+        if (
+          pickedAvatar.assets[0].fileName &&
+          pickedAvatar.assets[0].fileName.split('.').pop() === 'gif'
+        ) {
+          Alert.alert(_.lang.warning, 'Wrong avatar format');
+          return;
+        }
+        let data = new FormData();
+        data.append('image', {
+          uri: pickedAvatar.assets[0].uri,
+          type: 'image/png',
+          name: pickedAvatar.assets[0].fileName,
+        });
+        data.append('userId', app.currentUser.userId);
+        data.append('token', app.currentUser.token);
 
-      const response = await fetch(`${appSettings.apiEndpoint}users/set-avatar`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        body: data,
-      });
-      if (response.ok) {
-        const result = await response.json();
-        app.currentUser.avatar = result.data.url;
-        this.checkUserStatus();
+        const response = await fetch(`${appSettings.apiEndpoint}users/set-avatar`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          body: data,
+        });
+        if (response.ok) {
+          const result = await response.json();
+          app.currentUser.avatar = result.data.url;
+          this.checkUserStatus();
+        }
       }
     } catch (error) {
       console.log(error);
@@ -202,6 +244,21 @@ class HomeModel extends BaseModel<homeModelProps> {
     }
     this._userStatus = res;
     this.forceUpdate();
+  };
+
+  public updateRequestCount = async () => {
+    const requestRes = await loadData(UserDataProvider.GetRequestsCount, {});
+    if (requestRes === null) {
+      Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+      return;
+    }
+
+    if (requestRes.statusCode !== 200) {
+      Alert.alert(_.lang.warning, requestRes.statusMessage);
+      return;
+    }
+
+    this._toPhotoAccessRequests.counterModel.count = requestRes.data;
   };
 }
 

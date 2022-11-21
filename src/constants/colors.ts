@@ -10,8 +10,10 @@ const COLORS = {
   MAIN_BLUE: '#2D9CEE',
   BLURED_GRAY: 'rgba(120,120,120,0.5)',
   BLURED_GRAY2: 'rgba(240,240,240,0.6)',
+  BLURED_GRAY3: 'rgba(190,190,190,0.4)',
   WARNING_YELLOW: 'rgba(240,200,10,0.6)',
   DARK_GARY: 'rgba(100,100,100,1)',
   SCREEN_BG_NOT_BLURED: 'rgba(225,225,225, 1)',
+  RED: 'rgb(220,20,20)',
 };
 export {COLORS};

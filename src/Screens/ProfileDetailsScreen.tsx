@@ -1,7 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {ProfileDetailsController} from '../Controllers/ProfileDetailsController';
 import {analyticHandler} from '../Core/AnalyticHanler';
 import {app} from '../Core/AppImpl';

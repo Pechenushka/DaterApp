@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {COLORS} from '../constants/colors';
-import {hp} from '../constants/Dimensions';
+import {DEVICE_WIDTH, hp} from '../constants/Dimensions';
 
 const ProfileDetailsStyles = StyleSheet.create({
   profileModalBackGround: {
@@ -30,7 +30,9 @@ const ProfileDetailsStyles = StyleSheet.create({
     position: 'absolute',
     top: hp(1),
     right: hp(1),
-    padding: hp(5),
+    height: hp(50),
+    width: hp(50),
+    backgroundColor: COLORS.BLURED_GRAY3,
   },
 
   profileModalNextButtonContainer: {
@@ -67,7 +69,7 @@ const ProfileDetailsStyles = StyleSheet.create({
   },
 
   profileAvatarImage: {
-    width: '100%',
+    width: '95%',
     height: hp(500),
     resizeMode: 'cover',
   },
@@ -151,6 +153,33 @@ const ProfileDetailsStyles = StyleSheet.create({
     height: hp(40),
     width: hp(280),
     flexDirection: 'row',
+  },
+
+  profilePhotosContainer: {
+    marginTop: hp(10),
+    borderRadius: 12,
+  },
+
+  profilePhotosIcon: {
+    width: '100%',
+    height: hp(400),
+    resizeMode: 'cover',
+    borderRadius: 12,
+  },
+
+  profilePhotosColumnIcon: {
+    width: DEVICE_WIDTH / 2.4,
+    height: hp(250),
+    resizeMode: 'cover',
+    borderRadius: 12,
+  },
+
+  contentContainer: {
+    backgroundColor: COLORS.WHITE,
+    width: '100%',
+    marginTop: hp(160),
+    borderRadius: 8,
+    alignItems: 'center',
   },
 });
 

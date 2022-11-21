@@ -64,25 +64,28 @@ class SearchView extends TypedBaseComponent<searchViewProps, SearchModel> {
         <SearchFilterView {...this.childProps(this.model.filterModal)} />
         <ProfileDetailsModalView {...this.childProps(this.model.profileDetailsModal)} />
         <SendMessageModalView {...this.childProps(this.model.sendMessageModal)} />
-        {Array.from(this.model.list).length > 0 ? (
-          <FlatList
-            ref={ref => {
-              this.model.FlatListRef = ref;
-            }}
-            style={[BaseStyles.w100]}
-            contentContainerStyle={[BaseStyles.w100, BaseStyles.pb70]}
-            onScroll={this.model.onScroll}
-            renderItem={searchItem => {
-              return <SearchItemView {...this.childProps(searchItem.item)} />;
-            }}
-            data={Array.from(this.model.list).map(searchItem => {
-              return searchItem[1];
-            })}
-            maxToRenderPerBatch={10}
-            initialNumToRender={10}
-            windowSize={5}
-            getItemLayout={(data, index) => ({length: 135, offset: 135 * index, index})}
-          />
+        {this.model.list.length > 0 ? (
+          <View style={[BaseStyles.w100, BaseStyles.ai_c]}>
+            <FlatList
+              ref={ref => {
+                this.model.FlatListRef = ref;
+              }}
+              style={[BaseStyles.w95]}
+              contentContainerStyle={[BaseStyles.pb70]}
+              onScroll={this.model.onScroll}
+              renderItem={searchItem => {
+                return <SearchItemView {...this.childProps(searchItem.item)} />;
+              }}
+              data={this.model.list}
+              maxToRenderPerBatch={10}
+              initialNumToRender={10}
+              windowSize={5}
+              getItemLayout={(data, index) => ({length: 205, offset: 205 * index, index})}
+              numColumns={2}
+              horizontal={false}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
         ) : (
           <View style={[BaseStyles.mt30, BaseStyles.alignCenter]}>
             <Text>{_.lang.items_not_found}</Text>

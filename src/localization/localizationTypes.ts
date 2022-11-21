@@ -95,6 +95,47 @@ export type localizationPackType = {
   choose_gender: string;
   iam_man: string;
   iam_women: string;
+  your_photo_gallery: string;
+  now_you_can_make_photo_access_request: string;
+  this_photo_was_hide_by_owner: string;
+  make_request: string;
+  watch_video: string;
+  oops: string;
+  cant_load_video: string;
+  success: string;
+  you_successfully_requested_access: string;
+  photo_gallery: string;
+  photo_access_requests: string;
+  requests_to_me: string;
+  my_requests: string;
+  pending: string;
+  approved: string;
+  rejected: string;
+  requestItemStatusMessage: {
+    pending: string;
+    approved: string;
+    rejected: string;
+  };
+  requestHelpMessage: {
+    requestToMe: {
+      pending: string;
+      approved: string;
+      rejected: string;
+    };
+    myRequests: {
+      pending: string;
+      approved: string;
+      rejected: string;
+    };
+  };
+  photoGalleryPhotoHint: string;
+  photoGalleryAnonPhotoHint: string;
+  no_items_here_yet: string;
+  your_anon_photos: string;
+  your_photos: string;
+  sorry_you_rich_anon_photos_limit: string;
+  now_you_can_add_anon_photo: string;
+  for_add_annon_photo_watch_add: string;
 };
 
 export type localizationEnum = 'eng' | 'rus' | 'ua' | 'bel' | 'pl';

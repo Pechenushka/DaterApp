@@ -11,6 +11,7 @@ import {MainNavigationModel} from '../Navigation/MainNavigationModel';
 import {BottomNavigationModel} from '../Models/BottomNavigation/BottomNavigationModel';
 import {LocalizationModel} from '../Models/Components/LocalizationModels/LocalizationModel';
 import {adsHandler} from './AdsHandler';
+import {PhotoViewerModel} from '../Models/Components/PhotoViewer/PhotoViewerModel';
 
 class MainApp implements AppImpl {
   private readonly _model: AppModel;
@@ -27,6 +28,8 @@ class MainApp implements AppImpl {
   private readonly _stacks: Stacks;
   private _bottomNavigation: BottomNavigationModel;
   private _localization: LocalizationModel;
+  private _photoViewer: PhotoViewerModel;
+  public addImpression: boolean = false;
 
   constructor() {
     // eslint-disable-next-line no-undef
@@ -43,6 +46,10 @@ class MainApp implements AppImpl {
     });
     this._localization = new LocalizationModel({id: '_localization'});
     adsHandler.init();
+    setTimeout(() => {
+      this._bottomNavigation.init();
+    }, 10);
+    this._photoViewer = new PhotoViewerModel({id: '_photoViewer'});
   }
   public get model() {
     return this._model;
@@ -62,6 +69,10 @@ class MainApp implements AppImpl {
 
   public get bottomNavigation() {
     return this._bottomNavigation;
+  }
+
+  public get photoViewer() {
+    return this._photoViewer;
   }
 
   public getScreen(name: string) {

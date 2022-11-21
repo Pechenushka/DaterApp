@@ -27,7 +27,7 @@ export type filterType = {
 };
 
 class SearchModel extends BaseModel<searchModelProps> {
-  private _list: Map<number, SearchItemModel> = new Map();
+  private _list: Array<SearchItemModel> = [];
   private _initialLoad: boolean = true;
   private _currentFilter: filterType;
   private _filterButton: SimpleButtonModel;
@@ -145,9 +145,9 @@ class SearchModel extends BaseModel<searchModelProps> {
       this._initialLoad = false;
       return;
     }
-    this.list.clear();
+    this._list = [];
     searchRes.data.map(searchItemProps => {
-      this.list.set(searchItemProps.id, this.createSearchItem(searchItemProps));
+      this.list.push(this.createSearchItem(searchItemProps));
     });
     this._initialLoad = false;
     this.FlatListRef?.scrollToOffset({offset: 0, animated: true});
@@ -158,6 +158,7 @@ class SearchModel extends BaseModel<searchModelProps> {
     if (this._initialLoad) {
       return;
     }
+    this._offset = 0;
     const searchBody = {
       location: {
         cityId: this._currentFilter.location.city.id,
@@ -183,27 +184,11 @@ class SearchModel extends BaseModel<searchModelProps> {
       this._initialLoad = false;
       return;
     }
+    this._list = [];
     searchRes.data.map(searchItemProps => {
-      const oldItem = this.list.get(searchItemProps.id);
-      if (oldItem === undefined) {
-        this.list.set(searchItemProps.id, this.createSearchItem(searchItemProps));
-      } else {
-        if (oldItem.liked !== searchItemProps.liked || oldItem.text !== searchItemProps.text) {
-          this.list.set(searchItemProps.id, this.createSearchItem(searchItemProps));
-        }
-      }
+      this.list.push(this.createSearchItem(searchItemProps));
     });
 
-    const itemsToDelete = Array.from(this.list.keys()).filter(key => {
-      return (
-        searchRes.data.findIndex(searchItem => {
-          return searchItem.id === key;
-        }) === -1
-      );
-    });
-    itemsToDelete.forEach(itemIndex => {
-      this.list.delete(itemIndex);
-    });
     this.FlatListRef?.scrollToOffset({offset: 0, animated: true});
     this.forceUpdate();
   };
@@ -239,7 +224,7 @@ class SearchModel extends BaseModel<searchModelProps> {
         return;
       }
       searchRes.data.map(searchItemProps => {
-        this.list.set(searchItemProps.id, this.createSearchItem(searchItemProps));
+        this.list.push(this.createSearchItem(searchItemProps));
       });
       this.forceUpdate();
       this._loadingNP = false;
@@ -330,9 +315,14 @@ class SearchModel extends BaseModel<searchModelProps> {
         blocked: nextUser.props.blocked,
         blockedBy: nextUser.props.blockedBy,
         online_status: nextUser.props.online_status,
+        anon_photos: nextUser.props.anon_photos,
+        photos: nextUser.props.photos,
+        photoAccess: nextUser.props.photoAccess,
       };
       this._profileDetailsModal.forceUpdate();
-      this.FlatListRef && this.FlatListRef.scrollToItem({item: nextUser, animated: true});
+      const index = this.list.findIndex(item => item.id === nextUser.id);
+      this.FlatListRef &&
+        this.FlatListRef.scrollToIndex({index: Math.floor(index / 2), animated: true});
     }
   };
 
@@ -362,9 +352,14 @@ class SearchModel extends BaseModel<searchModelProps> {
         blocked: prevUser.props.blocked,
         blockedBy: prevUser.props.blockedBy,
         online_status: prevUser.props.online_status,
+        anon_photos: prevUser.props.anon_photos,
+        photos: prevUser.props.photos,
+        photoAccess: prevUser.props.photoAccess,
       };
       this._profileDetailsModal.forceUpdate();
-      this.FlatListRef && this.FlatListRef.scrollToItem({item: prevUser, animated: true});
+      const index = this.list.findIndex(item => item.id === prevUser.id);
+      this.FlatListRef &&
+        this.FlatListRef.scrollToIndex({index: Math.floor(index / 2), animated: true});
     }
   };
 }

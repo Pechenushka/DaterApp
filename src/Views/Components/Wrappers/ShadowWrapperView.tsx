@@ -28,10 +28,12 @@ const ShadowWrapperView = (props: shadowWrapperProps) => {
       backgroundColor: COLORS.WHITE,
       borderRadius: props.borderRadius !== undefined ? props.borderRadius : 12,
       elevation: elevation,
+      overflow: 'hidden',
     };
   };
   return (
-    <View style={[externalStyles(props.externalShadow), props.style !== undefined ? props.style : {}]}>
+    <View
+      style={[externalStyles(props.externalShadow), props.style !== undefined ? props.style : {}]}>
       <View style={[internalStyles(props.internalShadow)]}>{props.children}</View>
     </View>
   );

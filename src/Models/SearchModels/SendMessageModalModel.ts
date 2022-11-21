@@ -30,7 +30,7 @@ class SendMessageModalModel extends BaseModel<sendMessageModalModelProps> {
     this._closeButton = new SimpleButtonModel({
       id: '_closeButton',
       onPress: this.onCloseButtonPress,
-      icon: ICONS.deleteIcon,
+      icon: ICONS.closeIcon,
     });
 
     this._submitButton = new SimpleButtonModel({

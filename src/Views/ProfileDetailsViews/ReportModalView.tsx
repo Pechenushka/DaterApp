@@ -4,13 +4,12 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {View, Modal, Text, Image, Platform} from 'react-native';
+import {View, Modal, Text, Image} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {SearchStyles} from '../../Styles/SearchStyles';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
 import {ICONS} from '../../constants/icons';
-import {appSettings} from '../../Common/AppSettings';
 import {TextInputView} from '../Components/Inputs/TextInputView';
 import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
 import {_} from '../../Core/Localization';

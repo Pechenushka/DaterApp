@@ -25,6 +25,23 @@ const AvatarStyles = StyleSheet.create({
     borderColor: COLORS.WHITE,
     borderWidth: 1,
   },
+
+  coverAvatarContainer: {
+    backgroundColor: COLORS.WHITE,
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    borderColor: COLORS.WHITE,
+    borderWidth: 2,
+    overflow: 'hidden',
+    width: '100%',
+    height: '68%',
+  },
+
+  coverAvatarImage: {
+    resizeMode: 'cover',
+    height: '100%',
+    width: '100%',
+  },
 });
 
 export {AvatarStyles};

@@ -25,6 +25,7 @@ const HomeScreenStyles = StyleSheet.create({
 
   mainContainer: {
     backgroundColor: COLORS.MAIN_BLUE,
+    height: '100%',
   },
 
   contentContainer: {
@@ -92,6 +93,7 @@ const HomeScreenStyles = StyleSheet.create({
   userInfoContent: {
     top: hp(-90),
     alignItems: 'center',
+    width: '100%',
   },
 
   avatarImage: {
@@ -128,7 +130,6 @@ const HomeScreenStyles = StyleSheet.create({
     height: hp(60),
     width: hp(180),
     flexDirection: 'row',
-    flexWrap: 'wrap',
   },
 
   deleteAvatarButtonContainer: {

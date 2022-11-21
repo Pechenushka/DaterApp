@@ -52,6 +52,21 @@ class BottomNavigationModel extends BaseModel<bottomNavigationModelProps> {
     });
   }
 
+  public init = async () => {
+    const restoredScreen = await app.navigator.restoreNavigatorState();
+    if (restoredScreen) {
+      switch (restoredScreen) {
+        case 'PhotoGalleryScreen':
+          app.navigator.goToPhotoGallaryScreen();
+          this.activeIndex = 0;
+          break;
+
+        default:
+          break;
+      }
+    }
+  };
+
   public onSearchPress = async () => {
     app.navigator.goToSearchFeedScreen();
   };

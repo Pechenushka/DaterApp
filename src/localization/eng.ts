@@ -219,6 +219,51 @@ const eng: localizationPackType = {
   choose_gender: 'Choose gender',
   iam_man: 'I am a man',
   iam_women: 'I am a woman',
+  your_photo_gallery: 'Your Photo Gallery',
+  now_you_can_make_photo_access_request:
+    'Now you have the opportunity to request access to the photo',
+  cant_load_video: `We can't download the video, most likely the problem is a slow connection`,
+  make_request: 'Request Access',
+  oops: 'Ouch!',
+  success: 'Success!',
+  this_photo_was_hide_by_owner:
+    'Access to the photo is limited by the owner, request access from the owner of the photo, for this, watch a short video.',
+  watch_video: 'Watch ad',
+  you_successfully_requested_access: 'Access request has been sent successfully!',
+  photo_access_requests: 'Access requests',
+  photo_gallery: 'Photo Gallery',
+  my_requests: 'My Requests',
+  requests_to_me: 'Requests To Me',
+  approved: 'Approved',
+  pending: 'Pending',
+  rejected: 'Rejected',
+  requestItemStatusMessage: {
+    approved: `This user's request has been approved`,
+    pending: 'Requests access and waits for a response',
+    rejected: `This user's request was denied`,
+  },
+  requestHelpMessage: {
+    myRequests: {
+      approved: 'Shown here are your requests that have been approved.',
+      pending: 'Shown here are your pending requests.',
+      rejected: 'Shown here are your rejected requests.',
+    },
+    requestToMe: {
+      approved: 'Shown here are requests to you that you have approved.',
+      pending: 'Shown here are requests to you that are waiting for your response.',
+      rejected: 'This shows requests to you that you have declined.',
+    },
+  },
+  for_add_annon_photo_watch_add:
+    'In order to add an anonymous photo you need to watch one short video',
+  no_items_here_yet: `While there's nothing here`,
+  now_you_can_add_anon_photo: 'Now you can add an anonymous photo',
+  photoGalleryAnonPhotoHint: `These photos will be visible only to those users to whom you have given access. Thus, only you decide who will see these photos. Photos that have not yet been moderated are marked with a red frame. Limit 4`,
+  photoGalleryPhotoHint:
+    'These photos will be visible to all users. Photos that have not yet been moderated are marked with a red frame. Limit 5',
+  sorry_you_rich_anon_photos_limit: `Sorry, you've reached your anonymous photo limit. 4/4`,
+  your_anon_photos: 'Your Anonymous Photos',
+  your_photos: 'Your Photos',
 };
 
 export {eng};

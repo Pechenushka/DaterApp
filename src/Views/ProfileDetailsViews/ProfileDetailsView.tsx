@@ -4,8 +4,15 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {ActivityIndicator, Image, Modal, Platform, Text, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  ActivityIndicator,
+  Image,
+  Modal,
+  Platform,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import {ProfileDetailsModel} from '../../Models/ProfileDetailsModels/ProfileDetailsModel';
 import {COLORS} from '../../constants/colors';
 import {BaseStyles} from '../../Styles/BaseStyles';
@@ -18,13 +25,13 @@ import {SearchStyles} from '../../Styles/SearchStyles';
 import {getAge} from '../../Common/Helpers';
 import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
 import {app} from '../../Core/AppImpl';
-import {ChatsStyles} from '../../Styles/ChatsStyles';
 import {SendMessageModalView} from '../SearchViews/SendMessageModalView';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {ReportModalView} from './ReportModalView';
 import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
 import {getShortDate} from '../../Common/dateParse';
 import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
+import {ProfileDetailsStyles} from '../../Styles/ProfileDetailsStyles';
 
 type profileDetailsViewProps = baseComponentProps & {};
 
@@ -115,7 +122,7 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
     }
     return (
       <View style={[BaseStyles.container, HomeScreenStyles.mainContainer, BaseStyles.alignCenter]}>
-        <View style={[HomeScreenStyles.contentContainer]}>
+        <View style={[ProfileDetailsStyles.contentContainer]}>
           {this.model.userInfo !== null && (
             <View style={[HomeScreenStyles.userInfoContent]}>
               <TouchableOpacity onPress={this.model.openFullScreenModal}>
@@ -232,6 +239,7 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                   </View>
                 )}
               </View>
+
               {this.model.userId !== app.currentUser.userId && (
                 <View style={[BaseStyles.row]}>
                   <View style={[HomeScreenStyles.actionButtonColum]}>
@@ -312,15 +320,56 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                 </View>
               )}
               <View style={[BaseStyles.mt20]}>{this.getBlockedAlert()}</View>
+              <View style={[]}>
+                <BannerAd
+                  unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'}
+                  size={BannerAdSize.BANNER}
+                />
+              </View>
+              <View style={[BaseStyles.w90]}>
+                {this.model.userInfo.photos &&
+                  this.model.userInfo.photos.map((photo, index) => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => {
+                          app.photoViewer.open(photo, false, this.model.userId);
+                        }}
+                        style={ProfileDetailsStyles.profilePhotosContainer}
+                        key={index}>
+                        <Image
+                          style={ProfileDetailsStyles.profilePhotosIcon}
+                          source={{uri: `${appSettings.apiEndpoint}${photo}`}}
+                        />
+                      </TouchableOpacity>
+                    );
+                  })}
+              </View>
+
+              <View style={[BaseStyles.w90]}>
+                {this.model.userInfo.anon_photos &&
+                  this.model.userInfo.anon_photos.map((photo, index) => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => {
+                          app.photoViewer.open(photo, true, this.model.userId);
+                        }}
+                        style={[
+                          ProfileDetailsStyles.profilePhotosContainer,
+                          this.model.userInfo && this.model.userInfo.photoAccess
+                            ? {borderWidth: 3, borderColor: COLORS.GREEN_BUTTON}
+                            : {borderWidth: 3, borderColor: COLORS.RED},
+                        ]}
+                        key={index}>
+                        <Image
+                          style={ProfileDetailsStyles.profilePhotosIcon}
+                          source={{uri: `${appSettings.apiEndpoint}${photo}`}}
+                        />
+                      </TouchableOpacity>
+                    );
+                  })}
+              </View>
             </View>
           )}
-
-          <View style={[]}>
-            <BannerAd
-              unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'}
-              size={BannerAdSize.BANNER}
-            />
-          </View>
         </View>
       </View>
     );

@@ -31,6 +31,8 @@ import {ChatScreen} from '../Screens/ChatScreen';
 import {BannedScreen} from '../Screens/BannedScreen';
 import {PrivacyScreen} from '../Screens/PrivacyScreen';
 import {TermsOfUseScreen} from '../Screens/TermsOfUseScreen';
+import {PhotoGalleryScreen} from '../Screens/PhotoGalleryScreen';
+import {PhotoAccessRequestsScreen} from '../Screens/PhotoAccessRequestsScreen';
 
 type typedStackNavigator = TypedNavigator<
   Record<string, object | undefined>,
@@ -97,6 +99,12 @@ class Stacks {
       {Screen: BannedScreen, scrrenName: 'BannedScreen', options: {swipeEnabled: true}},
       {Screen: PrivacyScreen, scrrenName: 'PrivacyScreen', options: {swipeEnabled: true}},
       {Screen: TermsOfUseScreen, scrrenName: 'TermsOfUseScreen', options: {swipeEnabled: true}},
+      {Screen: PhotoGalleryScreen, scrrenName: 'PhotoGalleryScreen', options: {swipeEnabled: true}},
+      {
+        Screen: PhotoAccessRequestsScreen,
+        scrrenName: 'PhotoAccessRequestsScreen',
+        options: {swipeEnabled: true},
+      },
     ];
   }
 

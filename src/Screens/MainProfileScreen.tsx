@@ -42,6 +42,7 @@ class MainProfileScreen extends BaseLayoutView<HomeController> {
   async onFocus(): Promise<void> {
     await super.onFocus();
     await this.controller.homeModel.checkUserStatus();
+    await this.controller.homeModel.updateRequestCount();
     analyticHandler.trackEvent('home_screen_rendered');
   }
 
@@ -54,7 +55,7 @@ class MainProfileScreen extends BaseLayoutView<HomeController> {
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <ScrollView>
+        <ScrollView contentContainerStyle={BaseStyles.h100}>
           <HomeView
             ref={ref => {
               this._refMod = ref;

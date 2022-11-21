@@ -1,4 +1,5 @@
 import {Alert} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
@@ -29,12 +30,14 @@ class ProfileDetailsModalModel extends BaseModel<profileDetailsModalModelProps> 
 
   private _userData: searchItemDataType | null = null;
 
+  public scrollRef: ScrollView | null = null;
+
   constructor(props: profileDetailsModalModelProps) {
     super(props);
     this._closeButton = new SimpleButtonModel({
       id: '_closeButton',
       onPress: this.onCloseButtonPress,
-      icon: ICONS.deleteIcon,
+      icon: ICONS.closeIcon,
     });
 
     this._prevButton = new SimpleButtonModel({
@@ -225,10 +228,12 @@ class ProfileDetailsModalModel extends BaseModel<profileDetailsModalModelProps> 
 
   public onNextPress = () => {
     this.props.onNextPress && this.props.onNextPress();
+    this.scrollRef && this.scrollRef?.scrollTo({animated: true, x: 0, y: 0});
   };
 
   public onPrevPress = () => {
     this.props.onPrevPress && this.props.onPrevPress();
+    this.scrollRef && this.scrollRef?.scrollTo({animated: true, x: 0, y: 0});
   };
 }
 

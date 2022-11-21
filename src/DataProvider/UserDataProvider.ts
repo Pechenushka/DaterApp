@@ -1,6 +1,7 @@
 import {fetchData} from '../Common/fetchData';
 import {Keyboard} from 'react-native';
 import {
+  anonPhotoLinkDataType,
   baseResponse,
   chatIsExistsResponseDataType,
   chatListResponseDataType,
@@ -8,7 +9,10 @@ import {
   getLikesCountDataType,
   getMesagesCountDataType,
   getMesagesDataType,
+  getRequestsCountDataType,
   locationsResponseDataType,
+  photoAccessRequestResponseDataType,
+  photoListDataType,
   registrationResponseDataType,
   requestBodyType,
   searchResponseDataType,
@@ -128,6 +132,10 @@ class UserDataProvider {
     return fetchData('users/get-user-counters', 'POST', body, true);
   }
 
+  static async GetRequestsCount(body: requestBodyType): Promise<getRequestsCountDataType> {
+    return fetchData('users/get-user-request-couter', 'POST', body, true);
+  }
+
   static async BlockUser(body: requestBodyType): Promise<baseResponse> {
     return fetchData('users/block-user', 'POST', body, true);
   }
@@ -150,6 +158,44 @@ class UserDataProvider {
 
   static async DeleteChat(body: requestBodyType): Promise<baseResponse> {
     return fetchData(`chats/delete-chat`, 'POST', body, true);
+  }
+
+  static async GetUrlOfAnonPhoto(body: requestBodyType): Promise<anonPhotoLinkDataType> {
+    return fetchData(`users/anon-photo-check`, 'POST', body, true);
+  }
+
+  static async GetUserPhotos(body: requestBodyType): Promise<photoListDataType> {
+    return fetchData(`users/get-photos`, 'POST', body, true);
+  }
+
+  static async GetUserAnonPhotos(body: requestBodyType): Promise<photoListDataType> {
+    return fetchData(`users/get-anon-photos`, 'POST', body, true);
+  }
+
+  static async DeleteUserPhoto(body: requestBodyType): Promise<baseResponse> {
+    return fetchData(`users/delete-photo`, 'POST', body, true);
+  }
+
+  static async DeleteUserAnonPhoto(body: requestBodyType): Promise<baseResponse> {
+    return fetchData(`users/delete-anon-photo`, 'POST', body, true);
+  }
+
+  static async RequestAccesToAnonPhoto(body: requestBodyType): Promise<baseResponse> {
+    return fetchData(`users/request-photo-access`, 'POST', body, true);
+  }
+
+  static async GetPhotoAccessRequest(
+    body: requestBodyType,
+  ): Promise<photoAccessRequestResponseDataType> {
+    return fetchData(`users/get-access-requests`, 'POST', body, true);
+  }
+
+  static async handlePhotoAccessRequest(body: requestBodyType): Promise<baseResponse> {
+    return fetchData(`users/resolve-access-request`, 'POST', body, true);
+  }
+
+  static async ReportPhoto(body: requestBodyType): Promise<baseResponse> {
+    return fetchData('users/report-photo', 'POST', body, true);
   }
 }
 

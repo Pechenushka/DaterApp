@@ -181,6 +181,10 @@ const BaseStyles = StyleSheet.create({
     marginBottom: hp(10),
   },
 
+  mt5: {
+    marginTop: hp(5),
+  },
+
   mt10: {
     marginTop: hp(10),
   },

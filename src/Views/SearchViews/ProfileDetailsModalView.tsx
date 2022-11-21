@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {View, Modal, Image, Text, Platform, ScrollView} from 'react-native';
+import {View, Modal, Image, Text, Platform, ScrollView, TouchableOpacity} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {_} from '../../Core/Localization';
@@ -15,10 +15,11 @@ import {ProfileDetailsStyles} from '../../Styles/ProfileDetailsStyles';
 import {getAge} from '../../Common/Helpers';
 import {getShortDate} from '../../Common/dateParse';
 import {app} from '../../Core/AppImpl';
-import {HomeScreenStyles} from '../../Styles/HomeScreenStyles';
 import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
 import {SendMessageModalView} from './SendMessageModalView';
+import {COLORS} from '../../constants/colors';
+import {ReportModalView} from '../ProfileDetailsViews/ReportModalView';
 
 type profileDetailsModalViewProps = baseComponentProps & {};
 
@@ -95,6 +96,7 @@ class ProfileDetailsModalView extends TypedBaseComponent<
 
   public render() {
     super.render();
+
     return (
       <Modal
         onRequestClose={this.model.close}
@@ -103,7 +105,12 @@ class ProfileDetailsModalView extends TypedBaseComponent<
         style={BaseStyles.container}>
         <View style={ProfileDetailsStyles.profileModalBackGround}>
           <View style={ProfileDetailsStyles.profileModalContentContainer}>
-            <ScrollView style={[BaseStyles.w100]} contentContainerStyle={[BaseStyles.alignCenter]}>
+            <ScrollView
+              ref={ref => {
+                this.model.scrollRef = ref;
+              }}
+              style={[BaseStyles.w100]}
+              contentContainerStyle={[BaseStyles.alignCenter, BaseStyles.w100]}>
               {this.model.userData !== null && (
                 <View style={[BaseStyles.w100, BaseStyles.alignCenter]}>
                   <View style={[ProfileDetailsStyles.profileAvatarContainer]}>
@@ -118,17 +125,9 @@ class ProfileDetailsModalView extends TypedBaseComponent<
                           ? ICONS.profileIcon
                           : {
                               uri: `${appSettings.apiEndpoint}${this.model.userData.authorAvatar}`,
-                              cache: 'reload',
                             }
                       }
                       style={ProfileDetailsStyles.profileAvatarImage}
-                      onError={() => {
-                        const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
-                        this.imgRef &&
-                          this.imgRef.setNativeProps({
-                            [nativeProp]: [Image.resolveAssetSource(ICONS.profileIcon)], // array
-                          });
-                      }}
                     />
                     {this.model.userData.authorId !== app.currentUser.userId && (
                       <>
@@ -210,6 +209,57 @@ class ProfileDetailsModalView extends TypedBaseComponent<
                       </View>
                     )}
                   </View>
+                  <View style={BaseStyles.w100}>
+                    {this.model.userData.photos &&
+                      this.model.userData.photos.map((photo, index) => {
+                        return (
+                          <TouchableOpacity
+                            onPress={() => {
+                              app.photoViewer.open(
+                                photo,
+                                false,
+                                this.model.userData ? this.model.userData.authorId : -1,
+                              );
+                            }}
+                            style={ProfileDetailsStyles.profilePhotosContainer}
+                            key={index}>
+                            <Image
+                              style={ProfileDetailsStyles.profilePhotosIcon}
+                              source={{uri: `${appSettings.apiEndpoint}${photo}`}}
+                            />
+                          </TouchableOpacity>
+                        );
+                      })}
+                  </View>
+
+                  <View style={BaseStyles.w100}>
+                    {this.model.userData &&
+                      this.model.userData.anon_photos &&
+                      this.model.userData.anon_photos.map((photo, index) => {
+                        return (
+                          <TouchableOpacity
+                            onPress={() => {
+                              app.photoViewer.open(
+                                photo,
+                                true,
+                                this.model.userData ? this.model.userData.authorId : -1,
+                              );
+                            }}
+                            style={[
+                              ProfileDetailsStyles.profilePhotosContainer,
+                              this.model.userData && this.model.userData.photoAccess
+                                ? {borderWidth: 3, borderColor: COLORS.GREEN_BUTTON}
+                                : {borderWidth: 3, borderColor: COLORS.RED},
+                            ]}
+                            key={index}>
+                            <Image
+                              style={ProfileDetailsStyles.profilePhotosIcon}
+                              source={{uri: `${appSettings.apiEndpoint}${photo}`}}
+                            />
+                          </TouchableOpacity>
+                        );
+                      })}
+                  </View>
 
                   {this.model.userData.authorId !== app.currentUser.userId && (
                     <>
@@ -243,6 +293,7 @@ class ProfileDetailsModalView extends TypedBaseComponent<
             </ScrollView>
 
             <SendMessageModalView {...this.childProps(this.model.sendMessageModal)} />
+            <ReportModalView {...this.childProps(this.model.reportModal)} />
 
             <SimpleButtonView
               iconStyles={ProfileDetailsStyles.profileModalCloseIcon}

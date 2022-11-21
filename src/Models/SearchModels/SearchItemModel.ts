@@ -131,6 +131,9 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
         blocked: this.props.blocked,
         blockedBy: this.props.blockedBy,
         online_status: this.props.online_status,
+        anon_photos: this.props.anon_photos,
+        photos: this.props.photos,
+        photoAccess: this.props.photoAccess,
       });
     // app.navigator.goToProfileDetailsScreen(this.authorId);
   };

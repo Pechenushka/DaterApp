@@ -18,6 +18,7 @@ import {appSettings} from '../../Common/AppSettings';
 import {_} from '../../Core/Localization';
 import {getAge} from '../../Common/Helpers';
 import {BannerAd, BannerAdSize, TestIds} from 'react-native-google-mobile-ads';
+import {BottomNavigationStyles} from '../../Styles/BottomNavigationStyles';
 
 type homeViewProps = baseComponentProps & {};
 
@@ -148,8 +149,21 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                       <SimpleButtonView
                         iconStyles={[HomeScreenStyles.actionButtonIcon]}
                         styles={[HomeScreenStyles.actionButtonContainer]}
-                        textStyles={BaseStyles.capitalize}
-                        {...this.childProps(this.model.toChats)}
+                        textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
+                        {...this.childProps(this.model.toPhotoGallery)}
+                      />
+                    </ShadowWrapperView>
+                  </View>
+
+                  <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                    <ShadowWrapperView>
+                      <SimpleButtonView
+                        iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                        styles={[HomeScreenStyles.actionButtonContainer]}
+                        textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
+                        counterStyles={[BottomNavigationStyles.bottomNavigationCounter]}
+                        counterTextStyles={[BottomNavigationStyles.bottomNavigationCounterText]}
+                        {...this.childProps(this.model.toPhotoAccessRequests)}
                       />
                     </ShadowWrapperView>
                   </View>
@@ -162,7 +176,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                       />
                     </ShadowWrapperView>
                   </View> */}
-                  <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                  {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
                     <ShadowWrapperView>
                       <SimpleButtonView
                         iconStyles={[HomeScreenStyles.actionButtonIcon]}
@@ -171,7 +185,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                         {...this.childProps(this.model.toLikes)}
                       />
                     </ShadowWrapperView>
-                  </View>
+                  </View> */}
                 </View>
                 <View style={[HomeScreenStyles.actionButtonColum]}>
                   <View style={[HomeScreenStyles.actionButtonWrapper]}>
@@ -179,7 +193,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                       <SimpleButtonView
                         iconStyles={[HomeScreenStyles.actionButtonIcon]}
                         styles={[HomeScreenStyles.actionButtonContainer]}
-                        textStyles={BaseStyles.capitalize}
+                        textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
                         {...this.childProps(this.model.toMyAnnouncement)}
                       />
                     </ShadowWrapperView>
@@ -198,7 +212,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                       <SimpleButtonView
                         iconStyles={[HomeScreenStyles.actionButtonIcon]}
                         styles={[HomeScreenStyles.actionButtonContainer]}
-                        textStyles={BaseStyles.capitalize}
+                        textStyles={[BaseStyles.capitalize]}
                         {...this.childProps(this.model.toSearch)}
                       />
                     </ShadowWrapperView>
@@ -218,7 +232,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
           </View>
           <View style={[]}>
             <BannerAd
-              unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'}
+              unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/7617680070'}
               size={BannerAdSize.BANNER}
             />
           </View>

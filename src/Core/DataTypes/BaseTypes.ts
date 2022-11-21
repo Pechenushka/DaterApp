@@ -5,6 +5,34 @@ export type baseResponse = {
   statusMessage: string;
 };
 
+export type anonPhotoLinkDataType = baseResponse & {
+  data: {
+    url: string;
+    access: boolean;
+  };
+};
+
+export type photoListDataType = baseResponse & {
+  data: {
+    list: Array<{url: string; checked: boolean | null}>;
+  };
+};
+
+export type photoAccessRequestResponseDataType = baseResponse & {
+  data: Array<photoAccessRequestItem>;
+};
+
+export type photoAccessRequestItem = {
+  author_id: number;
+  avatar: string;
+  birthDate: number;
+  gender: genderEnum;
+  id: number;
+  name: string;
+  requestor_id: number;
+  status: string;
+};
+
 export type registrationResponseDataType = baseResponse & {
   data: {
     id: number;
@@ -56,6 +84,9 @@ export type searchItemDataType = {
   blocked: boolean;
   blockedBy: boolean;
   online_status: boolean;
+  photos: Array<string>;
+  anon_photos: Array<string>;
+  photoAccess: boolean;
 };
 
 export type userStatusResponseDataType = baseResponse & {
@@ -94,6 +125,9 @@ export type userDetailsDataType = {
   lookingfor: number;
   goal: number;
   online_status: boolean;
+  photos: Array<string>;
+  anon_photos: Array<string>;
+  photoAccess: boolean;
 };
 
 export type userMeetingDataType = baseResponse & {
@@ -152,6 +186,10 @@ export type getLikesCountDataType = baseResponse & {
     likesCount: number;
     matchesCount: number;
   };
+};
+
+export type getRequestsCountDataType = baseResponse & {
+  data: number;
 };
 
 export type fcmSyncDataType = baseResponse & {

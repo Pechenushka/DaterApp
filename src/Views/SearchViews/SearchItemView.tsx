@@ -19,6 +19,9 @@ import {getAge} from '../../Common/Helpers';
 import {_} from '../../Core/Localization';
 import {SearchStyles} from '../../Styles/SearchStyles';
 import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
+import {CoverAvatar} from '../Components/Avatars/CoverAvatar';
+import {AvatarStyles} from '../../Styles/AvatarStyles';
+import {hp} from '../../constants/Dimensions';
 
 type searchItemViewProps = baseComponentProps & {};
 
@@ -58,7 +61,7 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
   public render() {
     super.render();
     return (
-      <View style={[BaseStyles.w100, BaseStyles.ai_c, {height: 142}, BaseStyles.mt10]}>
+      <View style={[BaseStyles.w45, BaseStyles.ai_c, {height: 205}, BaseStyles.mt10]}>
         <TouchableOpacity
           style={[
             SearchStyles.searchItemContainer,
@@ -68,31 +71,28 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
             BaseStyles.h100,
           ]}
           onPress={this.model.onItemPress}>
-          <View style={[BaseStyles.w100, BaseStyles.ai_fs, BaseStyles.h100]}>
-            <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.jc_sb, BaseStyles.h100, ,]}>
-              <View style={[BaseStyles.ai_c, BaseStyles.w30, BaseStyles.jc_c]}>
-                <RoundAvatarView
-                  id="RoundAvatar"
-                  imagePath={this.model.authorAvatar}
-                  size={95}
-                  isOnline={this.model.online_status}
-                />
-              </View>
-              <View style={[BaseStyles.jc_c, BaseStyles.w60]}>
-                <View style={[BaseStyles.row, BaseStyles.mt10]}>
-                  <Text
-                    ellipsizeMode="tail"
-                    numberOfLines={1}
-                    style={[MyAnnouncementStyles.userNameText, BaseStyles.w60]}>
-                    {this.model.authorName}
-                  </Text>
-                  <Image
-                    source={this.model.authorGender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
-                    style={[BaseStyles.defaultIcon, BaseStyles.ml10]}
-                  />
-                  <Text> {getAge(this.model.authorBirthDay || 0)} y.o </Text>
-                </View>
+          <View style={[BaseStyles.w100, BaseStyles.ai_c, BaseStyles.h100]}>
+            <CoverAvatar id="CoverAvatar" imagePath={this.model.authorAvatar} />
 
+            <View style={[BaseStyles.jc_c, BaseStyles.w90]}>
+              <View style={[BaseStyles.row, BaseStyles.mt5, BaseStyles.ai_c]}>
+                <Text
+                  ellipsizeMode="tail"
+                  numberOfLines={1}
+                  style={[
+                    MyAnnouncementStyles.userNameText,
+                    {textAlign: 'center', maxWidth: '60%'},
+                  ]}>
+                  {this.model.authorName}
+                </Text>
+                <Image
+                  source={this.model.authorGender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
+                  style={[BaseStyles.defaultIcon, BaseStyles.ml10]}
+                />
+                <Text> {getAge(this.model.authorBirthDay || 0)} y.o </Text>
+                {this.model.online_status && <View style={[SearchStyles.isOnlineView]} />}
+              </View>
+              {/* 
                 <View style={[BaseStyles.row, BaseStyles.ai_c, BaseStyles.pb5]}>
                   <Text ellipsizeMode="tail" numberOfLines={1}>
                     <Text> {_.lang.i_looking_for} </Text>
@@ -104,14 +104,16 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
                       </Text>
                     )}
                   </Text>
-                </View>
+                </View> */}
 
-                <View style={[BaseStyles.row, BaseStyles.pb5]}>
-                  <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
-                  <Text> {getShortDate(this.model.lastOnline)}</Text>
-                </View>
+              <View style={[BaseStyles.row, BaseStyles.mt5]}>
+                <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
+                <Text style={SearchStyles.lastOnlineText}>
+                  {getShortDate(this.model.lastOnline)}
+                </Text>
+              </View>
 
-                <View style={MyAnnouncementStyles.previewMainTextWrapper}>
+              {/* <View style={MyAnnouncementStyles.previewMainTextWrapper}>
                   {this.model.text !== '' && (
                     <View style={MyAnnouncementStyles.previewMainTextContainer}>
                       <Text ellipsizeMode="tail" numberOfLines={1}>
@@ -119,15 +121,15 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
                       </Text>
                     </View>
                   )}
-                </View>
-                <View style={[MyAnnouncementStyles.previewLocationContainer]}>
+                </View> */}
+              {/* <View style={[MyAnnouncementStyles.previewLocationContainer]}>
                   <Image source={ICONS.locationIcon} style={[BaseStyles.defaultIcon]} />
                   <Text style={BaseStyles.ta_c} ellipsizeMode="head" numberOfLines={1}>
                     {this.model.regionName}, {this.model.cityName}
                   </Text>
-                </View>
-              </View>
-              <View style={[BaseStyles.w10, BaseStyles.h100, BaseStyles.jc_sb]}>
+                </View> */}
+            </View>
+            {/* <View style={[BaseStyles.w10, BaseStyles.h100, BaseStyles.jc_sb]}>
                 {app.currentUser.userId !== this.model.authorId && (
                   <>
                     {this.model.liked ? (
@@ -156,8 +158,7 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
                     </View>
                   </>
                 )}
-              </View>
-            </View>
+              </View> */}
           </View>
         </TouchableOpacity>
       </View>

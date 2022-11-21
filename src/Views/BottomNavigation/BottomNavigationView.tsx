@@ -21,7 +21,6 @@ class BottomNavigationView extends TypedBaseComponent<
   }
 
   public render() {
-    super.render();
     return (
       <View style={[BottomNavigationStyles.bottomNavigationContainer]}>
         {/* <SimpleButtonView

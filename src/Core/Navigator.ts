@@ -17,6 +17,8 @@ import {FireBaseHandler} from './FireBaseHandler';
 import {loadData, UserDataProvider} from '../DataProvider/UserDataProvider';
 import crashlytics from '@react-native-firebase/crashlytics';
 import {SocketHandler} from './Socket';
+import {PhotoGalleryScreen} from '../Screens/PhotoGalleryScreen';
+import {PhotoAccessRequestsScreen} from '../Screens/PhotoAccessRequestsScreen';
 
 type screenHistoryType = {
   impl: baseScreenCreator;
@@ -120,7 +122,6 @@ class Navigator {
       case 'start':
         // restore user data
         await app.currentUser.restoreUserData();
-        //
         await this.navigationUserStartApp();
         this._startAppWithBackground = false;
         SocketHandler.connect();
@@ -129,12 +130,11 @@ class Navigator {
         await app.currentUser.restoreUserData();
         await this.navigationUserStartApp();
         SocketHandler.connect();
-        // this.restoreNavigatorState();
         break;
       case 'background':
         await app.currentUser.saveUser();
         SocketHandler.disconnect();
-        //this.saveNavigatorState();
+        this.saveNavigatorState();
         break;
     }
   }
@@ -145,7 +145,23 @@ class Navigator {
         app.navigator.navigate(LoginScreen);
         return;
       }
-      this.goToMainProfileScreen();
+      if (!app.addImpression) {
+        const restoredScreen = await this.restoreNavigatorState();
+        if (restoredScreen) {
+          switch (restoredScreen) {
+            case 'PhotoGalleryScreen':
+              this.goToPhotoGallaryScreen();
+              break;
+
+            default:
+              this.goToMainProfileScreen();
+              break;
+          }
+        } else {
+          this.goToMainProfileScreen();
+        }
+      }
+      app.addImpression = false;
       FireBaseHandler.syncTokenDevice();
       app.bottomNavigation.updateCounters();
       this.setOnline();
@@ -155,17 +171,16 @@ class Navigator {
   }
 
   // restoreNavigatorState
-  public restoreNavigatorState() {
-    readData('appState').then(async (response: string | null | undefined) => {
-      if (response !== undefined && response !== null) {
-        this.state = JSON.parse(response);
-      }
-    });
-  }
+  public restoreNavigatorState = async () => {
+    const response = await readData('appState');
+    if (response !== undefined && response !== null) {
+      return response;
+    }
+  };
 
   // saveNavigatorState
   public saveNavigatorState() {
-    const stringifyConfig = JSON.stringify(this.state);
+    const stringifyConfig = this.currentScreen;
     saveData('appState', stringifyConfig).then();
   }
   private static disabledScreens = [LoaderScreen];
@@ -227,6 +242,16 @@ class Navigator {
 
   public goToMyAnnouncementScreen() {
     this.navigate(MyAnnouncementScreen);
+    app.bottomNavigation.activeIndex = 0;
+  }
+
+  public goToPhotoGallaryScreen() {
+    this.navigate(PhotoGalleryScreen);
+    app.bottomNavigation.activeIndex = 0;
+  }
+
+  public goToPhotoAccesRequestsScreen() {
+    this.navigate(PhotoAccessRequestsScreen);
     app.bottomNavigation.activeIndex = 0;
   }
 

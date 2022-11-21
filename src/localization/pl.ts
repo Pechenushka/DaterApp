@@ -222,6 +222,49 @@ const pl: localizationPackType = {
   choose_gender: 'Wybierz płeć',
   iam_man: 'jestem mężczyzną',
   iam_women: 'jestem kobietą',
+  your_photo_gallery: 'Twoja galeria zdjęć',
+  now_you_can_make_photo_access_request: 'Teraz masz możliwość zażądania dostępu do zdjęcia',
+  cant_load_video: `Nie możemy pobrać filmu, najprawdopodobniej problemem jest wolne połączenie`,
+  make_request: 'Poproś o dostęp',
+  oops: 'Auć!',
+  success: 'Powodzenie!',
+  this_photo_was_hide_by_owner:
+    'Dostęp do zdjęcia jest ograniczony przez właściciela, poproś o dostęp właściciela zdjęcia, w tym celu obejrzyj krótki film.',
+  watch_video: 'Oglądaj reklamy',
+  you_successfully_requested_access: 'Prośba o dostęp została pomyślnie wysłana!',
+  photo_access_requests: 'Żądania dostępu',
+  photo_gallery: 'Galeria Zdjęć',
+  my_requests: 'Moje Prośby',
+  requests_to_me: 'Prośby Do Mnie',
+  approved: 'Zatwierdzony',
+  pending: 'W oczekiwaniu',
+  rejected: 'Odrzucony',
+  requestItemStatusMessage: {
+    approved: `Żądanie tego użytkownika zostało zatwierdzone`,
+    pending: 'Żąda dostępu i czeka na odpowiedź',
+    rejected: `Żądanie tego użytkownika zostało odrzucone`,
+  },
+  requestHelpMessage: {
+    myRequests: {
+      approved: 'Tutaj pokazane są Twoje prośby, które zostały zatwierdzone.',
+      pending: 'Tutaj są wyświetlane Twoje oczekujące prośby.',
+      rejected: 'Tutaj są pokazane Twoje odrzucone prośby.',
+    },
+    requestToMe: {
+      approved: 'Tutaj pokazane są prośby do Ciebie, które zostały przez Ciebie zatwierdzone.',
+      pending: 'Tutaj pokazane są prośby do Ciebie, które czekają na Twoją odpowiedź.',
+      rejected: 'To pokazuje prośby do Ciebie, które zostały odrzucone.',
+    },
+  },
+  for_add_annon_photo_watch_add: 'Aby dodać anonimowe zdjęcie należy obejrzeć jeden krótki film',
+  no_items_here_yet: `Podczas gdy tu nic nie ma`,
+  now_you_can_add_anon_photo: 'Teraz możesz dodać anonimowe zdjęcie',
+  photoGalleryAnonPhotoHint: `Te zdjęcia będą widoczne tylko dla tych użytkowników, którym dałeś dostęp. Zatem tylko Ty decydujesz, kto zobaczy te zdjęcia. Zdjęcia, które nie zostały jeszcze poddane moderacji, są oznaczone czerwoną ramką. Granica 4`,
+  photoGalleryPhotoHint:
+    'Te zdjęcia będą widoczne dla wszystkich użytkowników. Zdjęcia, które nie zostały jeszcze poddane moderacji, są oznaczone czerwoną ramką. Granica 5',
+  sorry_you_rich_anon_photos_limit: `Przepraszamy, osiągnąłeś limit anonimowych zdjęć. 4/4`,
+  your_anon_photos: 'Twoje anonimowe zdjęcia',
+  your_photos: 'Twoje zdjęcia',
 };
 
 export {pl};

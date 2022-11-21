@@ -89,6 +89,29 @@ const SearchStyles = StyleSheet.create({
     width: '70%',
   },
 
+  sendPhotoReportIconContainer: {
+    height: hp(150),
+    width: hp(150),
+    resizeMode: 'cover',
+    borderRadius: 12,
+    marginTop: hp(15),
+  },
+
+  isOnlineView: {
+    height: hp(15),
+    width: hp(15),
+    backgroundColor: COLORS.GREEN_BUTTON,
+    borderRadius: 50,
+    borderColor: COLORS.WHITE,
+    borderWidth: 1,
+  },
+
+  lastOnlineText: {
+    fontSize: hp(14),
+    color: COLORS.PLACEHOLDER,
+    marginLeft: hp(5),
+  },
+
   sendMessageModalTextInputContainer: {
     marginTop: hp(25),
     width: '70%',
