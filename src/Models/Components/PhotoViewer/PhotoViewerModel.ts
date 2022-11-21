@@ -180,7 +180,7 @@ class PhotoViewerModel extends BaseModel<photoViewerModelProps> {
     this.timeoutId = setTimeout(() => {
       this._watchVideoButton.disabled = false;
       Alert.alert(_.lang.oops, _.lang.cant_load_video);
-    }, 10000);
+    }, 15000);
   };
 
   public onMakeRequestPress = async () => {
