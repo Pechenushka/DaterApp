@@ -250,43 +250,43 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
     ];
 
     if (name === '') {
-      Alert.alert('Warning!', 'Name can not be empty');
+      app.notification.showError(_.lang.warning, 'Name can not be empty');
       return false;
     }
 
     if (email === '') {
-      Alert.alert('Warning!', 'Email can not be empty');
+      app.notification.showError(_.lang.warning, 'Email can not be empty');
       return false;
     }
 
     if (password === '') {
-      Alert.alert('Warning!', 'Password can not be empty');
+      app.notification.showError(_.lang.warning, 'Password can not be empty');
       return false;
     }
     if (passwordConfirm === '') {
-      Alert.alert('Warning!', 'Password Confirm can not be empty');
+      app.notification.showError(_.lang.warning, 'Password Confirm can not be empty');
       return false;
     }
 
     if (password !== passwordConfirm) {
-      Alert.alert('Warning!', 'Confirm password dos not match');
+      app.notification.showError(_.lang.warning, 'Confirm password dos not match');
       return false;
     }
 
     if (password.length < 6) {
-      Alert.alert('Warning!', 'Password must be at least 6 characters');
+      app.notification.showError(_.lang.warning, 'Password must be at least 6 characters');
       return false;
     }
 
     const res = await loadData(UserDataProvider.CheckEmail, {email: email});
 
     if (res === null) {
-      Alert.alert('Warning', 'Something was wrong');
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return false;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return false;
     }
     return true;
@@ -295,17 +295,17 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   public secondStepValidation = async () => {
     const [dateTimeStamp, gender] = [this._ageInput.value.getTime(), this._genderSelection.value];
     if (getAge(dateTimeStamp) < 18) {
-      Alert.alert('Warning!', 'You must be over 18 years old');
+      app.notification.showError(_.lang.warning, 'You must be over 18 years old');
       return false;
     }
 
     if (getAge(dateTimeStamp) > 100) {
-      Alert.alert('Warning!', 'Seriously, you are over 100 years old?');
+      app.notification.showError(_.lang.warning, 'Seriously, you are over 100 years old?');
       return false;
     }
 
     if (gender === undefined) {
-      Alert.alert('Warning!', 'Provide your gender');
+      app.notification.showError(_.lang.warning, 'Provide your gender');
       return false;
     }
     return true;
@@ -439,78 +439,78 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
     ];
 
     if (name === '') {
-      Alert.alert('Warning!', 'Name can not be empty');
+      app.notification.showError(_.lang.warning, 'Name can not be empty');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (email === '') {
-      Alert.alert('Warning!', 'Email can not be empty');
+      app.notification.showError(_.lang.warning, 'Email can not be empty');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (password === '') {
-      Alert.alert('Warning!', 'Password can not be empty');
+      app.notification.showError(_.lang.warning, 'Password can not be empty');
       this._signUpButton.disabled = false;
       return;
     }
     if (passwordConfirm === '') {
-      Alert.alert('Warning!', 'Password Confirm can not be empty');
+      app.notification.showError(_.lang.warning, 'Password Confirm can not be empty');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (password !== passwordConfirm) {
-      Alert.alert('Warning!', 'Confirm password dos not match');
+      app.notification.showError(_.lang.warning, 'Confirm password dos not match');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (password.length < 6) {
-      Alert.alert('Warning!', 'Password must be at least 6 characters');
+      app.notification.showError(_.lang.warning, 'Password must be at least 6 characters');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (country === undefined) {
-      Alert.alert('Warning!', 'Select your country');
+      app.notification.showError(_.lang.warning, 'Select your country');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (region === undefined) {
-      Alert.alert('Warning!', 'Select your region');
+      app.notification.showError(_.lang.warning, 'Select your region');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (city === undefined) {
-      Alert.alert('Warning!', 'Select your city or closest to you');
+      app.notification.showError(_.lang.warning, 'Select your city or closest to you');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (getAge(dateTimeStamp) < 18) {
-      Alert.alert('Warning!', 'You must be over 18 years old');
+      app.notification.showError(_.lang.warning, 'You must be over 18 years old');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (getAge(dateTimeStamp) > 100) {
-      Alert.alert('Warning!', 'Seriously, you are over 100 years old?');
+      app.notification.showError(_.lang.warning, 'Seriously, you are over 100 years old?');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (gender === undefined) {
-      Alert.alert('Warning!', 'Provide your gender');
+      app.notification.showError(_.lang.warning, 'Provide your gender');
       this._signUpButton.disabled = false;
       return;
     }
 
     if (!agreement) {
-      Alert.alert('Warning!', 'You must agree to the terms of use');
+      app.notification.showError(_.lang.warning, 'You must agree to the terms of use');
       this._signUpButton.disabled = false;
       return;
     }
@@ -550,11 +550,11 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
         SocketHandler.connect();
         return;
       }
-      Alert.alert(res.statusCode.toString(), res.statusMessage);
+      app.notification.showError(res.statusCode.toString(), res.statusMessage);
       this._signUpButton.disabled = false;
       return;
     }
-    Alert.alert('Warning', 'Something was wrong');
+    app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
     this._signUpButton.disabled = false;
   };
 
@@ -565,7 +565,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       this._citySelection.value,
     ];
     if (app.currentUser.location === undefined) {
-      Alert.alert('Warning', 'Set up location please');
+      app.notification.showError(_.lang.warning, 'Set up location please');
       this._signUpButton.disabled = false;
       return;
     }
@@ -580,17 +580,17 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
 
     const res = await loadData(UserDataProvider.CreateMeeting, meetingBody);
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._signUpButton.disabled = false;
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert(`${res.statusCode}`, res.statusMessage);
+      app.notification.showError(`${res.statusCode}`, res.statusMessage);
       this._signUpButton.disabled = false;
       return;
     }
-    Alert.alert('Hooray', 'Your profile succesfuly added');
+    app.notification.showSuccess('Hooray', 'Your profile succesfuly added');
     app.navigator.goToMainProfileScreen();
     app.navigator.setOnline();
     FireBaseHandler.syncTokenDevice();

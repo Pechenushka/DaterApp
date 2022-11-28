@@ -162,7 +162,7 @@ class HomeModel extends BaseModel<homeModelProps> {
           pickedAvatar.assets[0].fileName &&
           pickedAvatar.assets[0].fileName.split('.').pop() === 'gif'
         ) {
-          Alert.alert(_.lang.warning, 'Wrong avatar format');
+          app.notification.showError(_.lang.warning, 'Wrong avatar format');
           return;
         }
         let data = new FormData();
@@ -249,12 +249,12 @@ class HomeModel extends BaseModel<homeModelProps> {
   public updateRequestCount = async () => {
     const requestRes = await loadData(UserDataProvider.GetRequestsCount, {});
     if (requestRes === null) {
-      Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (requestRes.statusCode !== 200) {
-      Alert.alert(_.lang.warning, requestRes.statusMessage);
+      app.notification.showError(_.lang.warning, requestRes.statusMessage);
       return;
     }
 

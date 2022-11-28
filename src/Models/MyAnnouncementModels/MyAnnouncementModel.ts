@@ -258,19 +258,19 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._sexSelection.value,
     ];
     if (app.currentUser.location === undefined) {
-      Alert.alert('Warning', 'Set up location please');
+      app.notification.showError(_.lang.warning, 'Set up location please');
       this._submitButton.disabled = false;
       return;
     }
     if (country !== undefined) {
       if (region === undefined) {
-        Alert.alert('Warning', 'Select region');
+        app.notification.showError(_.lang.warning, 'Select region');
         this._submitButton.disabled = false;
         return;
       }
 
       if (city === undefined) {
-        Alert.alert('Warning', 'Select city');
+        app.notification.showError(_.lang.warning, 'Select city');
         this._submitButton.disabled = false;
         return;
       }
@@ -288,17 +288,17 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
     const res = await loadData(UserDataProvider.CreateMeeting, meetingBody);
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._submitButton.disabled = false;
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert(`${res.statusCode}`, res.statusMessage);
+      app.notification.showError(`${res.statusCode}`, res.statusMessage);
       this._submitButton.disabled = false;
       return;
     }
-    Alert.alert('Hooray', 'Your announcment succesfuly added');
+    app.notification.showSuccess('Hooray', 'Your announcment succesfuly added');
     app.navigator.goToMainProfileScreen();
     this._submitButton.disabled = false;
   };
@@ -314,7 +314,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._sexSelection.value,
     ];
     if (app.currentUser.location === undefined) {
-      Alert.alert('Warning', 'Set up location please');
+      app.notification.showError(_.lang.warning, 'Set up location please');
       this._editButton.disabled = false;
       return;
     }
@@ -331,17 +331,17 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
     const res = await loadData(UserDataProvider.EditMeeting, meetingBody);
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._editButton.disabled = false;
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert(`${res.statusCode}`, res.statusMessage);
+      app.notification.showError(`${res.statusCode}`, res.statusMessage);
       this._editButton.disabled = false;
       return;
     }
-    Alert.alert('Hooray', 'Your announcment succesfuly edited');
+    app.notification.showSuccess('Hooray', 'Your announcment succesfuly edited');
     app.navigator.goToMainProfileScreen();
     this._editButton.disabled = false;
   };
@@ -352,7 +352,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       authorId: app.currentUser.userId,
     });
     if (loadResult === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this.loading = false;
       return;
     }

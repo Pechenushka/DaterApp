@@ -56,11 +56,11 @@ class LikesViews extends TypedBaseComponent<likesViewsProps, LikesModel> {
             style={BaseStyles.w100}
             contentContainerStyle={[BaseStyles.w100, BaseStyles.ai_c, BaseStyles.pb70]}
             onScroll={this.model.onScroll}>
-            {Array.from(this.model.list).map(likeItem => {
-              return <LikeItemView {...this.childProps(likeItem[1])} />;
+            {this.model.list.map(likeItem => {
+              return <LikeItemView {...this.childProps(likeItem)} />;
             })}
 
-            {Array.from(this.model.list).length === 0 && <Text>{_.lang.items_not_found}</Text>}
+            {this.model.list.length === 0 && <Text>{_.lang.items_not_found}</Text>}
           </ScrollView>
         )}
       </View>

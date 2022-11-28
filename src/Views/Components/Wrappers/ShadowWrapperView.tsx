@@ -7,6 +7,7 @@ type shadowWrapperProps = {
   internalShadow?: number;
   externalShadow?: number;
   style?: object;
+  internalStyles?: object;
   borderRadius?: number;
 };
 
@@ -34,7 +35,13 @@ const ShadowWrapperView = (props: shadowWrapperProps) => {
   return (
     <View
       style={[externalStyles(props.externalShadow), props.style !== undefined ? props.style : {}]}>
-      <View style={[internalStyles(props.internalShadow)]}>{props.children}</View>
+      <View
+        style={[
+          internalStyles(props.internalShadow),
+          props.internalStyles !== undefined ? props.style : {},
+        ]}>
+        {props.children}
+      </View>
     </View>
   );
 };

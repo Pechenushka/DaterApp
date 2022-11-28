@@ -6,6 +6,7 @@ import {app} from '../../../Core/AppImpl';
 import {CreateNewAccountScreen} from '../../../Screens/CreateNewAccountScreen';
 import {FireBaseHandler} from '../../../Core/FireBaseHandler';
 import {analyticHandler} from '../../../Core/AnalyticHanler';
+import {_} from '../../../Core/Localization';
 
 type googleSignInModelProps = baseModelProps & {};
 
@@ -26,7 +27,7 @@ class GoogleSignInModel extends BaseModel<googleSignInModelProps> {
     };
     const res = await loadData(UserDataProvider.Auth, authBody);
     if (res === null) {
-      Alert.alert('Warning', 'Something was wrong');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       return;
     }
     if (res.statusMessage.includes('User not found')) {
@@ -39,7 +40,7 @@ class GoogleSignInModel extends BaseModel<googleSignInModelProps> {
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
 

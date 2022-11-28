@@ -127,10 +127,10 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
         SocketHandler.connect();
         return;
       }
-      Alert.alert(res.statusCode.toString(), res.statusMessage);
+      app.notification.showError(res.statusCode.toString(), res.statusMessage);
       return;
     }
-    Alert.alert('Warning', _.lang.something_went_wrong);
+    app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
   };
 }
 

@@ -103,7 +103,7 @@ class SendMessageModalModel extends BaseModel<sendMessageModalModelProps> {
     this._submitButton.disabled = true;
     const [messageText] = [this._messageInput.value.trim()];
     if (messageText.length === 0) {
-      Alert.alert('Warning', 'Empty message');
+      app.notification.showError(_.lang.warning, 'Empty message');
       this._submitButton.disabled = false;
       return;
     }
@@ -118,13 +118,13 @@ class SendMessageModalModel extends BaseModel<sendMessageModalModelProps> {
     const inserRes = await loadData(UserDataProvider.WriteMessage, messageBody);
 
     if (inserRes === null) {
-      Alert.alert('Warning', _.lang.servers_are_not_allowed);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._submitButton.disabled = false;
       return;
     }
 
     if (inserRes.statusCode !== 200) {
-      Alert.alert('Warning', inserRes.statusMessage);
+      app.notification.showError(_.lang.warning, inserRes.statusMessage);
       this._submitButton.disabled = false;
       return;
     }

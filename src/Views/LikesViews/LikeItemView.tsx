@@ -4,19 +4,19 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {Image, Platform, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
 import {ICONS} from '../../constants/icons';
 import {BaseStyles} from '../../Styles/BaseStyles';
-import {appSettings} from '../../Common/AppSettings';
 import {COLORS} from '../../constants/colors';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
 import {LikeItemModel} from '../../Models/LikesModels/LikeItemModel';
-import {getShortDate} from '../../Common/dateParse';
 import {getAge} from '../../Common/Helpers';
 import {_} from '../../Core/Localization';
 import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
+import {LikesScreenStyles} from '../../Styles/LikesScreenStyles';
+import {app} from '../../Core/AppImpl';
 
 type likeItemViewProps = baseComponentProps & {};
 
@@ -53,12 +53,28 @@ class LikeItemView extends TypedBaseComponent<likeItemViewProps, LikeItemModel> 
     );
   }
 
+  public getStatusIcon = () => {
+    switch (this.model.tab) {
+      case 0:
+        return ICONS.likeFromMeIcon;
+
+      case 1:
+        return ICONS.likeToMeIcon;
+
+      case 2:
+        return ICONS.matchIcon;
+      default:
+        break;
+    }
+  };
+
   public render() {
     super.render();
     return (
       <TouchableOpacity
         style={[
           MyAnnouncementStyles.previewContainer,
+          BaseStyles.mb10,
           this.model.checked
             ? {backgroundColor: COLORS.WHITE}
             : {backgroundColor: COLORS.BLURED_GRAY},
@@ -66,98 +82,74 @@ class LikeItemView extends TypedBaseComponent<likeItemViewProps, LikeItemModel> 
         onPress={this.model.onItemPress}>
         <View style={[BaseStyles.w100, BaseStyles.ai_fs]}>
           <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.jc_sb]}>
+            <View style={[BaseStyles.alignCenter, BaseStyles.w35]}>
+              <RoundAvatarView
+                id="RoundAvatar"
+                imagePath={app.currentUser.avatar}
+                size={55}
+                isOnline={false}
+              />
+              <View style={[BaseStyles.row, BaseStyles.pb10]}>
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}
+                  style={LikesScreenStyles.userNameText}>
+                  {app.currentUser.userName}
+                </Text>
+                <Image
+                  source={app.currentUser.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
+                  style={[BaseStyles.defaultIcon]}
+                />
+                <Text> {getAge(app.currentUser.birthDate || 0)}</Text>
+              </View>
+            </View>
+
             <View style={[BaseStyles.alignCenter, BaseStyles.w30]}>
+              <Image style={LikesScreenStyles.likeItemStatusIcon} source={this.getStatusIcon()} />
+
+              {this.model.tab === 1 && (
+                <View style={[BaseStyles.jc_c, BaseStyles.row, BaseStyles.w100]}>
+                  <View style={[MyAnnouncementStyles.likeButtonWrapper, BaseStyles.mr10]}>
+                    <ShadowWrapperView borderRadius={50}>
+                      <SimpleButtonView
+                        styles={MyAnnouncementStyles.likeButtonContainer}
+                        iconStyles={MyAnnouncementStyles.likeButtonIcon}
+                        {...this.childProps(this.model.likeButton)}
+                      />
+                    </ShadowWrapperView>
+                  </View>
+                  <View style={[MyAnnouncementStyles.likeButtonWrapper, BaseStyles.mr10]}>
+                    <ShadowWrapperView borderRadius={50}>
+                      <SimpleButtonView
+                        styles={MyAnnouncementStyles.likeButtonContainer}
+                        iconStyles={MyAnnouncementStyles.likeButtonIcon}
+                        {...this.childProps(this.model.rejectButton)}
+                      />
+                    </ShadowWrapperView>
+                  </View>
+                </View>
+              )}
+            </View>
+
+            <View style={[BaseStyles.alignCenter, BaseStyles.w35]}>
               <RoundAvatarView
                 id="RoundAvatar"
                 imagePath={this.model.authorAvatar}
-                size={90}
+                size={55}
                 isOnline={this.model.online_status}
               />
-            </View>
-            <View style={[BaseStyles.jc_c, BaseStyles.w100]}>
               <View style={[BaseStyles.row, BaseStyles.pb10]}>
-                <Text style={MyAnnouncementStyles.userNameText}>{this.model.authorName} </Text>
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}
+                  style={LikesScreenStyles.userNameText}>
+                  {this.model.authorName}{' '}
+                </Text>
                 <Image
                   source={this.model.authorGender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
                   style={[BaseStyles.defaultIcon]}
                 />
-                <Text> {getAge(this.model.authorBirthDay || 0)} y.o </Text>
-              </View>
-
-              <View style={[MyAnnouncementStyles.goalPreviewContainer]}>
-                <Text> {_.lang.i_looking_for} </Text>
-                {this.getExpectationsIcon()}
-                {this.model.goal !== undefined && (
-                  <Text>
-                    {' '}
-                    {_.lang.for} {this.model.goal}
-                  </Text>
-                )}
-              </View>
-
-              <View style={[BaseStyles.row, BaseStyles.pb10]}>
-                <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
-                <Text> {getShortDate(this.model.lastOnline)}</Text>
-              </View>
-
-              <View style={MyAnnouncementStyles.previewMainTextWrapper}>
-                {this.model.text !== '' && (
-                  <View style={MyAnnouncementStyles.previewMainTextContainer}>
-                    <Text>{this.model.text}</Text>
-                  </View>
-                )}
-              </View>
-
-              <View style={[MyAnnouncementStyles.previewLocationContainer]}>
-                <Image source={ICONS.locationIcon} style={[BaseStyles.defaultIcon]} />
-                <Text style={BaseStyles.ta_c}>
-                  {' '}
-                  {this.model.countryName}, {this.model.regionName}, {this.model.cityName}
-                </Text>
-              </View>
-
-              <View style={[BaseStyles.jc_fe, BaseStyles.w65, BaseStyles.row]}>
-                {this.model.liked ? (
-                  <View style={[MyAnnouncementStyles.likeButtonWrapper, BaseStyles.mr10]}>
-                    <View style={MyAnnouncementStyles.likeButtonContainer}>
-                      <Image
-                        source={ICONS.heartIconRed}
-                        style={MyAnnouncementStyles.likeButtonIcon}
-                      />
-                    </View>
-                  </View>
-                ) : (
-                  <>
-                    <View style={[MyAnnouncementStyles.likeButtonWrapper, BaseStyles.mr10]}>
-                      <ShadowWrapperView borderRadius={50}>
-                        <SimpleButtonView
-                          styles={MyAnnouncementStyles.likeButtonContainer}
-                          iconStyles={MyAnnouncementStyles.likeButtonIcon}
-                          {...this.childProps(this.model.likeButton)}
-                        />
-                      </ShadowWrapperView>
-                    </View>
-                    <View style={[MyAnnouncementStyles.likeButtonWrapper, BaseStyles.mr10]}>
-                      <ShadowWrapperView borderRadius={50}>
-                        <SimpleButtonView
-                          styles={MyAnnouncementStyles.likeButtonContainer}
-                          iconStyles={MyAnnouncementStyles.likeButtonIcon}
-                          {...this.childProps(this.model.rejectButton)}
-                        />
-                      </ShadowWrapperView>
-                    </View>
-                  </>
-                )}
-
-                <View style={MyAnnouncementStyles.likeButtonWrapper}>
-                  <ShadowWrapperView borderRadius={50}>
-                    <SimpleButtonView
-                      styles={MyAnnouncementStyles.likeButtonContainer}
-                      iconStyles={MyAnnouncementStyles.likeButtonIcon}
-                      {...this.childProps(this.model.writeButton)}
-                    />
-                  </ShadowWrapperView>
-                </View>
+                <Text> {getAge(this.model.authorBirthDay || 0)}</Text>
               </View>
             </View>
           </View>

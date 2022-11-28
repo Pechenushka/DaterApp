@@ -1,4 +1,5 @@
 import {Alert} from 'react-native';
+import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {photoAccessRequestItem} from '../../Core/DataTypes/BaseTypes';
 import {_} from '../../Core/Localization';
@@ -52,12 +53,12 @@ class AccessRequestItemModel extends BaseModel<accessRequestItemModelProps> {
       status: 'rejected',
     });
     if (res === null) {
-      Alert.alert('Warning', _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     this.props.deleteItemFromList(this.requestId);
@@ -69,12 +70,12 @@ class AccessRequestItemModel extends BaseModel<accessRequestItemModelProps> {
       status: 'approved',
     });
     if (res === null) {
-      Alert.alert('Warning', _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     this.props.deleteItemFromList(this.requestId);
@@ -86,12 +87,12 @@ class AccessRequestItemModel extends BaseModel<accessRequestItemModelProps> {
       status: 'approved',
     });
     if (res === null) {
-      Alert.alert('Warning', _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     this.props.deleteItemFromList(this.requestId);
@@ -103,12 +104,12 @@ class AccessRequestItemModel extends BaseModel<accessRequestItemModelProps> {
       status: 'rejected',
     });
     if (res === null) {
-      Alert.alert('Warning', _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     this.props.deleteItemFromList(this.requestId);

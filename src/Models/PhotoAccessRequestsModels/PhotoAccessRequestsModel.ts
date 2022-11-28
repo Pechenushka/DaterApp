@@ -107,12 +107,12 @@ class PhotoAccessRequestsModel extends BaseModel<photoAccessRequestsModelProps> 
     this.loading = true;
     const res = await loadData(UserDataProvider.GetPhotoAccessRequest, {...this._fileters});
     if (res === null) {
-      Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert(_.lang.warning, res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     res.data.forEach(request => {

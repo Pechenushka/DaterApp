@@ -164,13 +164,13 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
       myId: app.currentUser.userId,
     });
     if (profileRes === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       app.navigator.toGoBack();
       return;
     }
 
     if (profileRes.statusCode !== 200) {
-      Alert.alert('Warning', profileRes.statusMessage);
+      app.notification.showError(_.lang.warning, profileRes.statusMessage);
       app.navigator.toGoBack();
       return;
     }
@@ -213,13 +213,13 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
       blockedUserId: this.userId,
     });
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._blockButton.disabled = false;
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       this._blockButton.disabled = false;
       return;
     }
@@ -237,13 +237,13 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
       blockedUserId: this.userId,
     });
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._unblockButton.disabled = false;
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       this._unblockButton.disabled = false;
       return;
     }
@@ -268,13 +268,13 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
       userId: this.userId,
     });
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._messageButton.disabled = false;
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       this._messageButton.disabled = false;
       return;
     }
@@ -303,13 +303,13 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
     };
     const res = await loadData(UserDataProvider.SetUserLike, likeBody);
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this.likeButton.disabled = false;
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       this.likeButton.disabled = false;
       return;
     }

@@ -175,12 +175,12 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
       authorId: app.currentUser.userId,
     });
     if (res === null) {
-      Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert(_.lang.warning, res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     const givedUrl = res.data.url;
@@ -206,7 +206,7 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           pickedPhoto.assets[0].fileName &&
           pickedPhoto.assets[0].fileName.split('.').pop() === 'gif'
         ) {
-          Alert.alert(_.lang.warning, 'wrong photo format');
+          app.notification.showError(_.lang.warning, 'wrong photo format');
           return;
         }
         let data = new FormData();
@@ -226,12 +226,12 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
         });
         const res = await response.json();
         if (res === null) {
-          Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+          app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
           return;
         }
 
         if (res.statusCode !== 200) {
-          Alert.alert(_.lang.warning, res.statusMessage);
+          app.notification.showError(_.lang.warning, res.statusMessage);
           return;
         }
         if (res.statusCode === 200) {
@@ -257,7 +257,7 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           pickedPhoto.assets[0].fileName &&
           pickedPhoto.assets[0].fileName.split('.').pop() === 'gif'
         ) {
-          Alert.alert(_.lang.warning, 'wrong photo format');
+          app.notification.showError(_.lang.warning, 'wrong photo format');
           this._chooseAnonPhotoButton.disabled = false;
           return;
         }
@@ -280,13 +280,13 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
 
         const res = await response.json();
         if (res === null) {
-          Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+          app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
           this._chooseAnonPhotoButton.disabled = false;
           return;
         }
 
         if (res.statusCode !== 200) {
-          Alert.alert(_.lang.warning, res.statusMessage);
+          app.notification.showError(_.lang.warning, res.statusMessage);
           this._chooseAnonPhotoButton.disabled = false;
           return;
         }
@@ -306,12 +306,12 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
   public deletePhotoFromList = async (index: number, photoUrl: string) => {
     const res = await loadData(UserDataProvider.DeleteUserPhoto, {urlToDelete: photoUrl});
     if (res === null) {
-      Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert(_.lang.warning, res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     this._photoList.splice(index, 1);
@@ -321,12 +321,12 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
   public deleteAnonPhotoFromList = async (index: number, photoUrl: string) => {
     const res = await loadData(UserDataProvider.DeleteUserAnonPhoto, {urlToDelete: photoUrl});
     if (res === null) {
-      Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert(_.lang.warning, res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     this._photoAnonList.splice(index, 1);
@@ -339,7 +339,7 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
       this.rewarded.load();
       this.timeoutId = setTimeout(() => {
         this._watchAddButton.disabled = false;
-        Alert.alert(_.lang.oops, _.lang.cant_load_video);
+        app.notification.showError(_.lang.oops, _.lang.cant_load_video);
       }, 15000);
     } catch (error) {
       console.log('ERROR', error);
@@ -358,22 +358,22 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
     const userPhotosRes = await loadData(UserDataProvider.GetUserPhotos, {});
 
     if (userPhotosRes === null) {
-      Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (userPhotosRes.statusCode !== 200) {
-      Alert.alert(_.lang.warning, userPhotosRes.statusMessage);
+      app.notification.showError(_.lang.warning, userPhotosRes.statusMessage);
       return;
     }
 
     if (anonPhotosRes === null) {
-      Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       return;
     }
 
     if (anonPhotosRes.statusCode !== 200) {
-      Alert.alert(_.lang.warning, anonPhotosRes.statusMessage);
+      app.notification.showError(_.lang.warning, anonPhotosRes.statusMessage);
       return;
     }
     this._photoAnonList = anonPhotosRes.data.list;

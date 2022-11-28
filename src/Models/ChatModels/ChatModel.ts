@@ -121,12 +121,12 @@ class ChatModel extends BaseModel<chatModelProps> {
     };
     const res = await loadData(UserDataProvider.GetMessages, msgBody);
     if (res === null) {
-      Alert.alert('Warning', _.lang.servers_are_not_allowed);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this.loading = false;
       return;
     }
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       this.loading = false;
       return;
     }
@@ -173,12 +173,12 @@ class ChatModel extends BaseModel<chatModelProps> {
       };
       const res = await loadData(UserDataProvider.GetMessages, msgBody);
       if (res === null) {
-        Alert.alert('Warning', _.lang.servers_are_not_allowed);
+        app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
         this._loadingNP = false;
         return;
       }
       if (res.statusCode !== 200) {
-        Alert.alert('Warning', res.statusMessage);
+        app.notification.showError(_.lang.warning, res.statusMessage);
         this._loadingNP = false;
         return;
       }
@@ -227,13 +227,13 @@ class ChatModel extends BaseModel<chatModelProps> {
     const res = await loadData(UserDataProvider.WriteMessage, messageBody);
 
     if (res === null) {
-      Alert.alert('Warning', _.lang.servers_are_not_allowed);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._messageInput.value = '';
       this._sendButton.disabled = false;
       return;
     }
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       this._messageInput.value = '';
       this._sendButton.disabled = false;
       return;
@@ -273,12 +273,12 @@ class ChatModel extends BaseModel<chatModelProps> {
         blockedUserId: this.companion.id,
       });
       if (res === null) {
-        Alert.alert('Warning', 'Something went wrong, check your internet connection');
+        app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
         return;
       }
 
       if (res.statusCode !== 200) {
-        Alert.alert('Warning', res.statusMessage);
+        app.notification.showError(_.lang.warning, res.statusMessage);
         return;
       }
 
@@ -295,12 +295,12 @@ class ChatModel extends BaseModel<chatModelProps> {
         blockedUserId: this.companion.id,
       });
       if (res === null) {
-        Alert.alert('Warning', 'Something went wrong, check your internet connection');
+        app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
         return;
       }
 
       if (res.statusCode !== 200) {
-        Alert.alert('Warning', res.statusMessage);
+        app.notification.showError(_.lang.warning, res.statusMessage);
         return;
       }
 
@@ -318,11 +318,11 @@ class ChatModel extends BaseModel<chatModelProps> {
     const res = await loadData(UserDataProvider.DeleteChat, msgBody);
 
     if (res === null) {
-      Alert.alert('Warning', _.lang.servers_are_not_allowed);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       return;
     }
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     app.navigator.navigate(ChatListScreen);

@@ -12,8 +12,8 @@ type likesModelProps = baseModelProps & {};
 
 class LikesModel extends BaseModel<likesModelProps> {
   private _tabs: TaberModel;
-  private _list: Map<number, LikeItemModel> = new Map();
-  private _currentTab: string = _.lang.my_likes;
+  private _list: Array<LikeItemModel> = [];
+  private _currentTab: string = _.lang.me_liked;
   private _loading: boolean = false;
   private _sendMessageModal: SendMessageModalModel;
   private _limit: number = 20;
@@ -27,6 +27,7 @@ class LikesModel extends BaseModel<likesModelProps> {
       tabs: [_.lang.my_likes, _.lang.me_liked, _.lang.matches],
       onChangeSelection: this.onTabChange,
     });
+    this._tabs.changeSelectedItem(1);
     this._sendMessageModal = new SendMessageModalModel({id: '_sendMessageModal'});
   }
 
@@ -61,7 +62,12 @@ class LikesModel extends BaseModel<likesModelProps> {
   };
 
   public createLikeItem = (likeItemProps: searchItemDataType) => {
-    return new LikeItemModel({...likeItemProps, onItemReject: this.onItemReject, onSendMessagePress: this.onSendMessagePress});
+    return new LikeItemModel({
+      ...likeItemProps,
+      onItemReject: this.onItemReject,
+      onSendMessagePress: this.onSendMessagePress,
+      tab: this._tabs.activeIndex,
+    });
   };
 
   public loadMyLikes = async () => {
@@ -73,18 +79,18 @@ class LikesModel extends BaseModel<likesModelProps> {
     };
     const likesRes = await loadData(UserDataProvider.GetUserLikes, likeFilterBody);
     if (likesRes === null) {
-      Alert.alert('Warning', _.lang.servers_are_not_allowed);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this.loading = false;
       return;
     }
     if (likesRes.statusCode !== 200) {
-      Alert.alert('Warning', likesRes.statusMessage);
+      app.notification.showError(_.lang.warning, likesRes.statusMessage);
       this.loading = false;
       return;
     }
-    this.list.clear();
+    this._list = [];
     likesRes.data.map(likeItemProps => {
-      this.list.set(likeItemProps.id, this.createLikeItem(likeItemProps));
+      this.list.push(this.createLikeItem(likeItemProps));
     });
     this.loading = false;
   };
@@ -102,17 +108,17 @@ class LikesModel extends BaseModel<likesModelProps> {
       };
       const likesRes = await loadData(UserDataProvider.GetUserLikes, likeFilterBody);
       if (likesRes === null) {
-        Alert.alert('Warning', _.lang.servers_are_not_allowed);
+        app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
         this._loadingNP = false;
         return;
       }
       if (likesRes.statusCode !== 200) {
-        Alert.alert('Warning', likesRes.statusMessage);
+        app.notification.showError(_.lang.warning, likesRes.statusMessage);
         this._loadingNP = false;
         return;
       }
       likesRes.data.map(likeItemProps => {
-        this.list.set(likeItemProps.id, this.createLikeItem(likeItemProps));
+        this.list.push(this.createLikeItem(likeItemProps));
       });
       this.forceUpdate();
       this._loadingNP = false;
@@ -129,18 +135,18 @@ class LikesModel extends BaseModel<likesModelProps> {
     };
     const likesRes = await loadData(UserDataProvider.GetLikesToUser, likeFilterBody);
     if (likesRes === null) {
-      Alert.alert('Warning', _.lang.servers_are_not_allowed);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this.loading = false;
       return;
     }
     if (likesRes.statusCode !== 200) {
-      Alert.alert('Warning', likesRes.statusMessage);
+      app.notification.showError(_.lang.warning, likesRes.statusMessage);
       this.loading = false;
       return;
     }
-    this.list.clear();
+    this._list = [];
     likesRes.data.map(likeItemProps => {
-      this.list.set(likeItemProps.id, this.createLikeItem(likeItemProps));
+      this.list.push(this.createLikeItem(likeItemProps));
     });
     this.loading = false;
   };
@@ -157,17 +163,17 @@ class LikesModel extends BaseModel<likesModelProps> {
       };
       const likesRes = await loadData(UserDataProvider.GetLikesToUser, likeFilterBody);
       if (likesRes === null) {
-        Alert.alert('Warning', _.lang.servers_are_not_allowed);
+        app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
         this._loadingNP = false;
         return;
       }
       if (likesRes.statusCode !== 200) {
-        Alert.alert('Warning', likesRes.statusMessage);
+        app.notification.showError(_.lang.warning, likesRes.statusMessage);
         this._loadingNP = false;
         return;
       }
       likesRes.data.map(likeItemProps => {
-        this.list.set(likeItemProps.id, this.createLikeItem(likeItemProps));
+        this.list.push(this.createLikeItem(likeItemProps));
       });
       this.forceUpdate();
       this._loadingNP = false;
@@ -184,18 +190,18 @@ class LikesModel extends BaseModel<likesModelProps> {
     };
     const likesRes = await loadData(UserDataProvider.GetUserMatches, likeFilterBody);
     if (likesRes === null) {
-      Alert.alert('Warning', _.lang.servers_are_not_allowed);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this.loading = false;
       return;
     }
     if (likesRes.statusCode !== 200) {
-      Alert.alert('Warning', likesRes.statusMessage);
+      app.notification.showError(_.lang.warning, likesRes.statusMessage);
       this.loading = false;
       return;
     }
-    this.list.clear();
+    this._list = [];
     likesRes.data.map(likeItemProps => {
-      this.list.set(likeItemProps.id, this.createLikeItem(likeItemProps));
+      this.list.push(this.createLikeItem(likeItemProps));
     });
     this.loading = false;
   };
@@ -212,17 +218,17 @@ class LikesModel extends BaseModel<likesModelProps> {
       };
       const likesRes = await loadData(UserDataProvider.GetUserMatches, likeFilterBody);
       if (likesRes === null) {
-        Alert.alert('Warning', _.lang.servers_are_not_allowed);
+        app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
         this._loadingNP = false;
         return;
       }
       if (likesRes.statusCode !== 200) {
-        Alert.alert('Warning', likesRes.statusMessage);
+        app.notification.showError(_.lang.warning, likesRes.statusMessage);
         this._loadingNP = false;
         return;
       }
       likesRes.data.map(likeItemProps => {
-        this.list.set(likeItemProps.id, this.createLikeItem(likeItemProps));
+        this.list.push(this.createLikeItem(likeItemProps));
       });
       this.forceUpdate();
       this._loadingNP = false;
@@ -275,19 +281,23 @@ class LikesModel extends BaseModel<likesModelProps> {
   };
 
   public onItemReject = async (itemId: number) => {
-    this._list.delete(+itemId);
+    const indexToDelete = this._list.findIndex(item => +item.meetingid === itemId);
+    this._list.splice(indexToDelete, 1);
     this.forceUpdate();
   };
 
   public onSendMessagePress = async (user: shortUserDataType) => {
-    const res = await loadData(UserDataProvider.IsChatExists, {myId: app.currentUser.userId, userId: user.userId});
+    const res = await loadData(UserDataProvider.IsChatExists, {
+      myId: app.currentUser.userId,
+      userId: user.userId,
+    });
     if (res === null) {
-      Alert.alert('Warning', _.lang.servers_are_not_allowed);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
 

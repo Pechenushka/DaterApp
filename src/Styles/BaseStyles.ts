@@ -105,6 +105,10 @@ const BaseStyles = StyleSheet.create({
     width: '40%',
   },
 
+  w35: {
+    width: '35%',
+  },
+
   w32: {
     width: '32%',
   },

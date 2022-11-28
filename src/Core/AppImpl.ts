@@ -12,6 +12,7 @@ import {BottomNavigationModel} from '../Models/BottomNavigation/BottomNavigation
 import {LocalizationModel} from '../Models/Components/LocalizationModels/LocalizationModel';
 import {adsHandler} from './AdsHandler';
 import {PhotoViewerModel} from '../Models/Components/PhotoViewer/PhotoViewerModel';
+import {PopupNotificationModel} from '../Models/Components/Popups/PopupNotificationModel';
 
 class MainApp implements AppImpl {
   private readonly _model: AppModel;
@@ -29,6 +30,7 @@ class MainApp implements AppImpl {
   private _bottomNavigation: BottomNavigationModel;
   private _localization: LocalizationModel;
   private _photoViewer: PhotoViewerModel;
+  private _notification: PopupNotificationModel;
   public addImpression: boolean = false;
 
   constructor() {
@@ -50,6 +52,7 @@ class MainApp implements AppImpl {
       this._bottomNavigation.init();
     }, 10);
     this._photoViewer = new PhotoViewerModel({id: '_photoViewer'});
+    this._notification = new PopupNotificationModel({id: '_notification'});
   }
   public get model() {
     return this._model;
@@ -73,6 +76,10 @@ class MainApp implements AppImpl {
 
   public get photoViewer() {
     return this._photoViewer;
+  }
+
+  public get notification() {
+    return this._notification;
   }
 
   public getScreen(name: string) {

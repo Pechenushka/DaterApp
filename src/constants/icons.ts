@@ -54,6 +54,11 @@ const ICONS = {
   anonymusIconBlack: require('../assets/img/anonymousIconBlack.png'),
   closeIconWhite: require('../assets/img/closeIconWhite.png'),
   checkIconWhite: require('../assets/img/checkIconWhite.png'),
+  matchIcon: require('../assets/img/matchIcon.png'),
+  likeToMeIcon: require('../assets/img/likeToMeIcon.png'),
+  likeFromMeIcon: require('../assets/img/likeFromMeIcon.png'),
+  infoIcon: require('../assets/img/infoIcon.png'),
+  reportIconWhite: require('../assets/img/reportIconWhite.png'),
 };
 
 export {ICONS};

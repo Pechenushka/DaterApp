@@ -91,13 +91,13 @@ class PhotoReportModalModel extends BaseModel<photoReportModalModelProps> {
     this._submitButton.disabled = true;
     const [messageText] = [this._comentInput.value.trim()];
     if (messageText.length < 6) {
-      Alert.alert(_.lang.warning, _.lang.must_be_at_least(6));
+      app.notification.showError(_.lang.warning, _.lang.must_be_at_least(6));
       this._submitButton.disabled = false;
       return;
     }
 
     if (this.photoUrl.length < 6) {
-      Alert.alert(_.lang.warning, 'Photo url is not valid');
+      app.notification.showError(_.lang.warning, 'Photo url is not valid');
       this._submitButton.disabled = false;
       return;
     }
@@ -107,19 +107,19 @@ class PhotoReportModalModel extends BaseModel<photoReportModalModelProps> {
     const inserRes = await loadData(UserDataProvider.ReportPhoto, commentBody);
 
     if (inserRes === null) {
-      Alert.alert(_.lang.warning, _.lang.servers_are_not_allowed);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._submitButton.disabled = false;
       return;
     }
 
     if (inserRes.statusCode !== 200) {
-      Alert.alert(_.lang.warning, inserRes.statusMessage);
+      app.notification.showError(_.lang.warning, inserRes.statusMessage);
       this._submitButton.disabled = false;
       return;
     }
 
     if (inserRes.statusCode === 200) {
-      Alert.alert(_.lang.warning, _.lang.your_report_successfully_sended);
+      app.notification.showError(_.lang.warning, _.lang.your_report_successfully_sended);
     }
 
     this._submitButton.disabled = false;

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {concat} from 'react-native-reanimated';
 import {COLORS} from '../constants/colors';
 import {hp} from '../constants/Dimensions';
 
@@ -33,6 +34,19 @@ const LikesScreenStyles = StyleSheet.create({
 
   tabsActiveText: {
     color: COLORS.WHITE,
+  },
+
+  userNameText: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: hp(16),
+    fontWeight: 'bold',
+    maxWidth: '60%',
+  },
+
+  likeItemStatusIcon: {
+    height: hp(50),
+    width: hp(50),
+    resizeMode: 'contain',
   },
 });
 

@@ -147,12 +147,12 @@ class PhotoViewerModel extends BaseModel<photoViewerModelProps> {
         authorId: authorId,
       });
       if (secRes === null) {
-        Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+        app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
         return;
       }
 
       if (secRes.statusCode !== 200) {
-        Alert.alert(_.lang.warning, secRes.statusMessage);
+        app.notification.showError(_.lang.warning, secRes.statusMessage);
         return;
       }
       if (secRes.data.access) {
@@ -179,7 +179,7 @@ class PhotoViewerModel extends BaseModel<photoViewerModelProps> {
     this.rewarded.load();
     this.timeoutId = setTimeout(() => {
       this._watchVideoButton.disabled = false;
-      Alert.alert(_.lang.oops, _.lang.cant_load_video);
+      app.notification.showError(_.lang.oops, _.lang.cant_load_video);
     }, 15000);
   };
 
@@ -191,18 +191,18 @@ class PhotoViewerModel extends BaseModel<photoViewerModelProps> {
       });
 
       if (res === null) {
-        Alert.alert(_.lang.warning, _.lang.something_went_wrong);
+        app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
         this.makeRequestButton.disabled = false;
         return;
       }
 
       if (res.statusCode !== 200) {
-        Alert.alert(_.lang.warning, res.statusMessage);
+        app.notification.showError(_.lang.warning, res.statusMessage);
         this.makeRequestButton.disabled = false;
         return;
       }
       this.rewardCount -= 1;
-      Alert.alert(_.lang.success, _.lang.you_successfully_requested_access);
+      app.notification.showSuccess(_.lang.success, _.lang.you_successfully_requested_access);
       this.makeRequestButton.disabled = false;
       return;
     }

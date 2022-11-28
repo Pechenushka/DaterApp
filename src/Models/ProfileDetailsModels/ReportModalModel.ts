@@ -119,7 +119,7 @@ class ReportModalModel extends BaseModel<reportModalModelProps> {
     this._submitButton.disabled = true;
     const [messageText] = [this._comentInput.value.trim()];
     if (messageText.length < 6) {
-      Alert.alert(_.lang.warning, _.lang.must_be_at_least(6));
+      app.notification.showError(_.lang.warning, _.lang.must_be_at_least(6));
       this._submitButton.disabled = false;
       return;
     }
@@ -133,19 +133,19 @@ class ReportModalModel extends BaseModel<reportModalModelProps> {
     const inserRes = await loadData(UserDataProvider.ReportUser, commentBody);
 
     if (inserRes === null) {
-      Alert.alert(_.lang.warning, _.lang.servers_are_not_allowed);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._submitButton.disabled = false;
       return;
     }
 
     if (inserRes.statusCode !== 200) {
-      Alert.alert(_.lang.warning, inserRes.statusMessage);
+      app.notification.showError(_.lang.warning, inserRes.statusMessage);
       this._submitButton.disabled = false;
       return;
     }
 
     if (inserRes.statusCode === 200) {
-      Alert.alert(_.lang.warning, _.lang.your_report_successfully_sended);
+      app.notification.showError(_.lang.warning, _.lang.your_report_successfully_sended);
     }
 
     this._submitButton.disabled = false;

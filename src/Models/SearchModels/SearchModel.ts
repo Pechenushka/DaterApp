@@ -3,6 +3,7 @@ import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {locationItemType, searchItemDataType} from '../../Core/DataTypes/BaseTypes';
+import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {genderEnum} from '../Components/Inputs/GenderSvitcherModel';
@@ -136,12 +137,12 @@ class SearchModel extends BaseModel<searchModelProps> {
     };
     const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
     if (searchRes === null) {
-      Alert.alert('Warning', 'Servers are not awalible or not internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._initialLoad = false;
       return;
     }
     if (searchRes.statusCode !== 200) {
-      Alert.alert('Warning', searchRes.statusMessage);
+      app.notification.showError(_.lang.warning, searchRes.statusMessage);
       this._initialLoad = false;
       return;
     }
@@ -175,12 +176,12 @@ class SearchModel extends BaseModel<searchModelProps> {
     };
     const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
     if (searchRes === null) {
-      Alert.alert('Warning', 'Servers are not awalible or not internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._initialLoad = false;
       return;
     }
     if (searchRes.statusCode !== 200) {
-      Alert.alert('Warning', searchRes.statusMessage);
+      app.notification.showError(_.lang.warning, searchRes.statusMessage);
       this._initialLoad = false;
       return;
     }
@@ -214,12 +215,12 @@ class SearchModel extends BaseModel<searchModelProps> {
       };
       const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
       if (searchRes === null) {
-        Alert.alert('Warning', 'Servers are not awalible or not internet connection');
+        app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
         this._loadingNP = false;
         return;
       }
       if (searchRes.statusCode !== 200) {
-        Alert.alert('Warning', searchRes.statusMessage);
+        app.notification.showError(_.lang.warning, searchRes.statusMessage);
         this._loadingNP = false;
         return;
       }
@@ -257,12 +258,12 @@ class SearchModel extends BaseModel<searchModelProps> {
       userId: user.userId,
     });
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
 

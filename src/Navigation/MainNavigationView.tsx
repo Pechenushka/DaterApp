@@ -11,6 +11,7 @@ import {Stacks} from '../Controllers/Stacks';
 import {DrawerContentView} from './DrawerContent/DrawerContentView';
 import {MainNavigationModel} from './MainNavigationModel';
 import {PhotoViewerView} from '../Views/Components/PhotoViewer/PhotoViewerView';
+import {PopupNotificationView} from '../Views/Components/Popups/PopupNotificationView';
 
 type mainNavigationViewProps = baseComponentProps & {};
 
@@ -43,6 +44,7 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
           ))}
         </app.stacks.stackDrawer.Navigator>
         <PhotoViewerView {...this.childProps(app.photoViewer)} />
+        <PopupNotificationView {...this.childProps(app.notification)} />
       </NavigationContainer>
     );
   }

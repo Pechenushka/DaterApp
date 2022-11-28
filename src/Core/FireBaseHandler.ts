@@ -5,6 +5,7 @@ import {loadData, UserDataProvider} from '../DataProvider/UserDataProvider';
 import {LoginScreen} from '../Screens/LoginScreen';
 import {app} from './AppImpl';
 import {FireBaseNotification} from './DataTypes/BaseTypes';
+import {_} from './Localization';
 
 class FireBaseHandler {
   constructor() {}
@@ -21,7 +22,7 @@ class FireBaseHandler {
         const res = await loadData(UserDataProvider.SyncFCMToken, syncBody);
 
         if (res === null) {
-          Alert.alert('Warning', 'Sync error');
+          app.notification.showError(_.lang.warning, 'Sync error');
           return;
         }
 
@@ -31,7 +32,7 @@ class FireBaseHandler {
         }
 
         if (res.statusCode !== 200) {
-          Alert.alert('Warning', res.statusMessage);
+          app.notification.showError(_.lang.warning, res.statusMessage);
           return;
         }
 

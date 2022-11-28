@@ -176,13 +176,13 @@ class ProfileDetailsModalModel extends BaseModel<profileDetailsModalModelProps> 
       userId: this.userData?.authorId,
     });
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._messageButton.disabled = false;
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       this._messageButton.disabled = false;
       return;
     }
@@ -211,13 +211,13 @@ class ProfileDetailsModalModel extends BaseModel<profileDetailsModalModelProps> 
     };
     const res = await loadData(UserDataProvider.SetUserLike, likeBody);
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this.likeButton.disabled = false;
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       this.likeButton.disabled = false;
       return;
     }

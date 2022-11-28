@@ -25,6 +25,7 @@ type likeItemModelProps = baseModelProps & {
   lookingfor: number;
   goal: number;
   online_status: boolean;
+  tab: number;
   onItemReject: (itemId: number) => Promise<void>;
   onSendMessagePress: (user: shortUserDataType) => Promise<void>;
 };
@@ -129,6 +130,10 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
     return _.lang.goals[this.props.goal];
   }
 
+  public get tab() {
+    return this.props.tab;
+  }
+
   public onItemPress = async () => {
     app.navigator.goToProfileDetailsScreen(this.authorId);
   };
@@ -140,12 +145,12 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
     };
     const res = await loadData(UserDataProvider.SetUserLike, likeBody);
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     this.props.liked = true;
@@ -171,12 +176,12 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
     };
     const res = await loadData(UserDataProvider.SetUserReject, rejectBody);
     if (res === null) {
-      Alert.alert('Warning', 'Something went wrong, check your internet connection');
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       return;
     }
 
     if (res.statusCode !== 200) {
-      Alert.alert('Warning', res.statusMessage);
+      app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
     this.props.onItemReject(this.meetingid);
