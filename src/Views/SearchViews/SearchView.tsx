@@ -71,7 +71,7 @@ class SearchView extends TypedBaseComponent<searchViewProps, SearchModel> {
                 this.model.FlatListRef = ref;
               }}
               style={[BaseStyles.w95]}
-              contentContainerStyle={[BaseStyles.pb70]}
+              contentContainerStyle={[BaseStyles.pb150]}
               onScroll={this.model.onScroll}
               renderItem={searchItem => {
                 return <SearchItemView {...this.childProps(searchItem.item)} />;

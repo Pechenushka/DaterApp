@@ -31,6 +31,7 @@ import {ReportModalView} from './ReportModalView';
 import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
 import {getShortDate} from '../../Common/dateParse';
 import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
+import {TouchableOpacity as TO} from 'react-native-gesture-handler';
 import {ProfileDetailsStyles} from '../../Styles/ProfileDetailsStyles';
 
 type profileDetailsViewProps = baseComponentProps & {};
@@ -125,14 +126,14 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
         <View style={[ProfileDetailsStyles.contentContainer]}>
           {this.model.userInfo !== null && (
             <View style={[HomeScreenStyles.userInfoContent]}>
-              <TouchableOpacity onPress={this.model.openFullScreenModal}>
+              <TO onPress={this.model.openFullScreenModal}>
                 <RoundAvatarView
                   id="RoundAvatar"
                   imagePath={this.model.userInfo.avatar}
                   size={120}
                   isOnline={this.model.userInfo.online_status}
                 />
-              </TouchableOpacity>
+              </TO>
 
               <Modal visible={this.model.modalVisible} transparent={true}>
                 <View style={[HomeScreenStyles.fullScreenContainer]}>

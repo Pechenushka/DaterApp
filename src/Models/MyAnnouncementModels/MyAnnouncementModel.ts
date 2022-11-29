@@ -313,10 +313,25 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._goalsSelection.value,
       this._sexSelection.value,
     ];
+
     if (app.currentUser.location === undefined) {
       app.notification.showError(_.lang.warning, 'Set up location please');
       this._editButton.disabled = false;
       return;
+    }
+
+    if (country !== undefined) {
+      if (region === undefined) {
+        app.notification.showError(_.lang.warning, 'Select region');
+        this._editButton.disabled = false;
+        return;
+      }
+
+      if (city === undefined) {
+        app.notification.showError(_.lang.warning, 'Select city');
+        this._editButton.disabled = false;
+        return;
+      }
     }
 
     const meetingBody = {
