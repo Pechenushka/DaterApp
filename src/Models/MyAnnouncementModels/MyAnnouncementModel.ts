@@ -1,4 +1,5 @@
 import {Alert} from 'react-native';
+import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {_} from '../../Core/Localization';
@@ -14,6 +15,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
   private _discribeInput: TextInputModel;
   private _submitButton: SimpleButtonModel;
   private _editButton: SimpleButtonModel;
+  private _backButton: SimpleButtonModel;
 
   private _countrySelection: DropDownModel;
   private _regionSelection: DropDownModel;
@@ -105,10 +107,17 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       onPress: this.onSubbmitPress,
       text: 'SUBMIT',
     });
+
     this._editButton = new SimpleButtonModel({
       id: '_editButton',
       onPress: this.onEditButtonPress,
       text: _.lang.edit,
+    });
+
+    this._backButton = new SimpleButtonModel({
+      id: '_backButton',
+      onPress: this.onBackButtonPress,
+      icon: ICONS.BackArrowIconWhite,
     });
   }
 
@@ -174,6 +183,10 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
     }
     this._editMode = Val;
     this.forceUpdate();
+  }
+
+  public get backButton() {
+    return this._backButton;
   }
 
   public onCountryChange = async (item: dropDownItem) => {
@@ -301,6 +314,10 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
     app.notification.showSuccess('Hooray', 'Your announcment succesfuly added');
     app.navigator.goToMainProfileScreen();
     this._submitButton.disabled = false;
+  };
+
+  public onBackButtonPress = async () => {
+    app.navigator.goToMainProfileScreen();
   };
 
   public onEditButtonPress = async () => {

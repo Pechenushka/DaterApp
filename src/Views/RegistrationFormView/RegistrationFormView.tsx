@@ -229,8 +229,10 @@ class RegistrationFormView extends TypedBaseComponent<
     return (
       <View style={[RegistrationScreenStyles.mainContainer, BaseStyles.container]}>
         <Text style={[RegistrationScreenStyles.mainTitleStyles]}>{_.lang.create_new_account}</Text>
-        <View style={RegistrationScreenStyles.formContainer}>
-          <Text style={[RegistrationScreenStyles.mainTitleStyles]}>
+        <ScrollView
+          contentContainerStyle={RegistrationScreenStyles.formContainer}
+          style={[BaseStyles.w86]}>
+          <Text style={[RegistrationScreenStyles.mainTitleStyles, BaseStyles.pt10]}>
             {_.lang.stepof(this.model.curentStep, 3)}
           </Text>
           <View style={[BaseStyles.row, BaseStyles.mt10, BaseStyles.alignCenter, BaseStyles.w90]}>
@@ -241,7 +243,7 @@ class RegistrationFormView extends TypedBaseComponent<
           </View>
 
           {this.getCurrentStepForm(this.model.curentStep)}
-        </View>
+        </ScrollView>
       </View>
     );
   }

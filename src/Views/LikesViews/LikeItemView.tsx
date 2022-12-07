@@ -94,7 +94,7 @@ class LikeItemView extends TypedBaseComponent<likeItemViewProps, LikeItemModel> 
                   numberOfLines={1}
                   ellipsizeMode={'tail'}
                   style={LikesScreenStyles.userNameText}>
-                  {app.currentUser.userName}
+                  {app.currentUser.userName}{' '}
                 </Text>
                 <Image
                   source={app.currentUser.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}

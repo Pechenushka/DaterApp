@@ -51,12 +51,12 @@ const RegistrationScreenStyles = StyleSheet.create({
     alignItems: 'center',
   },
   formContainer: {
-    width: '86%',
+    width: '100%',
     marginTop: hp(50),
     backgroundColor: COLORS.WHITE,
     borderRadius: 22,
     alignItems: 'center',
-    paddingBottom: hp(20),
+    paddingBottom: hp(50),
   },
 
   scrollContainer: {

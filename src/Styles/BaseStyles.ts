@@ -77,6 +77,10 @@ const BaseStyles = StyleSheet.create({
     width: '90%',
   },
 
+  w86: {
+    width: '86%',
+  },
+
   w80: {
     width: '80%',
   },
@@ -175,6 +179,10 @@ const BaseStyles = StyleSheet.create({
 
   pb150: {
     paddingBottom: hp(150),
+  },
+
+  pt10: {
+    paddingTop: hp(10),
   },
 
   mr10: {

@@ -20,6 +20,7 @@ import {appSettings} from '../../Common/AppSettings';
 import {_} from '../../Core/Localization';
 import {getAge} from '../../Common/Helpers';
 import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
+import {ChatsStyles} from '../../Styles/ChatsStyles';
 
 type myAnnouncementViewProps = baseComponentProps & {};
 
@@ -75,12 +76,25 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
     }
     return (
       <View style={[MyAnnouncementStyles.mainContainer, BaseStyles.container]}>
+        <View style={ChatsStyles.chatListHeaderContainer}>
+          <View style={[BaseStyles.w10]}>
+            <SimpleButtonView
+              styles={[ChatsStyles.chatListHeaderMenuButton]}
+              iconStyles={[BaseStyles.bigIcon]}
+              {...this.childProps(this.model.backButton)}
+            />
+          </View>
+          <View style={[BaseStyles.w80, BaseStyles.ai_c]}>
+            <Text style={ChatsStyles.chatListHeaderText}>{_.lang.your_announcement}</Text>
+          </View>
+        </View>
         <ScrollView
           style={BaseStyles.w100}
           contentContainerStyle={[MyAnnouncementStyles.scrollContentContainer]}>
-          <Text style={[MyAnnouncementStyles.mainTitleText]}>
+          {/* <Text style={[MyAnnouncementStyles.mainTitleText]}>
             {this.model.editMode ? _.lang.your_announcement : 'Create announcement'}
-          </Text>
+          </Text> */}
+
           <View style={[MyAnnouncementStyles.inputFormContainer]}>
             <View style={BaseStyles.w95}>
               <Text style={[MyAnnouncementStyles.describeInputTitleText]}>
