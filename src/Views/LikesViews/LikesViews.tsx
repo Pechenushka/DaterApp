@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, ScrollView, Text, View} from 'react-native';
 import {LikesModel} from '../../Models/LikesModels/LikesModel';
 import {TaberView} from '../Components/Filters/TaberView';
 import {LikesScreenStyles} from '../../Styles/LikesScreenStyles';
@@ -52,16 +52,25 @@ class LikesViews extends TypedBaseComponent<likesViewsProps, LikesModel> {
             <ActivityIndicator size={30} color={COLORS.PLACEHOLDER} />
           </View>
         ) : (
-          <ScrollView
-            style={BaseStyles.w100}
-            contentContainerStyle={[BaseStyles.w100, BaseStyles.ai_c, BaseStyles.pb70]}
-            onScroll={this.model.onScroll}>
-            {this.model.list.map(likeItem => {
-              return <LikeItemView {...this.childProps(likeItem)} />;
-            })}
-
-            {this.model.list.length === 0 && <Text>{_.lang.items_not_found}</Text>}
-          </ScrollView>
+          <View style={[BaseStyles.w100, BaseStyles.ai_c]}>
+            <FlatList
+              ref={ref => {
+                this.model.FlatListRef = ref;
+              }}
+              style={[BaseStyles.w100]}
+              contentContainerStyle={[BaseStyles.pb150, BaseStyles.ai_c]}
+              onScroll={this.model.onScroll}
+              renderItem={likeItem => {
+                return <LikeItemView {...this.childProps(likeItem.item)} />;
+              }}
+              data={this.model.list}
+              maxToRenderPerBatch={10}
+              initialNumToRender={10}
+              windowSize={5}
+              getItemLayout={(data, index) => ({length: 100, offset: 100 * index, index})}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
         )}
       </View>
     );

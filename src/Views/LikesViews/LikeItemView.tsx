@@ -75,6 +75,7 @@ class LikeItemView extends TypedBaseComponent<likeItemViewProps, LikeItemModel> 
         style={[
           MyAnnouncementStyles.previewContainer,
           BaseStyles.mb10,
+          {height: 100},
           this.model.checked
             ? {backgroundColor: COLORS.WHITE}
             : {backgroundColor: COLORS.BLURED_GRAY},

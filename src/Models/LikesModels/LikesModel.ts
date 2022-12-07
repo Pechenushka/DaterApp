@@ -1,4 +1,4 @@
-import {Alert, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
+import {Alert, FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {searchItemDataType} from '../../Core/DataTypes/BaseTypes';
@@ -19,6 +19,7 @@ class LikesModel extends BaseModel<likesModelProps> {
   private _limit: number = 20;
   private _offset: number = 0;
   private _loadingNP: boolean = false;
+  public FlatListRef: FlatList | null = null;
 
   constructor(props: likesModelProps) {
     super(props);
@@ -58,6 +59,7 @@ class LikesModel extends BaseModel<likesModelProps> {
   public onTabChange = async (activeIndex: number) => {
     this._currentTab = this._tabs.tabs[activeIndex];
     this.loadNededList();
+    this.FlatListRef?.scrollToOffset({offset: 0, animated: true});
     app.bottomNavigation.updateCounters();
   };
 
