@@ -4,24 +4,17 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {Image, Platform, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {SearchItemModel} from '../../Models/SearchModels/SearchItemModel';
 import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
 import {ICONS} from '../../constants/icons';
 import {BaseStyles} from '../../Styles/BaseStyles';
-import {appSettings} from '../../Common/AppSettings';
 import {COLORS} from '../../constants/colors';
-import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
-import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
-import {app} from '../../Core/AppImpl';
 import {getShortDate} from '../../Common/dateParse';
 import {getAge} from '../../Common/Helpers';
 import {_} from '../../Core/Localization';
 import {SearchStyles} from '../../Styles/SearchStyles';
-import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
 import {CoverAvatar} from '../Components/Avatars/CoverAvatar';
-import {AvatarStyles} from '../../Styles/AvatarStyles';
-import {hp} from '../../constants/Dimensions';
 
 type searchItemViewProps = baseComponentProps & {};
 
@@ -161,6 +154,10 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
               </View> */}
           </View>
         </TouchableOpacity>
+        <View style={SearchStyles.itemIconsContainer}>
+          {this.model.sponsor && <Image style={BaseStyles.bigIcon} source={ICONS.sponsorIcon} />}
+          {this.model.keepter && <Image style={BaseStyles.bigIcon} source={ICONS.keepterIcon} />}
+        </View>
       </View>
     );
   }

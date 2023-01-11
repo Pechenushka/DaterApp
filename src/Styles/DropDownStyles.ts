@@ -6,7 +6,7 @@ const DropDownStyles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.MAIN_BLUE,
     borderRadius: 8,
-    height: hp(30),
+    paddingVertical: hp(5),
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
@@ -15,7 +15,8 @@ const DropDownStyles = StyleSheet.create({
   disabledCover: {
     backgroundColor: COLORS.BLURED_GRAY2,
     position: 'absolute',
-    height: hp(30),
+    height: '100%',
+    paddingVertical: hp(5),
     width: '100%',
   },
 

@@ -112,6 +112,13 @@ const SearchStyles = StyleSheet.create({
     marginLeft: hp(5),
   },
 
+  itemIconsContainer: {
+    position: 'absolute',
+    top: hp(10),
+    left: hp(10),
+    flexDirection: 'row',
+  },
+
   sendMessageModalTextInputContainer: {
     marginTop: hp(25),
     width: '70%',

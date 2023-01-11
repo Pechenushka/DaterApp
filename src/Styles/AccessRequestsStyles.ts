@@ -33,6 +33,7 @@ const AccessRequestsStyles = StyleSheet.create({
     borderRadius: 12,
     flexDirection: 'row',
     paddingHorizontal: hp(5),
+    marginBottom: hp(10),
   },
 
   requestItemNameText: {

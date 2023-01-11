@@ -87,6 +87,11 @@ export type searchItemDataType = {
   photos: Array<string>;
   anon_photos: Array<string>;
   photoAccess: boolean;
+  alco: number;
+  smoking: number;
+  kids: number;
+  sponsor: boolean;
+  keepter: boolean;
 };
 
 export type userStatusResponseDataType = baseResponse & {
@@ -128,6 +133,11 @@ export type userDetailsDataType = {
   photos: Array<string>;
   anon_photos: Array<string>;
   photoAccess: boolean;
+  alco: number;
+  smoking: number;
+  kids: number;
+  sponsor: boolean;
+  keepter: boolean;
 };
 
 export type userMeetingDataType = baseResponse & {
@@ -139,6 +149,11 @@ export type userMeetingDataType = baseResponse & {
     text: string;
     lookingfor: number;
     goal: number;
+    alco: number;
+    smoking: number;
+    kids: number;
+    sponsor: boolean;
+    keepter: boolean;
   };
 };
 

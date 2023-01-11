@@ -66,18 +66,23 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       defaultItem: {id: 0, name: _.lang.all_cities},
     });
 
-    if (app.currentUser.location !== undefined) {
-      this._countrySelection.selectItem(app.currentUser.location.country);
-      this._regionSelection.selectItem(app.currentUser.location.region);
-      this._citySelection.selectItem(app.currentUser.location.city);
-    }
-
     this._genderSwitcher = new GenderSvitcherModel({
       id: '_genderSwitcer',
       allMode: true,
-      default: app.currentUser.gender === 'female' ? 'male' : 'female',
+      default:
+        app.currentUser.filters !== undefined
+          ? app.currentUser.filters.gender
+          : app.currentUser.gender === 'female'
+          ? 'male'
+          : 'female',
     });
-    this._genderSwitcher.setGender(app.currentUser.gender === 'female' ? 'male' : 'female');
+    this._genderSwitcher.setGender(
+      app.currentUser.filters !== undefined
+        ? app.currentUser.filters.gender
+        : app.currentUser.gender === 'female'
+        ? 'male'
+        : 'female',
+    );
 
     this._fromAgeInput = new TextInputModel({
       id: '_fromAgeInput',
@@ -94,6 +99,20 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       onBlur: this.onToAgeBlur,
       defaultValue: '100',
     });
+
+    if (app.currentUser.filters !== undefined) {
+      app.currentUser.filters.location.country.id > 0
+        ? this._countrySelection.selectItem(app.currentUser.filters.location.country)
+        : this._countrySelection.setToDefault();
+      app.currentUser.filters.location.region.id > 0
+        ? this._regionSelection.selectItem(app.currentUser.filters.location.region)
+        : this._regionSelection.setToDefault();
+      app.currentUser.filters.location.city.id > 0
+        ? this._citySelection.selectItem(app.currentUser.filters.location.city)
+        : this._citySelection.setToDefault();
+      this._fromAgeInput.value = `${app.currentUser.filters.ageFromNumber || 18}`;
+      this._toAgeInput.value = `${app.currentUser.filters.ageToNumber || 100}`;
+    }
   }
 
   public get toAgeInput() {
@@ -198,8 +217,12 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
     );
     newFilters.ageFrom = fromTimeStamp;
     newFilters.ageTo = toTimeStamp;
+    newFilters.ageFromNumber = parseInt(this._fromAgeInput.value, 10) || 18;
+    newFilters.ageToNumber = parseInt(this._toAgeInput.value, 10) || 100;
 
     this.props.submitFilters(newFilters);
+    app.currentUser.filters = newFilters;
+    app.currentUser.saveUser();
     this.close();
   };
 

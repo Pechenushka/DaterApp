@@ -66,7 +66,7 @@ class LikesModel extends BaseModel<likesModelProps> {
   public createLikeItem = (likeItemProps: searchItemDataType) => {
     return new LikeItemModel({
       ...likeItemProps,
-      onItemReject: this.onItemReject,
+      onItemRemoveFromList: this.onItemRemoveFromList,
       onSendMessagePress: this.onSendMessagePress,
       tab: this._tabs.activeIndex,
     });
@@ -282,7 +282,7 @@ class LikesModel extends BaseModel<likesModelProps> {
     }
   };
 
-  public onItemReject = async (itemId: number) => {
+  public onItemRemoveFromList = async (itemId: number) => {
     const indexToDelete = this._list.findIndex(item => +item.meetingid === itemId);
     this._list.splice(indexToDelete, 1);
     this.forceUpdate();

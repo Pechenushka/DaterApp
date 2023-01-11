@@ -24,6 +24,8 @@ export type filterType = {
   gender: genderEnum;
   ageFrom: number;
   ageTo: number;
+  ageFromNumber?: number;
+  ageToNumber?: number;
   approved: boolean;
 };
 
@@ -45,7 +47,9 @@ class SearchModel extends BaseModel<searchModelProps> {
     super(props);
     this._currentFilter = {
       location:
-        app.currentUser.location !== undefined
+        app.currentUser.filters !== undefined
+          ? app.currentUser.filters.location
+          : app.currentUser.location !== undefined
           ? app.currentUser.location
           : {
               city: {id: 1, name: 'Uzhorod'},
@@ -53,9 +57,16 @@ class SearchModel extends BaseModel<searchModelProps> {
               country: {id: 1, name: 'Ukraine'},
             },
       myId: app.currentUser.userId,
-      ageFrom: new Date().setFullYear(new Date().getFullYear() - 18),
-      ageTo: new Date().setFullYear(new Date().getFullYear() - 100),
-      gender: app.currentUser.gender === 'female' ? 'male' : 'female',
+      ageFrom:
+        app.currentUser.filters?.ageFrom || new Date().setFullYear(new Date().getFullYear() - 18),
+      ageTo:
+        app.currentUser.filters?.ageTo || new Date().setFullYear(new Date().getFullYear() - 100),
+      gender:
+        app.currentUser.filters !== undefined
+          ? app.currentUser.filters.gender
+          : app.currentUser.gender === 'female'
+          ? 'male'
+          : 'female',
       approved: false,
     };
     this._filterButton = new SimpleButtonModel({
@@ -319,6 +330,11 @@ class SearchModel extends BaseModel<searchModelProps> {
         anon_photos: nextUser.props.anon_photos,
         photos: nextUser.props.photos,
         photoAccess: nextUser.props.photoAccess,
+        alco: nextUser.props.alco,
+        keepter: nextUser.props.keepter,
+        kids: nextUser.props.kids,
+        smoking: nextUser.props.smoking,
+        sponsor: nextUser.props.sponsor,
       };
       this._profileDetailsModal.forceUpdate();
       const index = this.list.findIndex(item => item.id === nextUser.id);
@@ -356,6 +372,11 @@ class SearchModel extends BaseModel<searchModelProps> {
         anon_photos: prevUser.props.anon_photos,
         photos: prevUser.props.photos,
         photoAccess: prevUser.props.photoAccess,
+        alco: prevUser.props.alco,
+        keepter: prevUser.props.keepter,
+        kids: prevUser.props.kids,
+        smoking: prevUser.props.smoking,
+        sponsor: prevUser.props.sponsor,
       };
       this._profileDetailsModal.forceUpdate();
       const index = this.list.findIndex(item => item.id === prevUser.id);

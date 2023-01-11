@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {Image, Text, View, ScrollView, ActivityIndicator, Platform} from 'react-native';
+import {Image, Text, View, ScrollView, ActivityIndicator} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {MyAnnouncementModel} from '../../Models/MyAnnouncementModels/MyAnnouncementModel';
 import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
@@ -13,14 +13,11 @@ import {DropDownView} from '../Components/Inputs/DropDownView';
 import {RegistrationScreenStyles} from '../../Styles/RegistrationScreenStyles';
 import {app} from '../../Core/AppImpl';
 import {ICONS} from '../../constants/icons';
-import {LabelView} from '../Components/Labels/LabelView';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {COLORS} from '../../constants/colors';
-import {appSettings} from '../../Common/AppSettings';
 import {_} from '../../Core/Localization';
-import {getAge} from '../../Common/Helpers';
-import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
+import {SwitcherView} from '../Components/Inputs/SwitcherView';
 
 type myAnnouncementViewProps = baseComponentProps & {};
 
@@ -166,9 +163,59 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
                 </View>
               </View>
             </View>
+
+            <View style={[RegistrationScreenStyles.goalsContainer]}>
+              <Text style={[RegistrationScreenStyles.mainTitleStyles]}>
+                {_.lang.additional_info}
+              </Text>
+              <View style={RegistrationScreenStyles.goalsItem}>
+                <View style={RegistrationScreenStyles.goaltTitleItem}>
+                  <Text>{_.lang.your_attitude_towards_alcohol}:</Text>
+                </View>
+                <View style={[RegistrationScreenStyles.goalSelectionItem]}>
+                  <DropDownView {...this.childProps(this.model.alcoSelection)} />
+                </View>
+              </View>
+
+              <View style={RegistrationScreenStyles.goalsItem}>
+                <View style={RegistrationScreenStyles.goaltTitleItem}>
+                  <Text>{_.lang.your_attitude_towards_smoking}:</Text>
+                </View>
+                <View style={[RegistrationScreenStyles.goalSelectionItem]}>
+                  <DropDownView {...this.childProps(this.model.smokeSelection)} />
+                </View>
+              </View>
+
+              <View style={RegistrationScreenStyles.goalsItem}>
+                <View style={RegistrationScreenStyles.goaltTitleItem}>
+                  <Text>{_.lang.do_you_have_children}:</Text>
+                </View>
+                <View style={[RegistrationScreenStyles.goalSelectionItem]}>
+                  <DropDownView {...this.childProps(this.model.kidsSelection)} />
+                </View>
+              </View>
+
+              <View style={RegistrationScreenStyles.goalsItem}>
+                <View style={[BaseStyles.w60, BaseStyles.mr10]}>
+                  <Text>{_.lang.i_dont_mind_being_a_sponsor}:</Text>
+                </View>
+                <View style={[RegistrationScreenStyles.goalSelectionItem]}>
+                  <SwitcherView {...this.childProps(this.model.sponsorSwitcher)} />
+                </View>
+              </View>
+
+              <View style={RegistrationScreenStyles.goalsItem}>
+                <View style={[BaseStyles.w60, BaseStyles.mr10]}>
+                  <Text>{_.lang.i_dont_mind_being_a_kepter}:</Text>
+                </View>
+                <View style={[RegistrationScreenStyles.goalSelectionItem]}>
+                  <SwitcherView {...this.childProps(this.model.keepterSwitcher)} />
+                </View>
+              </View>
+            </View>
           </View>
           {/** PREWIEV */}
-          <Text style={[MyAnnouncementStyles.mainTitleText]}>{_.lang.preview}</Text>
+          {/* <Text style={[MyAnnouncementStyles.mainTitleText]}>{_.lang.preview}</Text>
           <View style={[MyAnnouncementStyles.previewContainer]}>
             <View style={[BaseStyles.w100, BaseStyles.ai_fs]}>
               <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.jc_sb]}>
@@ -215,7 +262,7 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
                 </View>
               </View>
             </View>
-          </View>
+          </View> */}
           {this.model.editMode ? (
             <SimpleButtonView
               styles={MyAnnouncementStyles.submitButtonContainer}

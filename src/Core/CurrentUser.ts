@@ -5,6 +5,7 @@ import {genderEnum} from '../Models/Components/Inputs/GenderSvitcherModel';
 import {locationItemType} from './DataTypes/BaseTypes';
 import {app} from './AppImpl';
 import {localizationEnum} from '../localization/localizationTypes';
+import {filterType} from '../Models/SearchModels/SearchModel';
 
 type currentUserStateType = {
   userId: number;
@@ -19,6 +20,7 @@ type currentUserStateType = {
   fcm: string | undefined;
   lang: localizationEnum;
   token: string | undefined;
+  filters: filterType | undefined;
 };
 
 type userLocationType = {
@@ -43,6 +45,7 @@ class CurrentUser {
       fcm: undefined,
       lang: 'eng',
       token: undefined,
+      filters: undefined,
     };
   }
 
@@ -60,6 +63,7 @@ class CurrentUser {
       fcm: undefined,
       lang: this.lang,
       token: undefined,
+      filters: undefined,
     };
     this.saveUser();
   };
@@ -160,6 +164,14 @@ class CurrentUser {
     this._user.token = value;
   }
 
+  public get filters() {
+    return this._user.filters;
+  }
+
+  public set filters(value) {
+    this._user.filters = value;
+  }
+
   // save user
   public async saveUser() {
     const userData = JSON.stringify(this._user);
@@ -185,6 +197,7 @@ class CurrentUser {
       this._user.fcm = jsonData.fcm;
       this._user.lang = jsonData.lang;
       this._user.token = jsonData.token;
+      this._user.filters = jsonData.filters;
     }
     await app.localization.init();
   }

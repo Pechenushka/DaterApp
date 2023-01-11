@@ -264,6 +264,26 @@ const eng: localizationPackType = {
   sorry_you_rich_anon_photos_limit: `Sorry, you've reached your anonymous photo limit. 4/4`,
   your_anon_photos: 'Your Anonymous Photos',
   your_photos: 'Your Photos',
+  alco: [
+    'I do not drink',
+    'I drink in company',
+    'Sometimes I drink',
+    'I do not deny myself alcohol',
+  ],
+  smoking: ['I do not smoke', 'I smoke in company', 'I rarely smoke', 'I smoke regularly'],
+  kids: [
+    `I don't have children and don't plan to`,
+    `I don't have children but I would like to`,
+    `I have children, we live together`,
+    `I have children, we live separately`,
+  ],
+  additional_info: 'Additional info',
+  your_attitude_towards_alcohol: 'Your attitude towards alcohol',
+  your_attitude_towards_smoking: 'Your attitude towards smoking',
+  do_you_have_children: 'Do you have children',
+  i_dont_mind_being_a_sponsor: `I don't mind being a sponsor`,
+  i_dont_mind_being_a_kepter: `I don't mind living at the expense of a partner`,
+  not_setted: 'not setted',
 };
 
 export {eng};

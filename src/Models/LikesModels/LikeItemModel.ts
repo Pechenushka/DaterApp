@@ -26,7 +26,7 @@ type likeItemModelProps = baseModelProps & {
   goal: number;
   online_status: boolean;
   tab: number;
-  onItemReject: (itemId: number) => Promise<void>;
+  onItemRemoveFromList: (itemId: number) => Promise<void>;
   onSendMessagePress: (user: shortUserDataType) => Promise<void>;
 };
 
@@ -153,7 +153,7 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
       app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
-    this.props.liked = true;
+    this.props.onItemRemoveFromList(this.meetingid);
     this.forceUpdate();
   };
 
@@ -184,7 +184,7 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
       app.notification.showError(_.lang.warning, res.statusMessage);
       return;
     }
-    this.props.onItemReject(this.meetingid);
+    this.props.onItemRemoveFromList(this.meetingid);
   };
 }
 

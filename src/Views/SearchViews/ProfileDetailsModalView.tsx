@@ -100,6 +100,7 @@ class ProfileDetailsModalView extends TypedBaseComponent<
     return (
       <Modal
         onRequestClose={this.model.close}
+        onDismiss={this.model.close}
         visible={this.model.visible}
         transparent={true}
         style={BaseStyles.container}>
@@ -205,6 +206,62 @@ class ProfileDetailsModalView extends TypedBaseComponent<
                       <View style={ProfileDetailsStyles.profileMainTextContainer}>
                         <Text style={ProfileDetailsStyles.profileInfoText}>
                           {this.model.userData.text}
+                        </Text>
+                      </View>
+                    )}
+                  </View>
+
+                  <View
+                    style={[
+                      ProfileDetailsStyles.profilePreviewContainer,
+                      BaseStyles.wrap,
+                      BaseStyles.mt20,
+                      BaseStyles.ml20,
+                    ]}>
+                    {this.model.userData.kids !== null && (
+                      <View style={[ProfileDetailsStyles.profilePropContainer]}>
+                        <Text style={ProfileDetailsStyles.profileInfoText}>
+                          {_.lang.kids[this.model.userData.kids]}
+                        </Text>
+                      </View>
+                    )}
+
+                    {this.model.userData.alco !== null && (
+                      <View style={[ProfileDetailsStyles.profilePropContainer]}>
+                        <Text style={ProfileDetailsStyles.profileInfoText}>
+                          {_.lang.alco[this.model.userData.alco]}
+                        </Text>
+                      </View>
+                    )}
+
+                    {this.model.userData.smoking !== null && (
+                      <View style={[ProfileDetailsStyles.profilePropContainer]}>
+                        <Text style={ProfileDetailsStyles.profileInfoText}>
+                          {_.lang.smoking[this.model.userData.smoking]}
+                        </Text>
+                      </View>
+                    )}
+
+                    {this.model.userData.sponsor && (
+                      <View
+                        style={[
+                          ProfileDetailsStyles.profilePropContainer,
+                          {backgroundColor: COLORS.GREEN_BUTTON},
+                        ]}>
+                        <Text style={[ProfileDetailsStyles.profileInfoText, {color: COLORS.WHITE}]}>
+                          {_.lang.i_dont_mind_being_a_sponsor}
+                        </Text>
+                      </View>
+                    )}
+
+                    {this.model.userData.keepter && (
+                      <View
+                        style={[
+                          ProfileDetailsStyles.profilePropContainer,
+                          {backgroundColor: COLORS.RED},
+                        ]}>
+                        <Text style={[ProfileDetailsStyles.profileInfoText, {color: COLORS.WHITE}]}>
+                          {_.lang.i_dont_mind_being_a_kepter}
                         </Text>
                       </View>
                     )}

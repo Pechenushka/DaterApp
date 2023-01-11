@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {MessageItemModel} from '../../Models/ChatModels/MessageItemModel';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
 import {getTimeDate} from '../../Common/dateParse';
@@ -58,7 +58,10 @@ class MessageItemView extends TypedBaseComponent<messageItemViewProps, MessageIt
   public render() {
     super.render();
     return (
-      <View style={[ChatsStyles.chatMessageWrapper, this.msgAlign]}>
+      <TouchableOpacity
+        onLongPress={this.model.onMessageCopy}
+        style={[ChatsStyles.chatMessageWrapper, this.msgAlign]}
+        activeOpacity={1}>
         <View style={[ChatsStyles.chatMessageContainer, this.msgAlign, this.msgContainerColor]}>
           <Text style={[ChatsStyles.chatMessageText, this.msgTextColor]}>
             {this.model.messageText}
@@ -67,7 +70,7 @@ class MessageItemView extends TypedBaseComponent<messageItemViewProps, MessageIt
             {getTimeDate(this.model.timestamp)}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

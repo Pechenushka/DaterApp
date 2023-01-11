@@ -1,6 +1,8 @@
 import {BaseModel, baseModelProps} from '../../../Core/BaseModel';
 
-type switcherModelProps = baseModelProps & {};
+type switcherModelProps = baseModelProps & {
+  onValueChange?: (value: boolean) => Promise<any>;
+};
 
 class SwitcherModel extends BaseModel<switcherModelProps> {
   private _value: boolean = false;
@@ -20,6 +22,7 @@ class SwitcherModel extends BaseModel<switcherModelProps> {
 
   public switch = async () => {
     this.value = !this.value;
+    this.props.onValueChange && this.props.onValueChange(this.value);
   };
 }
 

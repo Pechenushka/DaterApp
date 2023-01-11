@@ -6,6 +6,7 @@ import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {dropDownItem, DropDownModel} from '../Components/Inputs/DropDownModel';
+import {SwitcherModel} from '../Components/Inputs/SwitcherModel';
 import {TextInputModel} from '../Components/Inputs/TextInputModel';
 import {LabelModel} from '../Components/Labels/LabelModel';
 
@@ -23,6 +24,11 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
   private _sexSelection: DropDownModel;
   private _goalsSelection: DropDownModel;
+  private _smokeSelection: DropDownModel;
+  private _alcoSelection: DropDownModel;
+  private _kidsSelection: DropDownModel;
+  private _sponsorSwitcher: SwitcherModel;
+  private _keepterSwitcher: SwitcherModel;
 
   private _previewLabelModel: LabelModel;
   private _previewLocationLabelModel: LabelModel;
@@ -92,6 +98,58 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       disabled: false,
     });
 
+    this._smokeSelection = new DropDownModel({
+      id: '_smokeSelection',
+      list: [
+        {id: 0, name: _.lang.smoking[0]},
+        {id: 1, name: _.lang.smoking[1]},
+        {id: 2, name: _.lang.smoking[2]},
+        {id: 3, name: _.lang.smoking[3]},
+      ],
+      placeholder: _.lang.choose_variant,
+      onSelectionChange: this.onSmokeChange,
+      disabled: false,
+      defaultItem: {id: -1, name: _.lang.not_setted},
+    });
+
+    this._alcoSelection = new DropDownModel({
+      id: '_alcoSelection',
+      list: [
+        {id: 0, name: _.lang.alco[0]},
+        {id: 1, name: _.lang.alco[1]},
+        {id: 2, name: _.lang.alco[2]},
+        {id: 3, name: _.lang.alco[3]},
+      ],
+      placeholder: _.lang.choose_variant,
+      onSelectionChange: this.onAlcoChange,
+      disabled: false,
+      defaultItem: {id: -1, name: _.lang.not_setted},
+    });
+
+    this._kidsSelection = new DropDownModel({
+      id: '_kidsSelection',
+      list: [
+        {id: 0, name: _.lang.kids[0]},
+        {id: 1, name: _.lang.kids[1]},
+        {id: 2, name: _.lang.kids[2]},
+        {id: 3, name: _.lang.kids[3]},
+      ],
+      placeholder: _.lang.choose_variant,
+      onSelectionChange: this.onKidsChange,
+      disabled: false,
+      defaultItem: {id: -1, name: _.lang.not_setted},
+    });
+
+    this._sponsorSwitcher = new SwitcherModel({
+      id: '_sponsorSwitcher',
+      onValueChange: this.onSponsorSwitcherChange,
+    });
+
+    this._keepterSwitcher = new SwitcherModel({
+      id: '_keepterSwitcher',
+      onValueChange: this.onKeepterSwitcherChange,
+    });
+
     this._previewLabelModel = new LabelModel({id: '_previewLaberModel', text: ''});
 
     this._previewLocationLabelModel = new LabelModel({
@@ -143,6 +201,26 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
   public get goalsSelection() {
     return this._goalsSelection;
+  }
+
+  public get alcoSelection() {
+    return this._alcoSelection;
+  }
+
+  public get smokeSelection() {
+    return this._smokeSelection;
+  }
+
+  public get kidsSelection() {
+    return this._kidsSelection;
+  }
+
+  public get sponsorSwitcher() {
+    return this._sponsorSwitcher;
+  }
+
+  public get keepterSwitcher() {
+    return this._keepterSwitcher;
   }
 
   public get previewLabelModel() {
@@ -221,8 +299,35 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
     this.forceUpdate();
   };
 
+  public onSmokeChange = async (item: dropDownItem) => {
+    this.forceUpdate();
+  };
+
+  public onAlcoChange = async (item: dropDownItem) => {
+    this.forceUpdate();
+  };
+
+  public onKidsChange = async (item: dropDownItem) => {
+    this.forceUpdate();
+  };
+
+  public onSponsorSwitcherChange = async (value: boolean) => {
+    if (value) {
+      this._keepterSwitcher.value = false;
+    }
+    this.forceUpdate();
+  };
+
+  public onKeepterSwitcherChange = async (value: boolean) => {
+    if (value) {
+      this._sponsorSwitcher.value = false;
+    }
+    this.forceUpdate();
+  };
+
   public countryLoad = async () => {
     const res = await loadData(UserDataProvider.GetCountries, {});
+    console.log('COUNTRY', res);
     if (res !== null) {
       return res.data;
     }
@@ -322,13 +427,18 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
   public onEditButtonPress = async () => {
     this._editButton.disabled = true;
-    const [text, country, region, city, goal, lookingfor] = [
+    const [text, country, region, city, goal, lookingfor, alco, smoking, kids, sponsor, keepter] = [
       this._discribeInput.value.trim(),
       this._countrySelection.value,
       this._regionSelection.value,
       this._citySelection.value,
       this._goalsSelection.value,
       this._sexSelection.value,
+      this._alcoSelection.value,
+      this._smokeSelection.value,
+      this._kidsSelection.value,
+      this._sponsorSwitcher.value,
+      this._keepterSwitcher.value,
     ];
 
     if (app.currentUser.location === undefined) {
@@ -359,6 +469,11 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       text: text || '',
       lookingfor: lookingfor === undefined ? null : lookingfor.id,
       goal: goal === undefined ? null : goal.id,
+      alco: alco && alco.id >= 0 ? alco.id : null,
+      smoking: smoking && smoking.id >= 0 ? smoking.id : null,
+      kids: kids && kids.id >= 0 ? kids.id : null,
+      sponsor,
+      keepter,
     };
 
     const res = await loadData(UserDataProvider.EditMeeting, meetingBody);
@@ -395,8 +510,51 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this.previewLocationLabelModel.text = `${loadResult.data.countryName}, ${loadResult.data.regionName}, ${loadResult.data.cityName}`;
       const selectedSex = this._sexSelection.list.find(el => el.id === loadResult.data.lookingfor);
       this._sexSelection.selectItem(selectedSex);
+
       const selectedGoal = this._goalsSelection.list.find(el => el.id === loadResult.data.goal);
       this._goalsSelection.selectItem(selectedGoal);
+
+      const selectedAlco = this._alcoSelection.list.find(el => el.id === loadResult.data.alco);
+      this._alcoSelection.selectItem(selectedAlco);
+
+      const selectedSmoking = this._smokeSelection.list.find(
+        el => el.id === loadResult.data.smoking,
+      );
+      this._smokeSelection.selectItem(selectedSmoking);
+
+      const selectedKids = this._kidsSelection.list.find(el => el.id === loadResult.data.kids);
+      this._kidsSelection.selectItem(selectedKids);
+
+      this._sponsorSwitcher.value =
+        loadResult.data.sponsor !== null ? loadResult.data.sponsor : false;
+
+      this._keepterSwitcher.value =
+        loadResult.data.keepter !== null ? loadResult.data.keepter : false;
+
+      const selectedCountry = this._countrySelection.list.find(
+        el => el.name === loadResult.data.countryName,
+      );
+      selectedCountry && this._countrySelection.selectItem(selectedCountry);
+
+      this._countrySelection.onListReady = async () => {
+        const selectedCountry = this._countrySelection.list.find(
+          el => el.name === loadResult.data.countryName,
+        );
+        selectedCountry && this._countrySelection.selectItem(selectedCountry);
+      };
+      this._regionSelection.onListReady = async () => {
+        const selectedRegion = this._regionSelection.list.find(
+          el => el.name === loadResult.data.regionName,
+        );
+        selectedRegion && this._regionSelection.selectItem(selectedRegion);
+      };
+
+      this._citySelection.onListReady = async () => {
+        const selectedCity = this._citySelection.list.find(
+          el => el.name === loadResult.data.cityName,
+        );
+        selectedCity && this._citySelection.selectItem(selectedCity);
+      };
     }
 
     this.loading = false;

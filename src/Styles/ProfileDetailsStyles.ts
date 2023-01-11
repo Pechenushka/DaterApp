@@ -96,6 +96,15 @@ const ProfileDetailsStyles = StyleSheet.create({
     paddingBottom: hp(5),
   },
 
+  profilePropContainer: {
+    paddingHorizontal: hp(10),
+    paddingVertical: hp(10),
+    marginRight: hp(5),
+    marginBottom: hp(5),
+    backgroundColor: COLORS.BLURED_GRAY3,
+    borderRadius: 25,
+  },
+
   profileMainTextWrapper: {
     width: '65%',
     justifyContent: 'center',

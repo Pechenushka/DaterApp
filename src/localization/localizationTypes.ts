@@ -71,10 +71,19 @@ export type localizationPackType = {
   and: string;
   privacy_policy_title: string;
   goals: Array<string>;
+  alco: Array<string>;
+  smoking: Array<string>;
+  kids: Array<string>;
   i_looking_for: string;
+  your_attitude_towards_alcohol: string;
+  your_attitude_towards_smoking: string;
+  do_you_have_children: string;
+  i_dont_mind_being_a_sponsor: string;
+  i_dont_mind_being_a_kepter: string;
   for: string;
   genders: Array<string>;
   your_expectations: string;
+  additional_info: string;
   your_dating_goals: string;
   it_is_you: string;
   choose_variant: string;
@@ -91,6 +100,7 @@ export type localizationPackType = {
   delete_chat: string;
   all_regions: string;
   all_cities: string;
+  not_setted: string;
   all_countries: string;
   choose_gender: string;
   iam_man: string;

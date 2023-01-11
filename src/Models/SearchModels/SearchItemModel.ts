@@ -106,6 +106,14 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
     return this.props.online_status;
   }
 
+  public get sponsor() {
+    return this.props.sponsor;
+  }
+
+  public get keepter() {
+    return this.props.keepter;
+  }
+
   public get goal() {
     return _.lang.goals[this.props.goal];
   }
@@ -134,6 +142,11 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
         anon_photos: this.props.anon_photos,
         photos: this.props.photos,
         photoAccess: this.props.photoAccess,
+        alco: this.props.alco,
+        keepter: this.props.keepter,
+        kids: this.props.kids,
+        smoking: this.props.smoking,
+        sponsor: this.props.sponsor,
       });
     // app.navigator.goToProfileDetailsScreen(this.authorId);
   };

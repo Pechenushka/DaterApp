@@ -23,46 +23,58 @@ class DropDownView extends TypedBaseComponent<dropDownViewProps, DropDownModel> 
   render() {
     super.render();
     return (
-      <TouchableOpacity
-        disabled={this.model.disabled}
-        onPress={this.model.open}
-        style={[DropDownStyles.container]}>
-        {this.model.value !== undefined ? (
-          <Text style={[DropDownStyles.selectedItemText]}>{this.model.value.name}</Text>
-        ) : (
-          <Text style={[DropDownStyles.selectedItemText]}>{this.model.placeholder}</Text>
-        )}
-        <Image source={ICONS.dropDownIconWhite} style={DropDownStyles.actionIcon} />
-        <Modal visible={this.model.opened} transparent={true}>
-          <TouchableOpacity
-            style={[DropDownStyles.modalContainer]}
-            activeOpacity={1}
-            onPress={this.model.close}>
-            <View style={[DropDownStyles.modalContentContainer]}>
-              {this.model.list.length === 0 && <Text>{_.lang.items_not_found}</Text>}
-              <ScrollView
-                style={BaseStyles.w100}
-                contentContainerStyle={[BaseStyles.w100, BaseStyles.alignCenter]}>
-                {this.model.list.map(item => {
-                  return (
-                    <ShadowWrapperView
-                      key={item.id}
-                      style={[BaseStyles.w90, BaseStyles.jc_c, BaseStyles.mv5]}>
-                      <TouchableOpacity
-                        style={[DropDownStyles.itemContainer]}
-                        key={item.id}
-                        onPress={() => this.model.selectItem(item)}>
-                        <Text style={[DropDownStyles.selectedItemText]}>{item.name}</Text>
-                      </TouchableOpacity>
-                    </ShadowWrapperView>
-                  );
-                })}
-              </ScrollView>
+      <View>
+        <TouchableOpacity
+          disabled={this.model.disabled}
+          onPress={this.model.open}
+          style={[DropDownStyles.container]}>
+          {this.model.value !== undefined ? (
+            <View style={[BaseStyles.w90]}>
+              <Text numberOfLines={2} style={[DropDownStyles.selectedItemText]}>
+                {this.model.value.name}
+              </Text>
             </View>
-          </TouchableOpacity>
-        </Modal>
+          ) : (
+            <View style={[BaseStyles.w90]}>
+              <Text numberOfLines={2} style={[DropDownStyles.selectedItemText]}>
+                {this.model.placeholder}
+              </Text>
+            </View>
+          )}
+          <Image source={ICONS.dropDownIconWhite} style={DropDownStyles.actionIcon} />
+          <Modal visible={this.model.opened} transparent={true}>
+            <TouchableOpacity
+              style={[DropDownStyles.modalContainer]}
+              activeOpacity={1}
+              onPress={this.model.close}>
+              <View style={[DropDownStyles.modalContentContainer]}>
+                {this.model.list.length === 0 && <Text>{_.lang.items_not_found}</Text>}
+                <ScrollView
+                  style={BaseStyles.w100}
+                  contentContainerStyle={[BaseStyles.w100, BaseStyles.alignCenter]}>
+                  {this.model.list.map(item => {
+                    return (
+                      <ShadowWrapperView
+                        key={item.id}
+                        style={[BaseStyles.w90, BaseStyles.jc_c, BaseStyles.mv5]}>
+                        <TouchableOpacity
+                          style={[DropDownStyles.itemContainer]}
+                          key={item.id}
+                          onPress={() => this.model.selectItem(item)}>
+                          <Text numberOfLines={2} style={[DropDownStyles.selectedItemText]}>
+                            {item.name}
+                          </Text>
+                        </TouchableOpacity>
+                      </ShadowWrapperView>
+                    );
+                  })}
+                </ScrollView>
+              </View>
+            </TouchableOpacity>
+          </Modal>
+        </TouchableOpacity>
         {this.model.disabled && <View style={[DropDownStyles.disabledCover]} />}
-      </TouchableOpacity>
+      </View>
     );
   }
 }

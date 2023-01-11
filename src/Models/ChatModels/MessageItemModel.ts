@@ -1,3 +1,5 @@
+import Clipboard from '@react-native-clipboard/clipboard';
+import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {messageItemDataType} from '../../Core/DataTypes/BaseTypes';
 
@@ -23,6 +25,11 @@ class MessageItemModel extends BaseModel<messageItemModelProps> {
   public get timestamp() {
     return this.props.timestamp;
   }
+
+  public onMessageCopy = () => {
+    Clipboard.setString(this.messageText);
+    app.notification.showSuccess('Success!', 'Succesfuly copied!');
+  };
 }
 
 export {MessageItemModel};
