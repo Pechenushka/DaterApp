@@ -265,6 +265,21 @@ const ua: localizationPackType = {
   sorry_you_rich_anon_photos_limit: 'Нажаль ви досягли ліміту анонімних фотографій. 4/4',
   your_anon_photos: 'Ваші Анонімні Фото',
   your_photos: 'Виші Фото',
+  alco: [`Я не п'ю`, `П'ю інеоли в компанії`, `П'ю інколи`, 'Не обмежую себе в алкоголі'],
+  smoking: ['Не курю', 'Курю за компанію', 'Курю інколи', 'Курю регулярно'],
+  kids: [
+    `У мене нема дітей, і не планую`,
+    `У мене нема дітей, але хочу`,
+    `У мене є діти, живемо разом`,
+    `У мене є діти, живемо раздільно`,
+  ],
+  additional_info: 'Додаткова інформація',
+  your_attitude_towards_alcohol: 'Ваше ставлення до алкоголю',
+  your_attitude_towards_smoking: 'Ваше ставлення до куріння',
+  do_you_have_children: 'У вас є діти',
+  i_dont_mind_being_a_sponsor: `Я не проти бути спонсором`,
+  i_dont_mind_being_a_kepter: `Я не проти жити за рахунок партнера`,
+  not_setted: 'не вказано',
 };
 
 export {ua};

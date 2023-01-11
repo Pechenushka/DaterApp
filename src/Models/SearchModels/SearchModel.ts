@@ -67,7 +67,7 @@ class SearchModel extends BaseModel<searchModelProps> {
           : app.currentUser.gender === 'female'
           ? 'male'
           : 'female',
-      approved: false,
+      approved: true,
     };
     this._filterButton = new SimpleButtonModel({
       id: '_filterButton',
