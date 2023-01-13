@@ -77,14 +77,20 @@ export type localizationPackType = {
   i_looking_for: string;
   your_attitude_towards_alcohol: string;
   your_attitude_towards_smoking: string;
+  attitude_towards_alcohol: string;
+  attitude_towards_smoking: string;
   do_you_have_children: string;
+  children: string;
   i_dont_mind_being_a_sponsor: string;
   i_dont_mind_being_a_kepter: string;
+  show_olnly_persons_dont_mind_being_a_sponsor: string;
+  show_olnly_persons_dont_mind_being_a_kepter: string;
   for: string;
   genders: Array<string>;
   your_expectations: string;
   additional_info: string;
   your_dating_goals: string;
+  dating_goals: string;
   it_is_you: string;
   choose_variant: string;
   our_telegram: string;
@@ -146,6 +152,17 @@ export type localizationPackType = {
   sorry_you_rich_anon_photos_limit: string;
   now_you_can_add_anon_photo: string;
   for_add_annon_photo_watch_add: string;
+  all_variants: string;
 };
 
-export type localizationEnum = 'eng' | 'rus' | 'ua' | 'bel' | 'pl';
+export type localizationEnum =
+  | 'eng'
+  | 'rus'
+  | 'ua'
+  | 'bel'
+  | 'pl'
+  | 'ger'
+  | 'fra'
+  | 'itl'
+  | 'por'
+  | 'spa';

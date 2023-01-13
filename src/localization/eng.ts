@@ -9,7 +9,7 @@ const eng: localizationPackType = {
   matches: 'Matches',
   age: 'age',
   announcement_text: 'announcement text',
-  aply_filters: 'Aply filters',
+  aply_filters: 'Apply filters',
   city: 'city',
   country: 'country',
   edit: 'edit',
@@ -66,7 +66,7 @@ const eng: localizationPackType = {
     return `Must be at least ${chars} chars`;
   },
   warning: 'Warning',
-  your_report_successfully_sended: 'Your report was successfully sended',
+  your_report_successfully_sended: 'Your report was successfully sent',
   you_are_banned: 'Your profile was banned for violating community rules',
   privacy_rules: 'Privacy',
   terms_of_use_title: 'Terms of use',
@@ -203,7 +203,7 @@ const eng: localizationPackType = {
   hints: [
     'Please provide basic information about yourself',
     'Please enter your date of birth and your gender',
-    'Almoust done! Enter your location and press Sign Up!',
+    'Almost done! Enter your location and press Sign Up!',
   ],
   prev: 'prev',
   next: 'next',
@@ -284,6 +284,14 @@ const eng: localizationPackType = {
   i_dont_mind_being_a_sponsor: `I don't mind being a sponsor`,
   i_dont_mind_being_a_kepter: `I don't mind living at the expense of a partner`,
   not_setted: 'not setted',
+  attitude_towards_alcohol: 'Attitude towards alcohol',
+  attitude_towards_smoking: 'Attitude towards smoking',
+  children: 'Children',
+  dating_goals: 'Dating goals',
+  show_olnly_persons_dont_mind_being_a_kepter:
+    'Show only those who do not mind living at the expense of a partner',
+  show_olnly_persons_dont_mind_being_a_sponsor: `Show only those who don't mind becoming a sponsor`,
+  all_variants: 'all variants',
 };
 
 export {eng};

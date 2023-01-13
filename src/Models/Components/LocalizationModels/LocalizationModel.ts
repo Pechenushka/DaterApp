@@ -18,6 +18,11 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
   private _uaButton: SimpleButtonModel;
   private _belButton: SimpleButtonModel;
   private _plButton: SimpleButtonModel;
+  private _gerButton: SimpleButtonModel;
+  private _itlButton: SimpleButtonModel;
+  private _fraButton: SimpleButtonModel;
+  private _spaButton: SimpleButtonModel;
+  private _porButton: SimpleButtonModel;
 
   constructor(props: localizationModelProps) {
     super(props);
@@ -63,6 +68,41 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
       text: _.pl.lang_title,
     });
 
+    this._gerButton = new SimpleButtonModel({
+      id: '_gerButton',
+      onPress: this.onGerPress,
+      icon: ICONS.gerIcon,
+      text: _.ger.lang_title,
+    });
+
+    this._fraButton = new SimpleButtonModel({
+      id: '_fraButton',
+      onPress: this.onFraPress,
+      icon: ICONS.fraIcon,
+      text: _.fra.lang_title,
+    });
+
+    this._porButton = new SimpleButtonModel({
+      id: '_porButton',
+      onPress: this.onPorPress,
+      icon: ICONS.porIcon,
+      text: _.por.lang_title,
+    });
+
+    this._itlButton = new SimpleButtonModel({
+      id: '_itlButton',
+      onPress: this.onItlPress,
+      icon: ICONS.itlIcon,
+      text: _.itl.lang_title,
+    });
+
+    this._spaButton = new SimpleButtonModel({
+      id: '_spaButton',
+      onPress: this.onSpaPress,
+      icon: ICONS.spaIcon,
+      text: _.spa.lang_title,
+    });
+
     this._closeButton = new SimpleButtonModel({
       id: '_closeButton',
       onPress: this.onCloseButtonPress,
@@ -96,6 +136,26 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
 
   public get plButton() {
     return this._plButton;
+  }
+
+  public get gerButton() {
+    return this._gerButton;
+  }
+
+  public get itlButton() {
+    return this._itlButton;
+  }
+
+  public get fraButton() {
+    return this._fraButton;
+  }
+
+  public get porButton() {
+    return this._porButton;
+  }
+
+  public get spaButton() {
+    return this._spaButton;
   }
 
   public get visible() {
@@ -154,6 +214,46 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
     this.visible = false;
   };
 
+  public onGerPress = () => {
+    this._selectionButton.icon = ICONS.gerIcon;
+    this._selectionButton.text = _.ger.lang_title;
+    app.currentUser.lang = 'ger';
+    _.currLang = 'ger';
+    this.visible = false;
+  };
+
+  public onItlPress = () => {
+    this._selectionButton.icon = ICONS.itlIcon;
+    this._selectionButton.text = _.itl.lang_title;
+    app.currentUser.lang = 'itl';
+    _.currLang = 'itl';
+    this.visible = false;
+  };
+
+  public onFraPress = () => {
+    this._selectionButton.icon = ICONS.fraIcon;
+    this._selectionButton.text = _.fra.lang_title;
+    app.currentUser.lang = 'fra';
+    _.currLang = 'fra';
+    this.visible = false;
+  };
+
+  public onPorPress = () => {
+    this._selectionButton.icon = ICONS.porIcon;
+    this._selectionButton.text = _.por.lang_title;
+    app.currentUser.lang = 'por';
+    _.currLang = 'por';
+    this.visible = false;
+  };
+
+  public onSpaPress = () => {
+    this._selectionButton.icon = ICONS.spaIcon;
+    this._selectionButton.text = _.spa.lang_title;
+    app.currentUser.lang = 'spa';
+    _.currLang = 'spa';
+    this.visible = false;
+  };
+
   public onCloseButtonPress = async () => {
     this.visible = false;
   };
@@ -182,6 +282,31 @@ class LocalizationModel extends BaseModel<localizationModelProps> {
 
       case 'pl':
         this._selectionButton.icon = ICONS.plIcon;
+        this._selectionButton.text = _.lang.lang_title;
+        break;
+
+      case 'ger':
+        this._selectionButton.icon = ICONS.gerIcon;
+        this._selectionButton.text = _.lang.lang_title;
+        break;
+
+      case 'itl':
+        this._selectionButton.icon = ICONS.itlIcon;
+        this._selectionButton.text = _.lang.lang_title;
+        break;
+
+      case 'spa':
+        this._selectionButton.icon = ICONS.spaIcon;
+        this._selectionButton.text = _.lang.lang_title;
+        break;
+
+      case 'fra':
+        this._selectionButton.icon = ICONS.fraIcon;
+        this._selectionButton.text = _.lang.lang_title;
+        break;
+
+      case 'por':
+        this._selectionButton.icon = ICONS.porIcon;
         this._selectionButton.text = _.lang.lang_title;
         break;
 

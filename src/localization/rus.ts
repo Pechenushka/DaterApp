@@ -281,6 +281,14 @@ const rus: localizationPackType = {
   i_dont_mind_being_a_sponsor: `Я не против быть спонсором`,
   i_dont_mind_being_a_kepter: `Я не против жить за счет партнёра`,
   not_setted: 'не указано',
+  attitude_towards_alcohol: 'Отношение к алкоголю',
+  attitude_towards_smoking: 'Отношение к курению',
+  children: 'Дети',
+  dating_goals: 'Цели знакомства',
+  show_olnly_persons_dont_mind_being_a_kepter:
+    'Показывать только тех кто не против жить за счет партнера',
+  show_olnly_persons_dont_mind_being_a_sponsor: `Показывать только тех кто не против стать спонсором`,
+  all_variants: 'все варианты',
 };
 
 export {rus};

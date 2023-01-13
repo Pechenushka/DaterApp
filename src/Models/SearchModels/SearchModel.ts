@@ -27,6 +27,12 @@ export type filterType = {
   ageFromNumber?: number;
   ageToNumber?: number;
   approved: boolean;
+  alco: locationItemType | null;
+  smoking: locationItemType | null;
+  kids: locationItemType | null;
+  sponsor: boolean | null;
+  keepter: boolean | null;
+  goal: locationItemType | null;
 };
 
 class SearchModel extends BaseModel<searchModelProps> {
@@ -68,6 +74,12 @@ class SearchModel extends BaseModel<searchModelProps> {
           ? 'male'
           : 'female',
       approved: true,
+      alco: app.currentUser.filters?.alco || null,
+      goal: app.currentUser.filters?.goal || null,
+      keepter: app.currentUser.filters?.keepter || null,
+      kids: app.currentUser.filters?.kids || null,
+      smoking: app.currentUser.filters?.smoking || null,
+      sponsor: app.currentUser.filters?.sponsor || null,
     };
     this._filterButton = new SimpleButtonModel({
       id: '_filterButton',
@@ -107,7 +119,13 @@ class SearchModel extends BaseModel<searchModelProps> {
       this._currentFilter.gender !== newFilter.gender ||
       this._currentFilter.location.country.id !== newFilter.location.country.id ||
       this._currentFilter.location.region.id !== newFilter.location.region.id ||
-      this._currentFilter.location.city.id !== newFilter.location.city.id
+      this._currentFilter.location.city.id !== newFilter.location.city.id ||
+      this._currentFilter.goal !== newFilter.goal ||
+      this._currentFilter.alco !== newFilter.alco ||
+      this._currentFilter.smoking !== newFilter.smoking ||
+      this._currentFilter.sponsor !== newFilter.sponsor ||
+      this._currentFilter.keepter !== newFilter.keepter ||
+      this._currentFilter.kids !== newFilter.kids
     ) {
       this._currentFilter = newFilter;
       await this.load();
@@ -145,6 +163,24 @@ class SearchModel extends BaseModel<searchModelProps> {
       limit: this._limit,
       offset: this._offset,
       approved: this._currentFilter.approved,
+      alco:
+        this._currentFilter.alco && this._currentFilter.alco.id >= 0
+          ? this._currentFilter.alco.id
+          : null,
+      goal:
+        this._currentFilter.goal && this._currentFilter.goal.id >= 0
+          ? this._currentFilter.goal.id
+          : null,
+      keepter: this._currentFilter.keepter || null,
+      kids:
+        this._currentFilter.kids && this._currentFilter.kids.id >= 0
+          ? this._currentFilter.kids.id
+          : null,
+      smoking:
+        this._currentFilter.smoking && this._currentFilter.smoking.id >= 0
+          ? this._currentFilter.smoking.id
+          : null,
+      sponsor: this._currentFilter.sponsor || null,
     };
     const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
     if (searchRes === null) {
@@ -184,6 +220,24 @@ class SearchModel extends BaseModel<searchModelProps> {
       limit: this._limit,
       offset: this._offset,
       approved: this._currentFilter.approved,
+      alco:
+        this._currentFilter.alco && this._currentFilter.alco.id >= 0
+          ? this._currentFilter.alco.id
+          : null,
+      goal:
+        this._currentFilter.goal && this._currentFilter.goal.id >= 0
+          ? this._currentFilter.goal.id
+          : null,
+      keepter: this._currentFilter.keepter || null,
+      kids:
+        this._currentFilter.kids && this._currentFilter.kids.id >= 0
+          ? this._currentFilter.kids.id
+          : null,
+      smoking:
+        this._currentFilter.smoking && this._currentFilter.smoking.id >= 0
+          ? this._currentFilter.smoking.id
+          : null,
+      sponsor: this._currentFilter.sponsor || null,
     };
     const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
     if (searchRes === null) {
@@ -223,6 +277,24 @@ class SearchModel extends BaseModel<searchModelProps> {
         limit: this._limit,
         offset: this._offset,
         approved: this._currentFilter.approved,
+        alco:
+          this._currentFilter.alco && this._currentFilter.alco.id >= 0
+            ? this._currentFilter.alco.id
+            : null,
+        goal:
+          this._currentFilter.goal && this._currentFilter.goal.id >= 0
+            ? this._currentFilter.goal.id
+            : null,
+        keepter: this._currentFilter.keepter || null,
+        kids:
+          this._currentFilter.kids && this._currentFilter.kids.id >= 0
+            ? this._currentFilter.kids.id
+            : null,
+        smoking:
+          this._currentFilter.smoking && this._currentFilter.smoking.id >= 0
+            ? this._currentFilter.smoking.id
+            : null,
+        sponsor: this._currentFilter.sponsor || null,
       };
       const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
       if (searchRes === null) {

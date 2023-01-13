@@ -1,8 +1,13 @@
 import {bel} from '../localization/bel';
 import {eng} from '../localization/eng';
+import {fra} from '../localization/fra';
+import {ger} from '../localization/ger';
+import {itl} from '../localization/itl';
 import {localizationEnum} from '../localization/localizationTypes';
 import {pl} from '../localization/pl';
+import {por} from '../localization/por';
 import {rus} from '../localization/rus';
+import {spa} from '../localization/spa';
 import {ua} from '../localization/ua';
 import {app} from './AppImpl';
 
@@ -12,6 +17,11 @@ class Localization {
   private _rus = rus;
   private _bel = bel;
   private _pl = pl;
+  private _ger = ger;
+  private _itl = itl;
+  private _spa = spa;
+  private _fra = fra;
+  private _por = por;
 
   private _currLang: localizationEnum = 'eng';
 
@@ -35,6 +45,26 @@ class Localization {
 
   public get pl() {
     return this._pl;
+  }
+
+  public get ger() {
+    return this._ger;
+  }
+
+  public get itl() {
+    return this._itl;
+  }
+
+  public get spa() {
+    return this._spa;
+  }
+
+  public get fra() {
+    return this._fra;
+  }
+
+  public get por() {
+    return this._por;
   }
 
   public get lang() {

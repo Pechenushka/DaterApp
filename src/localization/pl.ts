@@ -280,6 +280,14 @@ const pl: localizationPackType = {
   i_dont_mind_being_a_sponsor: `Nie przeszkadza mi bycie sponsorem`,
   i_dont_mind_being_a_kepter: `Nie mam nic przeciwko życiu na koszt partnera`,
   not_setted: 'nie ustawione',
+  attitude_towards_alcohol: 'Stosunek do alkoholu',
+  attitude_towards_smoking: 'Stosunek do palenia',
+  children: 'Dzieci',
+  dating_goals: 'Cele randkowe',
+  show_olnly_persons_dont_mind_being_a_kepter:
+    'Pokaż tylko tym, którym nie przeszkadza życie na koszt partnera',
+  show_olnly_persons_dont_mind_being_a_sponsor: `Pokaż tylko tym, którzy nie mają nic przeciwko zostaniu sponsorem`,
+  all_variants: 'wszystkie warianty',
 };
 
 export {pl};

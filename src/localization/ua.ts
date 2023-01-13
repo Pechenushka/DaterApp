@@ -280,6 +280,14 @@ const ua: localizationPackType = {
   i_dont_mind_being_a_sponsor: `Я не проти бути спонсором`,
   i_dont_mind_being_a_kepter: `Я не проти жити за рахунок партнера`,
   not_setted: 'не вказано',
+  attitude_towards_alcohol: 'Відношення до алкоголю',
+  attitude_towards_smoking: 'Відношення до куріння',
+  children: 'Діти',
+  dating_goals: 'Мета знайомства',
+  show_olnly_persons_dont_mind_being_a_kepter:
+    'Показувати тільки тих хто не проти жити за рахунок партнера',
+  show_olnly_persons_dont_mind_being_a_sponsor: `Показувати тільки тих хто не проти стати спонсором`,
+  all_variants: 'всі варіанти',
 };
 
 export {ua};

@@ -37,6 +37,7 @@ const SearchStyles = StyleSheet.create({
     alignItems: 'center',
     marginTop: hp(40),
     borderRadius: 10,
+    maxHeight: hp(600),
   },
 
   filterModalMainTilte: {

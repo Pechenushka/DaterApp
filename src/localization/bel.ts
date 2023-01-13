@@ -279,6 +279,14 @@ const bel: localizationPackType = {
   i_dont_mind_being_a_sponsor: `Я не супраць быць спонсарам`,
   i_dont_mind_being_a_kepter: `Я не супраць жыць за кошт партнёра`,
   not_setted: 'не пазначана',
+  attitude_towards_alcohol: 'Стаўленне да алкаголю',
+  attitude_towards_smoking: 'Стаўленне да курэння',
+  children: 'Дзеці',
+  dating_goals: 'Мэты знаёмства',
+  show_olnly_persons_dont_mind_being_a_kepter:
+    'Паказваць толькі тых хто не супраць жыць за кошт партнёра',
+  show_olnly_persons_dont_mind_being_a_sponsor: `Паказваць толькі тых хто не супраць стаць спонсарам`,
+  all_variants: 'усе варыянты',
 };
 
 export {bel};
