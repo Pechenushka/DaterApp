@@ -153,6 +153,14 @@ export type localizationPackType = {
   now_you_can_add_anon_photo: string;
   for_add_annon_photo_watch_add: string;
   all_variants: string;
+  guests: string;
+  guestWays: Array<string>;
+  my_guests: string;
+  my_visits: string;
+  guestHints: {
+    myGuests: string;
+    myVisits: string;
+  };
 };
 
 export type localizationEnum =

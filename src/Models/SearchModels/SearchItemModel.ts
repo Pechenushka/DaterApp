@@ -1,4 +1,5 @@
 import {Alert} from 'react-native';
+import {SetVisit} from '../../Common/Helpers';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
@@ -148,6 +149,7 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
         smoking: this.props.smoking,
         sponsor: this.props.sponsor,
       });
+    SetVisit(this.props.authorId, 0);
     // app.navigator.goToProfileDetailsScreen(this.authorId);
   };
 

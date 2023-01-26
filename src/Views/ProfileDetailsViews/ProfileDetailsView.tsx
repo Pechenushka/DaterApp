@@ -241,6 +241,62 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                 )}
               </View>
 
+              <View
+                style={[
+                  ProfileDetailsStyles.profilePreviewContainer,
+                  BaseStyles.wrap,
+                  BaseStyles.mt20,
+                  BaseStyles.ml20,
+                ]}>
+                {this.model.userInfo.kids !== null && (
+                  <View style={[ProfileDetailsStyles.profilePropContainer]}>
+                    <Text style={ProfileDetailsStyles.profileInfoText}>
+                      {_.lang.kids[this.model.userInfo.kids]}
+                    </Text>
+                  </View>
+                )}
+
+                {this.model.userInfo.alco !== null && (
+                  <View style={[ProfileDetailsStyles.profilePropContainer]}>
+                    <Text style={ProfileDetailsStyles.profileInfoText}>
+                      {_.lang.alco[this.model.userInfo.alco]}
+                    </Text>
+                  </View>
+                )}
+
+                {this.model.userInfo.smoking !== null && (
+                  <View style={[ProfileDetailsStyles.profilePropContainer]}>
+                    <Text style={ProfileDetailsStyles.profileInfoText}>
+                      {_.lang.smoking[this.model.userInfo.smoking]}
+                    </Text>
+                  </View>
+                )}
+
+                {this.model.userInfo.sponsor && (
+                  <View
+                    style={[
+                      ProfileDetailsStyles.profilePropContainer,
+                      {backgroundColor: COLORS.GREEN_BUTTON},
+                    ]}>
+                    <Text style={[ProfileDetailsStyles.profileInfoText, {color: COLORS.WHITE}]}>
+                      {_.lang.i_dont_mind_being_a_sponsor}
+                    </Text>
+                  </View>
+                )}
+
+                {this.model.userInfo.keepter && (
+                  <View
+                    style={[
+                      ProfileDetailsStyles.profilePropContainer,
+                      {backgroundColor: COLORS.RED},
+                    ]}>
+                    <Text style={[ProfileDetailsStyles.profileInfoText, {color: COLORS.WHITE}]}>
+                      {_.lang.i_dont_mind_being_a_kepter}
+                    </Text>
+                  </View>
+                )}
+              </View>
+
               {this.model.userId !== app.currentUser.userId && (
                 <View style={[BaseStyles.row]}>
                   <View style={[HomeScreenStyles.actionButtonColum]}>

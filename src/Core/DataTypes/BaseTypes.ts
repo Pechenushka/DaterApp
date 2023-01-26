@@ -33,6 +33,20 @@ export type photoAccessRequestItem = {
   status: string;
 };
 
+export type guestsListDataType = baseResponse & {data: Array<guestsItemDataType>};
+
+export type guestsItemDataType = {
+  id: number;
+  date: number;
+  guestId: number;
+  guestAvatar: string;
+  guestGender: string;
+  guestName: string;
+  guestBirthDate: number;
+  guestWay: number;
+  isNew: boolean;
+};
+
 export type registrationResponseDataType = baseResponse & {
   data: {
     id: number;

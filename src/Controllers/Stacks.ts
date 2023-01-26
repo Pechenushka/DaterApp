@@ -33,6 +33,9 @@ import {PrivacyScreen} from '../Screens/PrivacyScreen';
 import {TermsOfUseScreen} from '../Screens/TermsOfUseScreen';
 import {PhotoGalleryScreen} from '../Screens/PhotoGalleryScreen';
 import {PhotoAccessRequestsScreen} from '../Screens/PhotoAccessRequestsScreen';
+import {GuestsScreen} from '../Screens/GuestsScreen';
+import {HelpModel} from '../Models/HelpModels/HelpModel';
+import {HelpScreen} from '../Screens/HelpScreen';
 
 type typedStackNavigator = TypedNavigator<
   Record<string, object | undefined>,
@@ -103,6 +106,16 @@ class Stacks {
       {
         Screen: PhotoAccessRequestsScreen,
         scrrenName: 'PhotoAccessRequestsScreen',
+        options: {swipeEnabled: true},
+      },
+      {
+        Screen: GuestsScreen,
+        scrrenName: 'GuestsScreen',
+        options: {swipeEnabled: true},
+      },
+      {
+        Screen: HelpScreen,
+        scrrenName: 'HelpScreen',
         options: {swipeEnabled: true},
       },
     ];

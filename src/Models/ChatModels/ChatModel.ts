@@ -1,4 +1,5 @@
 import {Alert, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
+import {SetVisit} from '../../Common/Helpers';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
@@ -256,6 +257,9 @@ class ChatModel extends BaseModel<chatModelProps> {
 
   public onprofilePress = async () => {
     app.navigator.goToProfileDetailsScreen(this.companion?.id || -1);
+    if (this.companion !== null) {
+      SetVisit(this.companion.id, 2);
+    }
   };
 
   public onBackPress = async () => {

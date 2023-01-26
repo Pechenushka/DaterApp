@@ -288,6 +288,19 @@ const pl: localizationPackType = {
     'Pokaż tylko tym, którym nie przeszkadza życie na koszt partnera',
   show_olnly_persons_dont_mind_being_a_sponsor: `Pokaż tylko tym, którzy nie mają nic przeciwko zostaniu sponsorem`,
   all_variants: 'wszystkie warianty',
+  guests: 'Goście',
+  guestWays: [
+    'Przekierowano z ekranu wyszukiwania',
+    'Przekierowano z ekranu polubień',
+    'Przekierowano z ekranu czatu',
+    'Przekierowano z ekranu gości',
+  ],
+  my_guests: 'Moi Goście',
+  my_visits: 'Moje Wizyty',
+  guestHints: {
+    myGuests: 'Oto użytkownicy, którzy odwiedzili Twój profil',
+    myVisits: 'To pokazuje odwiedzonych użytkowników',
+  },
 };
 
 export {pl};

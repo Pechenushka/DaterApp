@@ -8,6 +8,8 @@ import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {_} from '../../Core/Localization';
 import {Alert} from 'react-native';
 import {LoginScreen} from '../../Screens/LoginScreen';
+import {GuestsScreen} from '../../Screens/GuestsScreen';
+import {HelpScreen} from '../../Screens/HelpScreen';
 
 type homeModelProps = baseModelProps & {};
 
@@ -18,6 +20,7 @@ class HomeModel extends BaseModel<homeModelProps> {
   private _toMyAnnouncement: SimpleButtonModel;
   private _toHelpScreen: SimpleButtonModel;
   private _toSearch: SimpleButtonModel;
+  private _toGuests: SimpleButtonModel;
   private _toPhotoGallery: SimpleButtonModel;
   private _toPhotoAccessRequests: SimpleButtonModel;
   private _userStatus: boolean | null | undefined = true;
@@ -65,15 +68,23 @@ class HomeModel extends BaseModel<homeModelProps> {
 
     this._toHelpScreen = new SimpleButtonModel({
       id: '_toHelpScreen',
-      onPress: this.toResponsesPress,
+      onPress: this.toHelpPress,
       text: _.lang.help,
       icon: ICONS.helpIcon,
     });
+
     this._toSearch = new SimpleButtonModel({
       id: '_toSearch',
       onPress: this.toSearchPress,
       text: _.lang.search,
       icon: ICONS.searchIconBlack,
+    });
+
+    this._toGuests = new SimpleButtonModel({
+      id: '_toGuests',
+      onPress: this.toGuestsPress,
+      text: _.lang.guests,
+      icon: ICONS.guestsIcon,
     });
 
     this._deleteAvatar = new SimpleButtonModel({
@@ -120,12 +131,20 @@ class HomeModel extends BaseModel<homeModelProps> {
     return this._toHelpScreen;
   }
 
+  public get toGuests() {
+    return this._toGuests;
+  }
+
   public get toSearch() {
     return this._toSearch;
   }
 
   public toResponsesPress = () => {
     console.log('toResponses');
+  };
+
+  public toHelpPress = () => {
+    app.navigator.navigate(HelpScreen);
   };
 
   public toLikesPress = () => {
@@ -146,6 +165,10 @@ class HomeModel extends BaseModel<homeModelProps> {
 
   public toSearchPress = () => {
     app.navigator.goToSearchFeedScreen();
+  };
+
+  public toGuestsPress = () => {
+    app.navigator.navigate(GuestsScreen);
   };
 
   public toChatsPress = () => {

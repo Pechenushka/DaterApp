@@ -10,6 +10,7 @@ import {
   getMesagesCountDataType,
   getMesagesDataType,
   getRequestsCountDataType,
+  guestsListDataType,
   locationsResponseDataType,
   photoAccessRequestResponseDataType,
   photoListDataType,
@@ -196,6 +197,18 @@ class UserDataProvider {
 
   static async ReportPhoto(body: requestBodyType): Promise<baseResponse> {
     return fetchData('users/report-photo', 'POST', body, true);
+  }
+  /**{userId, offset, limit} */
+  static async GetGuests(body: requestBodyType): Promise<guestsListDataType> {
+    return fetchData(`guests/get-visitors`, 'POST', body, true);
+  }
+  /**{userId, offset, limit} */
+  static async GetVisits(body: requestBodyType): Promise<guestsListDataType> {
+    return fetchData(`guests/get-visits`, 'POST', body, true);
+  }
+  /** {guestId, visitedId, guestWay} */
+  static async SetVisit(body: requestBodyType): Promise<guestsListDataType> {
+    return fetchData(`guests/set-visitor`, 'POST', body, true);
   }
 }
 

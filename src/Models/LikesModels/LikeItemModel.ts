@@ -1,4 +1,5 @@
 import {Alert} from 'react-native';
+import {SetVisit} from '../../Common/Helpers';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
@@ -136,6 +137,7 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
 
   public onItemPress = async () => {
     app.navigator.goToProfileDetailsScreen(this.authorId);
+    SetVisit(this.authorId, 1);
   };
 
   public onLikeButtonPress = async () => {

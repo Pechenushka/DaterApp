@@ -188,7 +188,6 @@ const ProfileDetailsStyles = StyleSheet.create({
     width: '100%',
     marginTop: hp(160),
     borderRadius: 8,
-    alignItems: 'center',
   },
 });
 

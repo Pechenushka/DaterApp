@@ -299,6 +299,19 @@ const ger: localizationPackType = {
     'Zeigen Sie nur diejenigen, denen es nichts ausmacht, auf Kosten eines Partners zu leben',
   show_olnly_persons_dont_mind_being_a_sponsor: `Zeigen Sie nur diejenigen, denen es nichts ausmacht, Sponsor zu werden`,
   all_variants: 'alle Varianten',
+  guests: 'Gäste',
+  guestWays: [
+    'Umgeleitet von der Suchmaske',
+    'Umgeleitet vom Likes-Bildschirm',
+    'Vom Chat-Bildschirm umgeleitet',
+    'Vom Gästebildschirm umgeleitet',
+  ],
+  my_guests: 'Meine Gäste',
+  my_visits: 'Meine Besuche',
+  guestHints: {
+    myGuests: 'Hier sind die Benutzer, die Ihr Profil besucht haben',
+    myVisits: 'Dies zeigt die Benutzer, die Sie besucht haben',
+  },
 };
 
 export {ger};

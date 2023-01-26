@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, ScrollView, Text, View} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {HomeModel} from '../../Models/HomeModels/HomeModel';
 import {app} from '../../Core/AppImpl';
@@ -67,107 +67,112 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
           BaseStyles.alignCenter,
           {backgroundColor: this.model.userStatus ? COLORS.MAIN_BLUE : COLORS.WARNING_YELLOW},
         ]}>
-        {this.getInfoMessage()}
-        <View style={[HomeScreenStyles.contentContainer]}>
-          <View style={[HomeScreenStyles.userInfoContent]}>
-            {app.currentUser.avatar !== undefined &&
-            app.currentUser.avatar !== '' &&
-            app.currentUser.avatar !== null ? (
-              <View>
+        <ScrollView contentContainerStyle={BaseStyles.pb150}>
+          {this.getInfoMessage()}
+          <View style={[HomeScreenStyles.contentContainer]}>
+            <View style={[HomeScreenStyles.userInfoContent]}>
+              {app.currentUser.avatar !== undefined &&
+              app.currentUser.avatar !== '' &&
+              app.currentUser.avatar !== null ? (
+                <View>
+                  <TouchableOpacity
+                    onPress={this.model.changeAvatar}
+                    style={[HomeScreenStyles.avatarContainer]}>
+                    <Image
+                      source={{
+                        uri: `${appSettings.apiEndpoint}${app.currentUser.avatar}`,
+                        cache: 'reload',
+                      }}
+                      style={HomeScreenStyles.avatarImage}
+                    />
+                  </TouchableOpacity>
+                  <View
+                    style={{
+                      position: 'absolute',
+                      bottom: 10,
+                      right: 10,
+                    }}>
+                    <ShadowWrapperView borderRadius={60}>
+                      <SimpleButtonView
+                        iconStyles={[BaseStyles.defaultIcon]}
+                        styles={[HomeScreenStyles.deleteAvatarButtonContainer]}
+                        {...this.childProps(this.model.deleteAvatar)}
+                      />
+                    </ShadowWrapperView>
+                  </View>
+                </View>
+              ) : (
                 <TouchableOpacity
                   onPress={this.model.changeAvatar}
                   style={[HomeScreenStyles.avatarContainer]}>
-                  <Image
-                    source={{
-                      uri: `${appSettings.apiEndpoint}${app.currentUser.avatar}`,
-                      cache: 'reload',
-                    }}
-                    style={HomeScreenStyles.avatarImage}
-                  />
+                  <Image source={ICONS.addPhotoIcon} style={HomeScreenStyles.addAvatarIcon} />
                 </TouchableOpacity>
-                <View
-                  style={{
-                    position: 'absolute',
-                    bottom: 10,
-                    right: 10,
-                  }}>
-                  <ShadowWrapperView borderRadius={60}>
-                    <SimpleButtonView
-                      iconStyles={[BaseStyles.defaultIcon]}
-                      styles={[HomeScreenStyles.deleteAvatarButtonContainer]}
-                      {...this.childProps(this.model.deleteAvatar)}
-                    />
-                  </ShadowWrapperView>
-                </View>
-              </View>
-            ) : (
-              <TouchableOpacity
-                onPress={this.model.changeAvatar}
-                style={[HomeScreenStyles.avatarContainer]}>
-                <Image source={ICONS.addPhotoIcon} style={HomeScreenStyles.addAvatarIcon} />
-              </TouchableOpacity>
-            )}
-
-            <View style={[BaseStyles.alignCenter]}>
-              <View style={[BaseStyles.row]}>
-                <Text style={HomeScreenStyles.userNameText}>{app.currentUser.userName} </Text>
-                <Image
-                  source={app.currentUser.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
-                  style={[BaseStyles.defaultIcon]}
-                />
-              </View>
-              <Text>{getAge(app.currentUser.birthDate || 0)} y.o </Text>
-              {app.currentUser.location && (
-                <Text>
-                  {app.currentUser.location.country.name}, {app.currentUser.location.region.name},{' '}
-                  {app.currentUser.location.city.name}
-                </Text>
               )}
-              <View style={[HomeScreenStyles.contactsContainer]}>
-                <Text style={[HomeScreenStyles.contactsTitleText]}>{_.lang.contacts}</Text>
-                <View style={[HomeScreenStyles.infoItemContainer]}>
-                  <Image source={ICONS.emailIconDetail} style={[BaseStyles.defaultIcon]} />
-                  <Text style={[HomeScreenStyles.infoItemText]}> {app.currentUser.email}</Text>
-                </View>
-                {app.currentUser.phone !== undefined && app.currentUser.phone !== '' && (
-                  <View style={[HomeScreenStyles.infoItemContainer]}>
-                    <Image source={ICONS.phoneIcon} style={[BaseStyles.defaultIcon]} />
-                    <Text style={[HomeScreenStyles.infoItemText]}> {app.currentUser.phone}</Text>
-                  </View>
-                )}
-                {app.currentUser.telegram !== undefined && app.currentUser.telegram !== '' && (
-                  <View style={[HomeScreenStyles.infoItemContainer]}>
-                    <Image source={ICONS.telegramIcon} style={[BaseStyles.defaultIcon]} />
-                    <Text style={[HomeScreenStyles.infoItemText]}> {app.currentUser.telegram}</Text>
-                  </View>
-                )}
-              </View>
-              <View style={[BaseStyles.row]}>
-                <View style={[HomeScreenStyles.actionButtonColum]}>
-                  <View style={[HomeScreenStyles.actionButtonWrapper]}>
-                    <ShadowWrapperView>
-                      <SimpleButtonView
-                        iconStyles={[HomeScreenStyles.actionButtonIcon]}
-                        styles={[HomeScreenStyles.actionButtonContainer]}
-                        textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
-                        {...this.childProps(this.model.toPhotoGallery)}
-                      />
-                    </ShadowWrapperView>
-                  </View>
 
-                  <View style={[HomeScreenStyles.actionButtonWrapper]}>
-                    <ShadowWrapperView>
-                      <SimpleButtonView
-                        iconStyles={[HomeScreenStyles.actionButtonIcon]}
-                        styles={[HomeScreenStyles.actionButtonContainer]}
-                        textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
-                        counterStyles={[BottomNavigationStyles.bottomNavigationCounter]}
-                        counterTextStyles={[BottomNavigationStyles.bottomNavigationCounterText]}
-                        {...this.childProps(this.model.toPhotoAccessRequests)}
-                      />
-                    </ShadowWrapperView>
+              <View style={[BaseStyles.alignCenter]}>
+                <View style={[BaseStyles.row]}>
+                  <Text style={HomeScreenStyles.userNameText}>{app.currentUser.userName} </Text>
+                  <Image
+                    source={app.currentUser.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
+                    style={[BaseStyles.defaultIcon]}
+                  />
+                </View>
+                <Text>{getAge(app.currentUser.birthDate || 0)} y.o </Text>
+                {app.currentUser.location && (
+                  <Text>
+                    {app.currentUser.location.country.name}, {app.currentUser.location.region.name},{' '}
+                    {app.currentUser.location.city.name}
+                  </Text>
+                )}
+                <View style={[HomeScreenStyles.contactsContainer]}>
+                  <Text style={[HomeScreenStyles.contactsTitleText]}>{_.lang.contacts}</Text>
+                  <View style={[HomeScreenStyles.infoItemContainer]}>
+                    <Image source={ICONS.emailIconDetail} style={[BaseStyles.defaultIcon]} />
+                    <Text style={[HomeScreenStyles.infoItemText]}> {app.currentUser.email}</Text>
                   </View>
-                  {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                  {app.currentUser.phone !== undefined && app.currentUser.phone !== '' && (
+                    <View style={[HomeScreenStyles.infoItemContainer]}>
+                      <Image source={ICONS.phoneIcon} style={[BaseStyles.defaultIcon]} />
+                      <Text style={[HomeScreenStyles.infoItemText]}> {app.currentUser.phone}</Text>
+                    </View>
+                  )}
+                  {app.currentUser.telegram !== undefined && app.currentUser.telegram !== '' && (
+                    <View style={[HomeScreenStyles.infoItemContainer]}>
+                      <Image source={ICONS.telegramIcon} style={[BaseStyles.defaultIcon]} />
+                      <Text style={[HomeScreenStyles.infoItemText]}>
+                        {' '}
+                        {app.currentUser.telegram}
+                      </Text>
+                    </View>
+                  )}
+                </View>
+                <View style={[BaseStyles.row]}>
+                  <View style={[HomeScreenStyles.actionButtonColum]}>
+                    <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                      <ShadowWrapperView>
+                        <SimpleButtonView
+                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                          styles={[HomeScreenStyles.actionButtonContainer]}
+                          textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
+                          {...this.childProps(this.model.toPhotoGallery)}
+                        />
+                      </ShadowWrapperView>
+                    </View>
+
+                    <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                      <ShadowWrapperView>
+                        <SimpleButtonView
+                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                          styles={[HomeScreenStyles.actionButtonContainer]}
+                          textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
+                          counterStyles={[BottomNavigationStyles.bottomNavigationCounter]}
+                          counterTextStyles={[BottomNavigationStyles.bottomNavigationCounterText]}
+                          {...this.childProps(this.model.toPhotoAccessRequests)}
+                        />
+                      </ShadowWrapperView>
+                    </View>
+
+                    {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
                     <ShadowWrapperView>
                       <SimpleButtonView
                         iconStyles={[HomeScreenStyles.actionButtonIcon]}
@@ -176,7 +181,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                       />
                     </ShadowWrapperView>
                   </View> */}
-                  {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                    {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
                     <ShadowWrapperView>
                       <SimpleButtonView
                         iconStyles={[HomeScreenStyles.actionButtonIcon]}
@@ -186,40 +191,53 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                       />
                     </ShadowWrapperView>
                   </View> */}
-                </View>
-                <View style={[HomeScreenStyles.actionButtonColum]}>
-                  <View style={[HomeScreenStyles.actionButtonWrapper]}>
-                    <ShadowWrapperView>
-                      <SimpleButtonView
-                        iconStyles={[HomeScreenStyles.actionButtonIcon]}
-                        styles={[HomeScreenStyles.actionButtonContainer]}
-                        textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
-                        {...this.childProps(this.model.toMyAnnouncement)}
-                      />
-                    </ShadowWrapperView>
                   </View>
-                  {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
-                    <ShadowWrapperView>
-                      <SimpleButtonView
-                        iconStyles={[HomeScreenStyles.actionButtonIcon]}
-                        styles={[HomeScreenStyles.actionButtonContainer]}
-                        {...this.childProps(this.model.toHelpScreen)}
-                      />
-                    </ShadowWrapperView>
-                  </View> */}
-                  <View style={[HomeScreenStyles.actionButtonWrapper]}>
-                    <ShadowWrapperView>
-                      <SimpleButtonView
-                        iconStyles={[HomeScreenStyles.actionButtonIcon]}
-                        styles={[HomeScreenStyles.actionButtonContainer]}
-                        textStyles={[BaseStyles.capitalize]}
-                        {...this.childProps(this.model.toSearch)}
-                      />
-                    </ShadowWrapperView>
+                  <View style={[HomeScreenStyles.actionButtonColum]}>
+                    <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                      <ShadowWrapperView>
+                        <SimpleButtonView
+                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                          styles={[HomeScreenStyles.actionButtonContainer]}
+                          textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
+                          {...this.childProps(this.model.toMyAnnouncement)}
+                        />
+                      </ShadowWrapperView>
+                    </View>
+                    {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                      <ShadowWrapperView>
+                        <SimpleButtonView
+                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                          styles={[HomeScreenStyles.actionButtonContainer]}
+                          textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
+                          {...this.childProps(this.model.toHelpScreen)}
+                        />
+                      </ShadowWrapperView>
+                    </View>
+                    <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                      <ShadowWrapperView>
+                        <SimpleButtonView
+                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                          styles={[HomeScreenStyles.actionButtonContainer]}
+                          textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
+                          {...this.childProps(this.model.toSearch)}
+                        />
+                      </ShadowWrapperView>
+                    </View> */}
+                    <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                      <ShadowWrapperView>
+                        <SimpleButtonView
+                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                          styles={[HomeScreenStyles.actionButtonContainer]}
+                          textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
+                          counterStyles={[BottomNavigationStyles.bottomNavigationCounter]}
+                          counterTextStyles={[BottomNavigationStyles.bottomNavigationCounterText]}
+                          {...this.childProps(this.model.toGuests)}
+                        />
+                      </ShadowWrapperView>
+                    </View>
                   </View>
                 </View>
-              </View>
-              {/* <View style={[HomeScreenStyles.searchButtonWrapper]}>
+                {/* <View style={[HomeScreenStyles.searchButtonWrapper]}>
                 <ShadowWrapperView>
                   <SimpleButtonView
                     iconStyles={[HomeScreenStyles.actionButtonIcon]}
@@ -228,15 +246,16 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                   />
                 </ShadowWrapperView>
               </View> */}
+              </View>
+            </View>
+            <View style={[]}>
+              <BannerAd
+                unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/7617680070'}
+                size={BannerAdSize.BANNER}
+              />
             </View>
           </View>
-          <View style={[]}>
-            <BannerAd
-              unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/7617680070'}
-              size={BannerAdSize.BANNER}
-            />
-          </View>
-        </View>
+        </ScrollView>
       </View>
     );
   }

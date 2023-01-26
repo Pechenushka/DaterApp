@@ -1,4 +1,5 @@
 import {Alert, FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
+import {SetVisit} from '../../Common/Helpers';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
@@ -412,6 +413,7 @@ class SearchModel extends BaseModel<searchModelProps> {
       const index = this.list.findIndex(item => item.id === nextUser.id);
       this.FlatListRef &&
         this.FlatListRef.scrollToIndex({index: Math.floor(index / 2), animated: true});
+      SetVisit(nextUser.authorId, 0);
     }
   };
 
@@ -454,6 +456,7 @@ class SearchModel extends BaseModel<searchModelProps> {
       const index = this.list.findIndex(item => item.id === prevUser.id);
       this.FlatListRef &&
         this.FlatListRef.scrollToIndex({index: Math.floor(index / 2), animated: true});
+      SetVisit(prevUser.authorId, 0);
     }
   };
 }

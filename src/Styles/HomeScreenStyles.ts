@@ -31,7 +31,7 @@ const HomeScreenStyles = StyleSheet.create({
   contentContainer: {
     backgroundColor: COLORS.WHITE,
     width: '100%',
-    height: '85%',
+    height: '100%',
     marginTop: hp(160),
     borderRadius: 8,
     alignItems: 'center',

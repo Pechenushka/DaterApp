@@ -7,7 +7,9 @@ import {app} from '../Core/AppImpl';
 import {baseScreenProps, componentPropsWithModel} from '../Core/BaseComponent';
 import {BaseScreenModel} from '../Core/BaseScreenModel';
 import {BaseStyles} from '../Styles/BaseStyles';
+import {HomeScreenStyles} from '../Styles/HomeScreenStyles';
 import {BottomNavigationView} from '../Views/BottomNavigation/BottomNavigationView';
+import {SimpleButtonView} from '../Views/Components/Buttons/SimpleButtonView';
 import {ProfileDetailsView} from '../Views/ProfileDetailsViews/ProfileDetailsView';
 import {BaseLayoutView} from './BaseLayout';
 
@@ -58,6 +60,11 @@ class ProfileDetailsScreen extends BaseLayoutView<ProfileDetailsController> {
           />
         </ScrollView>
         <BottomNavigationView {...this.childProps(app.bottomNavigation)} />
+        <SimpleButtonView
+          styles={[HomeScreenStyles.menuButton]}
+          iconStyles={[BaseStyles.bigIcon]}
+          {...this.childProps(this.controller.backButton)}
+        />
       </View>
     );
   }

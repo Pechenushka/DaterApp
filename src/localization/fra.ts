@@ -287,6 +287,19 @@ const fra: localizationPackType = {
   show_olnly_persons_dont_mind_being_a_kepter: `Afficher uniquement ceux qui ne voient pas d'inconvénient à vivre aux dépens d'un partenaire`,
   show_olnly_persons_dont_mind_being_a_sponsor: `Afficher uniquement ceux qui acceptent de devenir sponsor`,
   all_variants: 'toutes les variantes',
+  guests: 'Invités',
+  guestWays: [
+    `Redirigé depuis l'écran de recherche`,
+    `Redirigé depuis l'écran "J'aime"`,
+    `Redirigé depuis l'écran de chat`,
+    `Redirigé depuis l'écran des invités`,
+  ],
+  my_guests: 'Mes invités',
+  my_visits: 'Mes visites',
+  guestHints: {
+    myGuests: 'Voici les utilisateurs qui ont visité votre profil',
+    myVisits: 'Cela montre les utilisateurs que vous avez visités',
+  },
 };
 
 export {fra};

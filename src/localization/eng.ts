@@ -292,6 +292,19 @@ const eng: localizationPackType = {
     'Show only those who do not mind living at the expense of a partner',
   show_olnly_persons_dont_mind_being_a_sponsor: `Show only those who don't mind becoming a sponsor`,
   all_variants: 'all variants',
+  guests: 'Guests',
+  guestWays: [
+    'Redirected from search screen',
+    'Redirected from likes screen',
+    'Redirected from chat screen',
+    'Redirected from guests screen',
+  ],
+  my_guests: 'My Guests',
+  my_visits: 'My Visits',
+  guestHints: {
+    myGuests: 'Here are the users who visited your profile',
+    myVisits: 'This shows the users you visited',
+  },
 };
 
 export {eng};

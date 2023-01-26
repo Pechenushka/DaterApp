@@ -287,6 +287,19 @@ const itl: localizationPackType = {
     'Mostra solo quelli a cui non dispiace vivere a spese di un partner',
   show_olnly_persons_dont_mind_being_a_sponsor: `Mostra solo quelli a cui non dispiace diventare uno sponsor`,
   all_variants: 'tutte le varianti',
+  guests: 'Ospiti',
+  guestWays: [
+    'Reindirizzamento dalla schermata di ricerca',
+    'Reindirizzato dalla schermata dei Mi piace',
+    'Reindirizzamento dalla schermata della chat',
+    'Reindirizzamento dalla schermata degli ospiti',
+  ],
+  my_guests: 'I miei ospiti',
+  my_visits: 'Le mie visite',
+  guestHints: {
+    myGuests: 'Ecco gli utenti che hanno visitato il tuo profilo',
+    myVisits: 'Questo mostra gli utenti che hai visitato',
+  },
 };
 
 export {itl};

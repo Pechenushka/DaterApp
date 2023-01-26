@@ -286,6 +286,19 @@ const por: localizationPackType = {
     'Mostre apenas aqueles que não se importam em viver às custas de um parceiro',
   show_olnly_persons_dont_mind_being_a_sponsor: `Mostrar apenas aqueles que não se importam em se tornar um patrocinador`,
   all_variants: 'todas as variantes',
+  guests: 'Convidados',
+  guestWays: [
+    'Redirecionado da tela de pesquisa',
+    'Redirecionado da tela de curtidas',
+    'Redirecionado da tela de bate-papo',
+    'Redirecionado da tela de convidados',
+  ],
+  my_guests: 'Meus Convidados',
+  my_visits: 'Minhas Visitas',
+  guestHints: {
+    myGuests: 'Aqui estão os usuários que visitaram seu perfil',
+    myVisits: 'Isso mostra os usuários que você visitou',
+  },
 };
 
 export {por};

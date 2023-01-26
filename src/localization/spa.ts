@@ -287,6 +287,19 @@ const spa: localizationPackType = {
     'Mostrar solo aquellos a los que no les importa vivir a expensas de un socio',
   show_olnly_persons_dont_mind_being_a_sponsor: `Mostrar solo aquellos a los que no les importe convertirse en patrocinadores`,
   all_variants: 'todas las variantes',
+  guests: 'Invitados',
+  guestWays: [
+    'Redirigido desde la pantalla de búsqueda',
+    'Redirigido desde la pantalla de me gusta',
+    'Redirigido desde la pantalla de chat',
+    'Redirigido desde la pantalla de invitados',
+  ],
+  my_guests: 'Mis Invitados',
+  my_visits: 'Mis Visitas',
+  guestHints: {
+    myGuests: 'Estos son los usuarios que visitaron tu perfil',
+    myVisits: 'Esto muestra a los usuarios que visitaste',
+  },
 };
 
 export {spa};
