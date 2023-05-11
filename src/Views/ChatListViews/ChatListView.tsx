@@ -11,7 +11,6 @@ import {COLORS} from '../../constants/colors';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {ChatListItemView} from './ChatListItemView';
 import {_} from '../../Core/Localization';
-import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 
 type chatListViewProps = baseComponentProps & {};

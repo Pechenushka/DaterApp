@@ -305,6 +305,59 @@ const eng: localizationPackType = {
     myGuests: 'Here are the users who visited your profile',
     myVisits: 'This shows the users you visited',
   },
+  chat_list_screen: `Chat List Screen`,
+  chat_screen: `Chat Screen`,
+  guests_screen: `Guests Screen`,
+  likes_screen: `Likes Screen`,
+  photo_access_requests_screen: `Photo Access Requests Screen`,
+  photo_gallery_screen: `Photo Gallery Screen`,
+  profile_settings_screen: `Profile Settings Screen`,
+  search_screen: `Search Screen`,
+  home_screen: `Home Screen`,
+  chat_list_screen_hint: `This screen can be accessed using the button on the bottom navigation bar.
+  All your chats are displayed here sorted by the date of the last message in the chat`,
+  chat_screen_hint: `This screen can be accessed by selecting any chat from the list of chats on the Chat List Screen.
+  The profile of your interlocutor is shown at the top of the screen. Also in the context menu there are options for deleting a chat and blocking your interlocutor.
+  In the center you will see the history of messages in your interlocutor.
+  At the bottom of the screen you will see a field for entering a message and a button to send a message.`,
+  guests_screen_hint: `You can get to this screen using the button on the main screen "Guests".
+  This screen shows the guests of your profile.
+  At the top of the screen you will see a tab switcher. In the tab "My Guests" you will find all the users who visited your profile. In the tab "My Visits" you will find the users you visited.
+  The entry about visiting the questionnaire is deleted after 30 days.`,
+  likes_screen_hint: `This screen can be accessed using the button on the bottom navigation bar.
+  At the top of the screen you will see a tab switcher.
+  
+  Tab "My likes".
+  Here you can see profiles of users you like.
+  
+  "Like" tab.
+  Here you can see profiles of users who liked you.
+  
+  Matches tab.
+  Here you can see profiles of users with whom you have matched likes.`,
+  photo_access_requests_screen_hint: `This screen can be accessed using the button on the main Access Requests screen.
+  This screen shows requests for access to anonymous photos.
+  At the top of the screen, you will see two tab switches. In the first one, you choose which requests will be shown - requests to you, or your requests to other users.
+  Each request has 3 statuses (bottom tab switcher). The "Approved" status indicates that the request has been approved. The "Pending" status indicates that the request is pending. The "Rejected" status indicates that the request was rejected.
+  You also have the option to change your mind at any time.`,
+  photo_gallery_screen_hint: `This screen can be accessed using the button on the main Photo Gallery screen.
+  At the top of the screen is a block with your public photos, and at the bottom of the block with your anonymous photos.
+  
+  Public photos (upper block)
+  These photos will be visible to all users. Photos that have not yet been moderated are marked with a red frame. Limit 5.
+  
+  Anonymous photos (bottom block)
+  These photos will be visible only to those users to whom you have given access. Thus, only you decide who will see these photos. Photos that have not yet been moderated are marked with a red frame. Limit 4. Access requests for these photos can be found on the "Access Requests" screen`,
+  profile_settings_screen_hint: `You can get to this screen using the button on the main screen "Questionnaire Settings".
+  On this screen you can edit your profile. You have the opportunity to write a few words about yourself, indicate the location, indicate your expectations from a partner, and also indicate additional information about yourself such as your attitude to smoking, alcohol, having children, and also indicate whether you are ready to become a sponsor or not against live off your partner.
+  All data that you enter here will be visible to other users.`,
+  search_screen_hint: `This screen can be accessed using the button on the bottom navigation bar.
+  At the top of the screen you will see the location from which the profiles were selected. you will also find a bunch of filters there. All filters you choose are saved and will be automatically applied the next time you open the app.
+  In the main part of the screen there is a list of profiles that match all filters. The list is automatically sorted by the date of the user's last visit.
+  Each profile in the list can be marked with a green icon or a red icon. The green icon marks users who don't mind becoming sponsors. The red icon marks users who do not mind living at the expense of a partner.`,
+  home_screen_hint: `This is your main screen, where you go when you open the app.
+  At the top of the screen, you have the opportunity to upload your avatar. To do this, click on the large camera button. Once you have uploaded your avatar, it will appear in a circle frame instead of a camera button. To change your avatar, click on your current avatar. To remove an avatar, click on the small cross button in the lower right corner of your avatar.
+  Under the avatar is the basic information about you and your contact details (visible only to you). Below is the navigation bar.`,
 };
 
 export {eng};

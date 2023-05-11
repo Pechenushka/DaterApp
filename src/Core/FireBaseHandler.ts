@@ -1,6 +1,5 @@
 import {firebase} from '@react-native-firebase/crashlytics';
 import messaging from '@react-native-firebase/messaging';
-import {Alert} from 'react-native';
 import {loadData, UserDataProvider} from '../DataProvider/UserDataProvider';
 import {LoginScreen} from '../Screens/LoginScreen';
 import {app} from './AppImpl';

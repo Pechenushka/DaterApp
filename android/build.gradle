@@ -5,7 +5,7 @@ buildscript {
         buildToolsVersion = "30.0.2"
         minSdkVersion = 25
         compileSdkVersion = 32
-        targetSdkVersion = 31
+        targetSdkVersion = 32
         ndkVersion = "21.4.7075529"
     }
     repositories {
@@ -28,7 +28,15 @@ configurations.all {
     }
 }
 
+def REACT_NATIVE_VERSION = new File(['node', '--print',"JSON.parse(require('fs').readFileSync(require.resolve('react-native/package.json'), 'utf-8')).version"].execute(null, rootDir).text.trim())
+
 allprojects {
+    configurations.all {
+        resolutionStrategy {
+            // Remove this override in 0.66, as a proper fix is included in react-native itself.
+            force "com.facebook.react:react-native:" + REACT_NATIVE_VERSION
+        }
+    }
     repositories {
         mavenCentral()
         mavenLocal()

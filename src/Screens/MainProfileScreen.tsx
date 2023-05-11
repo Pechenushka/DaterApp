@@ -55,7 +55,7 @@ class MainProfileScreen extends BaseLayoutView<HomeController> {
   public content() {
     return (
       <View style={[BaseStyles.container]}>
-        <ScrollView contentContainerStyle={BaseStyles.h100}>
+        <ScrollView contentContainerStyle={[BaseStyles.h100, BaseStyles.w100]}>
           <HomeView
             ref={ref => {
               this._refMod = ref;

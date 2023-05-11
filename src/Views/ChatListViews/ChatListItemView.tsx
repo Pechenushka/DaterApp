@@ -4,10 +4,9 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {Image, Platform, Text, TouchableOpacity, View} from 'react-native';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
 import {ChatListItemModel} from '../../Models/ChatListModels/ChatListItemModel';
-import {appSettings} from '../../Common/AppSettings';
 import {ICONS} from '../../constants/icons';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {getShortDate} from '../../Common/dateParse';

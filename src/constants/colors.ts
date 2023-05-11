@@ -7,7 +7,7 @@ const COLORS = {
   BLACK: 'rgba(10,10,10,1)',
   GREEN_BUTTON: 'rgba(105,212,105,1)',
   LINK_BLUE: 'rgba(10,10,180, 0.8)',
-  MAIN_BLUE: '#2D9CEE',
+  MAIN_BLUE: '#22C4F8',
   INFO_BACGROUND: '#60B8FA',
   BLURED_GRAY: 'rgba(120,120,120,0.5)',
   BLURED_GRAY2: 'rgba(240,240,240,0.6)',

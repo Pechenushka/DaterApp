@@ -72,7 +72,7 @@ class SearchFilterView extends TypedBaseComponent<searchFilterViewProps, SearchF
               <View style={[BaseStyles.w95]}>
                 <View style={[RegistrationScreenStyles.dateContainer]}>
                   <Text style={[RegistrationScreenStyles.dateText]}>{_.lang.gender}:</Text>
-                  <View style={[BaseStyles.w50]}>
+                  <View style={[BaseStyles.w60]}>
                     <GenderSwitcherView {...this.childProps(this.model.genderSwitcher)} />
                   </View>
                 </View>

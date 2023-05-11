@@ -1,7 +1,6 @@
 import {BaseModel, baseModelProps} from '../../../Core/BaseModel';
 import {GoogleSignin} from 'react-native-google-signin';
 import {loadData, UserDataProvider} from '../../../DataProvider/UserDataProvider';
-import {Alert} from 'react-native';
 import {app} from '../../../Core/AppImpl';
 import {CreateNewAccountScreen} from '../../../Screens/CreateNewAccountScreen';
 import {FireBaseHandler} from '../../../Core/FireBaseHandler';

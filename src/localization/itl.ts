@@ -300,6 +300,59 @@ const itl: localizationPackType = {
     myGuests: 'Ecco gli utenti che hanno visitato il tuo profilo',
     myVisits: 'Questo mostra gli utenti che hai visitato',
   },
+  chat_list_screen: `Schermata elenco chat`,
+  chat_screen: `Schermata chat`,
+  guests_screen: `Schermata ospiti`,
+  likes_screen: `Mi piace schermo`,
+  photo_access_requests_screen: `Schermata delle richieste di accesso alle foto`,
+  photo_gallery_screen: `Schermata Galleria fotografica`,
+  profile_settings_screen: `Schermata delle impostazioni del profilo`,
+  search_screen: `Schermata di ricerca`,
+  home_screen: `Schermo di casa`,
+  chat_list_screen_hint: `È possibile accedere a questa schermata utilizzando il pulsante nella barra di navigazione in basso.
+  Tutte le tue chat vengono visualizzate qui ordinate in base alla data dell'ultimo messaggio nella chat`,
+  chat_screen_hint: `È possibile accedere a questa schermata selezionando una chat dall'elenco delle chat nella schermata Elenco chat.
+  Il profilo del tuo interlocutore è mostrato nella parte superiore dello schermo. Anche nel menu contestuale ci sono opzioni per eliminare una chat e bloccare il tuo interlocutore.
+  Al centro vedrai la cronologia dei messaggi nel tuo interlocutore.
+  Nella parte inferiore dello schermo vedrai un campo per inserire un messaggio e un pulsante per inviare un messaggio.`,
+  guests_screen_hint: `Puoi accedere a questa schermata utilizzando il pulsante nella schermata principale "Ospiti".
+  Questa schermata mostra gli ospiti del tuo profilo.
+  Nella parte superiore dello schermo vedrai un selettore di schede. Nella scheda "I miei ospiti" troverai tutti gli utenti che hanno visitato il tuo profilo. Nella scheda "Le mie visite" troverai gli utenti che hai visitato.
+  La voce sulla visita al questionario viene cancellata dopo 30 giorni.`,
+  likes_screen_hint: `È possibile accedere a questa schermata utilizzando il pulsante nella barra di navigazione in basso.
+  Nella parte superiore dello schermo vedrai un selettore di schede.
+ 
+  Scheda "Mi piace".
+  Qui puoi vedere i profili degli utenti che ti piacciono.
+ 
+  Scheda "Mi piace".
+  Qui puoi vedere i profili degli utenti a cui sei piaciuto.
+ 
+  Scheda Partite.
+  Qui puoi vedere i profili degli utenti con cui hai abbinato i Mi piace.`,
+  photo_access_requests_screen_hint: `È possibile accedere a questa schermata utilizzando il pulsante nella schermata principale Richieste di accesso.
+  Questa schermata mostra le richieste di accesso alle foto anonime.
+  Nella parte superiore dello schermo, vedrai due interruttori di tabulazione. Nella prima, scegli quali richieste verranno mostrate: richieste a te o richieste ad altri utenti.
+  Ogni richiesta ha 3 stati (commutatore di schede in basso). Lo stato "Approvato" indica che la richiesta è stata approvata. Lo stato "In sospeso" indica che la richiesta è in sospeso. Lo stato "Rifiutato" indica che la richiesta è stata respinta.
+  Hai anche la possibilità di cambiare idea in qualsiasi momento.`,
+  photo_gallery_screen_hint: `È possibile accedere a questa schermata utilizzando il pulsante nella schermata principale di Galleria fotografica.
+  Nella parte superiore dello schermo c'è un blocco con le tue foto pubbliche e nella parte inferiore del blocco con le tue foto anonime.
+ 
+  Foto pubbliche (blocco superiore)
+  Queste foto saranno visibili a tutti gli utenti. Le foto che non sono state ancora moderate sono contrassegnate da una cornice rossa. Limite 5.
+ 
+  Foto anonime (blocco inferiore)
+  Queste foto saranno visibili solo agli utenti a cui hai concesso l'accesso. Quindi, solo tu decidi chi vedrà queste foto. Le foto che non sono state ancora moderate sono contrassegnate da una cornice rossa. Limite 4. Le richieste di accesso per queste foto sono disponibili nella schermata "Richieste di accesso".`,
+  profile_settings_screen_hint: `Puoi accedere a questa schermata utilizzando il pulsante nella schermata principale "Impostazioni questionario".
+  In questa schermata puoi modificare il tuo profilo. Hai l'opportunità di scrivere alcune parole su di te, indicare la posizione, indicare le tue aspettative da un partner e indicare anche ulteriori informazioni su di te come il tuo atteggiamento nei confronti del fumo, dell'alcol, della nascita di figli e indicare anche se sei pronto a diventare uno sponsor o meno contro vivere alle spalle del tuo partner.
+  Tutti i dati che inserisci qui saranno visibili agli altri utenti.`,
+  search_screen_hint: `È possibile accedere a questa schermata utilizzando il pulsante nella barra di navigazione in basso.
+  Nella parte superiore dello schermo vedrai la posizione da cui sono stati selezionati i profili. troverai anche un sacco di filtri lì. Tutti i filtri che scegli vengono salvati e verranno applicati automaticamente la prossima volta che aprirai l'app.
+  Nella parte principale dello schermo c'è un elenco di profili che corrispondono a tutti i filtri. L'elenco è ordinato automaticamente in base alla data dell'ultima visita dell'utente.
+  Ogni profilo nell'elenco può essere contrassegnato con un'icona verde o un'icona rossa. L'icona verde contrassegna gli utenti a cui non dispiace diventare sponsor. L'icona rossa contrassegna gli utenti a cui non dispiace vivere a spese di un partner.`,
+  home_screen_hint: `Questa è la schermata principale, dove vai quando apri l'app.
+  Nella parte superiore dello schermo, hai la possibilità di caricare il tuo avatar. Per fare ciò, fai clic sul pulsante grande della fotocamera. Una volta caricato il tuo avatar, apparirà in una cornice circolare anziché in un pulsante della fotocamera. Per cambiare il tuo avatar, fai clic sul tuo avatar attuale. Per rimuovere un avatar, fai clic sul piccolo pulsante a forma di croce nell'angolo in basso a destra del tuo avatar.
+  Sotto l'avatar ci sono le informazioni di base su di te e i tuoi dati di contatto (visibili solo a te). Sotto c'è la barra di navigazione.`,
 };
 
 export {itl};

@@ -299,6 +299,59 @@ const por: localizationPackType = {
     myGuests: 'Aqui estão os usuários que visitaram seu perfil',
     myVisits: 'Isso mostra os usuários que você visitou',
   },
+  chat_list_screen: `Tela da lista de bate-papo`,
+  chat_screen: `Tela de bate-papo`,
+  guests_screen: `Tela de Convidados`,
+  likes_screen: `Tela de curtidas`,
+  photo_access_requests_screen: `Tela de Pedidos de Acesso a Fotos`,
+  photo_gallery_screen: `Tela da Galeria de Fotos`,
+  profile_settings_screen: `Tela de configurações do perfil`,
+  search_screen: `Tela de pesquisa`,
+  home_screen: `Tela inicial`,
+  chat_list_screen_hint: `Esta tela pode ser acessada através do botão na barra de navegação inferior.
+  Todos os seus chats são exibidos aqui classificados pela data da última mensagem no chat`,
+  chat_screen_hint: `Essa tela pode ser acessada selecionando qualquer chat da lista de chats na tela Chat List.
+  O perfil do seu interlocutor é mostrado na parte superior da tela. Também no menu de contexto existem opções para deletar um chat e bloquear seu interlocutor.
+  No centro você verá o histórico de mensagens do seu interlocutor.
+  Na parte inferior da tela, você verá um campo para inserir uma mensagem e um botão para enviar uma mensagem.`,
+  guests_screen_hint: `Você pode acessar esta tela usando o botão na tela principal "Convidados".
+  Esta tela mostra os convidados do seu perfil.
+  Na parte superior da tela, você verá um alternador de guias. Na aba "Meus Convidados" você encontrará todos os usuários que visitaram seu perfil. Na aba "Minhas Visitas" você encontrará os usuários que você visitou.
+  A entrada sobre a visita ao questionário é excluída após 30 dias.`,
+  likes_screen_hint: `Esta tela pode ser acessada através do botão na barra de navegação inferior.
+  Na parte superior da tela, você verá um alternador de guias.
+ 
+  Guia "Meus gostos".
+  Aqui você pode ver perfis de usuários que você gosta.
+ 
+  Guia "Curtir".
+  Aqui você pode ver perfis de usuários que gostaram de você.
+ 
+  Guia de correspondências.
+  Aqui você pode ver perfis de usuários com quem você gostou.`,
+  photo_access_requests_screen_hint: `Esta tela pode ser acessada através do botão na tela principal de Solicitações de Acesso.
+  Esta tela mostra as solicitações de acesso a fotos anônimas.
+  Na parte superior da tela, você verá duas opções de guia. Na primeira, você escolhe quais requisições serão mostradas - requisições para você, ou suas requisições para outros usuários.
+  Cada solicitação tem 3 status (comutador de guia inferior). O status "Aprovado" indica que a solicitação foi aprovada. O status "Pendente" indica que a solicitação está pendente. O status "Rejeitado" indica que a solicitação foi rejeitada.
+  Você também tem a opção de mudar de ideia a qualquer momento.`,
+  photo_gallery_screen_hint: `Essa tela pode ser acessada usando o botão na tela principal da Galeria de fotos.
+  Na parte superior da tela há um bloco com suas fotos públicas e na parte inferior do bloco com suas fotos anônimas.
+ 
+  Fotos públicas (bloco superior)
+  Essas fotos ficarão visíveis para todos os usuários. As fotos que ainda não foram moderadas são marcadas com uma moldura vermelha. Limite 5.
+ 
+  Fotos anônimas (bloco inferior)
+  Essas fotos serão visíveis apenas para os usuários aos quais você deu acesso. Assim, só você decide quem verá essas fotos. As fotos que ainda não foram moderadas são marcadas com uma moldura vermelha. Limite 4. As solicitações de acesso a essas fotos podem ser encontradas na tela "Pedidos de acesso"`,
+  profile_settings_screen_hint: `Você pode chegar a esta tela usando o botão na tela principal "Configurações do questionário".
+  Nesta tela você pode editar seu perfil. Você tem a oportunidade de escrever algumas palavras sobre você, indicar o local, indicar suas expectativas de um parceiro e também indicar informações adicionais sobre você, como sua atitude em relação ao fumo, álcool, ter filhos e também indicar se você está pronto para torne-se um patrocinador ou não viva do seu parceiro.
+  Todos os dados que você inserir aqui ficarão visíveis para outros usuários.`,
+  search_screen_hint: `Esta tela pode ser acessada através do botão na barra de navegação inferior.
+  Na parte superior da tela, você verá o local de onde os perfis foram selecionados. você também encontrará vários filtros lá. Todos os filtros que você escolher são salvos e serão aplicados automaticamente na próxima vez que você abrir o aplicativo.
+  Na parte principal da tela, há uma lista de perfis que correspondem a todos os filtros. A lista é ordenada automaticamente pela data da última visita do usuário.
+  Cada perfil na lista pode ser marcado com um ícone verde ou vermelho. O ícone verde marca os usuários que não se importam em se tornar patrocinadores. O ícone vermelho marca os usuários que não se importam em viver às custas de um parceiro.`,
+  home_screen_hint: `Esta é a tela principal, para onde você vai quando abre o aplicativo.
+  Na parte superior da tela, você tem a oportunidade de fazer upload do seu avatar. Para fazer isso, clique no botão grande da câmera. Depois de carregar seu avatar, ele aparecerá em uma moldura circular em vez de um botão de câmera. Para alterar seu avatar, clique no seu avatar atual. Para remover um avatar, clique no pequeno botão de cruz no canto inferior direito do seu avatar.
+  Sob o avatar estão as informações básicas sobre você e seus detalhes de contato (visíveis apenas para você). Abaixo está a barra de navegação.`,
 };
 
 export {por};

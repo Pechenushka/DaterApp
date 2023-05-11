@@ -300,6 +300,59 @@ const fra: localizationPackType = {
     myGuests: 'Voici les utilisateurs qui ont visité votre profil',
     myVisits: 'Cela montre les utilisateurs que vous avez visités',
   },
+  chat_list_screen: `Écran de la liste de discussion`,
+  chat_screen: `Écran de discussion`,
+  guests_screen: `Écran Invités`,
+  likes_screen: `Écran J'aime`,
+  photo_access_requests_screen: `Écran de demande d'accès aux photos`,
+  photo_gallery_screen: `Écran de la galerie de photos`,
+  profile_settings_screen: `Écran des paramètres de profil`,
+  search_screen: `Écran de recherche`,
+  home_screen: `Écran d'accueil`,
+  chat_list_screen_hint: `Cet écran est accessible à l'aide du bouton de la barre de navigation inférieure.
+  Tous vos chats sont affichés ici triés par date du dernier message dans le chat`,
+  chat_screen_hint: `Cet écran est accessible en sélectionnant n'importe quel chat dans la liste des chats sur l'écran de la liste des chats.
+  Le profil de votre interlocuteur s'affiche en haut de l'écran. Dans le menu contextuel, il existe également des options pour supprimer un chat et bloquer votre interlocuteur.
+  Au centre vous verrez l'historique des messages de votre interlocuteur.
+  Au bas de l'écran, vous verrez un champ pour saisir un message et un bouton pour envoyer un message.`,
+  guests_screen_hint: `Vous pouvez accéder à cet écran en utilisant le bouton sur l'écran principal "Invités".
+  Cet écran affiche les invités de votre profil.
+  En haut de l'écran, vous verrez un sélecteur d'onglets. Dans l'onglet « Mes invités », vous trouverez tous les utilisateurs qui ont visité votre profil. Dans l'onglet « Mes visites », vous trouverez les utilisateurs que vous avez visités.
+  L'entrée concernant la visite du questionnaire est supprimée après 30 jours.`,
+  likes_screen_hint: `Cet écran est accessible à l'aide du bouton de la barre de navigation inférieure.
+  En haut de l'écran, vous verrez un sélecteur d'onglets.
+ 
+  Onglet "Mes j'aime".
+  Ici, vous pouvez voir les profils des utilisateurs que vous aimez.
+ 
+  Onglet "J'aime".
+  Ici, vous pouvez voir les profils des utilisateurs qui vous ont aimé.
+ 
+  Onglet Matchs.
+  Ici, vous pouvez voir les profils des utilisateurs avec lesquels vous avez trouvé des likes.`,
+  photo_access_requests_screen_hint: `Cet écran est accessible à l'aide du bouton de l'écran principal Demandes d'accès.
+  Cet écran affiche les demandes d'accès aux photos anonymes.
+  En haut de l'écran, vous verrez deux commutateurs d'onglet. Dans le premier, vous choisissez les demandes qui seront affichées - les demandes qui vous sont adressées ou vos demandes aux autres utilisateurs.
+  Chaque demande a 3 statuts (sélecteur d'onglet inférieur). Le statut "Approuvé" indique que la demande a été approuvée. Le statut "En attente" indique que la demande est en attente. Le statut "Rejeté" indique que la demande a été rejetée.
+  Vous avez également la possibilité de changer d'avis à tout moment.`,
+  photo_gallery_screen_hint: `TCet écran est accessible à l'aide du bouton sur l'écran principal de la Galerie de photos.
+  En haut de l'écran se trouve un bloc avec vos photos publiques, et en bas du bloc avec vos photos anonymes.
+ 
+  Photos publiques (bloc supérieur)
+  Ces photos seront visibles par tous les utilisateurs. Les photos qui n'ont pas encore été modérées sont marquées d'un cadre rouge. Limite 5.
+ 
+  Photos anonymes (bloc du bas)
+  Ces photos ne seront visibles que par les utilisateurs auxquels vous avez donné accès. Ainsi, vous seul décidez qui verra ces photos. Les photos qui n'ont pas encore été modérées sont marquées d'un cadre rouge. Limite 4. Les demandes d'accès pour ces photos peuvent être trouvées sur l'écran "Demandes d'accès"`,
+  profile_settings_screen_hint: `Vous pouvez accéder à cet écran en utilisant le bouton sur l'écran principal "Paramètres du questionnaire".
+  Sur cet écran, vous pouvez modifier votre profil. Vous avez la possibilité d'écrire quelques mots sur vous-même, d'indiquer le lieu, d'indiquer vos attentes vis-à-vis d'un partenaire, et également d'indiquer des informations supplémentaires sur vous-même telles que votre attitude à l'égard du tabagisme, de l'alcool, d'avoir des enfants, et également d'indiquer si vous êtes prêt à devenez parrain ou non contre vivez de votre partenaire.
+  Toutes les données que vous saisissez ici seront visibles par les autres utilisateurs.`,
+  search_screen_hint: `Cet écran est accessible à l'aide du bouton de la barre de navigation inférieure.
+  En haut de l'écran, vous verrez l'emplacement à partir duquel les profils ont été sélectionnés. vous y trouverez également un tas de filtres. Tous les filtres que vous choisissez sont enregistrés et seront automatiquement appliqués la prochaine fois que vous ouvrirez l'application.
+  Dans la partie principale de l'écran, il y a une liste de profils qui correspondent à tous les filtres. La liste est automatiquement triée selon la date de la dernière visite de l'utilisateur.
+  Chaque profil de la liste peut être marqué d'une icône verte ou d'une icône rouge. L'icône verte marque les utilisateurs qui acceptent de devenir sponsors. L'icône rouge marque les utilisateurs qui ne voient pas d'inconvénient à vivre aux dépens d'un partenaire.`,
+  home_screen_hint: `Ceci est votre écran principal, où vous allez lorsque vous ouvrez l'application.
+  En haut de l'écran, vous avez la possibilité de télécharger votre avatar. Pour ce faire, cliquez sur le gros bouton de l'appareil photo. Une fois que vous avez téléchargé votre avatar, il apparaîtra dans un cadre circulaire au lieu d'un bouton d'appareil photo. Pour changer d'avatar, cliquez sur votre avatar actuel. Pour supprimer un avatar, cliquez sur le petit bouton croix dans le coin inférieur droit de votre avatar.
+  Sous l'avatar se trouvent les informations de base vous concernant et vos coordonnées (visibles uniquement par vous). Ci-dessous se trouve la barre de navigation.`,
 };
 
 export {fra};

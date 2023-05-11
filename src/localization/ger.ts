@@ -312,6 +312,59 @@ const ger: localizationPackType = {
     myGuests: 'Hier sind die Benutzer, die Ihr Profil besucht haben',
     myVisits: 'Dies zeigt die Benutzer, die Sie besucht haben',
   },
+  chat_list_screen: `Chat-Listenbildschirm`,
+  chat_screen: `Chat-Bildschirm`,
+  guests_screen: `Gästebildschirm`,
+  likes_screen: `Mag Bildschirm`,
+  photo_access_requests_screen: `Bildschirm für Fotozugriffsanfragen`,
+  photo_gallery_screen: `Fotogalerie-Bildschirm`,
+  profile_settings_screen: `Bildschirm „Profileinstellungen“.`,
+  search_screen: `Suchbildschirm`,
+  home_screen: `Startbildschirm`,
+  chat_list_screen_hint: `Auf diesen Bildschirm kann über die Schaltfläche in der unteren Navigationsleiste zugegriffen werden.
+  Hier werden alle Ihre Chats sortiert nach dem Datum der letzten Nachricht im Chat angezeigt`,
+  chat_screen_hint: `Auf diesen Bildschirm können Sie zugreifen, indem Sie einen beliebigen Chat aus der Liste der Chats auf dem Bildschirm „Chat-Liste“ auswählen.
+  Das Profil Ihres Gesprächspartners wird oben auf dem Bildschirm angezeigt. Außerdem gibt es im Kontextmenü Optionen zum Löschen eines Chats und zum Blockieren Ihres Gesprächspartners.
+  In der Mitte sehen Sie den Nachrichtenverlauf Ihres Gesprächspartners.
+  Am unteren Bildschirmrand sehen Sie ein Feld zum Eingeben einer Nachricht und eine Schaltfläche zum Senden einer Nachricht.`,
+  guests_screen_hint: `Zu diesem Bildschirm gelangen Sie über den Button auf dem Hauptbildschirm „Gäste“.
+  Auf diesem Bildschirm werden die Gäste Ihres Profils angezeigt.
+  Oben auf dem Bildschirm sehen Sie einen Tab-Umschalter. Im Reiter „Meine Gäste“ finden Sie alle Benutzer, die Ihr Profil besucht haben. Im Reiter „Meine Besuche“ finden Sie die von Ihnen besuchten Benutzer.
+  Der Eintrag zum Besuch des Fragebogens wird nach 30 Tagen gelöscht.`,
+  likes_screen_hint: `Auf diesen Bildschirm kann über die Schaltfläche in der unteren Navigationsleiste zugegriffen werden.
+  Oben auf dem Bildschirm sehen Sie einen Tab-Umschalter.
+ 
+  Tab „Meine Vorlieben“.
+  Hier können Sie Profile von Benutzern sehen, die Ihnen gefallen.
+ 
+  Registerkarte „Gefällt mir“.
+  Hier können Sie Profile von Benutzern sehen, denen Sie gefallen haben.
+ 
+  Registerkarte „Übereinstimmungen“.
+  Hier sehen Sie Profile von Nutzern, denen Sie Likes zugeordnet haben.`,
+  photo_access_requests_screen_hint: `Auf diesen Bildschirm kann über die Schaltfläche im Hauptbildschirm „Zugriffsanfragen“ zugegriffen werden.
+  Auf diesem Bildschirm werden Anfragen zum Zugriff auf anonyme Fotos angezeigt.
+  Oben auf dem Bildschirm sehen Sie zwei Tab-Schalter. Im ersten Bereich wählen Sie aus, welche Anfragen angezeigt werden sollen – Anfragen an Sie oder Ihre Anfragen an andere Benutzer.
+  Jede Anfrage hat 3 Status (Umschalter auf der unteren Registerkarte). Der Status „Genehmigt“ zeigt an, dass die Anfrage genehmigt wurde. Der Status „Ausstehend“ zeigt an, dass die Anfrage aussteht. Der Status „Abgelehnt“ zeigt an, dass die Anfrage abgelehnt wurde.
+  Sie haben auch jederzeit die Möglichkeit, Ihre Meinung zu ändern.`,
+  photo_gallery_screen_hint: `Auf diesen Bildschirm kann über die Schaltfläche auf dem Hauptbildschirm der Fotogalerie zugegriffen werden.
+  Oben auf dem Bildschirm befindet sich ein Block mit Ihren öffentlichen Fotos und unten im Block mit Ihren anonymen Fotos.
+ 
+  Öffentliche Fotos (oberer Block)
+  Diese Fotos sind für alle Benutzer sichtbar. Noch nicht moderierte Fotos sind mit einem roten Rahmen gekennzeichnet. Grenze 5.
+ 
+  Anonyme Fotos (unterer Block)
+  Diese Fotos sind nur für die Benutzer sichtbar, denen Sie Zugriff gewährt haben. Somit entscheiden nur Sie, wer diese Fotos sehen darf. Noch nicht moderierte Fotos sind mit einem roten Rahmen gekennzeichnet. Beschränkung 4. Zugriffsanfragen für diese Fotos finden Sie auf dem Bildschirm „Zugriffsanfragen“.`,
+  profile_settings_screen_hint: `Zu diesem Bildschirm gelangen Sie über die Schaltfläche im Hauptbildschirm „Fragebogeneinstellungen“.
+  Auf diesem Bildschirm können Sie Ihr Profil bearbeiten. Sie haben die Möglichkeit, ein paar Worte über sich selbst zu schreiben, den Standort anzugeben, Ihre Erwartungen an einen Partner darzulegen und auch zusätzliche Informationen über sich selbst anzugeben, wie z. B. Ihre Einstellung zum Rauchen, Alkohol, Kinder haben, und auch anzugeben, ob Sie dazu bereit sind Ob Sie Sponsor werden oder nicht, dagegen leben Sie von Ihrem Partner.
+  Alle Daten, die Sie hier eingeben, sind für andere Benutzer sichtbar.`,
+  search_screen_hint: `Auf diesen Bildschirm kann über die Schaltfläche in der unteren Navigationsleiste zugegriffen werden.
+  Oben auf dem Bildschirm sehen Sie den Ort, von dem aus die Profile ausgewählt wurden. Dort finden Sie auch eine Reihe von Filtern. Alle von Ihnen gewählten Filter werden gespeichert und beim nächsten Öffnen der App automatisch angewendet.
+  Im Hauptteil des Bildschirms befindet sich eine Liste der Profile, die allen Filtern entsprechen. Die Liste wird automatisch nach dem Datum des letzten Besuchs des Benutzers sortiert.
+  Jedes Profil in der Liste kann mit einem grünen oder roten Symbol markiert werden. Das grüne Symbol markiert Benutzer, denen es nichts ausmacht, Sponsor zu werden. Das rote Symbol markiert Benutzer, denen es nichts ausmacht, auf Kosten eines Partners zu leben.`,
+  home_screen_hint: `Dies ist Ihr Hauptbildschirm, zu dem Sie gelangen, wenn Sie die App öffnen.
+  Am oberen Bildschirmrand haben Sie die Möglichkeit, Ihren Avatar hochzuladen. Klicken Sie dazu auf den großen Kamera-Button. Sobald Sie Ihren Avatar hochgeladen haben, wird er in einem kreisförmigen Rahmen anstelle einer Kamerataste angezeigt. Um Ihren Avatar zu ändern, klicken Sie auf Ihren aktuellen Avatar. Um einen Avatar zu entfernen, klicken Sie auf die kleine Kreuzschaltfläche in der unteren rechten Ecke Ihres Avatars.
+  Unter dem Avatar befinden sich die grundlegenden Informationen zu Ihrer Person und Ihre Kontaktdaten (nur für Sie sichtbar). Unten ist die Navigationsleiste.`,
 };
 
 export {ger};

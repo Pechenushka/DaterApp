@@ -151,12 +151,6 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       disabled: false,
       defaultItem: {id: -1, name: _.lang.all_variants},
     });
-    console.log(
-      {id: 0, name: _.lang.kids[0]},
-      {id: 1, name: _.lang.kids[1]},
-      {id: 2, name: _.lang.kids[2]},
-      {id: 3, name: _.lang.kids[3]},
-    );
     this._kidsSelection = new DropDownModel({
       id: '_kidsSelection',
       list: [
@@ -182,7 +176,6 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
     });
 
     if (app.currentUser.filters !== undefined) {
-      console.log(app.currentUser.filters.location);
       app.currentUser.filters.location.country.id >= 0 &&
         this._countrySelection.selectItem(app.currentUser.filters.location.country);
 

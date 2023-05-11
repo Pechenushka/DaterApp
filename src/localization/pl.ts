@@ -301,6 +301,59 @@ const pl: localizationPackType = {
     myGuests: 'Oto użytkownicy, którzy odwiedzili Twój profil',
     myVisits: 'To pokazuje odwiedzonych użytkowników',
   },
+  chat_list_screen: `Ekran listy czatów`,
+  chat_screen: `Ekran czatu`,
+  guests_screen: `Ekran gości`,
+  likes_screen: `Ekran polubień`,
+  photo_access_requests_screen: `Ekran próśb o dostęp do zdjęć`,
+  photo_gallery_screen: `Ekran galerii zdjęć`,
+  profile_settings_screen: `Ekran ustawień profilu`,
+  search_screen: `Ekran wyszukiwania`,
+  home_screen: `Ekran główny`,
+  chat_list_screen_hint: `Dostęp do tego ekranu można uzyskać za pomocą przycisku na dolnym pasku nawigacyjnym.
+  Wszystkie twoje czaty są tutaj wyświetlane posortowane według daty ostatniej wiadomości na czacie`,
+  chat_screen_hint: `Dostęp do tego ekranu można uzyskać, wybierając dowolny czat z listy czatów na ekranie listy czatów.
+  Profil rozmówcy jest pokazany u góry ekranu. Również w menu kontekstowym dostępne są opcje usuwania czatu i blokowania rozmówcy.
+  W centrum zobaczysz historię wiadomości w swoim rozmówcy.
+  Na dole ekranu zobaczysz pole do wpisania wiadomości oraz przycisk do wysłania wiadomości.`,
+  guests_screen_hint: `Możesz przejść do tego ekranu za pomocą przycisku na ekranie głównym „Goście”.
+  Ten ekran pokazuje gości Twojego profilu.
+  U góry ekranu zobaczysz przełącznik kart. W zakładce „Moi Goście” znajdziesz wszystkich użytkowników, którzy odwiedzili Twój profil. W zakładce „Moje wizyty” znajdziesz odwiedzonych użytkowników.
+  Wpis o odwiedzeniu ankiety jest usuwany po 30 dniach.`,
+  likes_screen_hint: `Dostęp do tego ekranu można uzyskać za pomocą przycisku na dolnym pasku nawigacyjnym.
+  U góry ekranu zobaczysz przełącznik kart.
+ 
+  Zakładka „Moje polubienia”.
+  Tutaj możesz zobaczyć profile użytkowników, których lubisz.
+ 
+  Zakładka „Lubię to”.
+  Tutaj możesz zobaczyć profile użytkowników, którzy Cię polubili.
+ 
+  Zakładka Dopasowania.
+  Tutaj możesz zobaczyć profile użytkowników, z którymi dopasowałeś polubienia.`,
+  photo_access_requests_screen_hint: `Dostęp do tego ekranu można uzyskać za pomocą przycisku na głównym ekranie Żądania dostępu.
+  Ten ekran pokazuje prośby o dostęp do anonimowych zdjęć.
+  U góry ekranu zobaczysz dwa przełączniki kart. W pierwszym wybierasz, które prośby będą wyświetlane - prośby do Ciebie, czy Twoje prośby do innych użytkowników.
+  Każde żądanie ma 3 statusy (przełącznik na dolnej karcie). Status „Zatwierdzony” wskazuje, że wniosek został zatwierdzony. Status „Oczekuje” wskazuje, że żądanie jest w toku. Status „Odrzucony” oznacza, że wniosek został odrzucony.
+  Masz również możliwość zmiany zdania w dowolnym momencie.`,
+  photo_gallery_screen_hint: `Dostęp do tego ekranu można uzyskać za pomocą przycisku na głównym ekranie Galerii zdjęć.
+  Na górze ekranu znajduje się blok z twoimi zdjęciami publicznymi, a na dole bloku z twoimi anonimowymi zdjęciami.
+ 
+  Zdjęcia publiczne (górny blok)
+  Te zdjęcia będą widoczne dla wszystkich użytkowników. Zdjęcia, które nie zostały jeszcze poddane moderacji, są oznaczone czerwoną ramką. Granica 5.
+ 
+  Anonimowe zdjęcia (dolny blok)
+  Te zdjęcia będą widoczne tylko dla tych użytkowników, którym dałeś dostęp. Zatem tylko Ty decydujesz, kto zobaczy te zdjęcia. Zdjęcia, które nie zostały jeszcze poddane moderacji, są oznaczone czerwoną ramką. Limit 4. Prośby o dostęp do tych zdjęć można znaleźć na ekranie „Prośby o dostęp”.`,
+  profile_settings_screen_hint: `Możesz przejść do tego ekranu za pomocą przycisku na ekranie głównym „Ustawienia kwestionariusza”.
+  Na tym ekranie możesz edytować swój profil. Masz możliwość napisać kilka słów o sobie, wskazać lokalizację, wskazać swoje oczekiwania wobec partnera, a także wskazać dodatkowe informacje o sobie, takie jak stosunek do palenia, alkoholu, posiadania dzieci, a także wskazać, czy jesteś gotowy zostać sponsorem lub nie przeciwko żyć ze swojego partnera.
+  Wszystkie dane, które tu wpiszesz, będą widoczne dla innych użytkowników.`,
+  search_screen_hint: `Dostęp do tego ekranu można uzyskać za pomocą przycisku na dolnym pasku nawigacyjnym.
+  U góry ekranu zobaczysz lokalizację, z której wybrano profile. znajdziesz tam również kilka filtrów. Wszystkie wybrane filtry zostaną zapisane i zostaną automatycznie zastosowane przy następnym otwarciu aplikacji.
+  W głównej części ekranu znajduje się lista profili pasujących do wszystkich filtrów. Lista jest automatycznie sortowana według daty ostatniej wizyty użytkownika.
+  Każdy profil na liście może być oznaczony zieloną lub czerwoną ikoną. Zielona ikona oznacza użytkowników, którzy nie mają nic przeciwko zostaniu sponsorami. Czerwona ikona oznacza użytkowników, którym nie przeszkadza życie na koszt partnera.`,
+  home_screen_hint: `To jest Twój główny ekran, na który wchodzisz po otwarciu aplikacji.
+  U góry ekranu masz możliwość przesłania swojego awatara. Aby to zrobić, kliknij duży przycisk aparatu. Po przesłaniu awatara pojawi się on w okrągłej ramce zamiast przycisku aparatu. Aby zmienić swojego awatara, kliknij swój aktualny awatar. Aby usunąć awatar, kliknij mały krzyżyk w prawym dolnym rogu awatara.
+  Pod awatarem znajdują się podstawowe informacje o Tobie oraz Twoje dane kontaktowe (widoczne tylko dla Ciebie). Poniżej znajduje się pasek nawigacji.`,
 };
 
 export {pl};

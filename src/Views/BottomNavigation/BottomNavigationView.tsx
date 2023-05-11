@@ -23,101 +23,96 @@ class BottomNavigationView extends TypedBaseComponent<
   public render() {
     return (
       <View style={[BottomNavigationStyles.bottomNavigationContainer]}>
-        {/* <SimpleButtonView
-          styles={[
-            BottomNavigationStyles.navButtonContainer,
-            this.model.activeIndex === 1 ? BottomNavigationStyles.navButtonContainerActive : {},
-          ]}
-          iconStyles={BottomNavigationStyles.navButtonIcon}
-          counterStyles={BottomNavigationStyles.bottomNavigationCounter}
-          counterTextStyles={BottomNavigationStyles.bottomNavigationCounterText}
-          {...this.childProps(this.model.requestButton)}
-        /> */}
-        <SimpleButtonView
-          styles={[
-            BottomNavigationStyles.navButtonContainer,
-            this.model.activeIndex === 2 ? BottomNavigationStyles.navButtonContainerActive : {},
-          ]}
-          counterStyles={[
-            BottomNavigationStyles.bottomNavigationCounter,
-            this.model.activeIndex === 2
-              ? BottomNavigationStyles.bottomNavigationCounterActive
-              : {},
-          ]}
-          counterTextStyles={[
-            BottomNavigationStyles.bottomNavigationCounterText,
-            this.model.activeIndex === 2
-              ? BottomNavigationStyles.bottomNavigationCounterTextActive
-              : {},
-          ]}
-          active={this.model.activeIndex === 2}
-          iconStyles={BottomNavigationStyles.navButtonIcon}
-          {...this.childProps(this.model.chatButton)}
-        />
-        <SimpleButtonView
-          styles={[
-            BottomNavigationStyles.navButtonContainer,
-            this.model.activeIndex === 3 ? BottomNavigationStyles.navButtonContainerActive : {},
-          ]}
-          counterStyles={[
-            BottomNavigationStyles.bottomNavigationCounter,
-            this.model.activeIndex === 3
-              ? BottomNavigationStyles.bottomNavigationCounterActive
-              : {},
-          ]}
-          counterTextStyles={[
-            BottomNavigationStyles.bottomNavigationCounterText,
-            this.model.activeIndex === 3
-              ? BottomNavigationStyles.bottomNavigationCounterTextActive
-              : {},
-          ]}
-          active={this.model.activeIndex === 3}
-          iconStyles={BottomNavigationStyles.navButtonIcon}
-          {...this.childProps(this.model.homeButton)}
-        />
-        <SimpleButtonView
-          styles={[
-            BottomNavigationStyles.navButtonContainer,
-            this.model.activeIndex === 4 ? BottomNavigationStyles.navButtonContainerActive : {},
-          ]}
-          counterStyles={[
-            BottomNavigationStyles.bottomNavigationCounter,
-            this.model.activeIndex === 4
-              ? BottomNavigationStyles.bottomNavigationCounterActive
-              : {},
-          ]}
-          counterTextStyles={[
-            BottomNavigationStyles.bottomNavigationCounterText,
-            this.model.activeIndex === 4
-              ? BottomNavigationStyles.bottomNavigationCounterTextActive
-              : {},
-          ]}
-          active={this.model.activeIndex === 4}
-          iconStyles={BottomNavigationStyles.navButtonIcon}
-          {...this.childProps(this.model.searchButton)}
-        />
+        <ShadowWrapperView
+          internalStyles={[BottomNavigationStyles.bottomNavigationShadowWrapperInernal]}
+          style={[BottomNavigationStyles.bottomNavigationShadowWrapper]}
+          borderRadius={50}>
+          <SimpleButtonView
+            styles={[
+              BottomNavigationStyles.navButtonContainer,
+              this.model.activeIndex === 2 ? BottomNavigationStyles.navButtonContainerActive : {},
+            ]}
+            counterStyles={[
+              BottomNavigationStyles.bottomNavigationCounter,
+              this.model.activeIndex === 2
+                ? BottomNavigationStyles.bottomNavigationCounterActive
+                : {},
+            ]}
+            counterTextStyles={[
+              BottomNavigationStyles.bottomNavigationCounterText,
+              this.model.activeIndex === 2
+                ? BottomNavigationStyles.bottomNavigationCounterTextActive
+                : {},
+            ]}
+            active={this.model.activeIndex === 2}
+            iconStyles={BottomNavigationStyles.navButtonIcon}
+            {...this.childProps(this.model.chatButton)}
+          />
+          <SimpleButtonView
+            styles={[
+              BottomNavigationStyles.navButtonContainer,
+              this.model.activeIndex === 3 ? BottomNavigationStyles.navButtonContainerActive : {},
+            ]}
+            counterStyles={[
+              BottomNavigationStyles.bottomNavigationCounter,
+              this.model.activeIndex === 3
+                ? BottomNavigationStyles.bottomNavigationCounterActive
+                : {},
+            ]}
+            counterTextStyles={[
+              BottomNavigationStyles.bottomNavigationCounterText,
+              this.model.activeIndex === 3
+                ? BottomNavigationStyles.bottomNavigationCounterTextActive
+                : {},
+            ]}
+            active={this.model.activeIndex === 3}
+            iconStyles={BottomNavigationStyles.navButtonIcon}
+            {...this.childProps(this.model.homeButton)}
+          />
+          <SimpleButtonView
+            styles={[
+              BottomNavigationStyles.navButtonContainer,
+              this.model.activeIndex === 4 ? BottomNavigationStyles.navButtonContainerActive : {},
+            ]}
+            counterStyles={[
+              BottomNavigationStyles.bottomNavigationCounter,
+              this.model.activeIndex === 4
+                ? BottomNavigationStyles.bottomNavigationCounterActive
+                : {},
+            ]}
+            counterTextStyles={[
+              BottomNavigationStyles.bottomNavigationCounterText,
+              this.model.activeIndex === 4
+                ? BottomNavigationStyles.bottomNavigationCounterTextActive
+                : {},
+            ]}
+            active={this.model.activeIndex === 4}
+            iconStyles={BottomNavigationStyles.navButtonIcon}
+            {...this.childProps(this.model.searchButton)}
+          />
 
-        <SimpleButtonView
-          styles={[
-            BottomNavigationStyles.navButtonContainer,
-            this.model.activeIndex === 5 ? BottomNavigationStyles.navButtonContainerActive : {},
-          ]}
-          counterStyles={[
-            BottomNavigationStyles.bottomNavigationCounter,
-            this.model.activeIndex === 5
-              ? BottomNavigationStyles.bottomNavigationCounterActive
-              : {},
-          ]}
-          counterTextStyles={[
-            BottomNavigationStyles.bottomNavigationCounterText,
-            this.model.activeIndex === 5
-              ? BottomNavigationStyles.bottomNavigationCounterTextActive
-              : {},
-          ]}
-          active={this.model.activeIndex === 5}
-          iconStyles={BottomNavigationStyles.navButtonIcon}
-          {...this.childProps(this.model.likesButton)}
-        />
+          <SimpleButtonView
+            styles={[
+              BottomNavigationStyles.navButtonContainer,
+              this.model.activeIndex === 5 ? BottomNavigationStyles.navButtonContainerActive : {},
+            ]}
+            counterStyles={[
+              BottomNavigationStyles.bottomNavigationCounter,
+              this.model.activeIndex === 5
+                ? BottomNavigationStyles.bottomNavigationCounterActive
+                : {},
+            ]}
+            counterTextStyles={[
+              BottomNavigationStyles.bottomNavigationCounterText,
+              this.model.activeIndex === 5
+                ? BottomNavigationStyles.bottomNavigationCounterTextActive
+                : {},
+            ]}
+            active={this.model.activeIndex === 5}
+            iconStyles={BottomNavigationStyles.navButtonIcon}
+            {...this.childProps(this.model.likesButton)}
+          />
+        </ShadowWrapperView>
       </View>
     );
   }

@@ -4,31 +4,29 @@ import {hp} from '../constants/Dimensions';
 
 const BottomNavigationStyles = StyleSheet.create({
   navButtonContainer: {
-    height: hp(65),
-    width: '25%',
+    height: hp(85),
+    width: hp(85),
   },
 
   navButtonContainerActive: {
     backgroundColor: COLORS.MAIN_BLUE,
-    borderTopEndRadius: 12,
-    borderTopStartRadius: 12,
+    borderRadius: 50,
+    width: hp(85),
+    height: hp(85),
   },
   navButtonIcon: {
     resizeMode: 'contain',
-    height: hp(27),
-    width: hp(27),
+    height: hp(37),
+    width: hp(37),
   },
   bottomNavigationContainer: {
-    height: hp(65),
+    height: hp(85),
     position: 'absolute',
     width: '100%',
-    bottom: 0,
-    justifyContent: 'space-between',
+    bottom: 5,
+    borderRadius: 50,
+    justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: COLORS.WHITE,
-    borderTopEndRadius: 12,
-    borderTopStartRadius: 12,
   },
 
   bottomNavigationCounter: {
@@ -52,6 +50,17 @@ const BottomNavigationStyles = StyleSheet.create({
 
   bottomNavigationCounterTextActive: {
     color: COLORS.BLACK,
+  },
+  bottomNavigationShadowWrapper: {
+    width: '96%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  bottomNavigationShadowWrapperInernal: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 

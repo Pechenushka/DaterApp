@@ -38,7 +38,7 @@ const ShadowWrapperView = (props: shadowWrapperProps) => {
       <View
         style={[
           internalStyles(props.internalShadow),
-          props.internalStyles !== undefined ? props.style : {},
+          props.internalStyles !== undefined ? props.internalStyles : {},
         ]}>
         {props.children}
       </View>

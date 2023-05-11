@@ -327,7 +327,6 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
   public countryLoad = async () => {
     const res = await loadData(UserDataProvider.GetCountries, {});
-    console.log('COUNTRY', res);
     if (res !== null) {
       return res.data;
     }
@@ -487,6 +486,15 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       app.notification.showError(`${res.statusCode}`, res.statusMessage);
       this._editButton.disabled = false;
       return;
+    }
+    if (country !== undefined) {
+      app.currentUser.location.country = country;
+    }
+    if (region !== undefined) {
+      app.currentUser.location.region = region;
+    }
+    if (city !== undefined) {
+      app.currentUser.location.city = city;
     }
     app.notification.showSuccess('Hooray', 'Your announcment succesfuly edited');
     app.navigator.goToMainProfileScreen();

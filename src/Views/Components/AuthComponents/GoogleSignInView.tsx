@@ -24,7 +24,7 @@ class GoogleSignInView extends TypedBaseComponent<googleSignInViewProps, GoogleS
     return (
       <GoogleSigninButton
         style={[this.props.styles ? this.props.styles : {}, STYLES.BaseStyles.alignCenter]}
-        color={GoogleSigninButton.Color.Dark}
+        color={GoogleSigninButton.Color.Light}
         onPress={this.model.onPress}></GoogleSigninButton>
     );
   }

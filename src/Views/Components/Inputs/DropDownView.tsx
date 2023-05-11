@@ -5,11 +5,10 @@ import {
   componentPropsWithModel,
   TypedBaseComponent,
 } from '../../../Core/BaseComponent';
-import {Image, Modal, Text, View, TouchableOpacity} from 'react-native';
+import {Image, Modal, Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {ICONS} from '../../../constants/icons';
 import {DropDownModel} from '../../../Models/Components/Inputs/DropDownModel';
 import {DropDownStyles} from '../../../Styles/DropDownStyles';
-import {ScrollView} from 'react-native-gesture-handler';
 import {BaseStyles} from '../../../Styles/BaseStyles';
 import {ShadowWrapperView} from '../Wrappers/ShadowWrapperView';
 import {_} from '../../../Core/Localization';
@@ -49,26 +48,32 @@ class DropDownView extends TypedBaseComponent<dropDownViewProps, DropDownModel> 
               onPress={this.model.close}>
               <View style={[DropDownStyles.modalContentContainer]}>
                 {this.model.list.length === 0 && <Text>{_.lang.items_not_found}</Text>}
-                <ScrollView
+                <FlatList
                   style={BaseStyles.w100}
-                  contentContainerStyle={[BaseStyles.w100, BaseStyles.alignCenter]}>
-                  {this.model.list.map(item => {
+                  contentContainerStyle={[BaseStyles.w100]}
+                  renderItem={({item}) => {
                     return (
-                      <ShadowWrapperView
-                        key={item.id}
-                        style={[BaseStyles.w90, BaseStyles.jc_c, BaseStyles.mv5]}>
-                        <TouchableOpacity
-                          style={[DropDownStyles.itemContainer]}
+                      <View style={[BaseStyles.w100, BaseStyles.ai_c]}>
+                        <ShadowWrapperView
                           key={item.id}
-                          onPress={() => this.model.selectItem(item)}>
-                          <Text numberOfLines={2} style={[DropDownStyles.selectedItemText]}>
-                            {item.name}
-                          </Text>
-                        </TouchableOpacity>
-                      </ShadowWrapperView>
+                          style={[BaseStyles.w90, BaseStyles.jc_c, BaseStyles.mv5]}>
+                          <TouchableOpacity
+                            style={[DropDownStyles.itemContainer]}
+                            key={item.id}
+                            onPress={() => this.model.selectItem(item)}>
+                            <Text numberOfLines={2} style={[DropDownStyles.selectedItemText]}>
+                              {item.name}
+                            </Text>
+                          </TouchableOpacity>
+                        </ShadowWrapperView>
+                      </View>
                     );
-                  })}
-                </ScrollView>
+                  }}
+                  data={this.model.list}
+                  maxToRenderPerBatch={10}
+                  initialNumToRender={10}
+                  windowSize={5}
+                />
               </View>
             </TouchableOpacity>
           </Modal>

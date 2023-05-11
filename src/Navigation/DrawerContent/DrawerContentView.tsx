@@ -15,7 +15,7 @@ import {TermsOfUseScreen} from '../../Screens/TermsOfUseScreen';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {LocalizationView} from '../../Views/Components/LocalizationViews/LocalizationView';
 import {DrawerContentModel} from './DrawerContentModel';
-import {DrawerItemView} from './DrawerItem/DrawerItemView';
+import {HelpScreen} from '../../Screens/HelpScreen';
 
 type drawerContentViewProps = baseComponentProps & {};
 
@@ -54,6 +54,10 @@ class DrawerContentView extends TypedBaseComponent<drawerContentViewProps, Drawe
     app.navigator.navigate(PrivacyScreen);
   };
 
+  public onHelpPress = async () => {
+    app.navigator.navigate(HelpScreen);
+  };
+
   public onTermsPress = async () => {
     app.navigator.navigate(TermsOfUseScreen);
   };
@@ -84,6 +88,11 @@ class DrawerContentView extends TypedBaseComponent<drawerContentViewProps, Drawe
             </TouchableOpacity>
           </View>
           <View style={this.styles.container}>
+            <TouchableOpacity style={this.styles.button} onPress={this.onHelpPress}>
+              <Text style={this.styles.label}>{_.lang.help}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={this.styles.container}>
             <TouchableOpacity style={this.styles.button} onPress={this.onDeleteAccPress}>
               <Text style={this.styles.label}>{_.lang.delete_accaunt}</Text>
             </TouchableOpacity>
@@ -109,6 +118,7 @@ class DrawerContentView extends TypedBaseComponent<drawerContentViewProps, Drawe
     label: {
       color: 'rgba(0, 0, 0, 0.8)',
       fontSize: wp(16),
+      textTransform: 'capitalize',
     },
   });
 }

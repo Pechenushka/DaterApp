@@ -32,7 +32,7 @@ const HomeScreenStyles = StyleSheet.create({
     backgroundColor: COLORS.WHITE,
     width: '100%',
     height: '100%',
-    marginTop: hp(160),
+    marginTop: hp(140),
     borderRadius: 8,
     alignItems: 'center',
   },
@@ -74,9 +74,9 @@ const HomeScreenStyles = StyleSheet.create({
     fontSize: hp(18),
     fontWeight: 'bold',
     color: COLORS.WHITE,
-    marginTop: hp(120),
+    marginTop: hp(100),
+    flexWrap: 'wrap',
     textAlign: 'center',
-    width: '80%',
   },
 
   infoItemContainer: {

@@ -300,6 +300,59 @@ const spa: localizationPackType = {
     myGuests: 'Estos son los usuarios que visitaron tu perfil',
     myVisits: 'Esto muestra a los usuarios que visitaste',
   },
+  chat_list_screen: `Pantalla de lista de chat`,
+  chat_screen: `Pantalla de chat`,
+  guests_screen: `Pantalla de invitados`,
+  likes_screen: `Pantalla Me gusta`,
+  photo_access_requests_screen: `Pantalla de solicitudes de acceso a fotos`,
+  photo_gallery_screen: `Pantalla de galería de fotos`,
+  profile_settings_screen: `Pantalla de configuración de perfil`,
+  search_screen: `Pantalla de búsqueda`,
+  home_screen: `Pantalla de inicio`,
+  chat_list_screen_hint: `Se puede acceder a esta pantalla usando el botón en la barra de navegación inferior.
+  Todos sus chats se muestran aquí ordenados por la fecha del último mensaje en el chat`,
+  chat_screen_hint: `Se puede acceder a esta pantalla seleccionando cualquier chat de la lista de chats en la pantalla de la lista de chat.
+  El perfil de su interlocutor se muestra en la parte superior de la pantalla. También en el menú contextual hay opciones para eliminar un chat y bloquear a su interlocutor.
+  En el centro verás el historial de mensajes en tu interlocutor.
+  En la parte inferior de la pantalla, verá un campo para ingresar un mensaje y un botón para enviar un mensaje.`,
+  guests_screen_hint: `Puede llegar a esta pantalla usando el botón en la pantalla principal "Invitados".
+  Esta pantalla muestra los invitados de tu perfil.
+  En la parte superior de la pantalla, verá un selector de pestañas. En la pestaña "Mis invitados" encontrarás todos los usuarios que visitaron tu perfil. En la pestaña "Mis visitas" encontrarás los usuarios que visitaste.
+  La entrada sobre la visita al cuestionario se elimina después de 30 días.`,
+  likes_screen_hint: `Se puede acceder a esta pantalla usando el botón en la barra de navegación inferior.
+  En la parte superior de la pantalla, verá un selector de pestañas.
+ 
+  Pestaña "Mis Me gusta".
+  Aquí puedes ver los perfiles de los usuarios que te gustan.
+ 
+  Pestaña "Me gusta".
+  Aquí puedes ver los perfiles de los usuarios a los que les gustaste.
+ 
+  Pestaña de coincidencias.
+  Aquí puede ver los perfiles de los usuarios con los que ha emparejado Me gusta.`,
+  photo_access_requests_screen_hint: `Se puede acceder a esta pantalla usando el botón en la pantalla principal de Solicitudes de acceso.
+  Esta pantalla muestra solicitudes de acceso a fotos anónimas.
+  En la parte superior de la pantalla, verá dos interruptores de pestañas. En el primero, elige qué solicitudes se mostrarán: solicitudes para usted o sus solicitudes para otros usuarios.
+  Cada solicitud tiene 3 estados (selector de pestañas inferior). El estado "Aprobado" indica que la solicitud ha sido aprobada. El estado "Pendiente" indica que la solicitud está pendiente. El estado "Rechazado" indica que la solicitud fue rechazada.
+  También tienes la opción de cambiar de opinión en cualquier momento.`,
+  photo_gallery_screen_hint: `Se puede acceder a esta pantalla usando el botón en la pantalla principal de la Galería de fotos.
+  En la parte superior de la pantalla hay un bloque con tus fotos públicas y en la parte inferior del bloque con tus fotos anónimas.
+ 
+  Fotos públicas (bloque superior)
+  Estas fotos serán visibles para todos los usuarios. Las fotos que aún no han sido moderadas están marcadas con un marco rojo. límite 5.
+ 
+  Fotos anónimas (bloque inferior)
+  Estas fotos serán visibles solo para aquellos usuarios a los que les hayas dado acceso. Así, solo tú decides quién verá estas fotos. Las fotos que aún no han sido moderadas están marcadas con un marco rojo. Límite 4. Las solicitudes de acceso a estas fotos se pueden encontrar en la pantalla "Solicitudes de acceso"`,
+  profile_settings_screen_hint: `Puede acceder a esta pantalla mediante el botón de la pantalla principal "Configuración del cuestionario".
+  En esta pantalla puede editar su perfil. Tiene la oportunidad de escribir algunas palabras sobre usted, indicar la ubicación, indicar sus expectativas de un compañero y también indicar información adicional sobre usted, como su actitud hacia el tabaquismo, el alcohol, tener hijos, y también indicar si está listo para convertirse en patrocinador o no en contra de vivir a expensas de su pareja.
+  Todos los datos que ingrese aquí serán visibles para otros usuarios.`,
+  search_screen_hint: `Se puede acceder a esta pantalla usando el botón en la barra de navegación inferior.
+  En la parte superior de la pantalla, verá la ubicación desde la que se seleccionaron los perfiles. también encontrarás un montón de filtros allí. Todos los filtros que elija se guardan y se aplicarán automáticamente la próxima vez que abra la aplicación.
+  En la parte principal de la pantalla hay una lista de perfiles que coinciden con todos los filtros. La lista se ordena automáticamente por la fecha de la última visita del usuario.
+  Cada perfil de la lista se puede marcar con un icono verde o un icono rojo. El icono verde marca a los usuarios a los que no les importa convertirse en patrocinadores. El icono rojo marca a los usuarios a los que no les importa vivir a expensas de un socio.`,
+  home_screen_hint: `Esta es tu pantalla principal, a donde vas cuando abres la aplicación.
+  En la parte superior de la pantalla, tienes la oportunidad de subir tu avatar. Para hacer esto, haga clic en el botón de la cámara grande. Una vez que haya cargado su avatar, aparecerá en un marco circular en lugar de un botón de cámara. Para cambiar su avatar, haga clic en su avatar actual. Para eliminar un avatar, haga clic en el botón de la cruz pequeña en la esquina inferior derecha de su avatar.
+  Debajo del avatar se encuentra la información básica sobre usted y sus datos de contacto (visibles solo para usted). A continuación se muestra la barra de navegación.`,
 };
 
 export {spa};

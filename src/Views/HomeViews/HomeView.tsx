@@ -30,23 +30,33 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
   private getInfoMessage = () => {
     if (this.model.userStatus === undefined) {
       return (
-        <Text style={HomeScreenStyles.warningTitleText}>{_.lang.servers_are_not_allowed}</Text>
+        <Text numberOfLines={5} style={HomeScreenStyles.warningTitleText}>
+          {_.lang.servers_are_not_allowed}
+        </Text>
       );
     }
     if (this.model.userStatus === null) {
       if (app.currentUser.avatar !== undefined && app.currentUser.avatar !== '') {
         return (
-          <Text style={HomeScreenStyles.warningTitleText}>{_.lang.moderation_request_pending}</Text>
+          <Text numberOfLines={5} style={HomeScreenStyles.warningTitleText}>
+            {_.lang.moderation_request_pending}
+          </Text>
         );
       }
       return (
-        <Text style={HomeScreenStyles.warningTitleText}>{_.lang.please_request_moderation}</Text>
+        <Text numberOfLines={5} style={HomeScreenStyles.warningTitleText}>
+          {_.lang.please_request_moderation}
+        </Text>
       );
     }
     if (this.model.userStatus) {
       return <></>;
     }
-    return <Text style={HomeScreenStyles.warningTitleText}>{_.lang.profile_not_moderated}</Text>;
+    return (
+      <Text numberOfLines={5} style={HomeScreenStyles.warningTitleText}>
+        {_.lang.profile_not_moderated}
+      </Text>
+    );
   };
 
   public updateAnyWay = () => {
@@ -62,13 +72,13 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
     return (
       <View
         style={[
-          BaseStyles.container,
           HomeScreenStyles.mainContainer,
           BaseStyles.alignCenter,
           {backgroundColor: this.model.userStatus ? COLORS.MAIN_BLUE : COLORS.WARNING_YELLOW},
         ]}>
-        <ScrollView contentContainerStyle={BaseStyles.pb150}>
-          {this.getInfoMessage()}
+        <ScrollView contentContainerStyle={[BaseStyles.pb150, BaseStyles.w100, BaseStyles.ai_c]}>
+          <View style={[BaseStyles.w80]}>{this.getInfoMessage()}</View>
+
           <View style={[HomeScreenStyles.contentContainer]}>
             <View style={[HomeScreenStyles.userInfoContent]}>
               {app.currentUser.avatar !== undefined &&
@@ -173,24 +183,15 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                     </View>
 
                     {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
-                    <ShadowWrapperView>
-                      <SimpleButtonView
-                        iconStyles={[HomeScreenStyles.actionButtonIcon]}
-                        styles={[HomeScreenStyles.actionButtonContainer]}
-                        {...this.childProps(this.model.toRequests)}
-                      />
-                    </ShadowWrapperView>
-                  </View> */}
-                    {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
-                    <ShadowWrapperView>
-                      <SimpleButtonView
-                        iconStyles={[HomeScreenStyles.actionButtonIcon]}
-                        styles={[HomeScreenStyles.actionButtonContainer]}
-                        textStyles={BaseStyles.capitalize}
-                        {...this.childProps(this.model.toLikes)}
-                      />
-                    </ShadowWrapperView>
-                  </View> */}
+                      <ShadowWrapperView>
+                        <SimpleButtonView
+                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                          styles={[HomeScreenStyles.actionButtonContainer]}
+                          textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
+                          {...this.childProps(this.model.toHelpScreen)}
+                        />
+                      </ShadowWrapperView>
+                    </View> */}
                   </View>
                   <View style={[HomeScreenStyles.actionButtonColum]}>
                     <View style={[HomeScreenStyles.actionButtonWrapper]}>
@@ -203,26 +204,6 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                         />
                       </ShadowWrapperView>
                     </View>
-                    {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
-                      <ShadowWrapperView>
-                        <SimpleButtonView
-                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
-                          styles={[HomeScreenStyles.actionButtonContainer]}
-                          textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
-                          {...this.childProps(this.model.toHelpScreen)}
-                        />
-                      </ShadowWrapperView>
-                    </View>
-                    <View style={[HomeScreenStyles.actionButtonWrapper]}>
-                      <ShadowWrapperView>
-                        <SimpleButtonView
-                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
-                          styles={[HomeScreenStyles.actionButtonContainer]}
-                          textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
-                          {...this.childProps(this.model.toSearch)}
-                        />
-                      </ShadowWrapperView>
-                    </View> */}
                     <View style={[HomeScreenStyles.actionButtonWrapper]}>
                       <ShadowWrapperView>
                         <SimpleButtonView
@@ -235,6 +216,16 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                         />
                       </ShadowWrapperView>
                     </View>
+                    {/* <View style={[HomeScreenStyles.actionButtonWrapper]}>
+                      <ShadowWrapperView>
+                        <SimpleButtonView
+                          iconStyles={[HomeScreenStyles.actionButtonIcon]}
+                          styles={[HomeScreenStyles.actionButtonContainer]}
+                          textStyles={[BaseStyles.capitalize, BaseStyles.w70]}
+                          {...this.childProps(this.model.toSearch)}
+                        />
+                      </ShadowWrapperView>
+                    </View> */}
                   </View>
                 </View>
                 {/* <View style={[HomeScreenStyles.searchButtonWrapper]}>
