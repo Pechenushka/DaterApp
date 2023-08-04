@@ -280,7 +280,7 @@ class ProfileDetailsModel extends BaseModel<profileDetailsModelProps> {
     }
 
     if (res.data) {
-      app.navigator.goToChatScreen(this.userId);
+      app.navigator.goToChatScreen('private', this.userId);
       this._messageButton.disabled = false;
       return;
     }

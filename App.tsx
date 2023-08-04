@@ -1,7 +1,11 @@
 import React from 'react';
 import {AppState, Platform, StatusBar} from 'react-native';
 import {AppModel} from './src/Core/AppModel';
-import {baseComponentProps, componentPropsWithModel, TypedBaseComponent} from './src/Core/BaseComponent';
+import {
+  baseComponentProps,
+  componentPropsWithModel,
+  TypedBaseComponent,
+} from './src/Core/BaseComponent';
 import {MainNavigationView} from './src/Navigation/MainNavigationView';
 import {COLORS} from './src/constants/colors';
 import {app} from './src/Core/AppImpl';
@@ -44,7 +48,7 @@ class App extends TypedBaseComponent<appProps, AppModel> {
     //            pushMessagesHandler.checkMessageNotificationOpenedAppType(message);
     //        }
     //    });
-    await this.model.handleBackground('start');
+    // await this.model.handleBackground('start');
 
     // app.noConnection.addEventListener();
   }
@@ -67,7 +71,10 @@ class App extends TypedBaseComponent<appProps, AppModel> {
     super.render();
     return (
       <>
-        <StatusBar backgroundColor={COLORS.MAIN_BLUE} barStyle={Platform.OS === 'ios' ? 'dark-content' : 'light-content'} />
+        <StatusBar
+          backgroundColor={COLORS.MAIN_BLUE}
+          barStyle={Platform.OS === 'ios' ? 'dark-content' : 'light-content'}
+        />
         <MainNavigationView {...this.childProps(app.mainNavigationModel)} />
       </>
     );

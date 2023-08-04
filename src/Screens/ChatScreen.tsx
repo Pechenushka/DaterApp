@@ -35,7 +35,11 @@ class ChatScreen extends BaseLayoutView<ChatController> {
 
   async onFocus(): Promise<void> {
     await super.onFocus();
-    await this.controller.chatModel.loadMessges(this.props.route.params.userId);
+    await this.controller.chatModel.loadMessges(
+      this.props.route.params.type,
+      this.props.route.params.targetId,
+    );
+    this.controller.chatModel.enterToChat();
     analyticHandler.trackEvent('chat_screen_rendered');
   }
 
@@ -44,7 +48,10 @@ class ChatScreen extends BaseLayoutView<ChatController> {
   }
 
   public updateModel = async () => {
-    await this.controller.chatModel.loadMessges(this.props.route.params.userId);
+    await this.controller.chatModel.loadMessges(
+      this.props.route.params.type,
+      this.props.route.params.targetId,
+    );
     this._refMod && this._refMod.updateAnyWay();
   };
 

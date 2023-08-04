@@ -39,10 +39,14 @@ class ChatListItemView extends TypedBaseComponent<chatListItemViewProps, ChatLis
             <Text ellipsizeMode="tail" numberOfLines={1} style={ChatsStyles.chatListItemUserName}>
               {this.model.name}{' '}
             </Text>
-            <Image
-              source={this.model.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
-              style={[BaseStyles.smallIcon]}
-            />
+            {this.model.gender !== null ? (
+              <Image
+                source={this.model.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
+                style={[BaseStyles.smallIcon]}
+              />
+            ) : (
+              <></>
+            )}
           </View>
 
           <Text

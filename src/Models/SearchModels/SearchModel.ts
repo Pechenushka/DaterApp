@@ -352,7 +352,7 @@ class SearchModel extends BaseModel<searchModelProps> {
     }
 
     if (res.data) {
-      app.navigator.goToChatScreen(user.userId);
+      app.navigator.goToChatScreen('private', user.userId);
       return;
     }
 

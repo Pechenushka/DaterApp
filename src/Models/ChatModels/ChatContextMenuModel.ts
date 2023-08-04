@@ -1,8 +1,5 @@
-import {Alert} from 'react-native';
-import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {_} from '../../Core/Localization';
-import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 
 type chatContextMenuModelProps = baseModelProps & {

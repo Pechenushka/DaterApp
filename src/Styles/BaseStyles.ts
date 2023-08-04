@@ -9,6 +9,26 @@ const BaseStyles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  colorBlue: {
+    color: COLORS.MAIN_BLUE,
+  },
+
+  colorGray: {
+    color: COLORS.DARK_GARY,
+  },
+
+  fs18: {
+    fontSize: hp(18),
+  },
+
+  fs22: {
+    fontSize: hp(22),
+  },
+
+  fontBold: {
+    fontWeight: 'bold',
+  },
+
   container: {
     flex: 1,
   },
@@ -59,6 +79,10 @@ const BaseStyles = StyleSheet.create({
 
   h100: {
     height: '100%',
+  },
+
+  h83: {
+    height: '83%',
   },
 
   h10: {
@@ -133,6 +157,14 @@ const BaseStyles = StyleSheet.create({
     width: '10%',
   },
 
+  w15: {
+    width: '15%',
+  },
+
+  w12: {
+    width: '12%',
+  },
+
   row: {
     flexDirection: 'row',
   },
@@ -165,6 +197,10 @@ const BaseStyles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
 
+  ph40: {
+    paddingHorizontal: hp(40),
+  },
+
   pb10: {
     paddingBottom: hp(10),
   },
@@ -187,6 +223,10 @@ const BaseStyles = StyleSheet.create({
 
   pt10: {
     paddingTop: hp(10),
+  },
+
+  p5: {
+    padding: hp(5),
   },
 
   mr10: {
@@ -231,6 +271,10 @@ const BaseStyles = StyleSheet.create({
 
   bg_white: {
     backgroundColor: COLORS.WHITE,
+  },
+
+  standardColor: {
+    color: COLORS.BLACK,
   },
 });
 

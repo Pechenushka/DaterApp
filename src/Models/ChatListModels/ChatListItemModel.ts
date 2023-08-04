@@ -1,18 +1,20 @@
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {genderEnum} from '../Components/Inputs/GenderSvitcherModel';
+export type chatListItemType = 'private' | 'country' | 'region' | 'city';
 
 type chatListItemModelProps = baseModelProps & {
   avatar: string;
   chatHash: string;
   id: number;
-  gender: genderEnum;
+  gender: genderEnum | null;
   lastMessage: string;
   lastMessageDate: number;
   name: string;
   unreadCount: number;
   userId: number;
   online_status: boolean;
+  type: chatListItemType;
 };
 
 class ChatListItemModel extends BaseModel<chatListItemModelProps> {
@@ -57,7 +59,10 @@ class ChatListItemModel extends BaseModel<chatListItemModelProps> {
   }
 
   public onChatItemPress = async () => {
-    app.navigator.goToChatScreen(this.userId);
+    app.navigator.goToChatScreen(
+      this.props.type,
+      this.props.type === 'private' ? this.userId : +this.id,
+    );
   };
 }
 

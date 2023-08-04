@@ -37,12 +37,12 @@ class ChatListScreen extends BaseLayoutView<ChatListController> {
 
   async onFocus(): Promise<void> {
     await super.onFocus();
-    await this.controller.chatListModel.init();
+    await this.controller.chatListModel.loadNededList();
     analyticHandler.trackEvent('chat_list_screen_rendered');
   }
 
   public updateModel = async () => {
-    await this.controller.chatListModel.init();
+    await this.controller.chatListModel.loadNededList();
     this._refMod && this._refMod.updateAnyWay();
   };
 

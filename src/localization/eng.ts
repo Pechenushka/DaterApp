@@ -358,6 +358,8 @@ const eng: localizationPackType = {
   home_screen_hint: `This is your main screen, where you go when you open the app.
   At the top of the screen, you have the opportunity to upload your avatar. To do this, click on the large camera button. Once you have uploaded your avatar, it will appear in a circle frame instead of a camera button. To change your avatar, click on your current avatar. To remove an avatar, click on the small cross button in the lower right corner of your avatar.
   Under the avatar is the basic information about you and your contact details (visible only to you). Below is the navigation bar.`,
+  private: 'Private',
+  public: 'Public',
 };
 
 export {eng};

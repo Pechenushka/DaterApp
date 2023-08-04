@@ -18,6 +18,8 @@ import {getShortDate} from '../../Common/dateParse';
 import {HomeScreenStyles} from '../../Styles/HomeScreenStyles';
 import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
 import {ChatContextMenuView} from './ChatContextMenuView';
+import {_} from '../../Core/Localization';
+import {MessageReportModalView} from './MessageReportModalView';
 
 type chatViewProps = baseComponentProps & {};
 
@@ -86,13 +88,7 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
     if (!this.shouldBeTotalyUpdated) {
       super.render();
     }
-    if (this.model.loading) {
-      return (
-        <View style={[BaseStyles.w100, BaseStyles.h100, BaseStyles.alignCenter]}>
-          <ActivityIndicator size={30} color={COLORS.PLACEHOLDER} />
-        </View>
-      );
-    }
+
     return (
       <View style={ChatsStyles.chatMainContainer}>
         {/* HEADER */}
@@ -105,7 +101,7 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
               />
             </View>
             <TouchableOpacity
-              onPress={this.model.onprofilePress}
+              onPress={this.model.companion.gender !== null ? this.model.onprofilePress : () => {}}
               style={[BaseStyles.w80, BaseStyles.row]}>
               <View style={BaseStyles.w20}>
                 <RoundAvatarView
@@ -118,45 +114,63 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
               <View style={[BaseStyles.w40, BaseStyles.h100]}>
                 <View style={[BaseStyles.row, BaseStyles.ai_c]}>
                   <Text style={ChatsStyles.chatListItemUserName}>{this.model.companion.name} </Text>
-                  <Image
-                    source={
-                      this.model.companion.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon
-                    }
-                    style={[BaseStyles.smallIcon]}
-                  />
+                  {this.model.companion.gender !== null && (
+                    <Image
+                      source={
+                        this.model.companion.gender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon
+                      }
+                      style={[BaseStyles.smallIcon]}
+                    />
+                  )}
                 </View>
-                <View style={[BaseStyles.row, BaseStyles.pb10]}>
-                  <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
-                  <Text> {getShortDate(this.model.companion.lastOnline || 0)}</Text>
-                </View>
+                {this.model.companion.gender !== null && (
+                  <View style={[BaseStyles.row, BaseStyles.pb10]}>
+                    <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
+                    <Text> {getShortDate(this.model.companion.lastOnline || 0)}</Text>
+                  </View>
+                )}
               </View>
             </TouchableOpacity>
-            <View style={[BaseStyles.w10]}>
-              <SimpleButtonView
-                iconStyles={BaseStyles.defaultIcon}
-                {...this.childProps(this.model.openContextMenuButton)}
-              />
-            </View>
+            {this.model.companion.gender !== null && (
+              <View style={[BaseStyles.w10]}>
+                <SimpleButtonView
+                  iconStyles={BaseStyles.defaultIcon}
+                  {...this.childProps(this.model.openContextMenuButton)}
+                />
+              </View>
+            )}
           </View>
         )}
+        <MessageReportModalView {...this.childProps(this.model.messageReportModalModel)} />
         <ChatContextMenuView {...this.childProps(this.model.contextMenuModal)} />
         {/* <ImageBackground source={ICONS.chatBg} style={{flex: 1, width: '100%'}} resizeMode="cover"> */}
-        <FlatList
-          style={[BaseStyles.w100]}
-          contentContainerStyle={[BaseStyles.pb70]}
-          data={Array.from(this.model.list)
-            .sort((a, b) => {
-              return b[0] - a[0];
-            })
-            .map(msgItem => {
-              return msgItem[1];
-            })}
-          renderItem={msgItem => {
-            return <MessageItemView {...this.childProps(msgItem.item)} />;
-          }}
-          inverted={true}
-          onScroll={this.model.onScroll}
-        />
+        {this.model.loading ? (
+          <View style={[BaseStyles.w100, BaseStyles.h83, BaseStyles.alignCenter]}>
+            <ActivityIndicator size={30} color={COLORS.PLACEHOLDER} />
+          </View>
+        ) : (
+          <FlatList
+            style={[BaseStyles.w100]}
+            contentContainerStyle={[BaseStyles.pb100]}
+            data={Array.from(this.model.list)
+              .sort((a, b) => {
+                return b[0] - a[0];
+              })
+              .map(msgItem => {
+                return msgItem[1];
+              })}
+            renderItem={msgItem => {
+              return <MessageItemView {...this.childProps(msgItem.item)} />;
+            }}
+            inverted={true}
+            onScroll={this.model.onScroll}
+            ListEmptyComponent={
+              <View style={BaseStyles.mt30}>
+                <Text style={[BaseStyles.standardColor]}>{_.lang.items_not_found}</Text>
+              </View>
+            }
+          />
+        )}
 
         <View style={ChatsStyles.chatMessageInputWrapper}>{this.getBlockedAlert()}</View>
         {/* </ImageBackground> */}

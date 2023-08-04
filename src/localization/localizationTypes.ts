@@ -179,6 +179,8 @@ export type localizationPackType = {
     myGuests: string;
     myVisits: string;
   };
+  private: string;
+  public: string;
 };
 
 export type localizationEnum =

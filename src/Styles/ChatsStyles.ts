@@ -77,23 +77,40 @@ const ChatsStyles = StyleSheet.create({
     flexDirection: 'row',
   },
 
-  chatMessageContainer: {
+  chatMessageShadowContainer: {
     paddingVertical: hp(5),
     paddingHorizontal: hp(10),
-    backgroundColor: COLORS.WHITE,
     borderRadius: 10,
     marginVertical: hp(6),
     maxWidth: '80%',
   },
 
-  chatMessageWrapper: {
-    width: '100%',
+  chatMessageContainer: {
+    paddingVertical: hp(5),
     paddingHorizontal: hp(10),
+  },
+
+  chatMessageWrapper: {
+    width: '87%',
+    paddingHorizontal: hp(10),
+    flexDirection: 'row',
+  },
+
+  chatMessageContextMenuContainer: {
+    width: '23%',
+    paddingHorizontal: hp(3),
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 
   chatMessageText: {
     fontSize: hp(16),
     fontWeight: 'bold',
+  },
+
+  chatMessageAuthorNameText: {
+    fontSize: hp(16),
+    color: COLORS.MAIN_BLUE,
   },
 
   chatMessageDateText: {

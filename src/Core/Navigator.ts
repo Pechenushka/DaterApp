@@ -19,6 +19,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import {SocketHandler} from './Socket';
 import {PhotoGalleryScreen} from '../Screens/PhotoGalleryScreen';
 import {PhotoAccessRequestsScreen} from '../Screens/PhotoAccessRequestsScreen';
+import {chatListItemType} from '../Models/ChatListModels/ChatListItemModel';
 
 type screenHistoryType = {
   impl: baseScreenCreator;
@@ -129,6 +130,7 @@ class Navigator {
       case 'active':
         await app.currentUser.restoreUserData();
         await this.navigationUserStartApp();
+        this._startAppWithBackground = false;
         SocketHandler.connect();
         break;
       case 'background':
@@ -265,8 +267,8 @@ class Navigator {
     app.bottomNavigation.activeIndex = 0;
   }
 
-  public goToChatScreen(userId: number) {
-    this.navigate(ChatScreen, {userId});
+  public goToChatScreen(type: chatListItemType, targetId: number) {
+    this.navigate(ChatScreen, {type, targetId});
     app.bottomNavigation.activeIndex = 0;
   }
 

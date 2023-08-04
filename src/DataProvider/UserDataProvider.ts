@@ -14,6 +14,7 @@ import {
   locationsResponseDataType,
   photoAccessRequestResponseDataType,
   photoListDataType,
+  publicChatListResponseDataType,
   registrationResponseDataType,
   requestBodyType,
   searchResponseDataType,
@@ -57,6 +58,7 @@ class UserDataProvider {
   }
 
   static async GetUserStatus(body: requestBodyType): Promise<userStatusResponseDataType> {
+    console.log(`users/${app.currentUser.token}/${body.userId}/status`);
     return fetchData(`users/${app.currentUser.token}/${body.userId}/status`, 'GET');
   }
 
@@ -108,13 +110,70 @@ class UserDataProvider {
     return fetchData('chats/write', 'POST', body, true);
   }
 
+  //{ myId, userId, text, timestamp }
+  static async WriteMessageCity(body: requestBodyType): Promise<writeMessageResponseDataType> {
+    return fetchData('chats/write-city', 'POST', body, true);
+  }
+
+  //{ myId, userId, text, timestamp }
+  static async WriteMessageRegion(body: requestBodyType): Promise<writeMessageResponseDataType> {
+    return fetchData('chats/write-region', 'POST', body, true);
+  }
+
+  //{ myId, userId, text, timestamp }
+  static async WriteMessageCountry(body: requestBodyType): Promise<writeMessageResponseDataType> {
+    return fetchData('chats/write-country', 'POST', body, true);
+  }
+
   //{ myId, userId }
   static async GetMessages(body: requestBodyType): Promise<getMesagesDataType> {
     return fetchData('chats/get-messages', 'POST', body, true);
   }
 
+  //{target, targetId, messageId, comment, authorId}
+  static async ReportMessage(body: requestBodyType): Promise<writeMessageResponseDataType> {
+    return fetchData('chats/report-message', 'POST', body, true);
+  }
+
+  static async GetCityMessages(body: requestBodyType): Promise<getMesagesDataType> {
+    return fetchData(
+      `chats/${app.currentUser.token}/${app.currentUser.userId}/get-city-messages?cityId=${body.cityId}&offset=${body.offset}&limit=${body.limit}`,
+      'GET',
+      body,
+      true,
+    );
+  }
+
+  static async GetRegionMessages(body: requestBodyType): Promise<getMesagesDataType> {
+    return fetchData(
+      `chats/${app.currentUser.token}/${app.currentUser.userId}/get-region-messages?regionId=${body.regionId}&offset=${body.offset}&limit=${body.limit}`,
+      'GET',
+      body,
+      true,
+    );
+  }
+
+  static async GetCountryMessages(body: requestBodyType): Promise<getMesagesDataType> {
+    return fetchData(
+      `chats/${app.currentUser.token}/${app.currentUser.userId}/get-country-messages?countryId=${body.countryId}&offset=${body.offset}&limit=${body.limit}`,
+      'GET',
+      body,
+      true,
+    );
+  }
+
   static async GetUserChats(body: requestBodyType): Promise<chatListResponseDataType> {
-    return fetchData(`chats/${app.currentUser.token}/get-by-user/${app.currentUser.userId}`, 'GET');
+    return fetchData(
+      `chats/${app.currentUser.token}/get-by-user/${app.currentUser.userId}?offset=${body.offset}&limit=${body.limit}`,
+      'GET',
+    );
+  }
+
+  static async GetPublicUserChats(body: requestBodyType): Promise<publicChatListResponseDataType> {
+    return fetchData(
+      `chats/${app.currentUser.token}/${app.currentUser.userId}/get-public-chats`,
+      'GET',
+    );
   }
 
   static async SyncFCMToken(body: requestBodyType): Promise<fcmSyncDataType> {

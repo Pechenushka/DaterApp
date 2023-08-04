@@ -184,11 +184,34 @@ export type chatListResponseDataType = baseResponse & {
   data: Array<chatItemDataType>;
 };
 
+export type publicChatListResponseDataType = baseResponse & {
+  data: {
+    country: {
+      id: number;
+      name: string;
+      lastMessage: string;
+      lastMessageDate: number;
+    };
+    region: {
+      id: number;
+      name: string;
+      lastMessage: string;
+      lastMessageDate: number;
+    };
+    city: {
+      id: number;
+      name: string;
+      lastMessage: string;
+      lastMessageDate: number;
+    };
+  };
+};
+
 export type chatItemDataType = {
   avatar: string;
   chatHash: string;
   id: number;
-  gender: genderEnum;
+  gender: genderEnum | null;
   lastMessage: string;
   lastMessageDate: number;
   name: string;
@@ -244,6 +267,8 @@ export type messageItemDataType = {
   id: number;
   messageText: string;
   timestamp: number;
+  authorName?: string;
+  authorAvatar?: string;
 };
 
 export type writeMessageResponseDataType = baseResponse & {

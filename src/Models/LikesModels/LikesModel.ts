@@ -241,15 +241,15 @@ class LikesModel extends BaseModel<likesModelProps> {
     this._offset = 0;
     switch (this._currentTab) {
       case _.lang.matches:
-        this.loadMatches();
+        await this.loadMatches();
         break;
 
       case _.lang.me_liked:
-        this.loadLikesToMe();
+        await this.loadLikesToMe();
         break;
 
       case _.lang.my_likes:
-        this.loadMyLikes();
+        await this.loadMyLikes();
         break;
       default:
         break;
@@ -259,15 +259,15 @@ class LikesModel extends BaseModel<likesModelProps> {
   public loadNededNextPage = async () => {
     switch (this._currentTab) {
       case _.lang.matches:
-        this.loadMatchesNP();
+        await this.loadMatchesNP();
         break;
 
       case _.lang.me_liked:
-        this.loadLikesToMeNP();
+        await this.loadLikesToMeNP();
         break;
 
       case _.lang.my_likes:
-        this.loadMyLikesNP();
+        await this.loadMyLikesNP();
         break;
       default:
         break;
@@ -304,7 +304,7 @@ class LikesModel extends BaseModel<likesModelProps> {
     }
 
     if (res.data) {
-      app.navigator.goToChatScreen(user.userId);
+      app.navigator.goToChatScreen('private', user.userId);
       return;
     }
 

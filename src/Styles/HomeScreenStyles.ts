@@ -35,6 +35,7 @@ const HomeScreenStyles = StyleSheet.create({
     marginTop: hp(140),
     borderRadius: 8,
     alignItems: 'center',
+    paddingBottom: hp(100),
   },
 
   avatarContainer: {

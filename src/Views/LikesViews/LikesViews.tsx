@@ -53,23 +53,29 @@ class LikesViews extends TypedBaseComponent<likesViewsProps, LikesModel> {
           </View>
         ) : (
           <View style={[BaseStyles.w100, BaseStyles.ai_c]}>
-            <FlatList
-              ref={ref => {
-                this.model.FlatListRef = ref;
-              }}
-              style={[BaseStyles.w100]}
-              contentContainerStyle={[BaseStyles.pb150, BaseStyles.ai_c]}
-              onScroll={this.model.onScroll}
-              renderItem={likeItem => {
-                return <LikeItemView {...this.childProps(likeItem.item)} />;
-              }}
-              data={this.model.list}
-              maxToRenderPerBatch={10}
-              initialNumToRender={10}
-              windowSize={5}
-              getItemLayout={(data, index) => ({length: 100, offset: 100 * index, index})}
-              showsVerticalScrollIndicator={false}
-            />
+            {this.model.list.length > 0 ? (
+              <FlatList
+                ref={ref => {
+                  this.model.FlatListRef = ref;
+                }}
+                style={[BaseStyles.w100]}
+                contentContainerStyle={[BaseStyles.pb150, BaseStyles.ai_c]}
+                onScroll={this.model.onScroll}
+                renderItem={likeItem => {
+                  return <LikeItemView {...this.childProps(likeItem.item)} />;
+                }}
+                data={this.model.list}
+                maxToRenderPerBatch={10}
+                initialNumToRender={10}
+                windowSize={5}
+                getItemLayout={(data, index) => ({length: 100, offset: 100 * index, index})}
+                showsVerticalScrollIndicator={false}
+              />
+            ) : (
+              <View style={BaseStyles.mt30}>
+                <Text>{_.lang.items_not_found}</Text>
+              </View>
+            )}
           </View>
         )}
       </View>

@@ -188,7 +188,7 @@ class ProfileDetailsModalModel extends BaseModel<profileDetailsModalModelProps> 
     }
 
     if (res.data) {
-      app.navigator.goToChatScreen(this.userData?.authorId || -1);
+      app.navigator.goToChatScreen('private', this.userData?.authorId || -1);
       this._messageButton.disabled = false;
       return;
     }

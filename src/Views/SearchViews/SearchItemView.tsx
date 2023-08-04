@@ -74,7 +74,7 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
                   numberOfLines={1}
                   style={[
                     MyAnnouncementStyles.userNameText,
-                    {textAlign: 'center', maxWidth: '60%'},
+                    {textAlign: 'center', minWidth: '45%', maxWidth: '60%'},
                   ]}>
                   {this.model.authorName}
                 </Text>

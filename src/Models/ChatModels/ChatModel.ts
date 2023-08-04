@@ -1,9 +1,14 @@
-import {Alert, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
+import {NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import {SetVisit} from '../../Common/Helpers';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
-import {companionDataType, messageItemDataType} from '../../Core/DataTypes/BaseTypes';
+import {
+  companionDataType,
+  getMesagesDataType,
+  messageItemDataType,
+  writeMessageResponseDataType,
+} from '../../Core/DataTypes/BaseTypes';
 import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {ChatListScreen} from '../../Screens/ChatListScreen';
@@ -11,8 +16,29 @@ import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {TextInputModel} from '../Components/Inputs/TextInputModel';
 import {ChatContextMenuModel} from './ChatContextMenuModel';
 import {MessageItemModel} from './MessageItemModel';
+import {chatListItemType} from '../ChatListModels/ChatListItemModel';
+import {SocketHandler} from '../../Core/Socket';
+import {MessageReportModalModel} from './MessageReportModalModel';
 
 type chatModelProps = baseModelProps & {};
+type msgBodyType = {
+  myId: number;
+  limit: number;
+  offset: number;
+  cityId?: number;
+  regionId?: number;
+  countryId?: number;
+  userId?: number;
+};
+
+type writeMsgBodyType = {
+  myId: number;
+  text: string;
+  cityId?: number;
+  regionId?: number;
+  countryId?: number;
+  userId?: number;
+};
 
 class ChatModel extends BaseModel<chatModelProps> {
   private _loading: boolean = false;
@@ -22,6 +48,8 @@ class ChatModel extends BaseModel<chatModelProps> {
   private _backButton: SimpleButtonModel;
   private _openContextMenuButton: SimpleButtonModel;
   private _contextMenuModal: ChatContextMenuModel;
+  private _target: chatListItemType = 'private';
+  private _messageReportModalModel: MessageReportModalModel;
 
   private _companion: companionDataType | null = null;
 
@@ -64,6 +92,8 @@ class ChatModel extends BaseModel<chatModelProps> {
       onChatDelete: this.onChatDeletePress,
       blocked: false,
     });
+
+    this._messageReportModalModel = new MessageReportModalModel({id: '_messageReportModalModel'});
   }
 
   public get loading() {
@@ -107,20 +137,92 @@ class ChatModel extends BaseModel<chatModelProps> {
     return this._sendButton;
   }
 
+  public get messageReportModalModel() {
+    return this._messageReportModalModel;
+  }
+
   public onBlur = async () => {
     app.bottomNavigation.updateCounters();
+    this._messageInput.value = '';
+    this.disconectFromChat();
   };
 
-  public loadMessges = async (userId?: number) => {
+  public enterToChat = async () => {
+    switch (this._target) {
+      case 'city':
+        SocketHandler.connectToCityChat(this._companion !== null ? this._companion.id : -1);
+        break;
+
+      case 'region':
+        SocketHandler.connectToRegionChat(this._companion !== null ? this._companion.id : -1);
+        break;
+
+      case 'country':
+        SocketHandler.connectToCountryChat(this._companion !== null ? this._companion.id : -1);
+        break;
+
+      case 'private':
+        break;
+      default:
+        break;
+    }
+  };
+
+  public disconectFromChat = async () => {
+    switch (this._target) {
+      case 'city':
+        SocketHandler.disconnectFromCityChat(this._companion !== null ? this._companion.id : -1);
+        break;
+
+      case 'region':
+        SocketHandler.disconnectFromRegionChat(this._companion !== null ? this._companion.id : -1);
+        break;
+
+      case 'country':
+        SocketHandler.disonnectFromCountryChat(this._companion !== null ? this._companion.id : -1);
+        break;
+
+      case 'private':
+        break;
+      default:
+        break;
+    }
+  };
+
+  public loadMessges = async (target: chatListItemType, targetId: number) => {
     this.loading = true;
     this._offset = 0;
-    const msgBody = {
+    const msgBody: msgBodyType = {
       myId: app.currentUser.userId,
-      userId: userId || this._companion?.id,
       limit: this._limit,
       offset: this._offset,
     };
-    const res = await loadData(UserDataProvider.GetMessages, msgBody);
+    this._target = target;
+    let res: getMesagesDataType | null = null;
+    switch (this._target) {
+      case 'city':
+        msgBody.cityId = targetId;
+        res = await loadData(UserDataProvider.GetCityMessages, msgBody);
+        break;
+
+      case 'region':
+        msgBody.regionId = targetId;
+        res = await loadData(UserDataProvider.GetRegionMessages, msgBody);
+        break;
+
+      case 'country':
+        msgBody.countryId = targetId;
+        res = await loadData(UserDataProvider.GetCountryMessages, msgBody);
+        break;
+
+      case 'private':
+        msgBody.userId = targetId;
+        res = await loadData(UserDataProvider.GetMessages, msgBody);
+        break;
+      default:
+        break;
+    }
+
     if (res === null) {
       app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this.loading = false;
@@ -140,20 +242,42 @@ class ChatModel extends BaseModel<chatModelProps> {
     this._companion = res.data.companion;
     this._contextMenuModal.blocked = res.data.companion.blocked;
 
+    this._messageReportModalModel.targetId = this._companion !== null ? this._companion.id : -1;
+
     this.loading = false;
   };
 
   public receiveMessage = async () => {
-    this._offset = 0;
-    const msgBody = {
+    const msgBody: msgBodyType = {
       myId: app.currentUser.userId,
-      userId: this._companion !== null ? this._companion.id : -1,
-      limit: this._limit,
-      offset: this._offset,
+      limit: 10,
+      offset: 0,
     };
-    const res = await loadData(UserDataProvider.GetMessages, msgBody);
+    let res: getMesagesDataType | null = null;
+    switch (this._target) {
+      case 'city':
+        msgBody.cityId = this._companion !== null ? this._companion.id : -1;
+        res = await loadData(UserDataProvider.GetCityMessages, msgBody);
+        break;
+
+      case 'region':
+        msgBody.regionId = this._companion !== null ? this._companion.id : -1;
+        res = await loadData(UserDataProvider.GetRegionMessages, msgBody);
+        break;
+
+      case 'country':
+        msgBody.countryId = this._companion !== null ? this._companion.id : -1;
+        res = await loadData(UserDataProvider.GetCountryMessages, msgBody);
+        break;
+
+      case 'private':
+        msgBody.userId = this._companion !== null ? this._companion.id : -1;
+        res = await loadData(UserDataProvider.GetMessages, msgBody);
+        break;
+      default:
+        break;
+    }
     if (res !== null && res.statusCode === 200) {
-      this.list.clear();
       res.data.messages.map(mesgProps => {
         this.list.set(mesgProps.id, this.createMessageModel(mesgProps));
       });
@@ -166,13 +290,35 @@ class ChatModel extends BaseModel<chatModelProps> {
     if (!this._loadingNP && Array.from(this.list).length >= elemsInScreen) {
       this._loadingNP = true;
       this._offset += this._limit;
-      const msgBody = {
+      const msgBody: msgBodyType = {
         myId: app.currentUser.userId,
-        userId: this._companion?.id,
         limit: this._limit,
         offset: this._offset,
       };
-      const res = await loadData(UserDataProvider.GetMessages, msgBody);
+      let res: getMesagesDataType | null = null;
+      switch (this._target) {
+        case 'city':
+          msgBody.cityId = this._companion !== null ? this._companion.id : -1;
+          res = await loadData(UserDataProvider.GetCityMessages, msgBody);
+          break;
+
+        case 'region':
+          msgBody.regionId = this._companion !== null ? this._companion.id : -1;
+          res = await loadData(UserDataProvider.GetRegionMessages, msgBody);
+          break;
+
+        case 'country':
+          msgBody.countryId = this._companion !== null ? this._companion.id : -1;
+          res = await loadData(UserDataProvider.GetCountryMessages, msgBody);
+          break;
+
+        case 'private':
+          msgBody.userId = this._companion !== null ? this._companion.id : -1;
+          res = await loadData(UserDataProvider.GetMessages, msgBody);
+          break;
+        default:
+          break;
+      }
       if (res === null) {
         app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
         this._loadingNP = false;
@@ -204,11 +350,24 @@ class ChatModel extends BaseModel<chatModelProps> {
   };
 
   public createMessageModel = (props: messageItemDataType) => {
-    return new MessageItemModel(props);
+    return new MessageItemModel({
+      ...props,
+      onReportPress: this.onMessageReportButtonPress,
+      target: this._target,
+      onMessagePress: this.onMessagePress,
+    });
   };
 
   public onTextChange = async (newValue: string) => {
     newValue;
+  };
+
+  public onMessagePress = (messageId: number) => {
+    this.list.forEach(msgItem => {
+      if (+msgItem.messageId !== messageId) {
+        msgItem.isActive = false;
+      }
+    });
   };
 
   public onSendPress = async () => {
@@ -219,13 +378,36 @@ class ChatModel extends BaseModel<chatModelProps> {
       this._sendButton.disabled = false;
       return;
     }
-    const messageBody = {
+    const messageBody: writeMsgBodyType = {
       myId: app.currentUser.userId,
       userId: this._companion?.id,
       text: messageText,
-      timestamp: new Date().getTime(),
     };
-    const res = await loadData(UserDataProvider.WriteMessage, messageBody);
+
+    let res: writeMessageResponseDataType | null = null;
+    switch (this._target) {
+      case 'city':
+        messageBody.cityId = this._companion !== null ? this._companion.id : -1;
+        res = await loadData(UserDataProvider.WriteMessageCity, messageBody);
+        break;
+
+      case 'region':
+        messageBody.regionId = this._companion !== null ? this._companion.id : -1;
+        res = await loadData(UserDataProvider.WriteMessageRegion, messageBody);
+        break;
+
+      case 'country':
+        messageBody.countryId = this._companion !== null ? this._companion.id : -1;
+        res = await loadData(UserDataProvider.WriteMessageCountry, messageBody);
+        break;
+
+      case 'private':
+        messageBody.userId = this._companion !== null ? this._companion.id : -1;
+        res = await loadData(UserDataProvider.WriteMessage, messageBody);
+        break;
+      default:
+        break;
+    }
 
     if (res === null) {
       app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
@@ -247,6 +429,8 @@ class ChatModel extends BaseModel<chatModelProps> {
         id: res.data.id,
         messageText: messageText,
         timestamp: new Date().getTime(),
+        authorName: this._target !== 'private' ? app.currentUser.userName : undefined,
+        authorAvatar: this._target !== 'private' ? app.currentUser.avatar : undefined,
       }),
     );
 
@@ -268,6 +452,25 @@ class ChatModel extends BaseModel<chatModelProps> {
 
   public onDotsPress = async () => {
     this._contextMenuModal.open();
+  };
+
+  public onMessageReportButtonPress = (
+    messageId: number,
+    authorId: number,
+    authorAvatar: string,
+    messageText: string,
+    authorName: string,
+    target: chatListItemType,
+  ) => {
+    this.messageReportModalModel.setMessageData({
+      authorAvatar,
+      messageText,
+      authorId,
+      messageId,
+      authorName,
+      target,
+    });
+    this._messageReportModalModel.open();
   };
 
   public onUserBlockPress = async () => {
