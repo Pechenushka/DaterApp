@@ -125,13 +125,13 @@ class Navigator {
         await app.currentUser.restoreUserData();
         await this.navigationUserStartApp();
         this._startAppWithBackground = false;
-        SocketHandler.connect();
+        await SocketHandler.connect();
         break;
       case 'active':
         await app.currentUser.restoreUserData();
         await this.navigationUserStartApp();
         this._startAppWithBackground = false;
-        SocketHandler.connect();
+        await SocketHandler.connect();
         break;
       case 'background':
         await app.currentUser.saveUser();

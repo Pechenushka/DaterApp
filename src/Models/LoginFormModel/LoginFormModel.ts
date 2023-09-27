@@ -124,7 +124,7 @@ class LoginFormModel extends BaseModel<loginFormModelProps> {
           gender: res.data.gender,
           location: res.data.location.country.name,
         });
-        SocketHandler.connect();
+        await SocketHandler.connect();
         return;
       }
       app.notification.showError(res.statusCode.toString(), res.statusMessage);

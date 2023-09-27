@@ -77,7 +77,12 @@ class MessageItemView extends TypedBaseComponent<messageItemViewProps, MessageIt
         <View style={[BaseStyles.row]}>
           <TouchableOpacity
             onLongPress={this.model.onMessageCopy}
-            style={[ChatsStyles.chatMessageWrapper, BaseStyles.ai_c, this.msgAlign]}
+            style={[
+              ChatsStyles.chatMessageWrapper,
+              BaseStyles.ai_c,
+              this.msgAlign,
+              this.model.target !== 'private' ? {} : BaseStyles.w100,
+            ]}
             activeOpacity={1}
             onPress={this.model.onMessagePress}>
             {this.model.isActive && this.model.target !== 'private' ? (
@@ -118,6 +123,21 @@ class MessageItemView extends TypedBaseComponent<messageItemViewProps, MessageIt
               </ShadowWrapperView>
             </View>
           </TouchableOpacity>
+          {this.model.target !== 'private' && (
+            <ShadowWrapperView
+              borderRadius={60}
+              style={[BaseStyles.ai_c, BaseStyles.jc_fe, BaseStyles.w12, BaseStyles.pb10]}>
+              <TouchableOpacity onPress={this.model.onUserAvatarPress} style={[]}>
+                <RoundAvatarView id={'userAvatar'} imagePath={this.model.authorAvatar} size={50} />
+              </TouchableOpacity>
+            </ShadowWrapperView>
+          )}
+        </View>
+      );
+    }
+    return (
+      <View style={[BaseStyles.row]}>
+        {this.model.target !== 'private' && (
           <ShadowWrapperView
             borderRadius={60}
             style={[BaseStyles.ai_c, BaseStyles.jc_fe, BaseStyles.w12, BaseStyles.pb10]}>
@@ -125,18 +145,7 @@ class MessageItemView extends TypedBaseComponent<messageItemViewProps, MessageIt
               <RoundAvatarView id={'userAvatar'} imagePath={this.model.authorAvatar} size={50} />
             </TouchableOpacity>
           </ShadowWrapperView>
-        </View>
-      );
-    }
-    return (
-      <View style={[BaseStyles.row]}>
-        <ShadowWrapperView
-          borderRadius={60}
-          style={[BaseStyles.ai_c, BaseStyles.jc_fe, BaseStyles.w12, BaseStyles.pb10]}>
-          <TouchableOpacity onPress={this.model.onUserAvatarPress} style={[]}>
-            <RoundAvatarView id={'userAvatar'} imagePath={this.model.authorAvatar} size={50} />
-          </TouchableOpacity>
-        </ShadowWrapperView>
+        )}
         <TouchableOpacity
           onLongPress={this.model.onMessageCopy}
           style={[ChatsStyles.chatMessageWrapper, BaseStyles.ai_c, this.msgAlign]}

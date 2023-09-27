@@ -6,12 +6,12 @@ class SocketHandler {
   public static socket: any = null;
   constructor() {}
 
-  public static connect = () => {
+  public static connect = async () => {
     if (app.currentUser && app.currentUser.userId !== -1) {
       SocketHandler.socket = io(appSettings.apiEndpoint, {
         query: {id: app.currentUser.userId, name: app.currentUser.userName},
       });
-      SocketHandler.socket.connect();
+      await SocketHandler.socket.connect();
       SocketHandler.socket.on('messageInCountryChat', (params: any) => {
         if (app.navigator.currentScreen === 'ChatScreen') {
           //@ts-ignore

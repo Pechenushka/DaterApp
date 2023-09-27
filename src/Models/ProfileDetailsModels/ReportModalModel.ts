@@ -145,7 +145,7 @@ class ReportModalModel extends BaseModel<reportModalModelProps> {
     }
 
     if (inserRes.statusCode === 200) {
-      app.notification.showError(_.lang.warning, _.lang.your_report_successfully_sended);
+      app.notification.showSuccess(_.lang.warning, _.lang.your_report_successfully_sended);
     }
 
     this._submitButton.disabled = false;
