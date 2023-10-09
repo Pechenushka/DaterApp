@@ -104,13 +104,13 @@ const ChatsStyles = StyleSheet.create({
   },
 
   chatMessageText: {
-    fontSize: hp(16),
-    fontWeight: 'bold',
+    fontSize: hp(15),
   },
 
   chatMessageAuthorNameText: {
     fontSize: hp(16),
     color: COLORS.MAIN_BLUE,
+    fontWeight: 'bold',
   },
 
   chatMessageDateText: {

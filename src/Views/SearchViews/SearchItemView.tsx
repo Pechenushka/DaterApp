@@ -54,13 +54,23 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
   public render() {
     super.render();
     return (
-      <View style={[BaseStyles.w45, BaseStyles.ai_c, {height: 205}, BaseStyles.mt10]}>
+      <View
+        style={[
+          BaseStyles.w45,
+          BaseStyles.ai_c,
+          {
+            height: 205,
+          },
+          BaseStyles.mt10,
+        ]}>
         <TouchableOpacity
           style={[
             SearchStyles.searchItemContainer,
-            this.model.checked
-              ? {backgroundColor: COLORS.WHITE}
-              : {backgroundColor: COLORS.BLURED_GRAY},
+            {
+              backgroundColor:
+                this.model.authorGender === 'male' ? COLORS.MALE_COLOR : COLORS.FEMALE_COLOR,
+            },
+            this.model.checked ? {} : {backgroundColor: COLORS.BLURED_GRAY},
             BaseStyles.h100,
           ]}
           onPress={this.model.onItemPress}>
@@ -78,80 +88,16 @@ class SearchItemView extends TypedBaseComponent<searchItemViewProps, SearchItemM
                   ]}>
                   {this.model.authorName}
                 </Text>
-                <Image
-                  source={this.model.authorGender === 'male' ? ICONS.maleIcon : ICONS.femaleIcon}
-                  style={[BaseStyles.defaultIcon, BaseStyles.ml10]}
-                />
                 <Text> {getAge(this.model.authorBirthDay || 0)} y.o </Text>
                 {this.model.online_status && <View style={[SearchStyles.isOnlineView]} />}
               </View>
-              {/* 
-                <View style={[BaseStyles.row, BaseStyles.ai_c, BaseStyles.pb5]}>
-                  <Text ellipsizeMode="tail" numberOfLines={1}>
-                    <Text> {_.lang.i_looking_for} </Text>
-                    {this.getExpectationsIcon()}
-                    {this.model.goal !== undefined && (
-                      <Text>
-                        {' '}
-                        {_.lang.for} {this.model.goal}
-                      </Text>
-                    )}
-                  </Text>
-                </View> */}
-
               <View style={[BaseStyles.row, BaseStyles.mt5]}>
                 <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
                 <Text style={SearchStyles.lastOnlineText}>
                   {getShortDate(this.model.lastOnline)}
                 </Text>
               </View>
-
-              {/* <View style={MyAnnouncementStyles.previewMainTextWrapper}>
-                  {this.model.text !== '' && (
-                    <View style={MyAnnouncementStyles.previewMainTextContainer}>
-                      <Text ellipsizeMode="tail" numberOfLines={1}>
-                        {this.model.text}
-                      </Text>
-                    </View>
-                  )}
-                </View> */}
-              {/* <View style={[MyAnnouncementStyles.previewLocationContainer]}>
-                  <Image source={ICONS.locationIcon} style={[BaseStyles.defaultIcon]} />
-                  <Text style={BaseStyles.ta_c} ellipsizeMode="head" numberOfLines={1}>
-                    {this.model.regionName}, {this.model.cityName}
-                  </Text>
-                </View> */}
             </View>
-            {/* <View style={[BaseStyles.w10, BaseStyles.h100, BaseStyles.jc_sb]}>
-                {app.currentUser.userId !== this.model.authorId && (
-                  <>
-                    {this.model.liked ? (
-                      <View
-                        style={[SearchStyles.likeButtonWrapper, BaseStyles.mr10, {opacity: 0.5}]}>
-                        <View style={[SearchStyles.likeButtonContainer]}>
-                          <Image source={ICONS.heartIconRed} style={SearchStyles.likeButtonIcon} />
-                        </View>
-                      </View>
-                    ) : (
-                      <View style={[SearchStyles.likeButtonWrapper, BaseStyles.mr10]}>
-                        <SimpleButtonView
-                          styles={SearchStyles.likeButtonContainer}
-                          iconStyles={SearchStyles.likeButtonIcon}
-                          {...this.childProps(this.model.likeButton)}
-                        />
-                      </View>
-                    )}
-
-                    <View style={SearchStyles.likeButtonWrapper}>
-                      <SimpleButtonView
-                        styles={SearchStyles.likeButtonContainer}
-                        iconStyles={SearchStyles.likeButtonIcon}
-                        {...this.childProps(this.model.writeButton)}
-                      />
-                    </View>
-                  </>
-                )}
-              </View> */}
           </View>
         </TouchableOpacity>
         <View style={SearchStyles.itemIconsContainer}>

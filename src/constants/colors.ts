@@ -16,5 +16,7 @@ const COLORS = {
   DARK_GARY: 'rgba(100,100,100,1)',
   SCREEN_BG_NOT_BLURED: 'rgba(225,225,225, 1)',
   RED: 'rgb(220,20,20)',
+  MALE_COLOR: 'rgba(30,120,210,0.2)',
+  FEMALE_COLOR: 'rgba(240,60,190,0.2)',
 };
 export {COLORS};

@@ -155,7 +155,7 @@ const SearchStyles = StyleSheet.create({
   searchItemContainer: {
     backgroundColor: COLORS.WHITE,
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: 12,
     width: '97%',
   },
 
