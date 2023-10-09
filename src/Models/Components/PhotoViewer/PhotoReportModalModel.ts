@@ -119,10 +119,11 @@ class PhotoReportModalModel extends BaseModel<photoReportModalModelProps> {
     }
 
     if (inserRes.statusCode === 200) {
-      app.notification.showError(_.lang.warning, _.lang.your_report_successfully_sended);
+      app.notification.showSuccess(_.lang.success, _.lang.your_report_successfully_sended);
     }
 
     this._submitButton.disabled = false;
+    this._comentInput.value = '';
     this.close();
   };
 

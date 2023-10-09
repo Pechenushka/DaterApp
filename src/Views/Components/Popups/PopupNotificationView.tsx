@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../../Core/BaseComponent';
 import React from 'react';
-import {Text, View, Animated, Image} from 'react-native';
+import {Text, View, Animated, Image, Modal} from 'react-native';
 import {PopupNotificationModel} from '../../../Models/Components/Popups/PopupNotificationModel';
 import {PopupStyles} from '../../../Styles/PopupStyles';
 import {COLORS} from '../../../constants/colors';
@@ -61,9 +61,6 @@ class PopupNotificationView extends TypedBaseComponent<
             <View style={[BaseStyles.w20, BaseStyles.ai_c]}>
               <Image style={PopupStyles.iconStyles} source={this.getTypeMessageIcon()} />
             </View>
-            {/* <View style={[BaseStyles.w20, BaseStyles.ai_c]}>
-              <Text style={PopupStyles.titleTextStyle}>{this.model.title}:</Text>
-            </View> */}
             <View style={[BaseStyles.w80, BaseStyles.ai_c]}>
               <Text style={PopupStyles.titleTextStyle}>{this.model.title}!</Text>
               <Text style={PopupStyles.messageTextStyle}>{this.model.message}</Text>

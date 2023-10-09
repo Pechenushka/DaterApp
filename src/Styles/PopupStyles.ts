@@ -8,6 +8,8 @@ const PopupStyles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     backgroundColor: 'rgba(0,0,0,0)',
+    zIndex: 9999,
+    elevation: 9999,
   },
   contentContainer: {
     flexDirection: 'row',
