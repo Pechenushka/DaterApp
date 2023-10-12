@@ -86,12 +86,7 @@ class MessageItemView extends TypedBaseComponent<messageItemViewProps, MessageIt
             activeOpacity={1}
             onPress={this.model.onMessagePress}>
             {this.model.isActive && this.model.target !== 'private' ? (
-              <View style={[ChatsStyles.chatMessageContextMenuContainer]}>
-                <ShadowWrapperView borderRadius={60}>
-                  <TouchableOpacity onPress={this.model.onMessageReport} style={[BaseStyles.p5]}>
-                    <Image style={[BaseStyles.bigIcon]} source={ICONS.reportIconGray} />
-                  </TouchableOpacity>
-                </ShadowWrapperView>
+              <View style={[ChatsStyles.chatMessageContextMenuContainer, BaseStyles.w10]}>
                 <ShadowWrapperView borderRadius={60}>
                   <TouchableOpacity onPress={this.model.onMessageCopy} style={[BaseStyles.p5]}>
                     <Image style={[BaseStyles.bigIcon]} source={ICONS.copyIcon} />
