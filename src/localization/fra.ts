@@ -353,6 +353,9 @@ const fra: localizationPackType = {
   home_screen_hint: `Ceci est votre écran principal, où vous allez lorsque vous ouvrez l'application.
   En haut de l'écran, vous avez la possibilité de télécharger votre avatar. Pour ce faire, cliquez sur le gros bouton de l'appareil photo. Une fois que vous avez téléchargé votre avatar, il apparaîtra dans un cadre circulaire au lieu d'un bouton d'appareil photo. Pour changer d'avatar, cliquez sur votre avatar actuel. Pour supprimer un avatar, cliquez sur le petit bouton croix dans le coin inférieur droit de votre avatar.
   Sous l'avatar se trouvent les informations de base vous concernant et vos coordonnées (visibles uniquement par vous). Ci-dessous se trouve la barre de navigation.`,
+  private: 'Privé',
+  public: 'Public',
+  your_avatar: 'Votre Avatar',
 };
 
 export {fra};

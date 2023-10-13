@@ -354,6 +354,9 @@ const pl: localizationPackType = {
   home_screen_hint: `To jest Twój główny ekran, na który wchodzisz po otwarciu aplikacji.
   U góry ekranu masz możliwość przesłania swojego awatara. Aby to zrobić, kliknij duży przycisk aparatu. Po przesłaniu awatara pojawi się on w okrągłej ramce zamiast przycisku aparatu. Aby zmienić swojego awatara, kliknij swój aktualny awatar. Aby usunąć awatar, kliknij mały krzyżyk w prawym dolnym rogu awatara.
   Pod awatarem znajdują się podstawowe informacje o Tobie oraz Twoje dane kontaktowe (widoczne tylko dla Ciebie). Poniżej znajduje się pasek nawigacji.`,
+  private: 'Prywatny',
+  public: 'Publiczny',
+  your_avatar: 'Twój Awatar',
 };
 
 export {pl};

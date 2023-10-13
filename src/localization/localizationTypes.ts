@@ -181,6 +181,7 @@ export type localizationPackType = {
   };
   private: string;
   public: string;
+  your_avatar: string;
 };
 
 export type localizationEnum =

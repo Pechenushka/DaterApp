@@ -16,6 +16,8 @@ import {SearchStyles} from '../../Styles/SearchStyles';
 import {HomeScreenStyles} from '../../Styles/HomeScreenStyles';
 import {appSettings} from '../../Common/AppSettings';
 import {COLORS} from '../../constants/colors';
+import {ShadowWrapperView} from '../Components/Wrappers/ShadowWrapperView';
+import {app} from '../../Core/AppImpl';
 
 type photoGalleryViewProps = baseComponentProps & {};
 
@@ -52,6 +54,60 @@ class PhotoGalleryView extends TypedBaseComponent<photoGalleryViewProps, PhotoGa
 
         <ScrollView contentContainerStyle={BaseStyles.pb150}>
           <View style={[BaseStyles.w100, BaseStyles.ai_c]}>
+            <View style={PhotoGalleryStyles.photoBlockHeaderContainer}>
+              <Text style={PhotoGalleryStyles.photoBlockHeaderTitleText}>{_.lang.your_avatar}</Text>
+            </View>
+            {app.currentUser.avatar !== undefined &&
+            app.currentUser.avatar !== '' &&
+            app.currentUser.avatar !== null ? (
+              <View>
+                <TouchableOpacity
+                  onPress={this.model.changeAvatar}
+                  style={[PhotoGalleryStyles.avatarContainer]}>
+                  <Image
+                    source={{
+                      uri: `${appSettings.apiEndpoint}${app.currentUser.avatar}`,
+                      cache: 'reload',
+                    }}
+                    style={PhotoGalleryStyles.avatarImage}
+                  />
+                </TouchableOpacity>
+                <View
+                  style={{
+                    position: 'absolute',
+                    bottom: 20,
+                    right: 20,
+                  }}>
+                  <ShadowWrapperView borderRadius={60}>
+                    <SimpleButtonView
+                      iconStyles={[BaseStyles.defaultIcon]}
+                      styles={[HomeScreenStyles.deleteAvatarButtonContainer]}
+                      {...this.childProps(this.model.deleteAvatar)}
+                    />
+                  </ShadowWrapperView>
+                </View>
+                <View
+                  style={{
+                    position: 'absolute',
+                    bottom: 20,
+                    right: 190,
+                  }}>
+                  <ShadowWrapperView borderRadius={60}>
+                    <SimpleButtonView
+                      iconStyles={[BaseStyles.defaultIcon]}
+                      styles={[HomeScreenStyles.deleteAvatarButtonContainer]}
+                      {...this.childProps(this.model.changeAvatarButton)}
+                    />
+                  </ShadowWrapperView>
+                </View>
+              </View>
+            ) : (
+              <TouchableOpacity
+                onPress={this.model.changeAvatar}
+                style={[HomeScreenStyles.avatarContainer]}>
+                <Image source={ICONS.addPhotoIcon} style={HomeScreenStyles.addAvatarIcon} />
+              </TouchableOpacity>
+            )}
             <View style={PhotoGalleryStyles.photoBlockContainer}>
               <View style={PhotoGalleryStyles.photoBlockHeaderContainer}>
                 <Text style={PhotoGalleryStyles.photoBlockHeaderTitleText}>

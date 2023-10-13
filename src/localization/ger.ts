@@ -365,6 +365,9 @@ const ger: localizationPackType = {
   home_screen_hint: `Dies ist Ihr Hauptbildschirm, zu dem Sie gelangen, wenn Sie die App öffnen.
   Am oberen Bildschirmrand haben Sie die Möglichkeit, Ihren Avatar hochzuladen. Klicken Sie dazu auf den großen Kamera-Button. Sobald Sie Ihren Avatar hochgeladen haben, wird er in einem kreisförmigen Rahmen anstelle einer Kamerataste angezeigt. Um Ihren Avatar zu ändern, klicken Sie auf Ihren aktuellen Avatar. Um einen Avatar zu entfernen, klicken Sie auf die kleine Kreuzschaltfläche in der unteren rechten Ecke Ihres Avatars.
   Unter dem Avatar befinden sich die grundlegenden Informationen zu Ihrer Person und Ihre Kontaktdaten (nur für Sie sichtbar). Unten ist die Navigationsleiste.`,
+  private: 'Privat',
+  public: 'Öffentlich',
+  your_avatar: 'Dein Avatar',
 };
 
 export {ger};

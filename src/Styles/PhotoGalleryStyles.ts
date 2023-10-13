@@ -135,6 +135,24 @@ const PhotoGalleryStyles = StyleSheet.create({
     fontSize: hp(17),
     color: COLORS.PLACEHOLDER,
   },
+
+  avatarContainer: {
+    backgroundColor: COLORS.WHITE,
+    borderRadius: 180,
+    borderColor: COLORS.WHITE,
+    borderWidth: 2,
+    width: hp(250),
+    height: hp(250),
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  avatarImage: {
+    width: hp(250),
+    height: hp(250),
+    resizeMode: 'cover',
+  },
 });
 
 export {PhotoGalleryStyles};

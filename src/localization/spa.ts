@@ -353,6 +353,9 @@ const spa: localizationPackType = {
   home_screen_hint: `Esta es tu pantalla principal, a donde vas cuando abres la aplicación.
   En la parte superior de la pantalla, tienes la oportunidad de subir tu avatar. Para hacer esto, haga clic en el botón de la cámara grande. Una vez que haya cargado su avatar, aparecerá en un marco circular en lugar de un botón de cámara. Para cambiar su avatar, haga clic en su avatar actual. Para eliminar un avatar, haga clic en el botón de la cruz pequeña en la esquina inferior derecha de su avatar.
   Debajo del avatar se encuentra la información básica sobre usted y sus datos de contacto (visibles solo para usted). A continuación se muestra la barra de navegación.`,
+  private: 'Privado',
+  public: 'Público',
+  your_avatar: 'Tu Avatar',
 };
 
 export {spa};

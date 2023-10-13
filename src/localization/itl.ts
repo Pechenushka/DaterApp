@@ -353,6 +353,9 @@ const itl: localizationPackType = {
   home_screen_hint: `Questa è la schermata principale, dove vai quando apri l'app.
   Nella parte superiore dello schermo, hai la possibilità di caricare il tuo avatar. Per fare ciò, fai clic sul pulsante grande della fotocamera. Una volta caricato il tuo avatar, apparirà in una cornice circolare anziché in un pulsante della fotocamera. Per cambiare il tuo avatar, fai clic sul tuo avatar attuale. Per rimuovere un avatar, fai clic sul piccolo pulsante a forma di croce nell'angolo in basso a destra del tuo avatar.
   Sotto l'avatar ci sono le informazioni di base su di te e i tuoi dati di contatto (visibili solo a te). Sotto c'è la barra di navigazione.`,
+  private: 'Privato',
+  public: 'Pubblico',
+  your_avatar: 'Il tuo Avatar',
 };
 
 export {itl};

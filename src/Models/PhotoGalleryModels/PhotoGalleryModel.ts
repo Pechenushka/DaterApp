@@ -23,6 +23,8 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
   private _closePreviewButton: SimpleButtonModel;
   private _watchAddButton: SimpleButtonModel;
   private _chooseAnonPhotoButton: SimpleButtonModel;
+  private _deleteAvatar: SimpleButtonModel;
+  private _changeAvatar: SimpleButtonModel;
   private _revardCount: number = 0;
   private _fullscreenUrl: string = '';
   private timeoutId: any = null;
@@ -95,6 +97,16 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
       onPress: this.onChooseAnonPhotoPress,
       icon: ICONS.addPhotoIconWhite,
     });
+    this._deleteAvatar = new SimpleButtonModel({
+      id: '_deleteAvatar',
+      onPress: this.onDeleteAvatarPress,
+      icon: ICONS.deleteIcon,
+    });
+    this._changeAvatar = new SimpleButtonModel({
+      id: '_changeAvatar',
+      onPress: this.changeAvatar,
+      icon: ICONS.editIcon,
+    });
     this.onFocus();
   }
 
@@ -108,6 +120,14 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
 
   public get photoList() {
     return this._photoList;
+  }
+
+  public get deleteAvatar() {
+    return this._deleteAvatar;
+  }
+
+  public get changeAvatarButton() {
+    return this._changeAvatar;
   }
 
   public get photoAnonList() {
@@ -379,6 +399,68 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
     this._photoAnonList = anonPhotosRes.data.list;
     this._photoList = userPhotosRes.data.list;
     this.forceUpdate();
+  };
+
+  public onDeleteAvatarPress = async () => {
+    try {
+      Alert.alert(_.lang.warning, _.lang.delete_avatar_question, [
+        {
+          text: _.lang.no,
+          onPress: () => {},
+          style: 'cancel',
+        },
+        {
+          text: _.lang.yes,
+          onPress: async () => {
+            await loadData(UserDataProvider.DeleteUserAvatar, {});
+            app.currentUser.avatar = '';
+            this.forceUpdate();
+          },
+        },
+      ]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  public changeAvatar = async () => {
+    try {
+      const pickedAvatar = await launchImageLibrary({
+        mediaType: 'photo',
+      });
+      if (pickedAvatar.assets !== undefined && pickedAvatar.assets.length > 0) {
+        if (
+          pickedAvatar.assets[0].fileName &&
+          pickedAvatar.assets[0].fileName.split('.').pop() === 'gif'
+        ) {
+          app.notification.showError(_.lang.warning, 'Wrong avatar format');
+          return;
+        }
+        let data = new FormData();
+        data.append('image', {
+          uri: pickedAvatar.assets[0].uri,
+          type: 'image/png',
+          name: pickedAvatar.assets[0].fileName,
+        });
+        data.append('userId', app.currentUser.userId);
+        data.append('token', app.currentUser.token);
+
+        const response = await fetch(`${appSettings.apiEndpoint}users/set-avatar`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          body: data,
+        });
+        if (response.ok) {
+          const result = await response.json();
+          app.currentUser.avatar = result.data.url;
+          this.forceUpdate();
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 

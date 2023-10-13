@@ -352,6 +352,9 @@ const por: localizationPackType = {
   home_screen_hint: `Esta é a tela principal, para onde você vai quando abre o aplicativo.
   Na parte superior da tela, você tem a oportunidade de fazer upload do seu avatar. Para fazer isso, clique no botão grande da câmera. Depois de carregar seu avatar, ele aparecerá em uma moldura circular em vez de um botão de câmera. Para alterar seu avatar, clique no seu avatar atual. Para remover um avatar, clique no pequeno botão de cruz no canto inferior direito do seu avatar.
   Sob o avatar estão as informações básicas sobre você e seus detalhes de contato (visíveis apenas para você). Abaixo está a barra de navegação.`,
+  private: 'Privado',
+  public: 'Público',
+  your_avatar: 'Seu Avatar',
 };
 
 export {por};

@@ -360,6 +360,7 @@ const eng: localizationPackType = {
   Under the avatar is the basic information about you and your contact details (visible only to you). Below is the navigation bar.`,
   private: 'Private',
   public: 'Public',
+  your_avatar: 'Your Avatar',
 };
 
 export {eng};
