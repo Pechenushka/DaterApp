@@ -32,6 +32,7 @@ class ChatListItemView extends TypedBaseComponent<chatListItemViewProps, ChatLis
             imagePath={this.model.avatar}
             size={50}
             isOnline={this.model.online_status}
+            isPublicChat={this.model.avatar === 'public'}
           />
         </View>
         <View style={[BaseStyles.w40, BaseStyles.h100]}>

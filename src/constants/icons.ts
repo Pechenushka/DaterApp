@@ -68,6 +68,7 @@ const ICONS = {
   guestsIcon: require('../assets/img/GuestsIcon.png'),
   copyIcon: require('../assets/img/copyIcon.png'),
   editIcon: require('../assets/img/editIcon.png'),
+  publicChatIcon: require('../assets/img/publicChatIcon.png'),
 };
 
 export {ICONS};

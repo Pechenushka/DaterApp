@@ -9,6 +9,7 @@ type roundAvatarViewProps = baseComponentProps & {
   size: number;
   imagePath: string | undefined;
   isOnline?: boolean;
+  isPublicChat?: boolean;
 };
 
 const getOnlineStatusPosition = (size: number) => {
@@ -47,7 +48,11 @@ const RoundAvatarView = (props: roundAvatarViewProps) => {
             const nativeProp = Platform.OS === 'ios' ? 'source' : 'src';
             imgRef &&
               imgRef.setNativeProps({
-                [nativeProp]: [Image.resolveAssetSource(ICONS.profileIcon)], // array
+                [nativeProp]: [
+                  Image.resolveAssetSource(
+                    props.isPublicChat ? ICONS.publicChatIcon : ICONS.profileIcon,
+                  ),
+                ], // array
               });
           }}
         />

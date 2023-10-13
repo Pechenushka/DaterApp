@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {View, Text, Image, ScrollView, TouchableOpacity, Modal, Platform} from 'react-native';
+import {View, Text, Image, ScrollView, TouchableOpacity, Modal} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {ChatsStyles} from '../../Styles/ChatsStyles';

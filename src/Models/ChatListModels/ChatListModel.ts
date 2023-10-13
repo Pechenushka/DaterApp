@@ -144,7 +144,7 @@ class ChatListModel extends BaseModel<chatListModelProps> {
     this.list.push(
       this.createChatItem(
         {
-          avatar: '',
+          avatar: 'public',
           chatHash: '',
           id: city.id,
           gender: null,
@@ -162,7 +162,7 @@ class ChatListModel extends BaseModel<chatListModelProps> {
     this.list.push(
       this.createChatItem(
         {
-          avatar: '',
+          avatar: 'public',
           chatHash: '',
           id: region.id,
           gender: null,
@@ -180,7 +180,7 @@ class ChatListModel extends BaseModel<chatListModelProps> {
     this.list.push(
       this.createChatItem(
         {
-          avatar: '',
+          avatar: 'public',
           chatHash: '',
           id: country.id,
           gender: null,
@@ -275,7 +275,7 @@ class ChatListModel extends BaseModel<chatListModelProps> {
     this.list.push(
       this.createChatItem(
         {
-          avatar: '',
+          avatar: 'public',
           chatHash: '',
           id: city.id,
           gender: null,
@@ -293,7 +293,7 @@ class ChatListModel extends BaseModel<chatListModelProps> {
     this.list.push(
       this.createChatItem(
         {
-          avatar: '',
+          avatar: 'public',
           chatHash: '',
           id: region.id,
           gender: null,
@@ -311,7 +311,7 @@ class ChatListModel extends BaseModel<chatListModelProps> {
     this.list.push(
       this.createChatItem(
         {
-          avatar: '',
+          avatar: 'public',
           chatHash: '',
           id: country.id,
           gender: null,
