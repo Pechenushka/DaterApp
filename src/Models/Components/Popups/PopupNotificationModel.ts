@@ -6,7 +6,7 @@ type popupNotificationModelProps = baseModelProps & {};
 class PopupNotificationModel extends BaseModel<popupNotificationModelProps> {
   public top = new Animated.Value(0);
 
-  public topVal = this.top.interpolate({inputRange: [0, 150], outputRange: [-120, 50]});
+  public topVal = this.top.interpolate({inputRange: [0, 180], outputRange: [-150, 50]});
 
   private _title: string = '';
   private _message: string = '';
@@ -38,9 +38,9 @@ class PopupNotificationModel extends BaseModel<popupNotificationModelProps> {
       this._title = notification.title;
       this._type = notification.type;
       this.forceUpdate();
-      Animated.timing(this.top, {toValue: 150, useNativeDriver: false, duration: 1000}).start();
+      Animated.timing(this.top, {toValue: 180, useNativeDriver: false, duration: 1300}).start();
       setTimeout(() => {
-        Animated.timing(this.top, {toValue: 0, useNativeDriver: false, duration: 1000}).start(
+        Animated.timing(this.top, {toValue: 0, useNativeDriver: false, duration: 1300}).start(
           () => {
             this._isShowing = false;
             if (this._queue.length) {
