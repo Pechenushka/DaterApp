@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {ActivityIndicator, FlatList, ScrollView, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, RefreshControl, ScrollView, Text, View} from 'react-native';
 import {LikesModel} from '../../Models/LikesModels/LikesModel';
 import {TaberView} from '../Components/Filters/TaberView';
 import {LikesScreenStyles} from '../../Styles/LikesScreenStyles';
@@ -53,29 +53,33 @@ class LikesViews extends TypedBaseComponent<likesViewsProps, LikesModel> {
           </View>
         ) : (
           <View style={[BaseStyles.w100, BaseStyles.ai_c]}>
-            {this.model.list.length > 0 ? (
-              <FlatList
-                ref={ref => {
-                  this.model.FlatListRef = ref;
-                }}
-                style={[BaseStyles.w100]}
-                contentContainerStyle={[BaseStyles.pb150, BaseStyles.ai_c]}
-                onScroll={this.model.onScroll}
-                renderItem={likeItem => {
-                  return <LikeItemView {...this.childProps(likeItem.item)} />;
-                }}
-                data={this.model.list}
-                maxToRenderPerBatch={10}
-                initialNumToRender={10}
-                windowSize={5}
-                getItemLayout={(data, index) => ({length: 100, offset: 100 * index, index})}
-                showsVerticalScrollIndicator={false}
-              />
-            ) : (
-              <View style={BaseStyles.mt30}>
-                <Text>{_.lang.items_not_found}</Text>
-              </View>
-            )}
+            <FlatList
+              ref={ref => {
+                this.model.FlatListRef = ref;
+              }}
+              style={[BaseStyles.w100]}
+              contentContainerStyle={[BaseStyles.pb150, BaseStyles.ai_c]}
+              onScroll={this.model.onScroll}
+              renderItem={likeItem => {
+                return <LikeItemView {...this.childProps(likeItem.item)} />;
+              }}
+              data={this.model.list}
+              maxToRenderPerBatch={10}
+              initialNumToRender={10}
+              windowSize={5}
+              getItemLayout={(data, index) => ({length: 100, offset: 100 * index, index})}
+              showsVerticalScrollIndicator={false}
+              refreshControl={
+                <RefreshControl
+                  onRefresh={this.model.loadNededList}
+                  refreshing={this.model.refreshing}></RefreshControl>
+              }
+              ListEmptyComponent={
+                <View style={BaseStyles.mt30}>
+                  <Text>{_.lang.items_not_found}</Text>
+                </View>
+              }
+            />
           </View>
         )}
       </View>

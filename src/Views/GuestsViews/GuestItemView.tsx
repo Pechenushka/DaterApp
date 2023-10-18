@@ -30,7 +30,10 @@ class GuestItemView extends TypedBaseComponent<guestItemViewProps, GuestItemMode
   public render() {
     super.render();
     return (
-      <TouchableOpacity onPress={this.model.onItemPress} style={GuestsStyle.guestItemMainContainer}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={this.model.onItemPress}
+        style={GuestsStyle.guestItemMainContainer}>
         <View style={[BaseStyles.w20, BaseStyles.alignCenter]}>
           <RoundAvatarView id={'userAvatar'} imagePath={this.model.guestAvatar} size={60} />
         </View>

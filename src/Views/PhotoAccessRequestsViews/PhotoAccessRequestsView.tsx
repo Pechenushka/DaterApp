@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, RefreshControl} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
@@ -103,12 +103,26 @@ class PhotoAccessRequestsView extends TypedBaseComponent<
           </View>
 
           <FlatList
+            ref={ref => {
+              this.model.FlatListRef = ref;
+            }}
             data={this.model.list}
             renderItem={item => {
               return <AccessRequestItemView {...this.childProps(item.item)} />;
             }}
             style={[BaseStyles.w90, BaseStyles.mt20]}
             contentContainerStyle={[BaseStyles.w100]}
+            onScroll={this.model.onScroll}
+            ListEmptyComponent={
+              <View style={[BaseStyles.mt30, BaseStyles.w100, BaseStyles.ai_c]}>
+                <Text>{_.lang.items_not_found}</Text>
+              </View>
+            }
+            refreshControl={
+              <RefreshControl
+                onRefresh={this.model.load}
+                refreshing={this.model.refreshing}></RefreshControl>
+            }
           />
         </View>
       </View>

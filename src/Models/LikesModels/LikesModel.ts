@@ -19,6 +19,7 @@ class LikesModel extends BaseModel<likesModelProps> {
   private _limit: number = 20;
   private _offset: number = 0;
   private _loadingNP: boolean = false;
+  private _refreshing: boolean = false;
   public FlatListRef: FlatList | null = null;
 
   constructor(props: likesModelProps) {
@@ -54,6 +55,18 @@ class LikesModel extends BaseModel<likesModelProps> {
 
   public get sendMessageModal() {
     return this._sendMessageModal;
+  }
+
+  public get refreshing() {
+    return this._refreshing;
+  }
+
+  public set refreshing(Val) {
+    if (this._refreshing === Val) {
+      return;
+    }
+    this._refreshing = Val;
+    this.forceUpdate();
   }
 
   public onTabChange = async (activeIndex: number) => {

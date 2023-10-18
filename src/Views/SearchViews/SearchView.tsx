@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {View, ActivityIndicator, Text, Image, FlatList} from 'react-native';
+import {View, ActivityIndicator, Text, Image, FlatList, RefreshControl} from 'react-native';
 import {SearchModel} from '../../Models/SearchModels/SearchModel';
 import {SearchItemView} from './SearchItemView';
 import {BaseStyles} from '../../Styles/BaseStyles';
@@ -64,33 +64,38 @@ class SearchView extends TypedBaseComponent<searchViewProps, SearchModel> {
         <SearchFilterView {...this.childProps(this.model.filterModal)} />
         <ProfileDetailsModalView {...this.childProps(this.model.profileDetailsModal)} />
         <SendMessageModalView {...this.childProps(this.model.sendMessageModal)} />
-        {this.model.list.length > 0 ? (
-          <View style={[BaseStyles.w100, BaseStyles.ai_c]}>
-            <FlatList
-              ref={ref => {
-                this.model.FlatListRef = ref;
-              }}
-              style={[BaseStyles.w95]}
-              contentContainerStyle={[BaseStyles.pb150]}
-              onScroll={this.model.onScroll}
-              renderItem={searchItem => {
-                return <SearchItemView {...this.childProps(searchItem.item)} />;
-              }}
-              data={this.model.list}
-              maxToRenderPerBatch={10}
-              initialNumToRender={10}
-              windowSize={5}
-              getItemLayout={(data, index) => ({length: 205, offset: 205 * index, index})}
-              numColumns={2}
-              horizontal={false}
-              showsVerticalScrollIndicator={false}
-            />
-          </View>
-        ) : (
-          <View style={[BaseStyles.mt30, BaseStyles.alignCenter]}>
-            <Text>{_.lang.items_not_found}</Text>
-          </View>
-        )}
+
+        <View style={[BaseStyles.w100, BaseStyles.ai_c]}>
+          <FlatList
+            ref={ref => {
+              this.model.FlatListRef = ref;
+            }}
+            style={[BaseStyles.w95]}
+            contentContainerStyle={[BaseStyles.pb150]}
+            onScroll={this.model.onScroll}
+            renderItem={searchItem => {
+              return <SearchItemView {...this.childProps(searchItem.item)} />;
+            }}
+            data={this.model.list}
+            maxToRenderPerBatch={10}
+            initialNumToRender={10}
+            windowSize={5}
+            getItemLayout={(data, index) => ({length: 205, offset: 205 * index, index})}
+            numColumns={2}
+            horizontal={false}
+            showsVerticalScrollIndicator={false}
+            refreshControl={
+              <RefreshControl
+                onRefresh={this.model.update}
+                refreshing={this.model.refreshing}></RefreshControl>
+            }
+            ListEmptyComponent={
+              <View style={[BaseStyles.mt30, BaseStyles.alignCenter]}>
+                <Text>{_.lang.items_not_found}</Text>
+              </View>
+            }
+          />
+        </View>
       </View>
     );
   }

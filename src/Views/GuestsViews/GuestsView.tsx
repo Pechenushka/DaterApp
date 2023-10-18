@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {ActivityIndicator, FlatList, Image, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, Image, RefreshControl, Text, View} from 'react-native';
 import {_} from '../../Core/Localization';
 import {GuestsModel} from '../../Models/GuestsModel/GuestsModel';
 import {GuestsStyle} from '../../Styles/GuestsStyle';
@@ -74,30 +74,32 @@ class GuestsView extends TypedBaseComponent<guestsViewProps, GuestsModel> {
               <ActivityIndicator size={30} color={COLORS.PLACEHOLDER} />
             </View>
           ) : (
-            <>
-              {this.model.list.length > 0 ? (
-                <FlatList
-                  ref={ref => {
-                    this.model.FlatListRef = ref;
-                  }}
-                  style={[BaseStyles.w95, BaseStyles.mt10]}
-                  contentContainerStyle={[BaseStyles.pb150]}
-                  onScroll={this.model.onScroll}
-                  renderItem={guestItem => {
-                    return <GuestItemView {...this.childProps(guestItem.item)} />;
-                  }}
-                  data={this.model.list}
-                  getItemLayout={(data, index) => ({length: 70, offset: 70 * index, index})}
-                  maxToRenderPerBatch={10}
-                  initialNumToRender={10}
-                  windowSize={5}
-                />
-              ) : (
-                <View style={[BaseStyles.mt30, BaseStyles.alignCenter]}>
+            <FlatList
+              ref={ref => {
+                this.model.FlatListRef = ref;
+              }}
+              style={[BaseStyles.w95, BaseStyles.mt10]}
+              contentContainerStyle={[BaseStyles.pb150]}
+              onScroll={this.model.onScroll}
+              renderItem={guestItem => {
+                return <GuestItemView {...this.childProps(guestItem.item)} />;
+              }}
+              data={this.model.list}
+              getItemLayout={(data, index) => ({length: 70, offset: 70 * index, index})}
+              maxToRenderPerBatch={10}
+              initialNumToRender={10}
+              windowSize={5}
+              ListEmptyComponent={
+                <View style={[BaseStyles.mt30, BaseStyles.w100, BaseStyles.ai_c]}>
                   <Text>{_.lang.items_not_found}</Text>
                 </View>
-              )}
-            </>
+              }
+              refreshControl={
+                <RefreshControl
+                  onRefresh={this.model.load}
+                  refreshing={this.model.refreshing}></RefreshControl>
+              }
+            />
           )}
         </View>
       </View>

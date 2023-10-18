@@ -22,6 +22,7 @@ class GuestsModel extends BaseModel<guestsModelProps> {
   private _limit: number = 30;
   private _offset: number = 0;
   private _myGuests: boolean = true;
+  private _refreshing: boolean = false;
 
   public FlatListRef: FlatList | null = null;
 
@@ -68,6 +69,18 @@ class GuestsModel extends BaseModel<guestsModelProps> {
     return this._myGuests;
   }
 
+  public get refreshing() {
+    return this._refreshing;
+  }
+
+  public set refreshing(Val) {
+    if (this._refreshing === Val) {
+      return;
+    }
+    this._refreshing = Val;
+    this.forceUpdate();
+  }
+
   public onBackPress = async () => {
     app.navigator.goToMainProfileScreen();
   };
@@ -106,6 +119,10 @@ class GuestsModel extends BaseModel<guestsModelProps> {
     if (this._initialLoad) {
       return;
     }
+    if (this.refreshing) {
+      return;
+    }
+    this.refreshing = true;
     this._offset = 0;
     const postBody = {
       userId: app.currentUser.userId,
@@ -119,11 +136,13 @@ class GuestsModel extends BaseModel<guestsModelProps> {
     if (res === null) {
       app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._initialLoad = false;
+      this.refreshing = false;
       return;
     }
     if (res.statusCode !== 200) {
       app.notification.showError(_.lang.warning, res.statusMessage);
       this._initialLoad = false;
+      this.refreshing = false;
       return;
     }
     this._list = [];
@@ -132,6 +151,7 @@ class GuestsModel extends BaseModel<guestsModelProps> {
     });
 
     this.FlatListRef?.scrollToOffset({offset: 0, animated: true});
+    this.refreshing = false;
     this.forceUpdate();
   };
 

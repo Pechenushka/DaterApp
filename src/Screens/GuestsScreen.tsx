@@ -35,7 +35,7 @@ class GuestsScreen extends BaseLayoutView<GuestsController> {
 
   async onFocus(): Promise<void> {
     await super.onFocus();
-    this.controller.guestsModel.update();
+    this.controller.guestsModel.load();
     analyticHandler.trackEvent('guests_screen_rendered');
   }
 

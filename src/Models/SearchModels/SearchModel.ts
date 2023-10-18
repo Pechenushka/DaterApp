@@ -44,6 +44,7 @@ class SearchModel extends BaseModel<searchModelProps> {
   private _filterModal: SearchFilterModel;
   private _sendMessageModal: SendMessageModalModel;
   private _profileDetailsModal: ProfileDetailsModalModel;
+  private _refreshing: boolean = false;
   public FlatListRef: FlatList | null = null;
 
   private _limit: number = 30;
@@ -149,6 +150,18 @@ class SearchModel extends BaseModel<searchModelProps> {
     return this._profileDetailsModal;
   }
 
+  public get refreshing() {
+    return this._refreshing;
+  }
+
+  public set refreshing(Val) {
+    if (this._refreshing === Val) {
+      return;
+    }
+    this._refreshing = Val;
+    this.forceUpdate();
+  }
+
   public load = async () => {
     this._offset = 0;
     const searchBody = {
@@ -207,6 +220,10 @@ class SearchModel extends BaseModel<searchModelProps> {
     if (this._initialLoad) {
       return;
     }
+    if (this.refreshing) {
+      return;
+    }
+    this.refreshing = true;
     this._offset = 0;
     const searchBody = {
       location: {
@@ -244,11 +261,13 @@ class SearchModel extends BaseModel<searchModelProps> {
     if (searchRes === null) {
       app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       this._initialLoad = false;
+      this.refreshing = false;
       return;
     }
     if (searchRes.statusCode !== 200) {
       app.notification.showError(_.lang.warning, searchRes.statusMessage);
       this._initialLoad = false;
+      this.refreshing = false;
       return;
     }
     this._list = [];
@@ -257,6 +276,8 @@ class SearchModel extends BaseModel<searchModelProps> {
     });
 
     this.FlatListRef?.scrollToOffset({offset: 0, animated: true});
+    this.refreshing = false;
+    this._initialLoad = false;
     this.forceUpdate();
   };
 

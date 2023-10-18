@@ -1,4 +1,4 @@
-import {Alert} from 'react-native';
+import {Alert, FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
@@ -18,6 +18,11 @@ class PhotoAccessRequestsModel extends BaseModel<photoAccessRequestsModelProps> 
   private _statusTaber: TaberModel;
   private _fileters: {toMe: boolean; status: string} = {status: 'pending', toMe: true};
   private _loading: boolean = false;
+  private _refreshing: boolean = false;
+  public FlatListRef: FlatList | null = null;
+  private _limit: number = 20;
+  private _offset: number = 0;
+  private _loadingNP: boolean = false;
 
   constructor(props: photoAccessRequestsModelProps) {
     super(props);
@@ -72,6 +77,18 @@ class PhotoAccessRequestsModel extends BaseModel<photoAccessRequestsModelProps> 
     return this._fileters;
   }
 
+  public get refreshing() {
+    return this._refreshing;
+  }
+
+  public set refreshing(Val) {
+    if (this._refreshing === Val) {
+      return;
+    }
+    this._refreshing = Val;
+    this.forceUpdate();
+  }
+
   public onMenuPress = async () => {
     app.navigator.openDrawer();
   };
@@ -80,6 +97,7 @@ class PhotoAccessRequestsModel extends BaseModel<photoAccessRequestsModelProps> 
     this._list = [];
     this._fileters.toMe = tab === 0;
     this.load();
+    this.FlatListRef?.scrollToOffset({offset: 0, animated: true});
   };
 
   public onStatusTaberChange = async (tab: number) => {
@@ -105,20 +123,75 @@ class PhotoAccessRequestsModel extends BaseModel<photoAccessRequestsModelProps> 
 
   public load = async () => {
     this.loading = true;
-    const res = await loadData(UserDataProvider.GetPhotoAccessRequest, {...this._fileters});
+    const res = await loadData(UserDataProvider.GetPhotoAccessRequest, {
+      ...this._fileters,
+      limit: this._limit,
+      offset: this._offset,
+    });
     if (res === null) {
       app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
+      this.loading = false;
       return;
     }
 
     if (res.statusCode !== 200) {
       app.notification.showError(_.lang.warning, res.statusMessage);
+      this.loading = false;
       return;
     }
     res.data.forEach(request => {
       this._list.push(this.createAccessRequestItem(request));
     });
     this.loading = false;
+  };
+
+  public update = async () => {
+    if (this.refreshing) {
+      return;
+    }
+    this.refreshing = true;
+    this._offset = 0;
+    this._list = [];
+    await this.load();
+    this.refreshing = false;
+  };
+
+  public loadNP = async () => {
+    const elemsInScreen = this._offset + this._limit;
+    if (!this._loadingNP && this.list.length === elemsInScreen) {
+      this._loadingNP = true;
+      this._offset += this._limit;
+      const requestsFilterBody = {
+        ...this._fileters,
+        limit: this._limit,
+        offset: this._offset,
+      };
+      const res = await loadData(UserDataProvider.GetPhotoAccessRequest, requestsFilterBody);
+      if (res === null) {
+        app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
+        this._loadingNP = false;
+        return;
+      }
+
+      if (res.statusCode !== 200) {
+        app.notification.showError(_.lang.warning, res.statusMessage);
+        this._loadingNP = false;
+        return;
+      }
+      res.data.forEach(request => {
+        this._list.push(this.createAccessRequestItem(request));
+      });
+      this._loadingNP = false;
+      this.forceUpdate();
+    }
+  };
+
+  public onScroll = async (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const event = e.nativeEvent;
+    const bottomBorder = event.contentOffset.y + event.layoutMeasurement.height;
+    if (event.contentSize.height - bottomBorder < 200) {
+      await this.loadNP();
+    }
   };
 
   public createAccessRequestItem = (item: photoAccessRequestItem) => {
