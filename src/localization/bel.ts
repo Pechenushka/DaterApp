@@ -356,6 +356,22 @@ const bel: localizationPackType = {
   private: 'Прыватны',
   public: 'Грамадскі',
   your_avatar: 'Ваш Аватар',
+  your_accaunt_added: 'Ваш профіль паспяхова дададзены',
+  registration_errors: {
+    agree_TOF: 'Вы павінны пагадзіцца з умовамі выкарыстання',
+    email_empty: 'Электронны адрас не можа быць пустым',
+    less100: `Сур'ёзна, вам больш за 100 гадоў?`,
+    name_empty: 'Імя не можа быць пустым',
+    over18: 'Вам павінна быць больш за 18 гадоў',
+    password_6_cahrs: 'Пароль павінен быць не менш за 6 сімвалаў',
+    password_confirm_empty: 'Поле пацверджання пароля не можа быць пустым',
+    password_empty: 'Пароль не можа быць пустым',
+    password_match: 'Пацвердзіце, што пароль не супадае',
+    provide_gender: 'Укажыце свой пол',
+    select_city: 'Выберыце свой або бліжэйшы да вас горад',
+    select_country: 'Выберыце сваю краіну',
+    select_region: 'Выберыце свой рэгіён',
+  },
 };
 
 export {bel};

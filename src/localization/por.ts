@@ -355,6 +355,22 @@ const por: localizationPackType = {
   private: 'Privado',
   public: 'Público',
   your_avatar: 'Seu Avatar',
+  your_accaunt_added: 'Seu perfil adicionado com sucesso',
+  registration_errors: {
+    agree_TOF: 'Você deve concordar com os termos de uso',
+    email_empty: 'O e-mail não pode ficar vazio',
+    less100: 'Sério, você tem mais de 100 anos?',
+    name_empty: 'O nome não pode ficar vazio',
+    over18: 'Você deve ter mais de 18 anos',
+    password_6_cahrs: 'A senha deve ter pelo menos 6 caracteres',
+    password_confirm_empty: 'A confirmação de senha não pode ficar vazia',
+    password_empty: 'A senha não pode ficar vazia',
+    password_match: 'Confirme que a senha não corresponde',
+    provide_gender: 'Forneça seu gênero',
+    select_city: 'Selecione sua cidade ou mais próxima de você',
+    select_country: 'Escolha o seu país',
+    select_region: 'Selecione sua região',
+  },
 };
 
 export {por};

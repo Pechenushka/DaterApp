@@ -182,6 +182,22 @@ export type localizationPackType = {
   private: string;
   public: string;
   your_avatar: string;
+  your_accaunt_added: string;
+  registration_errors: {
+    name_empty: string;
+    email_empty: string;
+    password_empty: string;
+    password_confirm_empty: string;
+    password_match: string;
+    password_6_cahrs: string;
+    select_country: string;
+    select_region: string;
+    select_city: string;
+    over18: string;
+    less100: string;
+    provide_gender: string;
+    agree_TOF: string;
+  };
 };
 
 export type localizationEnum =

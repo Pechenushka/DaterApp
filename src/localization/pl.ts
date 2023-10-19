@@ -357,6 +357,22 @@ const pl: localizationPackType = {
   private: 'Prywatny',
   public: 'Publiczny',
   your_avatar: 'Twój Awatar',
+  your_accaunt_added: 'Twój profil został pomyślnie dodany',
+  registration_errors: {
+    agree_TOF: 'Musisz zaakceptować warunki użytkowania',
+    email_empty: 'Adres e-mail nie może być pusty',
+    less100: 'Poważnie, masz ponad 100 lat?',
+    name_empty: 'Nazwa nie może być pusta',
+    over18: 'Musisz mieć ukończone 18 lat',
+    password_6_cahrs: 'Hasło musi mieć co najmniej 6 znaków',
+    password_confirm_empty: 'Pole Potwierdź hasło nie może być puste',
+    password_empty: 'Hasło nie może być puste',
+    password_match: 'Potwierdź, że hasło nie pasuje',
+    provide_gender: 'Podaj swoją płeć',
+    select_city: 'Wybierz swoje miasto lub najbliżej Ciebie',
+    select_country: 'Wybierz swój kraj',
+    select_region: 'Wybierz swój region',
+  },
 };
 
 export {pl};

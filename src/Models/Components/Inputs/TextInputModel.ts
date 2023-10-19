@@ -49,6 +49,8 @@ class TextInputModel extends BaseModel<textInputModelProps> {
   private _numberOfLines: number = 1;
   private _showCounter: boolean = false;
   private _conterModel: TextInputCounterModel;
+  private _hasError: boolean = false;
+  private _errorMessage: string = '';
   public ref: TextInput | null = null;
 
   constructor(props: textInputModelProps) {
@@ -145,6 +147,14 @@ class TextInputModel extends BaseModel<textInputModelProps> {
     return this._value;
   }
 
+  public get hasError() {
+    return this._hasError;
+  }
+
+  public get errorMessage() {
+    return this._errorMessage;
+  }
+
   public set value(val) {
     this._value = val;
     this._conterModel.counter = val.length;
@@ -164,6 +174,17 @@ class TextInputModel extends BaseModel<textInputModelProps> {
 
   public onBlur = async () => {
     this.props.onBlur && this.props.onBlur();
+  };
+
+  public showError = async (error: string) => {
+    this._errorMessage = error;
+    this._hasError = true;
+    this.forceUpdate();
+  };
+
+  public hideError = async () => {
+    this._errorMessage = '';
+    this._hasError = false;
   };
 }
 

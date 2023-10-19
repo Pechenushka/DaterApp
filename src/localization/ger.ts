@@ -368,6 +368,22 @@ const ger: localizationPackType = {
   private: 'Privat',
   public: 'Öffentlich',
   your_avatar: 'Dein Avatar',
+  your_accaunt_added: 'Ihr Profil wurde erfolgreich hinzugefügt',
+  registration_errors: {
+    agree_TOF: 'Sie müssen den Nutzungsbedingungen zustimmen',
+    email_empty: 'E-Mail darf nicht leer sein',
+    less100: 'Im Ernst, Sie sind über 100 Jahre alt?',
+    name_empty: 'Der Name darf nicht leer sein',
+    over18: 'Sie müssen über 18 Jahre alt sein',
+    password_6_cahrs: 'Das Passwort muss mindestens aus 6 Zeichen bestehen',
+    password_confirm_empty: '„Passwort bestätigen“ darf nicht leer sein',
+    password_empty: 'Passwort kann nicht leer sein',
+    password_match: 'Bestätigen Sie, dass das Passwort nicht übereinstimmt',
+    provide_gender: 'Geben Sie Ihr Geschlecht an',
+    select_city: 'Wählen Sie Ihre Stadt oder die nächstgelegene Stadt aus',
+    select_country: 'Wähle dein Land',
+    select_region: 'Wählen Sie Ihre Region',
+  },
 };
 
 export {ger};

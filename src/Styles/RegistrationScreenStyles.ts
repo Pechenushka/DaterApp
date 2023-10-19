@@ -102,6 +102,7 @@ const RegistrationScreenStyles = StyleSheet.create({
     top: hp(-14),
     paddingHorizontal: hp(5),
     textAlign: 'center',
+    color: COLORS.BLACK,
   },
 
   infoItemContainer: {
@@ -163,6 +164,37 @@ const RegistrationScreenStyles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     flexWrap: 'wrap',
+  },
+
+  genderPickerContainer: {
+    marginTop: hp(10),
+  },
+
+  genderPickerItemContainerExternal: {
+    backgroundColor: COLORS.WHITE,
+    marginBottom: hp(15),
+    marginRight: hp(15),
+    marginTop: hp(10),
+    width: hp(90),
+    height: hp(90),
+  },
+
+  genderPickerItemContainerInternal: {
+    backgroundColor: COLORS.WHITE,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: hp(5),
+  },
+
+  genderPickerItemIconStyles: {
+    height: hp(50),
+    width: hp(50),
+    resizeMode: 'contain',
+  },
+
+  genderPickerItemText: {
+    fontSize: hp(16),
+    fontWeight: 'bold',
   },
 });
 

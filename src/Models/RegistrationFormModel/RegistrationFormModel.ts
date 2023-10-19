@@ -1,4 +1,3 @@
-import {Alert} from 'react-native';
 import deviceInfoModule from 'react-native-device-info';
 import {getAge} from '../../Common/Helpers';
 import {ICONS} from '../../constants/icons';
@@ -9,13 +8,15 @@ import {FireBaseHandler} from '../../Core/FireBaseHandler';
 import {_} from '../../Core/Localization';
 import {SocketHandler} from '../../Core/Socket';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
-import {GoogleSignInModel} from '../Components/AuthComponents/GoogleSignInModel';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {DatePickerModel} from '../Components/Inputs/DatePickerModel';
 import {dropDownItem, DropDownModel} from '../Components/Inputs/DropDownModel';
-import {GenderSvitcherModel} from '../Components/Inputs/GenderSvitcherModel';
 import {SwitcherModel} from '../Components/Inputs/SwitcherModel';
 import {TextInputModel} from '../Components/Inputs/TextInputModel';
+import {
+  HorizontalSelectorItem,
+  HorizontalSelectorModel,
+} from '../Components/Inputs/HorizontalSelectorModel';
 
 type registrationFormModelProps = baseModelProps & {};
 
@@ -31,7 +32,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   private _countrySelection: DropDownModel;
   private _regionSelection: DropDownModel;
   private _citySelection: DropDownModel;
-  private _genderSelection: DropDownModel;
+  private _genderSelection: HorizontalSelectorModel;
   private _curentStep: number = 1;
 
   private _step1NextButton: SimpleButtonModel;
@@ -41,6 +42,18 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
 
   private _step3PrevButton: SimpleButtonModel;
   private _googleIdToken: string | null = null;
+
+  private _hasBDateError: boolean = false;
+  private _BDateError: string = '';
+
+  private _hasGenderError: boolean = false;
+  private _genderError: string = '';
+
+  private _hasLocationError: boolean = false;
+  private _locationError: string = '';
+
+  private _hasTOFError: boolean = false;
+  private _TOFError: string = '';
 
   constructor(props: registrationFormModelProps) {
     super(props);
@@ -83,16 +96,20 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       onIconPress: this.onRepeatPasswordIconPress,
     });
 
-    this._ageInput = new DatePickerModel({id: '_ageInput', mode: 'date'});
+    this._ageInput = new DatePickerModel({
+      id: '_ageInput',
+      mode: 'date',
+      onDateChange: this.onBirthDateChange,
+    });
 
-    this._genderSelection = new DropDownModel({
+    this._genderSelection = new HorizontalSelectorModel({
       id: '_genderSelection',
       list: [
-        {id: 1, name: _.lang.iam_man},
-        {id: 2, name: _.lang.iam_women},
+        {id: 1, name: _.lang.genders[0], icon: ICONS.maleIcon},
+        {id: 2, name: _.lang.genders[1], icon: ICONS.femaleIcon},
       ],
-      placeholder: _.lang.choose_gender,
-      onSelectionChange: this.onCityChange,
+      onSelectionChange: this.onGenderChange,
+      multiselection: false,
     });
 
     this._signUpButton = new SimpleButtonModel({
@@ -125,7 +142,10 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       disabled: true,
     });
 
-    this._agreementSwitcher = new SwitcherModel({id: '_agreementSwitcher'});
+    this._agreementSwitcher = new SwitcherModel({
+      id: '_agreementSwitcher',
+      onValueChange: this.onTOFSwitcherChange,
+    });
 
     this._step1NextButton = new SimpleButtonModel({
       id: '_step1NextButton',
@@ -221,6 +241,38 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
     return this._step3PrevButton;
   }
 
+  public get hasBDateError() {
+    return this._hasBDateError;
+  }
+
+  public get BDateError() {
+    return this._BDateError;
+  }
+
+  public get hasGenderError() {
+    return this._hasGenderError;
+  }
+
+  public get genderError() {
+    return this._genderError;
+  }
+
+  public get hasLocationError() {
+    return this._hasLocationError;
+  }
+
+  public get hasTOFError() {
+    return this._hasTOFError;
+  }
+
+  public get locationError() {
+    return this._locationError;
+  }
+
+  public get TOFError() {
+    return this._TOFError;
+  }
+
   public onPasswordIconPress = async () => {
     if (this._passwordInput.secure) {
       this._passwordInput.secure = false;
@@ -242,70 +294,91 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   };
 
   public firsStepValidation = async () => {
-    const [name, email, password, passwordConfirm] = [
-      this._userNameInput.value.trim(),
+    const [email, password, passwordConfirm] = [
       this._emailInput.value.trim(),
       this._passwordInput.value.trim(),
       this._repeatPasswordInput.value.trim(),
     ];
 
-    if (name === '') {
-      app.notification.showError(_.lang.warning, 'Name can not be empty');
-      return false;
-    }
-
     if (email === '') {
-      app.notification.showError(_.lang.warning, 'Email can not be empty');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.email_empty);
+      this._emailInput.showError(_.lang.registration_errors.email_empty);
       return false;
     }
 
     if (password === '') {
-      app.notification.showError(_.lang.warning, 'Password can not be empty');
-      return false;
-    }
-    if (passwordConfirm === '') {
-      app.notification.showError(_.lang.warning, 'Password Confirm can not be empty');
-      return false;
-    }
-
-    if (password !== passwordConfirm) {
-      app.notification.showError(_.lang.warning, 'Confirm password dos not match');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.password_empty);
+      this._passwordInput.showError(_.lang.registration_errors.password_empty);
       return false;
     }
 
     if (password.length < 6) {
-      app.notification.showError(_.lang.warning, 'Password must be at least 6 characters');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.password_6_cahrs);
+      this._passwordInput.showError(_.lang.registration_errors.password_6_cahrs);
+      return false;
+    }
+
+    if (passwordConfirm === '') {
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.password_confirm_empty);
+      this._repeatPasswordInput.showError(_.lang.registration_errors.password_confirm_empty);
+      return false;
+    }
+
+    if (password !== passwordConfirm) {
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.password_match);
+      this._repeatPasswordInput.showError(_.lang.registration_errors.password_match);
       return false;
     }
 
     const res = await loadData(UserDataProvider.CheckEmail, {email: email});
 
     if (res === null) {
-      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
       return false;
     }
 
     if (res.statusCode !== 200) {
       app.notification.showError(_.lang.warning, res.statusMessage);
+      this._emailInput.showError(res.statusMessage);
       return false;
     }
     return true;
   };
 
   public secondStepValidation = async () => {
-    const [dateTimeStamp, gender] = [this._ageInput.value.getTime(), this._genderSelection.value];
+    const [name, dateTimeStamp, gender] = [
+      this._userNameInput.value.trim(),
+      this._ageInput.value.getTime(),
+      this._genderSelection.value,
+    ];
+
+    if (name === '') {
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.name_empty);
+      this._userNameInput.showError(_.lang.registration_errors.name_empty);
+      return false;
+    }
+
     if (getAge(dateTimeStamp) < 18) {
-      app.notification.showError(_.lang.warning, 'You must be over 18 years old');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.over18);
+      this._hasBDateError = true;
+      this._BDateError = _.lang.registration_errors.over18;
+      this.forceUpdate();
       return false;
     }
 
     if (getAge(dateTimeStamp) > 100) {
-      app.notification.showError(_.lang.warning, 'Seriously, you are over 100 years old?');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.less100);
+      this._hasBDateError = true;
+      this._BDateError = _.lang.registration_errors.less100;
+      this.forceUpdate();
       return false;
     }
 
     if (gender === undefined) {
-      app.notification.showError(_.lang.warning, 'Provide your gender');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.provide_gender);
+      this._hasGenderError = true;
+      this._genderError = _.lang.registration_errors.provide_gender;
+      this.forceUpdate();
       return false;
     }
     return true;
@@ -349,22 +422,66 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   };
 
   public onUserNameChange = async (newValue: string) => {
-    newValue;
+    if (newValue !== '') {
+      this._userNameInput.hideError();
+    }
   };
 
   public onPasswordChange = async (newValue: string) => {
-    newValue;
+    if (newValue !== '' || newValue.length >= 6) {
+      this._passwordInput.hideError();
+    }
   };
 
   public onRepeatPasswordChange = async (newValue: string) => {
-    newValue;
+    if (newValue !== '') {
+      this._repeatPasswordInput.hideError();
+    }
   };
 
   public onEmailChange = async (newValue: string) => {
-    newValue;
+    if (newValue !== '') {
+      this._emailInput.hideError();
+    }
+  };
+
+  public onTOFSwitcherChange = async (newValue: boolean) => {
+    console.log(newValue);
+    if (newValue) {
+      this._TOFError = '';
+      this._hasTOFError = false;
+      this.forceUpdate();
+    }
+  };
+
+  public onBirthDateChange = async (newDate: Date) => {
+    if (getAge(newDate.getTime()) >= 18) {
+      this._hasBDateError = false;
+      this._BDateError = '';
+      this.forceUpdate();
+    }
+
+    if (getAge(newDate.getTime()) <= 100) {
+      this._hasBDateError = false;
+      this._BDateError = '';
+      this.forceUpdate();
+    }
+  };
+
+  public onGenderChange = async (item: HorizontalSelectorItem | HorizontalSelectorItem[]) => {
+    if (item !== undefined) {
+      this._hasGenderError = false;
+      this._genderError = '';
+      this.forceUpdate();
+    }
   };
 
   public onCountryChange = async (item: dropDownItem) => {
+    if (item !== undefined) {
+      this._hasLocationError = false;
+      this._locationError = '';
+      this.forceUpdate();
+    }
     this._regionSelection.setToDefault();
     this._citySelection.setToDefault();
     this._citySelection.disabled = true;
@@ -375,6 +492,11 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   };
 
   public onRegionChange = async (item: dropDownItem) => {
+    if (item !== undefined) {
+      this._hasLocationError = false;
+      this._locationError = '';
+      this.forceUpdate();
+    }
     this._citySelection.setToDefault();
     this._citySelection.listLoader = async () => {
       return await this.cityLoad(item.id);
@@ -383,7 +505,11 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
   };
 
   public onCityChange = async (item: dropDownItem) => {
-    item;
+    if (item !== undefined) {
+      this._hasLocationError = false;
+      this._locationError = '';
+      this.forceUpdate();
+    }
   };
 
   public countryLoad = async () => {
@@ -430,7 +556,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       this._passwordInput.value.trim(),
       this._repeatPasswordInput.value.trim(),
       this._ageInput.value.getTime(),
-      this._genderSelection.value,
+      this._genderSelection.value as HorizontalSelectorItem,
       this._countrySelection.value,
       this._regionSelection.value,
       this._citySelection.value,
@@ -439,79 +565,91 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
     ];
 
     if (name === '') {
-      app.notification.showError(_.lang.warning, 'Name can not be empty');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.name_empty);
       this._signUpButton.disabled = false;
       return;
     }
 
     if (email === '') {
-      app.notification.showError(_.lang.warning, 'Email can not be empty');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.email_empty);
       this._signUpButton.disabled = false;
       return;
     }
 
     if (password === '') {
-      app.notification.showError(_.lang.warning, 'Password can not be empty');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.password_empty);
       this._signUpButton.disabled = false;
       return;
     }
     if (passwordConfirm === '') {
-      app.notification.showError(_.lang.warning, 'Password Confirm can not be empty');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.password_confirm_empty);
       this._signUpButton.disabled = false;
       return;
     }
 
     if (password !== passwordConfirm) {
-      app.notification.showError(_.lang.warning, 'Confirm password dos not match');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.password_match);
       this._signUpButton.disabled = false;
       return;
     }
 
     if (password.length < 6) {
-      app.notification.showError(_.lang.warning, 'Password must be at least 6 characters');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.password_6_cahrs);
       this._signUpButton.disabled = false;
       return;
     }
 
     if (country === undefined) {
-      app.notification.showError(_.lang.warning, 'Select your country');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.select_country);
+      this._hasLocationError = true;
+      this._locationError = _.lang.registration_errors.select_country;
       this._signUpButton.disabled = false;
+      this.forceUpdate();
       return;
     }
 
     if (region === undefined) {
-      app.notification.showError(_.lang.warning, 'Select your region');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.select_region);
+      this._hasLocationError = true;
+      this._locationError = _.lang.registration_errors.select_region;
       this._signUpButton.disabled = false;
+      this.forceUpdate();
       return;
     }
 
     if (city === undefined) {
-      app.notification.showError(_.lang.warning, 'Select your city or closest to you');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.select_city);
+      this._hasLocationError = true;
+      this._locationError = _.lang.registration_errors.select_city;
       this._signUpButton.disabled = false;
+      this.forceUpdate();
       return;
     }
 
     if (getAge(dateTimeStamp) < 18) {
-      app.notification.showError(_.lang.warning, 'You must be over 18 years old');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.over18);
       this._signUpButton.disabled = false;
       return;
     }
 
     if (getAge(dateTimeStamp) > 100) {
-      app.notification.showError(_.lang.warning, 'Seriously, you are over 100 years old?');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.less100);
       this._signUpButton.disabled = false;
       return;
     }
 
     if (gender === undefined) {
-      app.notification.showError(_.lang.warning, 'Provide your gender');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.provide_gender);
       this._signUpButton.disabled = false;
       return;
     }
 
     if (!agreement) {
-      app.notification.showError(_.lang.warning, 'You must agree to the terms of use');
+      app.notification.showError(_.lang.warning, _.lang.registration_errors.agree_TOF);
+      this._hasTOFError = true;
+      this._TOFError = _.lang.registration_errors.agree_TOF;
       this._signUpButton.disabled = false;
+      this.forceUpdate();
       return;
     }
     const registrationBody = {
@@ -590,7 +728,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       this._signUpButton.disabled = false;
       return;
     }
-    app.notification.showSuccess('Hooray', 'Your profile succesfuly added');
+    app.notification.showSuccess(_.lang.success, _.lang.your_accaunt_added);
     app.navigator.goToMainProfileScreen();
     app.navigator.setOnline();
     FireBaseHandler.syncTokenDevice();

@@ -221,6 +221,10 @@ const BaseStyles = StyleSheet.create({
     paddingBottom: hp(150),
   },
 
+  pb200: {
+    paddingBottom: hp(200),
+  },
+
   pt10: {
     paddingTop: hp(10),
   },
@@ -275,6 +279,11 @@ const BaseStyles = StyleSheet.create({
 
   standardColor: {
     color: COLORS.BLACK,
+  },
+
+  errorTextStyle: {
+    color: COLORS.RED,
+    fontSize: hp(11),
   },
 });
 

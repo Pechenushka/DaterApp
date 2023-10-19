@@ -358,6 +358,22 @@ const rus: localizationPackType = {
   private: 'Приватные',
   public: 'Публичные',
   your_avatar: 'Твой Аватар',
+  your_accaunt_added: 'Ваша анкета успешно создана',
+  registration_errors: {
+    agree_TOF: 'Вы должна согласиться с правилами использования',
+    email_empty: 'Электронная почта не может быть пустой',
+    less100: 'Серьезно, тебе больше 100 лет?',
+    name_empty: 'Имя не может быть пустым',
+    over18: 'Вам должно быть больше 18 лет',
+    password_6_cahrs: 'Пароль должен быть не менее 6 символов',
+    password_confirm_empty: 'Подтверждение пароля не может быть пустым',
+    password_empty: 'Пароль не может быть пустым',
+    password_match: 'Подтверждение пароля не совпадает',
+    provide_gender: 'Укажите свой пол',
+    select_city: 'Выберите свой город или ближайший к вам',
+    select_country: 'Выберите вашу страну',
+    select_region: 'Выберите свой регион',
+  },
 };
 
 export {rus};

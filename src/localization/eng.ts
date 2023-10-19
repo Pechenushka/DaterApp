@@ -361,6 +361,22 @@ const eng: localizationPackType = {
   private: 'Private',
   public: 'Public',
   your_avatar: 'Your Avatar',
+  your_accaunt_added: 'Your profile successfully added',
+  registration_errors: {
+    agree_TOF: 'You must agree to the terms of use',
+    email_empty: 'Email can not be empty',
+    less100: 'Seriously, you are over 100 years old?',
+    name_empty: 'Name can not be empty',
+    over18: 'You must be over 18 years old',
+    password_6_cahrs: 'Password must be at least 6 characters',
+    password_confirm_empty: 'Password Confirm can not be empty',
+    password_empty: 'Password can not be empty',
+    password_match: 'Confirm password does not match',
+    provide_gender: 'Provide your gender',
+    select_city: 'Select your city or closest to you',
+    select_country: 'Select your country',
+    select_region: 'Select your region',
+  },
 };
 
 export {eng};

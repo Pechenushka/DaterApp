@@ -356,6 +356,22 @@ const itl: localizationPackType = {
   private: 'Privato',
   public: 'Pubblico',
   your_avatar: 'Il tuo Avatar',
+  your_accaunt_added: 'Il tuo profilo è stato aggiunto con successo',
+  registration_errors: {
+    agree_TOF: 'È necessario accettare i termini di utilizzo',
+    email_empty: `L'e-mail non può essere vuota`,
+    less100: 'Sul serio, hai più di 100 anni?',
+    name_empty: 'Il nome non può essere vuoto',
+    over18: 'Devi avere più di 18 anni',
+    password_6_cahrs: 'La password deve essere di almeno 6 caratteri',
+    password_confirm_empty: 'La conferma della password non può essere vuota',
+    password_empty: 'La password non può essere vuota',
+    password_match: 'La password di conferma non corrisponde',
+    provide_gender: 'Fornisci il tuo sesso',
+    select_city: 'Seleziona la tua città o quella più vicina a te',
+    select_country: 'Seleziona il tuo paese',
+    select_region: 'Seleziona la tua regione',
+  },
 };
 
 export {itl};

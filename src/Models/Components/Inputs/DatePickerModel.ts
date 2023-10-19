@@ -5,6 +5,7 @@ type datePickerModelProps = baseModelProps & {
   maximumDate?: Date;
   minimumDate?: Date;
   value?: Date;
+  onDateChange?: (newDate: Date) => void;
 };
 
 class DatePickerModel extends BaseModel<datePickerModelProps> {
@@ -54,6 +55,7 @@ class DatePickerModel extends BaseModel<datePickerModelProps> {
       return;
     }
     this._value = selectedDate;
+    this.props.onDateChange && this.props.onDateChange(this._value);
     await this.hide();
   }
 

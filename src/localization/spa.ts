@@ -356,6 +356,22 @@ const spa: localizationPackType = {
   private: 'Privado',
   public: 'Público',
   your_avatar: 'Tu Avatar',
+  your_accaunt_added: 'Tu perfil agregado exitosamente',
+  registration_errors: {
+    agree_TOF: 'Debes aceptar los términos de uso.',
+    email_empty: 'El correo electrónico no puede estar vacío.',
+    less100: 'En serio, ¿tienes más de 100 años?',
+    name_empty: 'El nombre no puede estar vacío.',
+    over18: 'Debes ser mayor de 18 años.',
+    password_6_cahrs: 'La contraseña debe tener al menos 6 caracteres',
+    password_confirm_empty: 'La confirmación de contraseña no puede estar vacía',
+    password_empty: 'La contraseña no puede estar vacía',
+    password_match: 'Confirmar que la contraseña no coincide',
+    provide_gender: 'Proporciona tu género',
+    select_city: 'Selecciona tu ciudad o la más cercana a ti',
+    select_country: 'Selecciona tu pais',
+    select_region: 'Seleccione su región',
+  },
 };
 
 export {spa};

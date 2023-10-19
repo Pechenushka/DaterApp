@@ -19,6 +19,7 @@ import {app} from '../../Core/AppImpl';
 import {TermsOfUseScreen} from '../../Screens/TermsOfUseScreen';
 import {PrivacyScreen} from '../../Screens/PrivacyScreen';
 import {ICONS} from '../../constants/icons';
+import {HorizontalSelectorView} from '../Components/Inputs/HorizontalSelectorView';
 
 type registrationFormViewProps = baseComponentProps & {
   styles?: Object;
@@ -44,14 +45,6 @@ class RegistrationFormView extends TypedBaseComponent<
       return (
         <View style={[RegistrationScreenStyles.inputsContainer]}>
           <View style={[RegistrationScreenStyles.scrollContainer, BaseStyles.ai_c]}>
-            <TextInputView
-              styles={{
-                container: RegistrationScreenStyles.inputContainer,
-                text: RegistrationScreenStyles.inputText,
-                icon: {},
-              }}
-              {...this.childProps(this.model.userNameInput)}
-            />
             <TextInputView
               styles={{
                 container: RegistrationScreenStyles.inputContainer,
@@ -96,17 +89,45 @@ class RegistrationFormView extends TypedBaseComponent<
       return (
         <View style={[RegistrationScreenStyles.inputsContainer]}>
           <View style={[RegistrationScreenStyles.scrollContainer, BaseStyles.ai_c]}>
+            <TextInputView
+              styles={{
+                container: RegistrationScreenStyles.inputContainer,
+                text: RegistrationScreenStyles.inputText,
+                icon: {},
+              }}
+              {...this.childProps(this.model.userNameInput)}
+            />
+
             <View style={[RegistrationScreenStyles.dateContainer, BaseStyles.jc_sb]}>
               <Text style={[RegistrationScreenStyles.dateText]}>{_.lang.date_of_birth}:</Text>
               <DatePickerView {...this.childProps(this.model.ageInput)} />
             </View>
+            {this.model.hasBDateError && (
+              <View style={BaseStyles.w95}>
+                <Text style={BaseStyles.errorTextStyle}>*{this.model.BDateError}</Text>
+              </View>
+            )}
 
             <View style={[RegistrationScreenStyles.dateContainer]}>
               <Text style={[RegistrationScreenStyles.dateText]}>{_.lang.your_gender}:</Text>
-              <View style={[BaseStyles.w50]}>
-                <DropDownView {...this.childProps(this.model.genderSelection)} />
-              </View>
             </View>
+            <HorizontalSelectorView
+              ContentCoinerStyles={RegistrationScreenStyles.genderPickerContainer}
+              ItemContainerStylesExternal={
+                RegistrationScreenStyles.genderPickerItemContainerExternal
+              }
+              ItemContainerStylesInternal={
+                RegistrationScreenStyles.genderPickerItemContainerInternal
+              }
+              IconStyle={RegistrationScreenStyles.genderPickerItemIconStyles}
+              TextStyle={RegistrationScreenStyles.genderPickerItemText}
+              {...this.childProps(this.model.genderSelection)}
+            />
+            {this.model.hasGenderError && (
+              <View style={BaseStyles.w95}>
+                <Text style={BaseStyles.errorTextStyle}>*{this.model.genderError}</Text>
+              </View>
+            )}
           </View>
           <View
             style={[
@@ -171,6 +192,11 @@ class RegistrationFormView extends TypedBaseComponent<
               </View>
             </View>
           </View>
+          {this.model.hasLocationError && (
+            <View style={BaseStyles.w95}>
+              <Text style={BaseStyles.errorTextStyle}>*{this.model.locationError}</Text>
+            </View>
+          )}
           <View
             style={[
               BaseStyles.w95,
@@ -201,6 +227,11 @@ class RegistrationFormView extends TypedBaseComponent<
               </TouchableOpacity>
             </View>
           </View>
+          {this.model.hasTOFError && (
+            <View style={BaseStyles.w95}>
+              <Text style={BaseStyles.errorTextStyle}>*{this.model.TOFError}</Text>
+            </View>
+          )}
           <View style={[BaseStyles.w100, BaseStyles.row]}>
             <View style={[BaseStyles.ai_fs, BaseStyles.w50]}>
               <SimpleButtonView
