@@ -8,7 +8,8 @@ export function convertToUTCString(date: string, timeOffset = '+02:00') {
   date = date.replace('T', ' ');
   const dateArr = date.split(' ');
   const reformatDate = dateArr[0].split('.');
-  const utcString = reformatDate[2] + '-' + reformatDate[1] + '-' + reformatDate[0] + 'T' + dateArr[1];
+  const utcString =
+    reformatDate[2] + '-' + reformatDate[1] + '-' + reformatDate[0] + 'T' + dateArr[1];
   ///AppLog.log(utcString);
   return utcString;
 }
@@ -312,11 +313,11 @@ export const getShortDate = (dateTimeStamp: number) => {
   const dateDiference = new Date().getTime() - dateTimeStamp;
 
   if (dateDiference < 40 * 1000) {
-    return 'just now';
+    return _.lang.just_now;
   }
 
   if (dateDiference < 60 * 60 * 1000) {
-    return `${Math.ceil(dateDiference / 1000 / 60)} minutes ago`;
+    return `${Math.ceil(dateDiference / 1000 / 60)} ${_.lang.minutes_ago}`;
   }
 
   const hours = `0${date.getHours()}`.slice(-2);
@@ -330,15 +331,15 @@ export const getTimeDate = (dateTimeStamp: number) => {
   const dateDiference = new Date().getTime() - dateTimeStamp;
 
   if (dateDiference < 40 * 1000) {
-    return 'just now';
+    return _.lang.just_now;
   }
 
   if (dateDiference < 60 * 60 * 1000) {
-    return `${Math.ceil(dateDiference / 1000 / 60)} minutes ago`;
+    return `${Math.ceil(dateDiference / 1000 / 60)} ${_.lang.minutes_ago}`;
   }
 
   if (dateDiference > 60 * 60 * 1000 * 24 * 1000) {
-    return `a long time ago`;
+    return `${_.lang.long_time_ago}`;
   }
 
   const hours = `0${date.getHours()}`.slice(-2);
@@ -353,15 +354,15 @@ export const getTimeDateLong = (dateTimeStamp: number) => {
   const currYear = new Date().getFullYear();
 
   if (dateDiference < 40 * 1000) {
-    return 'just now';
+    return _.lang.just_now;
   }
 
   if (dateDiference < 60 * 60 * 1000) {
-    return `${Math.ceil(dateDiference / 1000 / 60)} minutes ago`;
+    return `${Math.ceil(dateDiference / 1000 / 60)} ${_.lang.minutes_ago}`;
   }
 
   if (dateDiference > 60 * 60 * 1000 * 24 * 1000) {
-    return `a long time ago`;
+    return `${_.lang.long_time_ago}`;
   }
 
   const hours = `0${date.getHours()}`.slice(-2);
@@ -369,5 +370,7 @@ export const getTimeDateLong = (dateTimeStamp: number) => {
   const day = `0${date.getDate()}`.slice(-2);
   const month = `0${date.getMonth()}`.slice(-2);
 
-  return `${date.getFullYear() === currYear ? '' : `${date.getFullYear()}.`}${month}.${day} ${hours}:${minutes}`;
+  return `${
+    date.getFullYear() === currYear ? '' : `${date.getFullYear()}.`
+  }${month}.${day} ${hours}:${minutes}`;
 };

@@ -371,6 +371,9 @@ const por: localizationPackType = {
     select_country: 'Escolha o seu país',
     select_region: 'Selecione sua região',
   },
+  minutes_ago: 'minutos atrás',
+  long_time_ago: 'Há muito tempo',
+  just_now: 'ainda agora',
 };
 
 export {por};

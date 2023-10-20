@@ -373,6 +373,9 @@ const ua: localizationPackType = {
     select_country: 'Виберіть свою країну',
     select_region: 'Виберіть свій регіон',
   },
+  minutes_ago: 'хвилин назад',
+  long_time_ago: 'давно',
+  just_now: 'тільки що',
 };
 
 export {ua};

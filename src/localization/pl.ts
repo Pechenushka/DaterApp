@@ -373,6 +373,9 @@ const pl: localizationPackType = {
     select_country: 'Wybierz swój kraj',
     select_region: 'Wybierz swój region',
   },
+  minutes_ago: 'minuty temu',
+  long_time_ago: 'dawno temu',
+  just_now: 'dopiero co',
 };
 
 export {pl};

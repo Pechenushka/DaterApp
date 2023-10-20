@@ -372,6 +372,9 @@ const bel: localizationPackType = {
     select_country: 'Выберыце сваю краіну',
     select_region: 'Выберыце свой рэгіён',
   },
+  minutes_ago: 'хвілін таму',
+  long_time_ago: 'даўно',
+  just_now: 'толькі што',
 };
 
 export {bel};

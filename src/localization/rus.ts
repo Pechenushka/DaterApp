@@ -374,6 +374,9 @@ const rus: localizationPackType = {
     select_country: 'Выберите вашу страну',
     select_region: 'Выберите свой регион',
   },
+  minutes_ago: 'минут назад',
+  long_time_ago: 'давно',
+  just_now: 'только что',
 };
 
 export {rus};

@@ -384,6 +384,9 @@ const ger: localizationPackType = {
     select_country: 'Wähle dein Land',
     select_region: 'Wählen Sie Ihre Region',
   },
+  minutes_ago: 'vor Minuten',
+  long_time_ago: 'vor langer Zeit',
+  just_now: 'soeben',
 };
 
 export {ger};

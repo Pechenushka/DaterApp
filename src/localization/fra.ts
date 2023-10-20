@@ -372,6 +372,9 @@ const fra: localizationPackType = {
     select_country: 'Sélectionnez votre pays',
     select_region: 'Choisissez votre région',
   },
+  minutes_ago: 'il y a minutes',
+  long_time_ago: 'il y a longtemps',
+  just_now: `tout à l' heure`,
 };
 
 export {fra};

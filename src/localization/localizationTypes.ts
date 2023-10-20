@@ -198,6 +198,9 @@ export type localizationPackType = {
     provide_gender: string;
     agree_TOF: string;
   };
+  minutes_ago: string;
+  long_time_ago: string;
+  just_now: string;
 };
 
 export type localizationEnum =

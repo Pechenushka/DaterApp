@@ -372,6 +372,9 @@ const spa: localizationPackType = {
     select_country: 'Selecciona tu pais',
     select_region: 'Seleccione su región',
   },
+  minutes_ago: 'hace minutos',
+  long_time_ago: 'hace mucho tiempo',
+  just_now: 'ahora mismo',
 };
 
 export {spa};
