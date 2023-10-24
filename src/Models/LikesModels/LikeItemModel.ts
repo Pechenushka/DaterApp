@@ -23,8 +23,8 @@ type likeItemModelProps = baseModelProps & {
   checked: boolean;
   lastOnline: number;
   liked: boolean;
-  lookingfor: number;
-  goal: number;
+  lookingfor: number[];
+  goal: number[];
   online_status: boolean;
   tab: number;
   onItemRemoveFromList: (itemId: number) => Promise<void>;
@@ -128,7 +128,7 @@ class LikeItemModel extends BaseModel<likeItemModelProps> {
   }
 
   public get goal() {
-    return _.lang.goals[this.props.goal];
+    return _.lang.goals[this.props.goal[0]];
   }
 
   public get tab() {

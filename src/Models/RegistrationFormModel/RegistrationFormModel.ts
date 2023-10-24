@@ -105,8 +105,18 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
     this._genderSelection = new HorizontalSelectorModel({
       id: '_genderSelection',
       list: [
-        {id: 1, name: _.lang.genders[0], icon: ICONS.maleIcon},
-        {id: 2, name: _.lang.genders[1], icon: ICONS.femaleIcon},
+        {
+          id: 0,
+          name: _.lang.genders[0],
+          icon: ICONS.genders.male,
+          activeIcon: ICONS.genders.maleActive,
+        },
+        {
+          id: 1,
+          name: _.lang.genders[1],
+          icon: ICONS.genders.female,
+          activeIcon: ICONS.genders.femaleActive,
+        },
       ],
       onSelectionChange: this.onGenderChange,
       multiselection: false,

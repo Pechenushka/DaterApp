@@ -12,10 +12,11 @@ import {SearchStyles} from '../../Styles/SearchStyles';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {DropDownView} from '../Components/Inputs/DropDownView';
 import {RegistrationScreenStyles} from '../../Styles/RegistrationScreenStyles';
-import {GenderSwitcherView} from '../Components/Inputs/GenderSwitcherView';
 import {TextInputView} from '../Components/Inputs/TextInputView';
 import {_} from '../../Core/Localization';
 import {SwitcherView} from '../Components/Inputs/SwitcherView';
+import {HorizontalSelectorView} from '../Components/Inputs/HorizontalSelectorView';
+import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
 
 type searchFilterViewProps = baseComponentProps & {};
 
@@ -72,11 +73,19 @@ class SearchFilterView extends TypedBaseComponent<searchFilterViewProps, SearchF
               <View style={[BaseStyles.w95]}>
                 <View style={[RegistrationScreenStyles.dateContainer]}>
                   <Text style={[RegistrationScreenStyles.dateText]}>{_.lang.gender}:</Text>
-                  <View style={[BaseStyles.w60]}>
-                    <GenderSwitcherView {...this.childProps(this.model.genderSwitcher)} />
-                  </View>
                 </View>
-
+                <HorizontalSelectorView
+                  ContentCoinerStyles={RegistrationScreenStyles.genderPickerContainer}
+                  ItemContainerStylesExternal={
+                    RegistrationScreenStyles.genderPickerItemContainerExternal
+                  }
+                  ItemContainerStylesInternal={
+                    RegistrationScreenStyles.genderPickerItemContainerInternal
+                  }
+                  IconStyle={RegistrationScreenStyles.genderPickerItemIconStyles}
+                  TextStyle={RegistrationScreenStyles.genderPickerItemText}
+                  {...this.childProps(this.model.genderSwitcher)}
+                />
                 <View style={[RegistrationScreenStyles.dateContainer]}>
                   <Text style={[RegistrationScreenStyles.dateText]}>{_.lang.age}:</Text>
                   <TextInputView
@@ -107,11 +116,19 @@ class SearchFilterView extends TypedBaseComponent<searchFilterViewProps, SearchF
                     <View style={RegistrationScreenStyles.goaltTitleItem}>
                       <Text>{_.lang.dating_goals}:</Text>
                     </View>
-
-                    <View style={[RegistrationScreenStyles.goalSelectionItem, BaseStyles.ml20]}>
-                      <DropDownView {...this.childProps(this.model.goalsSelection)} />
-                    </View>
                   </View>
+                  <HorizontalSelectorView
+                    ContentCoinerStyles={RegistrationScreenStyles.genderPickerContainer}
+                    ItemContainerStylesExternal={
+                      MyAnnouncementStyles.genderPickerItemContainerExternal
+                    }
+                    ItemContainerStylesInternal={
+                      MyAnnouncementStyles.genderPickerItemContainerInternal
+                    }
+                    IconStyle={RegistrationScreenStyles.genderPickerItemIconStyles}
+                    TextStyle={MyAnnouncementStyles.genderPickerItemText}
+                    {...this.childProps(this.model.goalsSelection)}
+                  />
 
                   <View style={RegistrationScreenStyles.goalsItem}>
                     <View style={RegistrationScreenStyles.goaltTitleItem}>

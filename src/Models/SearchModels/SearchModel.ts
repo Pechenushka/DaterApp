@@ -12,6 +12,7 @@ import {ProfileDetailsModalModel} from './ProfileDetailsModalModel';
 import {SearchFilterModel} from './SearchFilterModel';
 import {SearchItemModel} from './SearchItemModel';
 import {SendMessageModalModel, shortUserDataType} from './SendMessageModalModel';
+import {HorizontalSelectorItem} from '../Components/Inputs/HorizontalSelectorModel';
 
 type searchModelProps = baseModelProps & {};
 
@@ -22,7 +23,7 @@ export type filterType = {
     city: locationItemType;
   };
   myId: number;
-  gender: genderEnum;
+  gender: HorizontalSelectorItem[];
   ageFrom: number;
   ageTo: number;
   ageFromNumber?: number;
@@ -33,7 +34,7 @@ export type filterType = {
   kids: locationItemType | null;
   sponsor: boolean | null;
   keepter: boolean | null;
-  goal: locationItemType | null;
+  goal: HorizontalSelectorItem[];
 };
 
 class SearchModel extends BaseModel<searchModelProps> {
@@ -73,11 +74,25 @@ class SearchModel extends BaseModel<searchModelProps> {
         app.currentUser.filters !== undefined
           ? app.currentUser.filters.gender
           : app.currentUser.gender === 'female'
-          ? 'male'
-          : 'female',
+          ? [
+              {
+                id: 0,
+                name: _.lang.genders[0],
+                icon: ICONS.genders.male,
+                activeIcon: ICONS.genders.maleActive,
+              },
+            ]
+          : [
+              {
+                id: 1,
+                name: _.lang.genders[1],
+                icon: ICONS.genders.female,
+                activeIcon: ICONS.genders.femaleActive,
+              },
+            ],
       approved: true,
       alco: app.currentUser.filters?.alco || null,
-      goal: app.currentUser.filters?.goal || null,
+      goal: app.currentUser.filters?.goal || [],
       keepter: app.currentUser.filters?.keepter || null,
       kids: app.currentUser.filters?.kids || null,
       smoking: app.currentUser.filters?.smoking || null,
@@ -171,7 +186,7 @@ class SearchModel extends BaseModel<searchModelProps> {
         countryId: this._currentFilter.location.country.id,
       },
       myId: this._currentFilter.myId,
-      gender: this._currentFilter.gender,
+      gender: this._currentFilter.gender.map(gender => (gender.id ? 'female' : 'male')),
       ageFrom: this._currentFilter.ageFrom,
       ageTo: this._currentFilter.ageTo,
       limit: this._limit,
@@ -179,21 +194,18 @@ class SearchModel extends BaseModel<searchModelProps> {
       approved: this._currentFilter.approved,
       alco:
         this._currentFilter.alco && this._currentFilter.alco.id >= 0
-          ? this._currentFilter.alco.id
-          : null,
-      goal:
-        this._currentFilter.goal && this._currentFilter.goal.id >= 0
-          ? this._currentFilter.goal.id
-          : null,
+          ? [this._currentFilter.alco.id]
+          : [],
+      goal: this._currentFilter.goal.map(goal => goal.id),
       keepter: this._currentFilter.keepter || null,
       kids:
         this._currentFilter.kids && this._currentFilter.kids.id >= 0
-          ? this._currentFilter.kids.id
-          : null,
+          ? [this._currentFilter.kids.id]
+          : [],
       smoking:
         this._currentFilter.smoking && this._currentFilter.smoking.id >= 0
-          ? this._currentFilter.smoking.id
-          : null,
+          ? [this._currentFilter.smoking.id]
+          : [],
       sponsor: this._currentFilter.sponsor || null,
     };
     const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
@@ -232,7 +244,7 @@ class SearchModel extends BaseModel<searchModelProps> {
         countryId: this._currentFilter.location.country.id,
       },
       myId: this._currentFilter.myId,
-      gender: this._currentFilter.gender,
+      gender: this._currentFilter.gender.map(gender => (gender.id ? 'female' : 'male')),
       ageFrom: this._currentFilter.ageFrom,
       ageTo: this._currentFilter.ageTo,
       limit: this._limit,
@@ -240,21 +252,18 @@ class SearchModel extends BaseModel<searchModelProps> {
       approved: this._currentFilter.approved,
       alco:
         this._currentFilter.alco && this._currentFilter.alco.id >= 0
-          ? this._currentFilter.alco.id
-          : null,
-      goal:
-        this._currentFilter.goal && this._currentFilter.goal.id >= 0
-          ? this._currentFilter.goal.id
-          : null,
+          ? [this._currentFilter.alco.id]
+          : [],
+      goal: this._currentFilter.goal.map(goal => goal.id),
       keepter: this._currentFilter.keepter || null,
       kids:
         this._currentFilter.kids && this._currentFilter.kids.id >= 0
-          ? this._currentFilter.kids.id
-          : null,
+          ? [this._currentFilter.kids.id]
+          : [],
       smoking:
         this._currentFilter.smoking && this._currentFilter.smoking.id >= 0
-          ? this._currentFilter.smoking.id
-          : null,
+          ? [this._currentFilter.smoking.id]
+          : [],
       sponsor: this._currentFilter.sponsor || null,
     };
     const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
@@ -293,7 +302,7 @@ class SearchModel extends BaseModel<searchModelProps> {
           countryId: this._currentFilter.location.country.id,
         },
         myId: this._currentFilter.myId,
-        gender: this._currentFilter.gender,
+        gender: this._currentFilter.gender.map(gender => (gender.id ? 'female' : 'male')),
         ageFrom: this._currentFilter.ageFrom,
         ageTo: this._currentFilter.ageTo,
         limit: this._limit,
@@ -301,21 +310,18 @@ class SearchModel extends BaseModel<searchModelProps> {
         approved: this._currentFilter.approved,
         alco:
           this._currentFilter.alco && this._currentFilter.alco.id >= 0
-            ? this._currentFilter.alco.id
-            : null,
-        goal:
-          this._currentFilter.goal && this._currentFilter.goal.id >= 0
-            ? this._currentFilter.goal.id
-            : null,
+            ? [this._currentFilter.alco.id]
+            : [],
+        goal: this._currentFilter.goal.map(goal => goal.id),
         keepter: this._currentFilter.keepter || null,
         kids:
           this._currentFilter.kids && this._currentFilter.kids.id >= 0
-            ? this._currentFilter.kids.id
-            : null,
+            ? [this._currentFilter.kids.id]
+            : [],
         smoking:
           this._currentFilter.smoking && this._currentFilter.smoking.id >= 0
-            ? this._currentFilter.smoking.id
-            : null,
+            ? [this._currentFilter.smoking.id]
+            : [],
         sponsor: this._currentFilter.sponsor || null,
       };
       const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);

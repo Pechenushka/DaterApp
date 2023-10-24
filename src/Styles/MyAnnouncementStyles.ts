@@ -155,6 +155,29 @@ const MyAnnouncementStyles = StyleSheet.create({
     height: hp(30),
     width: hp(30),
   },
+
+  genderPickerItemContainerInternal: {
+    backgroundColor: COLORS.WHITE,
+    alignItems: 'center',
+    padding: hp(5),
+    paddingTop: hp(10),
+    height: hp(130),
+  },
+
+  genderPickerItemContainerExternal: {
+    backgroundColor: COLORS.WHITE,
+    marginBottom: hp(15),
+    marginRight: hp(15),
+    marginTop: hp(10),
+    width: hp(100),
+    height: hp(150),
+  },
+
+  genderPickerItemText: {
+    fontSize: hp(16),
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });
 
 export {MyAnnouncementStyles};

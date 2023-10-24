@@ -9,6 +9,10 @@ import {dropDownItem, DropDownModel} from '../Components/Inputs/DropDownModel';
 import {SwitcherModel} from '../Components/Inputs/SwitcherModel';
 import {TextInputModel} from '../Components/Inputs/TextInputModel';
 import {LabelModel} from '../Components/Labels/LabelModel';
+import {
+  HorizontalSelectorItem,
+  HorizontalSelectorModel,
+} from '../Components/Inputs/HorizontalSelectorModel';
 
 type myAnnouncementModelProps = baseModelProps & {};
 
@@ -22,8 +26,8 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
   private _regionSelection: DropDownModel;
   private _citySelection: DropDownModel;
 
-  private _sexSelection: DropDownModel;
-  private _goalsSelection: DropDownModel;
+  private _sexSelection: HorizontalSelectorModel;
+  private _goalsSelection: HorizontalSelectorModel;
   private _smokeSelection: DropDownModel;
   private _alcoSelection: DropDownModel;
   private _kidsSelection: DropDownModel;
@@ -71,31 +75,58 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       disabled: true,
     });
 
-    this._sexSelection = new DropDownModel({
+    this._sexSelection = new HorizontalSelectorModel({
       id: '_sexSelection',
       list: [
-        {id: 0, name: _.lang.genders[0]},
-        {id: 1, name: _.lang.genders[1]},
-        {id: 2, name: _.lang.genders[2]},
+        {
+          id: 0,
+          name: _.lang.genders[0],
+          icon: ICONS.genders.male,
+          activeIcon: ICONS.genders.maleActive,
+        },
+        {
+          id: 1,
+          name: _.lang.genders[1],
+          icon: ICONS.genders.female,
+          activeIcon: ICONS.genders.femaleActive,
+        },
       ],
-      placeholder: _.lang.choose_variant,
       onSelectionChange: this.onSexChange,
-      disabled: false,
+      multiselection: true,
     });
 
-    this._goalsSelection = new DropDownModel({
+    this._goalsSelection = new HorizontalSelectorModel({
       id: '_goalsSelection',
       list: [
-        {id: 0, name: _.lang.goals[0]},
-        {id: 1, name: _.lang.goals[1]},
-        {id: 2, name: _.lang.goals[2]},
-        {id: 3, name: _.lang.goals[3]},
-        {id: 4, name: _.lang.goals[4]},
-        {id: 5, name: _.lang.goals[5]},
+        {
+          id: 0,
+          name: _.lang.goals[0],
+          icon: ICONS.goals.family,
+          activeIcon: ICONS.goals.familyActive,
+        },
+        {
+          id: 1,
+          name: _.lang.goals[1],
+          icon: ICONS.goals.tarvels,
+          activeIcon: ICONS.goals.travelsActive,
+        },
+        {
+          id: 2,
+          name: _.lang.goals[2],
+          icon: ICONS.goals.flirt,
+          activeIcon: ICONS.goals.flirtActive,
+        },
+        {id: 3, name: _.lang.goals[3], icon: ICONS.goals.chat, activeIcon: ICONS.goals.chatActive},
+        {
+          id: 4,
+          name: _.lang.goals[4],
+          icon: ICONS.goals.friendship,
+          activeIcon: ICONS.goals.friendshipActive,
+        },
+        {id: 5, name: _.lang.goals[5], icon: ICONS.goals.sex, activeIcon: ICONS.goals.sexActive},
       ],
-      placeholder: _.lang.choose_variant,
       onSelectionChange: this.onGoalsChange,
-      disabled: false,
+      multiselection: true,
     });
 
     this._smokeSelection = new DropDownModel({
@@ -291,11 +322,11 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
     this.previewLocationLabelModel.text = `${this._countrySelection.value?.name}, ${this._regionSelection.value?.name}, ${item.name}`;
   };
 
-  public onSexChange = async (item: dropDownItem) => {
+  public onSexChange = async (item: HorizontalSelectorItem | HorizontalSelectorItem[]) => {
     this.forceUpdate();
   };
 
-  public onGoalsChange = async (item: dropDownItem) => {
+  public onGoalsChange = async (item: HorizontalSelectorItem | HorizontalSelectorItem[]) => {
     this.forceUpdate();
   };
 
@@ -371,8 +402,8 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._countrySelection.value,
       this._regionSelection.value,
       this._citySelection.value,
-      this._goalsSelection.value,
-      this._sexSelection.value,
+      this._goalsSelection.value as HorizontalSelectorItem[],
+      this._sexSelection.value as HorizontalSelectorItem[],
     ];
     if (app.currentUser.location === undefined) {
       app.notification.showError(_.lang.warning, 'Set up location please');
@@ -399,8 +430,8 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       regionId: region === undefined ? app.currentUser.location.region.id : region.id,
       cityId: city === undefined ? app.currentUser.location.city.id : city.id,
       text: text || '',
-      lookingfor: lookingfor === undefined ? null : lookingfor.id,
-      goal: goal === undefined ? null : goal.id,
+      lookingfor: lookingfor === undefined ? null : lookingfor.map(item => item.id),
+      goal: goal === undefined ? null : goal.map(item => item.id),
     };
 
     const res = await loadData(UserDataProvider.CreateMeeting, meetingBody);
@@ -431,8 +462,8 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._countrySelection.value,
       this._regionSelection.value,
       this._citySelection.value,
-      this._goalsSelection.value,
-      this._sexSelection.value,
+      this._goalsSelection.value as HorizontalSelectorItem[],
+      this._sexSelection.value as HorizontalSelectorItem[],
       this._alcoSelection.value,
       this._smokeSelection.value,
       this._kidsSelection.value,
@@ -466,8 +497,8 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       regionId: region === undefined ? app.currentUser.location.region.id : region.id,
       cityId: city === undefined ? app.currentUser.location.city.id : city.id,
       text: text || '',
-      lookingfor: lookingfor === undefined ? null : lookingfor.id,
-      goal: goal === undefined ? null : goal.id,
+      lookingfor: lookingfor === undefined ? null : lookingfor.map(item => item.id),
+      goal: goal === undefined ? null : goal.map(item => item.id),
       alco: alco && alco.id >= 0 ? alco.id : null,
       smoking: smoking && smoking.id >= 0 ? smoking.id : null,
       kids: kids && kids.id >= 0 ? kids.id : null,
@@ -496,7 +527,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
     if (city !== undefined) {
       app.currentUser.location.city = city;
     }
-    app.notification.showSuccess('Hooray', 'Your announcment succesfuly edited');
+    app.notification.showSuccess(_.lang.success, 'Your announcment succesfuly edited');
     app.navigator.goToMainProfileScreen();
     this._editButton.disabled = false;
   };
@@ -516,11 +547,9 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._discribeInput.value = loadResult.data.text;
       this.previewLabelModel.text = loadResult.data.text;
       this.previewLocationLabelModel.text = `${loadResult.data.countryName}, ${loadResult.data.regionName}, ${loadResult.data.cityName}`;
-      const selectedSex = this._sexSelection.list.find(el => el.id === loadResult.data.lookingfor);
-      this._sexSelection.selectItem(selectedSex);
 
-      const selectedGoal = this._goalsSelection.list.find(el => el.id === loadResult.data.goal);
-      this._goalsSelection.selectItem(selectedGoal);
+      this._sexSelection.selectItems(loadResult.data.lookingfor);
+      this._goalsSelection.selectItems(loadResult.data.goal);
 
       const selectedAlco = this._alcoSelection.list.find(el => el.id === loadResult.data.alco);
       this._alcoSelection.selectItem(selectedAlco);

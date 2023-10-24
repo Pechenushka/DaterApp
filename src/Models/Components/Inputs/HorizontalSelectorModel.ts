@@ -5,6 +5,7 @@ export type HorizontalSelectorItem = {
   id: number;
   name: string;
   icon: ImageSourcePropType;
+  activeIcon: ImageSourcePropType;
 };
 
 type horizontalSelectorModelProps = baseModelProps & {
@@ -56,6 +57,15 @@ class HorizontalSelectorModel extends BaseModel<horizontalSelectorModelProps> {
     }
 
     this.forceUpdate();
+  };
+
+  public selectItems = (items: Array<number>) => {
+    items.forEach(item => {
+      const findedItem = this.list.find(listItem => item === listItem.id);
+      if (findedItem) {
+        this._activeItems.push(findedItem);
+      }
+    });
   };
 }
 

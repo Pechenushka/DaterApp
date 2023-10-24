@@ -93,8 +93,8 @@ export type searchItemDataType = {
   checked: boolean;
   liked: boolean;
   lastOnline: number;
-  lookingfor: number;
-  goal: number;
+  lookingfor: number[];
+  goal: number[];
   blocked: boolean;
   blockedBy: boolean;
   online_status: boolean;
@@ -141,8 +141,8 @@ export type userDetailsDataType = {
   blockedBy: boolean;
   text: string;
   lastOnline: number;
-  lookingfor: number;
-  goal: number;
+  lookingfor: number[];
+  goal: number[];
   online_status: boolean;
   photos: Array<string>;
   anon_photos: Array<string>;
@@ -161,8 +161,8 @@ export type userMeetingDataType = baseResponse & {
     id: number;
     regionName: string;
     text: string;
-    lookingfor: number;
-    goal: number;
+    lookingfor: number[];
+    goal: number[];
     alco: number;
     smoking: number;
     kids: number;

@@ -74,33 +74,46 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
     return <></>;
   }
 
-  public getExpectationsIcon() {
+  public getGoalItem(goal: number) {
+    return (
+      <View key={goal} style={ProfileDetailsStyles.goalItemContainerExternal}>
+        <ShadowWrapperView>
+          <View style={[BaseStyles.row, BaseStyles.alignCenter, BaseStyles.p5]}>
+            <Image style={BaseStyles.defaultIcon} source={ICONS.goalsArray[goal]} />
+            <View style={ProfileDetailsStyles.goalItemContainerInternal}>
+              <Text style={ProfileDetailsStyles.goalItemText}>{_.lang.goals[goal]}</Text>
+            </View>
+          </View>
+        </ShadowWrapperView>
+      </View>
+    );
+  }
+
+  public getExpectationsBlock() {
     if (this.model.userInfo === null) {
       return;
     }
-    if (this.model.userInfo.lookingfor === 0) {
-      return <Image source={ICONS.maleIcon} style={[BaseStyles.defaultIcon]} />;
+    if (this.model.userInfo.lookingfor === null) {
+      return;
     }
-
-    if (this.model.userInfo.lookingfor === 1) {
-      return <Image source={ICONS.femaleIcon} style={[BaseStyles.defaultIcon]} />;
-    }
-
-    if (this.model.userInfo.lookingfor === 2) {
-      return (
-        <View style={[BaseStyles.row]}>
-          <Image source={ICONS.maleIcon} style={[BaseStyles.defaultIcon]} />
-          <Text>{_.lang.or}</Text>
-          <Image source={ICONS.femaleIcon} style={[BaseStyles.defaultIcon]} />
-        </View>
-      );
+    if (this.model.userInfo.lookingfor.length === 0) {
+      return;
     }
 
     return (
-      <Image
-        source={this.model.userInfo.gender === 'male' ? ICONS.femaleIcon : ICONS.maleIcon}
-        style={[BaseStyles.defaultIcon]}
-      />
+      <>
+        <View style={[ProfileDetailsStyles.profilePreviewContainer]}>
+          <Text style={ProfileDetailsStyles.profileInfoText}> {_.lang.i_looking_for} </Text>
+          {this.model.userInfo.lookingfor.map(loking => {
+            return (
+              <Image
+                source={loking === 0 ? ICONS.maleIcon : ICONS.femaleIcon}
+                style={[BaseStyles.bigIcon]}
+              />
+            );
+          })}
+        </View>
+      </>
     );
   }
 
@@ -171,7 +184,7 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
               <SendMessageModalView {...this.childProps(this.model.sendMessageModal)} />
               <ReportModalView {...this.childProps(this.model.reportModal)} />
 
-              <View style={[BaseStyles.alignCenter]}>
+              <View style={[BaseStyles.ai_c, BaseStyles.w100]}>
                 <View style={[BaseStyles.row]}>
                   <Text style={HomeScreenStyles.userNameText}>{this.model.userInfo.name} </Text>
                   <Image
@@ -194,16 +207,23 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                   <Image source={ICONS.eyeIcon} style={[BaseStyles.defaultIcon]} />
                   <Text> {getShortDate(this.model.userInfo.lastOnline)}</Text>
                 </View>
-                <View style={[MyAnnouncementStyles.goalPreviewContainer]}>
-                  <Text> {_.lang.i_looking_for} </Text>
-                  {this.getExpectationsIcon()}
-                  {this.model.userInfo.goal !== undefined && this.model.userInfo.goal !== null && (
-                    <Text>
-                      {' '}
-                      {_.lang.for} {_.lang.goals[this.model.userInfo.goal]}
-                    </Text>
+                {this.getExpectationsBlock()}
+                {this.model.userInfo.goal !== undefined &&
+                  this.model.userInfo.goal !== null &&
+                  this.model.userInfo.goal.length && (
+                    <View style={[BaseStyles.w90]}>
+                      <Text style={ProfileDetailsStyles.profileInfoText}>
+                        {_.lang.dating_goals}
+                        {': '}
+                      </Text>
+                      <View style={[BaseStyles.row, BaseStyles.wrap]}>
+                        {this.model.userInfo.goal.map(goal => {
+                          return this.getGoalItem(goal);
+                        })}
+                      </View>
+                    </View>
                   )}
-                </View>
+
                 <View style={MyAnnouncementStyles.previewMainTextWrapper}>
                   {this.model.userInfo.text !== '' && (
                     <View style={MyAnnouncementStyles.previewMainTextContainer}>

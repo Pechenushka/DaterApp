@@ -28,35 +28,40 @@ const ProfileDetailsStyles = StyleSheet.create({
 
   profileModalCloseContainer: {
     position: 'absolute',
-    top: hp(1),
-    right: hp(1),
-    height: hp(50),
-    width: hp(50),
-    backgroundColor: COLORS.BLURED_GRAY3,
-  },
-
-  profileModalNextButtonContainer: {
-    position: 'absolute',
-    top: '47%',
-    left: hp(5),
-    height: hp(50),
-    width: hp(50),
-    backgroundColor: COLORS.WHITE,
-    borderRadius: 30,
-    borderColor: COLORS.DARK_GARY,
-    borderWidth: 0.2,
+    top: hp(5),
+    right: hp(5),
+    height: hp(40),
+    width: hp(40),
   },
 
   profileModalPrevButtonContainer: {
     position: 'absolute',
     top: '47%',
-    right: hp(5),
+    left: hp(5),
+    height: hp(50),
+    width: hp(50),
+  },
+
+  profileModalButtonContainerInternal: {
     height: hp(50),
     width: hp(50),
     backgroundColor: COLORS.WHITE,
     borderRadius: 30,
-    borderColor: COLORS.DARK_GARY,
-    borderWidth: 0.2,
+  },
+
+  profileCloseModalButtonContainerInternal: {
+    height: hp(40),
+    width: hp(40),
+    backgroundColor: COLORS.WHITE,
+    borderRadius: 30,
+  },
+
+  profileModalNextButtonContainer: {
+    position: 'absolute',
+    top: '47%',
+    right: hp(5),
+    height: hp(50),
+    width: hp(50),
   },
 
   profileAvatarContainer: {
@@ -188,6 +193,22 @@ const ProfileDetailsStyles = StyleSheet.create({
     width: '100%',
     marginTop: hp(160),
     borderRadius: 8,
+  },
+
+  goalItemContainerExternal: {
+    marginRight: hp(10),
+    marginTop: hp(10),
+  },
+
+  goalItemContainerInternal: {
+    margin: hp(5),
+    borderLeftWidth: 0.6,
+    borderColor: COLORS.BLURED_GRAY3,
+    paddingLeft: hp(3),
+  },
+
+  goalItemText: {
+    fontSize: hp(17),
   },
 });
 

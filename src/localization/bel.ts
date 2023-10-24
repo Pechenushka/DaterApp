@@ -193,7 +193,7 @@ const bel: localizationPackType = {
   goals: [`стварэнне сям'і`, 'падарожжаў', 'флірту', 'зносін', 'дружбы', 'сэксу'],
   i_looking_for: 'Я шукаю',
   for: 'для',
-  genders: ['Мужчыну', 'Жанчыну', 'Мужчыну або Жанчыну'],
+  genders: ['Мужчына', 'Жанчына'],
   your_expectations: 'Вашыя чаканні',
   your_dating_goals: 'Вашы мэты знаёмстваў',
   it_is_you: 'Гэта вы!',

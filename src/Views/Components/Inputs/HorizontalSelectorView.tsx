@@ -45,19 +45,24 @@ class HorizontalSelectorView extends TypedBaseComponent<
                     style={[
                       this.props.ItemContainerStylesInternal,
                       this.model.activeItems.includes(item)
-                        ? {backgroundColor: COLORS.MALE_COLOR}
+                        ? {backgroundColor: COLORS.ACTIVE_SELECTION_GRAY}
                         : {backgroundColor: COLORS.WHITE},
                     ]}>
-                    <Image style={[this.props.IconStyle]} source={item.icon} />
-                    <Text
-                      style={[
-                        this.props.TextStyle,
-                        this.model.activeItems.includes(item)
-                          ? {color: COLORS.WHITE}
-                          : {color: COLORS.BLACK},
-                      ]}>
-                      {item.name}
-                    </Text>
+                    <Image
+                      style={[this.props.IconStyle]}
+                      source={this.model.activeItems.includes(item) ? item.activeIcon : item.icon}
+                    />
+                    <View style={[BaseStyles.h50, BaseStyles.w100, BaseStyles.alignCenter]}>
+                      <Text
+                        style={[
+                          this.props.TextStyle,
+                          this.model.activeItems.includes(item)
+                            ? {color: COLORS.WHITE}
+                            : {color: COLORS.BLACK},
+                        ]}>
+                        {item.name}
+                      </Text>
+                    </View>
                   </TouchableOpacity>
                 </ShadowWrapperView>
               </View>

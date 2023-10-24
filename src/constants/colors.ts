@@ -18,5 +18,6 @@ const COLORS = {
   RED: 'rgb(220,20,20)',
   MALE_COLOR: 'rgba(30,120,210,0.2)',
   FEMALE_COLOR: 'rgba(240,60,190,0.2)',
+  ACTIVE_SELECTION_GRAY: 'rgba(30,120,250,0.2)',
 };
 export {COLORS};

@@ -193,7 +193,7 @@ const ua: localizationPackType = {
   goals: [`створення сім'ї`, 'подорожей', 'флірту', 'спілкування', 'дружби', 'сексу'],
   i_looking_for: 'Я шукаю',
   for: 'для',
-  genders: ['Чоловіка', 'Жінку', 'Чоловіка чи Жінку'],
+  genders: ['Чоловік', 'Жінка'],
   your_expectations: 'Ваші очікування',
   your_dating_goals: 'Ваша мета знайомства',
   it_is_you: 'Це ви!',

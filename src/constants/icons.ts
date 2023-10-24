@@ -69,6 +69,34 @@ const ICONS = {
   copyIcon: require('../assets/img/copyIcon.png'),
   editIcon: require('../assets/img/editIcon.png'),
   publicChatIcon: require('../assets/img/publicChatIcon.png'),
+  goals: {
+    family: require('../assets/img/goals/family.png'),
+    familyActive: require('../assets/img/goals/familyActive.png'),
+    tarvels: require('../assets/img/goals/travels.png'),
+    travelsActive: require('../assets/img/goals/travelsActive.png'),
+    flirt: require('../assets/img/goals/flirt.png'),
+    flirtActive: require('../assets/img/goals/flirtActive.png'),
+    chat: require('../assets/img/goals/chat.png'),
+    chatActive: require('../assets/img/goals/chatActive.png'),
+    friendship: require('../assets/img/goals/friendship.png'),
+    friendshipActive: require('../assets/img/goals/friendshipActive.png'),
+    sex: require('../assets/img/goals/sex.png'),
+    sexActive: require('../assets/img/goals/sexActive.png'),
+  },
+  goalsArray: [
+    require('../assets/img/goals/family.png'),
+    require('../assets/img/goals/travels.png'),
+    require('../assets/img/goals/flirt.png'),
+    require('../assets/img/goals/chat.png'),
+    require('../assets/img/goals/friendship.png'),
+    require('../assets/img/goals/sex.png'),
+  ],
+  genders: {
+    male: require('../assets/img/genders/male.png'),
+    maleActive: require('../assets/img/genders/maleActive.png'),
+    female: require('../assets/img/genders/female.png'),
+    femaleActive: require('../assets/img/genders/femaleActive.png'),
+  },
 };
 
 export {ICONS};

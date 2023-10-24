@@ -7,7 +7,6 @@ import {searchItemDataType} from '../../Core/DataTypes/BaseTypes';
 import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
-import {genderEnum} from '../Components/Inputs/GenderSvitcherModel';
 import {shortUserDataType} from './SendMessageModalModel';
 
 type searchItemModelProps = baseModelProps &
@@ -116,7 +115,7 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
   }
 
   public get goal() {
-    return _.lang.goals[this.props.goal];
+    return _.lang.goals[this.props.goal[0]];
   }
 
   public onItemPress = async () => {

@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {View, Modal, Image, Text, Platform, ScrollView, TouchableOpacity} from 'react-native';
+import {View, Modal, Image, Text, ScrollView, TouchableOpacity} from 'react-native';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {_} from '../../Core/Localization';
@@ -34,33 +34,44 @@ class ProfileDetailsModalView extends TypedBaseComponent<
     super(props);
   }
 
-  public getExpectationsIcon() {
-    if (this.model.userData === null) {
+  public getGoalItem(goal: number) {
+    return (
+      <View key={goal} style={ProfileDetailsStyles.goalItemContainerExternal}>
+        <ShadowWrapperView>
+          <View style={[BaseStyles.row, BaseStyles.alignCenter, BaseStyles.p5]}>
+            <Image style={BaseStyles.defaultIcon} source={ICONS.goalsArray[goal]} />
+            <View style={ProfileDetailsStyles.goalItemContainerInternal}>
+              <Text style={ProfileDetailsStyles.goalItemText}>{_.lang.goals[goal]}</Text>
+            </View>
+          </View>
+        </ShadowWrapperView>
+      </View>
+    );
+  }
+
+  public getExpectationsBlock() {
+    if (this.model.userData === null || this.model.userData.lookingfor === null) {
       return;
     }
-    if (this.model.userData.lookingfor === 0) {
-      return <Image source={ICONS.maleIcon} style={[BaseStyles.bigIcon]} />;
-    }
-
-    if (this.model.userData.lookingfor === 1) {
-      return <Image source={ICONS.femaleIcon} style={[BaseStyles.bigIcon]} />;
-    }
-
-    if (this.model.userData.lookingfor === 2) {
-      return (
-        <View style={[BaseStyles.row]}>
-          <Image source={ICONS.maleIcon} style={[BaseStyles.bigIcon]} />
-          <Text>{_.lang.or}</Text>
-          <Image source={ICONS.femaleIcon} style={[BaseStyles.bigIcon]} />
-        </View>
-      );
+    if (this.model.userData.lookingfor.length === 0) {
+      return;
     }
 
     return (
-      <Image
-        source={this.model.userData.authorGender === 'male' ? ICONS.femaleIcon : ICONS.maleIcon}
-        style={[BaseStyles.bigIcon]}
-      />
+      <>
+        <View style={[ProfileDetailsStyles.profilePreviewContainer]}>
+          <Text style={ProfileDetailsStyles.profileInfoText}> {_.lang.i_looking_for} </Text>
+          {this.model.userData.lookingfor.map(loking => {
+            return (
+              <Image
+                key={loking}
+                source={loking === 0 ? ICONS.maleIcon : ICONS.femaleIcon}
+                style={[BaseStyles.bigIcon]}
+              />
+            );
+          })}
+        </View>
+      </>
     );
   }
 
@@ -186,21 +197,22 @@ class ProfileDetailsModalView extends TypedBaseComponent<
                       {getShortDate(this.model.userData.lastOnline)}
                     </Text>
                   </View>
-
-                  <View style={[ProfileDetailsStyles.profilePreviewContainer]}>
-                    <Text style={ProfileDetailsStyles.profileInfoText}>
-                      {' '}
-                      {_.lang.i_looking_for}{' '}
-                    </Text>
-                    {this.getExpectationsIcon()}
-                    {this.model.userData.goal !== undefined && this.model.userData.goal !== null && (
-                      <Text style={ProfileDetailsStyles.profileInfoText}>
-                        {' '}
-                        {_.lang.for} {_.lang.goals[this.model.userData.goal]}
-                      </Text>
+                  {this.getExpectationsBlock()}
+                  {this.model.userData.goal !== undefined &&
+                    this.model.userData.goal !== null &&
+                    this.model.userData.goal.length && (
+                      <View style={BaseStyles.w90}>
+                        <Text style={ProfileDetailsStyles.profileInfoText}>
+                          {_.lang.dating_goals}
+                          {': '}
+                        </Text>
+                        <View style={[BaseStyles.row, BaseStyles.wrap]}>
+                          {this.model.userData.goal.map(goal => {
+                            return this.getGoalItem(goal);
+                          })}
+                        </View>
+                      </View>
                     )}
-                  </View>
-
                   <View style={ProfileDetailsStyles.profileMainTextWrapper}>
                     {this.model.userData.text !== '' && (
                       <View style={ProfileDetailsStyles.profileMainTextContainer}>
@@ -351,24 +363,33 @@ class ProfileDetailsModalView extends TypedBaseComponent<
 
             <SendMessageModalView {...this.childProps(this.model.sendMessageModal)} />
             <ReportModalView {...this.childProps(this.model.reportModal)} />
-
-            <SimpleButtonView
-              iconStyles={ProfileDetailsStyles.profileModalCloseIcon}
-              styles={ProfileDetailsStyles.profileModalCloseContainer}
-              {...this.childProps(this.model.closeButton)}
-            />
-
-            <SimpleButtonView
-              styles={ProfileDetailsStyles.profileModalNextButtonContainer}
-              textStyles={ProfileDetailsStyles.actionButtonText}
-              {...this.childProps(this.model.prevButton)}
-            />
-
-            <SimpleButtonView
-              styles={ProfileDetailsStyles.profileModalPrevButtonContainer}
-              textStyles={ProfileDetailsStyles.actionButtonText}
-              {...this.childProps(this.model.nextButton)}
-            />
+            <View style={ProfileDetailsStyles.profileModalCloseContainer}>
+              <ShadowWrapperView borderRadius={30}>
+                <SimpleButtonView
+                  iconStyles={ProfileDetailsStyles.profileModalCloseIcon}
+                  styles={ProfileDetailsStyles.profileCloseModalButtonContainerInternal}
+                  {...this.childProps(this.model.closeButton)}
+                />
+              </ShadowWrapperView>
+            </View>
+            <View style={ProfileDetailsStyles.profileModalPrevButtonContainer}>
+              <ShadowWrapperView borderRadius={30}>
+                <SimpleButtonView
+                  styles={ProfileDetailsStyles.profileModalButtonContainerInternal}
+                  textStyles={ProfileDetailsStyles.actionButtonText}
+                  {...this.childProps(this.model.prevButton)}
+                />
+              </ShadowWrapperView>
+            </View>
+            <View style={ProfileDetailsStyles.profileModalNextButtonContainer}>
+              <ShadowWrapperView borderRadius={30}>
+                <SimpleButtonView
+                  styles={ProfileDetailsStyles.profileModalButtonContainerInternal}
+                  textStyles={ProfileDetailsStyles.actionButtonText}
+                  {...this.childProps(this.model.nextButton)}
+                />
+              </ShadowWrapperView>
+            </View>
           </View>
         </View>
       </Modal>

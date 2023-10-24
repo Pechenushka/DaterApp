@@ -192,7 +192,7 @@ const spa: localizationPackType = {
   goals: ['construcción de la familia', 'viajes', 'coqueteo', 'charla', 'amistad', 'sexo'],
   i_looking_for: `Estoy buscando`,
   for: 'por',
-  genders: ['Masculino', 'Femenino', 'Masculino o Femenino'],
+  genders: ['Hombre', 'Mulheres'],
   your_expectations: 'Tus expectativas',
   your_dating_goals: 'Tus objetivos de citas',
   it_is_you: '¡Eres tú!',

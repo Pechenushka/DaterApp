@@ -193,7 +193,7 @@ const rus: localizationPackType = {
   goals: ['создания семьи', 'путишествий', 'флирта', 'общения', 'дружбы', 'секса'],
   i_looking_for: 'Я ищу',
   for: 'для',
-  genders: ['Мужчину', 'Женщину', 'Мужчину или Женщину'],
+  genders: ['Мужчина', 'Женщина'],
   your_expectations: 'Ваши ожидания',
   your_dating_goals: 'Ваши цели знакомства',
   it_is_you: 'Это вы!',

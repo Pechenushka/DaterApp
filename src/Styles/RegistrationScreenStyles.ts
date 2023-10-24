@@ -175,15 +175,16 @@ const RegistrationScreenStyles = StyleSheet.create({
     marginBottom: hp(15),
     marginRight: hp(15),
     marginTop: hp(10),
-    width: hp(90),
-    height: hp(90),
+    width: hp(100),
+    height: hp(150),
   },
 
   genderPickerItemContainerInternal: {
     backgroundColor: COLORS.WHITE,
     alignItems: 'center',
-    justifyContent: 'center',
     padding: hp(5),
+    paddingTop: hp(10),
+    height: hp(130),
   },
 
   genderPickerItemIconStyles: {
@@ -195,6 +196,7 @@ const RegistrationScreenStyles = StyleSheet.create({
   genderPickerItemText: {
     fontSize: hp(16),
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
 

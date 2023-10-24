@@ -191,7 +191,7 @@ const por: localizationPackType = {
   goals: ['construção familiar', 'viagens', 'flerte', 'bate-papo', 'amizade', 'sexo'],
   i_looking_for: `Estou procurando por`,
   for: 'para',
-  genders: ['Masculino', 'Feminino', 'Masculino ou Feminino'],
+  genders: ['Homens', 'Mulheres'],
   your_expectations: 'Suas expectativas',
   your_dating_goals: 'Seus objetivos de namoro',
   it_is_you: 'É você!',

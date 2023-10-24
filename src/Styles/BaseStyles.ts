@@ -85,6 +85,10 @@ const BaseStyles = StyleSheet.create({
     height: '83%',
   },
 
+  h50: {
+    height: '50%',
+  },
+
   h10: {
     height: '30%',
   },

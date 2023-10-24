@@ -6,6 +6,10 @@ import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {dropDownItem, DropDownModel} from '../Components/Inputs/DropDownModel';
 import {genderEnum, GenderSvitcherModel} from '../Components/Inputs/GenderSvitcherModel';
+import {
+  HorizontalSelectorItem,
+  HorizontalSelectorModel,
+} from '../Components/Inputs/HorizontalSelectorModel';
 import {SwitcherModel} from '../Components/Inputs/SwitcherModel';
 import {TextInputModel} from '../Components/Inputs/TextInputModel';
 import {filterType} from './SearchModel';
@@ -22,11 +26,11 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
   private _countrySelection: DropDownModel;
   private _regionSelection: DropDownModel;
   private _citySelection: DropDownModel;
-  private _genderSwitcher: GenderSvitcherModel;
+  private _genderSwitcher: HorizontalSelectorModel;
   private _fromAgeInput: TextInputModel;
   private _toAgeInput: TextInputModel;
 
-  private _goalsSelection: DropDownModel;
+  private _goalsSelection: HorizontalSelectorModel;
   private _smokeSelection: DropDownModel;
   private _alcoSelection: DropDownModel;
   private _kidsSelection: DropDownModel;
@@ -73,25 +77,30 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       disabled: true,
       defaultItem: {id: 0, name: _.lang.all_cities},
     });
-
-    this._genderSwitcher = new GenderSvitcherModel({
-      id: '_genderSwitcer',
-      allMode: true,
-      default:
-        app.currentUser.filters !== undefined
-          ? app.currentUser.filters.gender
-          : app.currentUser.gender === 'female'
-          ? 'male'
-          : 'female',
+    this._genderSwitcher = new HorizontalSelectorModel({
+      id: '_sexSelection',
+      list: [
+        {
+          id: 0,
+          name: _.lang.genders[0],
+          icon: ICONS.genders.male,
+          activeIcon: ICONS.genders.maleActive,
+        },
+        {
+          id: 1,
+          name: _.lang.genders[1],
+          icon: ICONS.genders.female,
+          activeIcon: ICONS.genders.femaleActive,
+        },
+      ],
+      onSelectionChange: (item: HorizontalSelectorItem | HorizontalSelectorItem[]) => {},
+      multiselection: true,
     });
-    this._genderSwitcher.setGender(
-      app.currentUser.filters !== undefined
-        ? app.currentUser.filters.gender
-        : app.currentUser.gender === 'female'
-        ? 'male'
-        : 'female',
-    );
-
+    if (app.currentUser.filters !== undefined && app.currentUser.filters.gender.length) {
+      this._genderSwitcher.selectItems(app.currentUser.filters.gender.map(gender => gender.id));
+    } else {
+      this._genderSwitcher.selectItems(app.currentUser.gender === 'female' ? [0] : [1]);
+    }
     this._fromAgeInput = new TextInputModel({
       id: '_fromAgeInput',
       onChangeText: this.onFromAgeChange,
@@ -108,20 +117,40 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       defaultValue: '100',
     });
 
-    this._goalsSelection = new DropDownModel({
+    console.log('FILTERS', app.currentUser.filters);
+
+    this._goalsSelection = new HorizontalSelectorModel({
       id: '_goalsSelection',
       list: [
-        {id: 0, name: _.lang.goals[0]},
-        {id: 1, name: _.lang.goals[1]},
-        {id: 2, name: _.lang.goals[2]},
-        {id: 3, name: _.lang.goals[3]},
-        {id: 4, name: _.lang.goals[4]},
-        {id: 5, name: _.lang.goals[5]},
+        {
+          id: 0,
+          name: _.lang.goals[0],
+          icon: ICONS.goals.family,
+          activeIcon: ICONS.goals.familyActive,
+        },
+        {
+          id: 1,
+          name: _.lang.goals[1],
+          icon: ICONS.goals.tarvels,
+          activeIcon: ICONS.goals.travelsActive,
+        },
+        {
+          id: 2,
+          name: _.lang.goals[2],
+          icon: ICONS.goals.flirt,
+          activeIcon: ICONS.goals.flirtActive,
+        },
+        {id: 3, name: _.lang.goals[3], icon: ICONS.goals.chat, activeIcon: ICONS.goals.chatActive},
+        {
+          id: 4,
+          name: _.lang.goals[4],
+          icon: ICONS.goals.friendship,
+          activeIcon: ICONS.goals.friendshipActive,
+        },
+        {id: 5, name: _.lang.goals[5], icon: ICONS.goals.sex, activeIcon: ICONS.goals.sexActive},
       ],
-      placeholder: _.lang.choose_variant,
       onSelectionChange: this.onGoalsChange,
-      disabled: false,
-      defaultItem: {id: -1, name: _.lang.all_variants},
+      multiselection: true,
     });
 
     this._smokeSelection = new DropDownModel({
@@ -192,7 +221,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
         this._alcoSelection.selectItem(app.currentUser.filters.alco);
 
       app.currentUser.filters.goal !== null &&
-        this._goalsSelection.selectItem(app.currentUser.filters.goal);
+        this._goalsSelection.selectItems(app.currentUser.filters.goal.map(goal => goal.id));
 
       app.currentUser.filters.keepter
         ? (this._keepterSwitcher.value = true)
@@ -317,10 +346,10 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       myId: app.currentUser.userId,
       ageFrom: 18,
       ageTo: 100,
-      gender: this._genderSwitcher.value || 'all',
+      gender: this._genderSwitcher.value as HorizontalSelectorItem[],
       approved: true,
       alco: app.currentUser.filters?.alco || null,
-      goal: app.currentUser.filters?.goal || null,
+      goal: app.currentUser.filters?.goal || [],
       keepter: app.currentUser.filters?.keepter || null,
       kids: app.currentUser.filters?.kids || null,
       smoking: app.currentUser.filters?.smoking || null,
@@ -352,7 +381,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
     newFilters.ageToNumber = parseInt(this._toAgeInput.value, 10) || 100;
 
     newFilters.alco = this._alcoSelection.value !== undefined ? this._alcoSelection.value : null;
-    newFilters.goal = this._goalsSelection.value !== undefined ? this._goalsSelection.value : null;
+    newFilters.goal = this._goalsSelection.value as HorizontalSelectorItem[];
     newFilters.keepter = this._keepterSwitcher.value ? this._keepterSwitcher.value : null;
     newFilters.kids = this._kidsSelection.value !== undefined ? this._kidsSelection.value : null;
     newFilters.smoking =
@@ -455,7 +484,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
     return [];
   };
 
-  public onGoalsChange = async (item: dropDownItem) => {
+  public onGoalsChange = async (item: HorizontalSelectorItem | HorizontalSelectorItem[]) => {
     this.forceUpdate();
   };
 

@@ -193,7 +193,7 @@ const itl: localizationPackType = {
   goals: ['costruzione familiare', 'viaggi', 'flirtare', 'chiacchierare', 'amicizia', 'sesso'],
   i_looking_for: `Sto cercando`,
   for: 'per',
-  genders: ['Maschio', 'Femmina', 'Maschio o Femmina'],
+  genders: ['Uomo', 'Donne'],
   your_expectations: 'Le tue aspettative',
   your_dating_goals: 'I tuoi obiettivi di appuntamenti',
   it_is_you: 'Sei tu!',
