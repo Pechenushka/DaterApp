@@ -374,6 +374,9 @@ const por: localizationPackType = {
   minutes_ago: 'minutos atrás',
   long_time_ago: 'Há muito tempo',
   just_now: 'ainda agora',
+  you_block_each_other: 'Vocês bloqueiam um ao outro!',
+  you_block_this_user: 'Você bloqueia este usuário!',
+  you_blocked_by_user: 'Você está bloqueado por este usuário!',
 };
 
 export {por};

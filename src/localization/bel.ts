@@ -375,6 +375,9 @@ const bel: localizationPackType = {
   minutes_ago: 'хвілін таму',
   long_time_ago: 'даўно',
   just_now: 'толькі што',
+  you_block_each_other: 'Вы блакуеце адзін аднаго!',
+  you_block_this_user: 'Вы заблакіравалі гэтага карыстальніка!',
+  you_blocked_by_user: 'Вы заблакіраваны гэтым карыстальнікам!',
 };
 
 export {bel};

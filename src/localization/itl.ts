@@ -375,6 +375,9 @@ const itl: localizationPackType = {
   minutes_ago: 'minuti fa',
   long_time_ago: 'molto tempo fa',
   just_now: 'proprio ora',
+  you_block_each_other: 'Vi bloccate a vicenda!',
+  you_block_this_user: 'Blocca questo utente!',
+  you_blocked_by_user: 'Sei bloccato da questo utente!',
 };
 
 export {itl};

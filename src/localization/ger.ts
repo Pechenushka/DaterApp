@@ -387,6 +387,9 @@ const ger: localizationPackType = {
   minutes_ago: 'vor Minuten',
   long_time_ago: 'vor langer Zeit',
   just_now: 'soeben',
+  you_block_each_other: 'Ihr blockiert euch gegenseitig!',
+  you_block_this_user: 'Sie blockieren diesen Benutzer!',
+  you_blocked_by_user: 'Sie wurden von diesem Benutzer blockiert!',
 };
 
 export {ger};

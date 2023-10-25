@@ -375,6 +375,9 @@ const spa: localizationPackType = {
   minutes_ago: 'hace minutos',
   long_time_ago: 'hace mucho tiempo',
   just_now: 'ahora mismo',
+  you_block_each_other: '¡Se bloquean unos a otros!',
+  you_block_this_user: '¡Bloqueas a este usuario!',
+  you_blocked_by_user: '¡Estás bloqueado por este usuario!',
 };
 
 export {spa};

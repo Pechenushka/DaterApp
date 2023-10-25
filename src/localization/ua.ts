@@ -376,6 +376,9 @@ const ua: localizationPackType = {
   minutes_ago: 'хвилин назад',
   long_time_ago: 'давно',
   just_now: 'тільки що',
+  you_block_each_other: 'Ви заблокували один одного!',
+  you_block_this_user: 'Ви заблокували цього користувача!',
+  you_blocked_by_user: 'Ви заблоковані цим користувачем!',
 };
 
 export {ua};

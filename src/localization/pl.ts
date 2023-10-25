@@ -376,6 +376,9 @@ const pl: localizationPackType = {
   minutes_ago: 'minuty temu',
   long_time_ago: 'dawno temu',
   just_now: 'dopiero co',
+  you_block_each_other: 'Blokujecie się nawzajem!',
+  you_block_this_user: 'Blokujesz tego użytkownika!',
+  you_blocked_by_user: 'Zablokowałeś tego użytkownika!',
 };
 
 export {pl};

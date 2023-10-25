@@ -375,6 +375,9 @@ const fra: localizationPackType = {
   minutes_ago: 'il y a minutes',
   long_time_ago: 'il y a longtemps',
   just_now: `tout à l' heure`,
+  you_block_each_other: 'Vous vous bloquez !',
+  you_block_this_user: 'Vous bloquez cet utilisateur !',
+  you_blocked_by_user: 'Vous êtes bloqué par cet utilisateur !',
 };
 
 export {fra};

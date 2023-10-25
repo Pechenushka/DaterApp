@@ -201,6 +201,9 @@ export type localizationPackType = {
   minutes_ago: string;
   long_time_ago: string;
   just_now: string;
+  you_block_this_user: string;
+  you_blocked_by_user: string;
+  you_block_each_other: string;
 };
 
 export type localizationEnum =

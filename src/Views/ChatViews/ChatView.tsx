@@ -54,7 +54,7 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
         return (
           <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.alignCenter]}>
             <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
-            <Text style={[HomeScreenStyles.alertText]}>You block each other!</Text>
+            <Text style={[HomeScreenStyles.alertText]}>{_.lang.you_block_each_other}</Text>
           </View>
         );
       }
@@ -62,7 +62,7 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
         return (
           <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.alignCenter]}>
             <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
-            <Text style={[HomeScreenStyles.alertText]}>You blocked by this user!</Text>
+            <Text style={[HomeScreenStyles.alertText]}>{_.lang.you_blocked_by_user}</Text>
           </View>
         );
       }
@@ -70,7 +70,7 @@ class ChatView extends TypedBaseComponent<chatViewProps, ChatModel> {
         return (
           <View style={[BaseStyles.row, BaseStyles.w100, BaseStyles.alignCenter]}>
             <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
-            <Text style={[HomeScreenStyles.alertText]}>You block this user!</Text>
+            <Text style={[HomeScreenStyles.alertText]}>{_.lang.you_block_this_user}</Text>
           </View>
         );
       }

@@ -380,6 +380,9 @@ const eng: localizationPackType = {
   minutes_ago: 'minutes ago',
   long_time_ago: 'long time ago',
   just_now: 'just now',
+  you_block_each_other: 'You block each other!',
+  you_block_this_user: 'You block this user!',
+  you_blocked_by_user: 'You are blocked by this user!',
 };
 
 export {eng};

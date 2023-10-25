@@ -126,7 +126,7 @@ class ProfileDetailsModalView extends TypedBaseComponent<
         return (
           <View style={[BaseStyles.row]}>
             <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
-            <Text style={[ProfileDetailsStyles.alertText]}>You block each other!</Text>
+            <Text style={[ProfileDetailsStyles.alertText]}>{_.lang.you_block_each_other}</Text>
           </View>
         );
       }
@@ -134,7 +134,7 @@ class ProfileDetailsModalView extends TypedBaseComponent<
         return (
           <View style={[BaseStyles.row]}>
             <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
-            <Text style={[ProfileDetailsStyles.alertText]}>You blocked by this user!</Text>
+            <Text style={[ProfileDetailsStyles.alertText]}>{_.lang.you_blocked_by_user}</Text>
           </View>
         );
       }
@@ -142,7 +142,7 @@ class ProfileDetailsModalView extends TypedBaseComponent<
         return (
           <View style={[BaseStyles.row]}>
             <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
-            <Text style={[ProfileDetailsStyles.alertText]}>You block this user!</Text>
+            <Text style={[ProfileDetailsStyles.alertText]}>{_.lang.you_block_this_user}</Text>
           </View>
         );
       }

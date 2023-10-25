@@ -50,7 +50,7 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
         return (
           <View style={[BaseStyles.row]}>
             <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
-            <Text style={[HomeScreenStyles.alertText]}>You block each other!</Text>
+            <Text style={[HomeScreenStyles.alertText]}>{_.lang.you_block_each_other}</Text>
           </View>
         );
       }
@@ -58,7 +58,7 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
         return (
           <View style={[BaseStyles.row]}>
             <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
-            <Text style={[HomeScreenStyles.alertText]}>You blocked by this user!</Text>
+            <Text style={[HomeScreenStyles.alertText]}>{_.lang.you_blocked_by_user}</Text>
           </View>
         );
       }
@@ -66,7 +66,7 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
         return (
           <View style={[BaseStyles.row]}>
             <Image source={ICONS.ReportIcon} style={BaseStyles.defaultIcon} />
-            <Text style={[HomeScreenStyles.alertText]}>You block this user!</Text>
+            <Text style={[HomeScreenStyles.alertText]}>{_.lang.you_block_this_user}</Text>
           </View>
         );
       }

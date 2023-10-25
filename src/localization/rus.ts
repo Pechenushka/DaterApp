@@ -377,6 +377,9 @@ const rus: localizationPackType = {
   minutes_ago: 'минут назад',
   long_time_ago: 'давно',
   just_now: 'только что',
+  you_block_each_other: 'Вы заблокировали друг друга!',
+  you_block_this_user: 'Вы заблокировали этого пользователя!',
+  you_blocked_by_user: 'Вы заблокированы этим пользователем!',
 };
 
 export {rus};
