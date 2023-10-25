@@ -42,37 +42,37 @@ class SocketHandler {
   };
 
   public static connectToCityChat = (cityId: number) => {
-    if (app.currentUser && app.currentUser.userId !== -1 && cityId > 0) {
+    if (SocketHandler.socket && app.currentUser && app.currentUser.userId !== -1 && cityId > 0) {
       SocketHandler.socket.emit('enterCityChat', app.currentUser.userId, cityId);
     }
   };
 
   public static connectToRegionChat = (regionId: number) => {
-    if (app.currentUser && app.currentUser.userId !== -1 && regionId > 0) {
+    if (SocketHandler.socket && app.currentUser && app.currentUser.userId !== -1 && regionId > 0) {
       SocketHandler.socket.emit('enterRegionChat', app.currentUser.userId, regionId);
     }
   };
 
   public static connectToCountryChat = (countryId: number) => {
-    if (app.currentUser && app.currentUser.userId !== -1 && countryId > 0) {
+    if (SocketHandler.socket && app.currentUser && app.currentUser.userId !== -1 && countryId > 0) {
       SocketHandler.socket.emit('enterCountryChat', app.currentUser.userId, countryId);
     }
   };
 
   public static disconnectFromCityChat = (cityId: number) => {
-    if (app.currentUser && app.currentUser.userId !== -1 && cityId > 0) {
+    if (SocketHandler.socket && app.currentUser && app.currentUser.userId !== -1 && cityId > 0) {
       SocketHandler.socket.emit('disconectCityChat', app.currentUser.userId, cityId);
     }
   };
 
   public static disconnectFromRegionChat = (regionId: number) => {
-    if (app.currentUser && app.currentUser.userId !== -1 && regionId > 0) {
+    if (SocketHandler.socket && app.currentUser && app.currentUser.userId !== -1 && regionId > 0) {
       SocketHandler.socket.emit('disconectRegionChat', app.currentUser.userId, regionId);
     }
   };
 
   public static disonnectFromCountryChat = (countryId: number) => {
-    if (app.currentUser && app.currentUser.userId !== -1 && countryId > 0) {
+    if (SocketHandler.socket && app.currentUser && app.currentUser.userId !== -1 && countryId > 0) {
       SocketHandler.socket.emit('disconectCountryChat', app.currentUser.userId, countryId);
     }
   };

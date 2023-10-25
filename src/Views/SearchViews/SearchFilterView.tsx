@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {View, Modal, Text, ScrollView} from 'react-native';
+import {View, Modal, Text, TouchableOpacity, Image} from 'react-native';
 
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {SearchFilterModel} from '../../Models/SearchModels/SearchFilterModel';
@@ -17,6 +17,8 @@ import {_} from '../../Core/Localization';
 import {SwitcherView} from '../Components/Inputs/SwitcherView';
 import {HorizontalSelectorView} from '../Components/Inputs/HorizontalSelectorView';
 import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
+import {ScrollView} from 'react-native-gesture-handler';
+import {ICONS} from '../../constants/icons';
 
 type searchFilterViewProps = baseComponentProps & {};
 
@@ -39,7 +41,12 @@ class SearchFilterView extends TypedBaseComponent<searchFilterViewProps, SearchF
 
             <Text style={SearchStyles.filterModalMainTilte}>{_.lang.filters}</Text>
 
-            <ScrollView contentContainerStyle={[BaseStyles.w80, BaseStyles.ai_c]}>
+            <ScrollView
+              contentContainerStyle={[BaseStyles.w95, BaseStyles.ai_c, {marginLeft: -30}]}
+              ref={ref => {
+                //@ts-ignore
+                this.model.filterScroll = ref;
+              }}>
               <View style={[SearchStyles.locationFilterContainer]}>
                 <Text style={[RegistrationScreenStyles.locationTitleText]}>{_.lang.location}</Text>
 
@@ -70,7 +77,8 @@ class SearchFilterView extends TypedBaseComponent<searchFilterViewProps, SearchF
                   </View>
                 </View>
               </View>
-              <View style={[BaseStyles.w95]}>
+
+              <View style={SearchStyles.mainInfoConainer}>
                 <View style={[RegistrationScreenStyles.dateContainer]}>
                   <Text style={[RegistrationScreenStyles.dateText]}>{_.lang.gender}:</Text>
                 </View>
@@ -106,75 +114,101 @@ class SearchFilterView extends TypedBaseComponent<searchFilterViewProps, SearchF
                     {...this.childProps(this.model.toAgeInput)}
                   />
                 </View>
+              </View>
 
-                <View style={[RegistrationScreenStyles.goalsContainer, BaseStyles.ai_fs]}>
-                  <Text style={[RegistrationScreenStyles.mainTitleStyles]}>
-                    {_.lang.additional_info}
-                  </Text>
-
-                  <View style={RegistrationScreenStyles.goalsItem}>
-                    <View style={RegistrationScreenStyles.goaltTitleItem}>
-                      <Text>{_.lang.dating_goals}:</Text>
-                    </View>
-                  </View>
-                  <HorizontalSelectorView
-                    ContentCoinerStyles={RegistrationScreenStyles.genderPickerContainer}
-                    ItemContainerStylesExternal={
-                      MyAnnouncementStyles.genderPickerItemContainerExternal
+              <View style={[SearchStyles.goalsContainer, BaseStyles.ai_fs]}>
+                <TouchableOpacity
+                  onPress={this.model.onExpandPress}
+                  style={[SearchStyles.additionalInfoButtotnContainer]}>
+                  <Text style={[SearchStyles.mainTitleStyles]}>{_.lang.additional_info}</Text>
+                  <Image
+                    style={[BaseStyles.defaultIcon]}
+                    source={
+                      this.model.additionalExpanded ? ICONS.dropDownIconActive : ICONS.dropDownIcon
                     }
-                    ItemContainerStylesInternal={
-                      MyAnnouncementStyles.genderPickerItemContainerInternal
-                    }
-                    IconStyle={RegistrationScreenStyles.genderPickerItemIconStyles}
-                    TextStyle={MyAnnouncementStyles.genderPickerItemText}
-                    {...this.childProps(this.model.goalsSelection)}
                   />
-
-                  <View style={RegistrationScreenStyles.goalsItem}>
-                    <View style={RegistrationScreenStyles.goaltTitleItem}>
-                      <Text>{_.lang.attitude_towards_alcohol}:</Text>
+                </TouchableOpacity>
+                {this.model.additionalExpanded && (
+                  <View>
+                    <View style={RegistrationScreenStyles.goalsItem}>
+                      <View style={RegistrationScreenStyles.goaltTitleItem}>
+                        <Text>{_.lang.dating_goals}:</Text>
+                      </View>
                     </View>
-                    <View style={[RegistrationScreenStyles.goalSelectionItem, BaseStyles.ml20]}>
-                      <DropDownView {...this.childProps(this.model.alcoSelection)} />
+                    <HorizontalSelectorView
+                      ContentCoinerStyles={RegistrationScreenStyles.genderPickerContainer}
+                      ItemContainerStylesExternal={
+                        MyAnnouncementStyles.genderPickerItemContainerExternal
+                      }
+                      ItemContainerStylesInternal={
+                        MyAnnouncementStyles.genderPickerItemContainerInternal
+                      }
+                      IconStyle={RegistrationScreenStyles.genderPickerItemIconStyles}
+                      TextStyle={MyAnnouncementStyles.genderPickerItemText}
+                      {...this.childProps(this.model.goalsSelection)}
+                    />
+
+                    <View style={RegistrationScreenStyles.goalsItem}>
+                      <View style={RegistrationScreenStyles.goaltTitleItem}>
+                        <Text>{_.lang.attitude_towards_alcohol}:</Text>
+                      </View>
+                    </View>
+                    <HorizontalSelectorView
+                      ContentCoinerStyles={RegistrationScreenStyles.genderPickerContainer}
+                      ItemContainerStylesExternal={SearchStyles.alcoPickerItemContainerExternal}
+                      ItemContainerStylesInternal={SearchStyles.alcoPickerItemContainerInternal}
+                      IconStyle={RegistrationScreenStyles.genderPickerItemIconStyles}
+                      TextStyle={MyAnnouncementStyles.genderPickerItemText}
+                      {...this.childProps(this.model.alcoSelection)}
+                    />
+
+                    <View style={RegistrationScreenStyles.goalsItem}>
+                      <View style={RegistrationScreenStyles.goaltTitleItem}>
+                        <Text>{_.lang.attitude_towards_smoking}:</Text>
+                      </View>
+                    </View>
+                    <HorizontalSelectorView
+                      ContentCoinerStyles={RegistrationScreenStyles.genderPickerContainer}
+                      ItemContainerStylesExternal={SearchStyles.alcoPickerItemContainerExternal}
+                      ItemContainerStylesInternal={SearchStyles.alcoPickerItemContainerInternal}
+                      IconStyle={RegistrationScreenStyles.genderPickerItemIconStyles}
+                      TextStyle={MyAnnouncementStyles.genderPickerItemText}
+                      {...this.childProps(this.model.smokeSelection)}
+                    />
+
+                    <View style={RegistrationScreenStyles.goalsItem}>
+                      <View style={RegistrationScreenStyles.goaltTitleItem}>
+                        <Text>{_.lang.children}:</Text>
+                      </View>
+                    </View>
+                    <HorizontalSelectorView
+                      ContentCoinerStyles={RegistrationScreenStyles.genderPickerContainer}
+                      ItemContainerStylesExternal={SearchStyles.alcoPickerItemContainerExternal}
+                      ItemContainerStylesInternal={SearchStyles.alcoPickerItemContainerInternal}
+                      IconStyle={RegistrationScreenStyles.genderPickerItemIconStyles}
+                      TextStyle={MyAnnouncementStyles.genderPickerItemText}
+                      {...this.childProps(this.model.kidsSelection)}
+                    />
+
+                    <View style={RegistrationScreenStyles.goalsItem}>
+                      <View style={[BaseStyles.w60, BaseStyles.mr10]}>
+                        <Text>{_.lang.show_olnly_persons_dont_mind_being_a_sponsor}:</Text>
+                      </View>
+                      <View style={[RegistrationScreenStyles.goalSelectionItem]}>
+                        <SwitcherView {...this.childProps(this.model.sponsorSwitcher)} />
+                      </View>
+                    </View>
+
+                    <View style={RegistrationScreenStyles.goalsItem}>
+                      <View style={[BaseStyles.w60, BaseStyles.mr10]}>
+                        <Text>{_.lang.show_olnly_persons_dont_mind_being_a_kepter}:</Text>
+                      </View>
+                      <View style={[RegistrationScreenStyles.goalSelectionItem]}>
+                        <SwitcherView {...this.childProps(this.model.keepterSwitcher)} />
+                      </View>
                     </View>
                   </View>
-
-                  <View style={RegistrationScreenStyles.goalsItem}>
-                    <View style={RegistrationScreenStyles.goaltTitleItem}>
-                      <Text>{_.lang.attitude_towards_smoking}:</Text>
-                    </View>
-                    <View style={[RegistrationScreenStyles.goalSelectionItem, BaseStyles.ml20]}>
-                      <DropDownView {...this.childProps(this.model.smokeSelection)} />
-                    </View>
-                  </View>
-
-                  <View style={RegistrationScreenStyles.goalsItem}>
-                    <View style={RegistrationScreenStyles.goaltTitleItem}>
-                      <Text>{_.lang.children}:</Text>
-                    </View>
-                    <View style={[RegistrationScreenStyles.goalSelectionItem, BaseStyles.ml20]}>
-                      <DropDownView {...this.childProps(this.model.kidsSelection)} />
-                    </View>
-                  </View>
-
-                  <View style={RegistrationScreenStyles.goalsItem}>
-                    <View style={[BaseStyles.w60, BaseStyles.mr10]}>
-                      <Text>{_.lang.show_olnly_persons_dont_mind_being_a_sponsor}:</Text>
-                    </View>
-                    <View style={[RegistrationScreenStyles.goalSelectionItem]}>
-                      <SwitcherView {...this.childProps(this.model.sponsorSwitcher)} />
-                    </View>
-                  </View>
-
-                  <View style={RegistrationScreenStyles.goalsItem}>
-                    <View style={[BaseStyles.w60, BaseStyles.mr10]}>
-                      <Text>{_.lang.show_olnly_persons_dont_mind_being_a_kepter}:</Text>
-                    </View>
-                    <View style={[RegistrationScreenStyles.goalSelectionItem]}>
-                      <SwitcherView {...this.childProps(this.model.keepterSwitcher)} />
-                    </View>
-                  </View>
-                </View>
+                )}
               </View>
             </ScrollView>
             <SimpleButtonView

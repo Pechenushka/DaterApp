@@ -49,6 +49,51 @@ class ProfileDetailsModalView extends TypedBaseComponent<
     );
   }
 
+  public getAlcoItem(alco: number) {
+    return (
+      <View key={`alco${alco}`} style={ProfileDetailsStyles.goalItemContainerExternal}>
+        <ShadowWrapperView>
+          <View style={[BaseStyles.row, BaseStyles.alignCenter, BaseStyles.p5]}>
+            <Image style={BaseStyles.defaultIcon} source={ICONS.alcoArray[alco]} />
+            <View style={ProfileDetailsStyles.goalItemContainerInternal}>
+              <Text style={ProfileDetailsStyles.goalItemText}>{_.lang.alco[alco]}</Text>
+            </View>
+          </View>
+        </ShadowWrapperView>
+      </View>
+    );
+  }
+
+  public getKidsItem(kids: number) {
+    return (
+      <View key={`kids${kids}`} style={ProfileDetailsStyles.goalItemContainerExternal}>
+        <ShadowWrapperView>
+          <View style={[BaseStyles.row, BaseStyles.alignCenter, BaseStyles.p5]}>
+            <Image style={BaseStyles.defaultIcon} source={ICONS.kidsArray[kids]} />
+            <View style={ProfileDetailsStyles.goalItemContainerInternal}>
+              <Text style={ProfileDetailsStyles.goalItemText}>{_.lang.kids[kids]}</Text>
+            </View>
+          </View>
+        </ShadowWrapperView>
+      </View>
+    );
+  }
+
+  public getSmokingItem(smoking: number) {
+    return (
+      <View key={`smoking${smoking}`} style={ProfileDetailsStyles.goalItemContainerExternal}>
+        <ShadowWrapperView>
+          <View style={[BaseStyles.row, BaseStyles.alignCenter, BaseStyles.p5]}>
+            <Image style={BaseStyles.defaultIcon} source={ICONS.smokingArray[smoking]} />
+            <View style={ProfileDetailsStyles.goalItemContainerInternal}>
+              <Text style={ProfileDetailsStyles.goalItemText}>{_.lang.smoking[smoking]}</Text>
+            </View>
+          </View>
+        </ShadowWrapperView>
+      </View>
+    );
+  }
+
   public getExpectationsBlock() {
     if (this.model.userData === null || this.model.userData.lookingfor === null) {
       return;
@@ -119,6 +164,7 @@ class ProfileDetailsModalView extends TypedBaseComponent<
           <View style={ProfileDetailsStyles.profileModalContentContainer}>
             <ScrollView
               ref={ref => {
+                //@ts-ignore
                 this.model.scrollRef = ref;
               }}
               style={[BaseStyles.w100]}
@@ -230,29 +276,14 @@ class ProfileDetailsModalView extends TypedBaseComponent<
                       BaseStyles.mt20,
                       BaseStyles.ml20,
                     ]}>
-                    {this.model.userData.kids !== null && (
-                      <View style={[ProfileDetailsStyles.profilePropContainer]}>
-                        <Text style={ProfileDetailsStyles.profileInfoText}>
-                          {_.lang.kids[this.model.userData.kids]}
-                        </Text>
-                      </View>
-                    )}
+                    {this.model.userData.kids !== null &&
+                      this.getKidsItem(this.model.userData.kids)}
 
-                    {this.model.userData.alco !== null && (
-                      <View style={[ProfileDetailsStyles.profilePropContainer]}>
-                        <Text style={ProfileDetailsStyles.profileInfoText}>
-                          {_.lang.alco[this.model.userData.alco]}
-                        </Text>
-                      </View>
-                    )}
+                    {this.model.userData.alco !== null &&
+                      this.getAlcoItem(this.model.userData.alco)}
 
-                    {this.model.userData.smoking !== null && (
-                      <View style={[ProfileDetailsStyles.profilePropContainer]}>
-                        <Text style={ProfileDetailsStyles.profileInfoText}>
-                          {_.lang.smoking[this.model.userData.smoking]}
-                        </Text>
-                      </View>
-                    )}
+                    {this.model.userData.smoking !== null &&
+                      this.getSmokingItem(this.model.userData.smoking)}
 
                     {this.model.userData.sponsor && (
                       <View

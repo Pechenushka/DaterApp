@@ -166,6 +166,50 @@ const SearchStyles = StyleSheet.create({
     width: '95%',
     marginTop: hp(40),
     alignItems: 'center',
+    marginLeft: hp(-90),
+    padding: hp(5),
+  },
+
+  alcoPickerItemContainerInternal: {
+    backgroundColor: COLORS.WHITE,
+    alignItems: 'center',
+    padding: hp(5),
+    paddingTop: hp(10),
+    height: hp(130),
+  },
+
+  alcoPickerItemContainerExternal: {
+    backgroundColor: COLORS.WHITE,
+    marginBottom: hp(15),
+    marginRight: hp(15),
+    marginTop: hp(10),
+    width: hp(180),
+    height: hp(150),
+  },
+
+  additionalInfoButtotnContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    justifyContent: 'space-between',
+    marginTop: hp(50),
+  },
+
+  mainTitleStyles: {
+    color: COLORS.BLACK,
+    fontSize: hp(22),
+    fontWeight: 'bold',
+  },
+
+  goalsContainer: {
+    width: '95%',
+    alignItems: 'center',
+    paddingBottom: hp(10),
+    marginLeft: 40,
+  },
+
+  mainInfoConainer: {
+    marginLeft: hp(-90),
   },
 });
 

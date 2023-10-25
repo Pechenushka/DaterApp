@@ -1,4 +1,4 @@
-import {Alert, FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
+import {FlatList, NativeScrollEvent, NativeSyntheticEvent} from 'react-native';
 import {SetVisit} from '../../Common/Helpers';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
@@ -7,7 +7,6 @@ import {locationItemType, searchItemDataType} from '../../Core/DataTypes/BaseTyp
 import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
-import {genderEnum} from '../Components/Inputs/GenderSvitcherModel';
 import {ProfileDetailsModalModel} from './ProfileDetailsModalModel';
 import {SearchFilterModel} from './SearchFilterModel';
 import {SearchItemModel} from './SearchItemModel';
@@ -29,9 +28,9 @@ export type filterType = {
   ageFromNumber?: number;
   ageToNumber?: number;
   approved: boolean;
-  alco: locationItemType | null;
-  smoking: locationItemType | null;
-  kids: locationItemType | null;
+  alco: HorizontalSelectorItem[];
+  smoking: HorizontalSelectorItem[];
+  kids: HorizontalSelectorItem[];
   sponsor: boolean | null;
   keepter: boolean | null;
   goal: HorizontalSelectorItem[];
@@ -91,11 +90,11 @@ class SearchModel extends BaseModel<searchModelProps> {
               },
             ],
       approved: true,
-      alco: app.currentUser.filters?.alco || null,
+      alco: app.currentUser.filters?.alco || [],
       goal: app.currentUser.filters?.goal || [],
       keepter: app.currentUser.filters?.keepter || null,
-      kids: app.currentUser.filters?.kids || null,
-      smoking: app.currentUser.filters?.smoking || null,
+      kids: app.currentUser.filters?.kids || [],
+      smoking: app.currentUser.filters?.smoking || [],
       sponsor: app.currentUser.filters?.sponsor || null,
     };
     this._filterButton = new SimpleButtonModel({
@@ -192,20 +191,11 @@ class SearchModel extends BaseModel<searchModelProps> {
       limit: this._limit,
       offset: this._offset,
       approved: this._currentFilter.approved,
-      alco:
-        this._currentFilter.alco && this._currentFilter.alco.id >= 0
-          ? [this._currentFilter.alco.id]
-          : [],
+      alco: this._currentFilter.alco.map(alco => alco.id),
       goal: this._currentFilter.goal.map(goal => goal.id),
       keepter: this._currentFilter.keepter || null,
-      kids:
-        this._currentFilter.kids && this._currentFilter.kids.id >= 0
-          ? [this._currentFilter.kids.id]
-          : [],
-      smoking:
-        this._currentFilter.smoking && this._currentFilter.smoking.id >= 0
-          ? [this._currentFilter.smoking.id]
-          : [],
+      kids: this._currentFilter.kids.map(kids => kids.id),
+      smoking: this._currentFilter.smoking.map(smoking => smoking.id),
       sponsor: this._currentFilter.sponsor || null,
     };
     const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
@@ -250,20 +240,11 @@ class SearchModel extends BaseModel<searchModelProps> {
       limit: this._limit,
       offset: this._offset,
       approved: this._currentFilter.approved,
-      alco:
-        this._currentFilter.alco && this._currentFilter.alco.id >= 0
-          ? [this._currentFilter.alco.id]
-          : [],
+      alco: this._currentFilter.alco.map(alco => alco.id),
       goal: this._currentFilter.goal.map(goal => goal.id),
       keepter: this._currentFilter.keepter || null,
-      kids:
-        this._currentFilter.kids && this._currentFilter.kids.id >= 0
-          ? [this._currentFilter.kids.id]
-          : [],
-      smoking:
-        this._currentFilter.smoking && this._currentFilter.smoking.id >= 0
-          ? [this._currentFilter.smoking.id]
-          : [],
+      kids: this._currentFilter.kids.map(kids => kids.id),
+      smoking: this._currentFilter.smoking.map(smoking => smoking.id),
       sponsor: this._currentFilter.sponsor || null,
     };
     const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);
@@ -308,20 +289,11 @@ class SearchModel extends BaseModel<searchModelProps> {
         limit: this._limit,
         offset: this._offset,
         approved: this._currentFilter.approved,
-        alco:
-          this._currentFilter.alco && this._currentFilter.alco.id >= 0
-            ? [this._currentFilter.alco.id]
-            : [],
+        alco: this._currentFilter.alco.map(alco => alco.id),
         goal: this._currentFilter.goal.map(goal => goal.id),
         keepter: this._currentFilter.keepter || null,
-        kids:
-          this._currentFilter.kids && this._currentFilter.kids.id >= 0
-            ? [this._currentFilter.kids.id]
-            : [],
-        smoking:
-          this._currentFilter.smoking && this._currentFilter.smoking.id >= 0
-            ? [this._currentFilter.smoking.id]
-            : [],
+        kids: this._currentFilter.kids.map(kids => kids.id),
+        smoking: this._currentFilter.smoking.map(smoking => smoking.id),
         sponsor: this._currentFilter.sponsor || null,
       };
       const searchRes = await loadData(UserDataProvider.SearchRequest, searchBody);

@@ -1,3 +1,4 @@
+import {ScrollView} from 'react-native-gesture-handler';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
@@ -5,7 +6,6 @@ import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {dropDownItem, DropDownModel} from '../Components/Inputs/DropDownModel';
-import {genderEnum, GenderSvitcherModel} from '../Components/Inputs/GenderSvitcherModel';
 import {
   HorizontalSelectorItem,
   HorizontalSelectorModel,
@@ -31,11 +31,14 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
   private _toAgeInput: TextInputModel;
 
   private _goalsSelection: HorizontalSelectorModel;
-  private _smokeSelection: DropDownModel;
-  private _alcoSelection: DropDownModel;
-  private _kidsSelection: DropDownModel;
+  private _smokeSelection: HorizontalSelectorModel;
+  private _alcoSelection: HorizontalSelectorModel;
+  private _kidsSelection: HorizontalSelectorModel;
   private _sponsorSwitcher: SwitcherModel;
   private _keepterSwitcher: SwitcherModel;
+  private _additionalExpanded: boolean = false;
+
+  public filterScroll: ScrollView | null = null;
 
   constructor(props: searchFilterModelProps) {
     super(props);
@@ -117,8 +120,6 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       defaultValue: '100',
     });
 
-    console.log('FILTERS', app.currentUser.filters);
-
     this._goalsSelection = new HorizontalSelectorModel({
       id: '_goalsSelection',
       list: [
@@ -140,58 +141,122 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
           icon: ICONS.goals.flirt,
           activeIcon: ICONS.goals.flirtActive,
         },
-        {id: 3, name: _.lang.goals[3], icon: ICONS.goals.chat, activeIcon: ICONS.goals.chatActive},
+        {
+          id: 3,
+          name: _.lang.goals[3],
+          icon: ICONS.goals.chat,
+          activeIcon: ICONS.goals.chatActive,
+        },
         {
           id: 4,
           name: _.lang.goals[4],
           icon: ICONS.goals.friendship,
           activeIcon: ICONS.goals.friendshipActive,
         },
-        {id: 5, name: _.lang.goals[5], icon: ICONS.goals.sex, activeIcon: ICONS.goals.sexActive},
+        {
+          id: 5,
+          name: _.lang.goals[5],
+          icon: ICONS.goals.sex,
+          activeIcon: ICONS.goals.sexActive,
+        },
       ],
       onSelectionChange: this.onGoalsChange,
       multiselection: true,
     });
 
-    this._smokeSelection = new DropDownModel({
+    this._smokeSelection = new HorizontalSelectorModel({
       id: '_smokeSelection',
       list: [
-        {id: 0, name: _.lang.smoking[0]},
-        {id: 1, name: _.lang.smoking[1]},
-        {id: 2, name: _.lang.smoking[2]},
-        {id: 3, name: _.lang.smoking[3]},
+        {
+          id: 0,
+          name: _.lang.smoking[0],
+          icon: ICONS.smoking.noSmoking,
+          activeIcon: ICONS.smoking.noSmokingActive,
+        },
+        {
+          id: 1,
+          name: _.lang.smoking[1],
+          icon: ICONS.smoking.smalSmoking,
+          activeIcon: ICONS.smoking.smalSmokingActive,
+        },
+        {
+          id: 2,
+          name: _.lang.smoking[2],
+          icon: ICONS.smoking.mediumSmoking,
+          activeIcon: ICONS.smoking.mediumSmokingActive,
+        },
+        {
+          id: 3,
+          name: _.lang.smoking[3],
+          icon: ICONS.smoking.manySmoking,
+          activeIcon: ICONS.smoking.manySmokingActive,
+        },
       ],
-      placeholder: _.lang.choose_variant,
       onSelectionChange: this.onSmokeChange,
-      disabled: false,
-      defaultItem: {id: -1, name: _.lang.all_variants},
+      multiselection: true,
     });
 
-    this._alcoSelection = new DropDownModel({
+    this._alcoSelection = new HorizontalSelectorModel({
       id: '_alcoSelection',
       list: [
-        {id: 0, name: _.lang.alco[0]},
-        {id: 1, name: _.lang.alco[1]},
-        {id: 2, name: _.lang.alco[2]},
-        {id: 3, name: _.lang.alco[3]},
+        {
+          id: 0,
+          name: _.lang.alco[0],
+          icon: ICONS.alco.noAlco,
+          activeIcon: ICONS.alco.noAlcoActive,
+        },
+        {
+          id: 1,
+          name: _.lang.alco[1],
+          icon: ICONS.alco.smalAlco,
+          activeIcon: ICONS.alco.smalAlcoActive,
+        },
+        {
+          id: 2,
+          name: _.lang.alco[2],
+          icon: ICONS.alco.mediumAlco,
+          activeIcon: ICONS.alco.mediumAlcoActive,
+        },
+        {
+          id: 3,
+          name: _.lang.alco[3],
+          icon: ICONS.alco.manyAlco,
+          activeIcon: ICONS.alco.manyAlcoActive,
+        },
       ],
-      placeholder: _.lang.choose_variant,
       onSelectionChange: this.onAlcoChange,
-      disabled: false,
-      defaultItem: {id: -1, name: _.lang.all_variants},
+      multiselection: true,
     });
-    this._kidsSelection = new DropDownModel({
+    this._kidsSelection = new HorizontalSelectorModel({
       id: '_kidsSelection',
       list: [
-        {id: 0, name: _.lang.kids[0]},
-        {id: 1, name: _.lang.kids[1]},
-        {id: 2, name: _.lang.kids[2]},
-        {id: 3, name: _.lang.kids[3]},
+        {
+          id: 0,
+          name: _.lang.kids[0],
+          icon: ICONS.kids.noChild,
+          activeIcon: ICONS.kids.noChildActive,
+        },
+        {
+          id: 1,
+          name: _.lang.kids[1],
+          icon: ICONS.kids.planChildren,
+          activeIcon: ICONS.kids.planChildrenActive,
+        },
+        {
+          id: 2,
+          name: _.lang.kids[2],
+          icon: ICONS.kids.haveChild,
+          activeIcon: ICONS.kids.haveChildActive,
+        },
+        {
+          id: 3,
+          name: _.lang.kids[3],
+          icon: ICONS.kids.liveSeparetly,
+          activeIcon: ICONS.kids.liveSeparetlyActive,
+        },
       ],
-      placeholder: _.lang.choose_variant,
       onSelectionChange: this.onKidsChange,
-      disabled: false,
-      defaultItem: {id: -1, name: _.lang.all_variants},
+      multiselection: true,
     });
 
     this._sponsorSwitcher = new SwitcherModel({
@@ -218,7 +283,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       this._toAgeInput.value = `${app.currentUser.filters.ageToNumber || 100}`;
 
       app.currentUser.filters.alco !== null &&
-        this._alcoSelection.selectItem(app.currentUser.filters.alco);
+        this._alcoSelection.selectItems(app.currentUser.filters.alco.map(alco => alco.id));
 
       app.currentUser.filters.goal !== null &&
         this._goalsSelection.selectItems(app.currentUser.filters.goal.map(goal => goal.id));
@@ -228,10 +293,12 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
         : (this._keepterSwitcher.value = false);
 
       app.currentUser.filters.kids !== null &&
-        this._kidsSelection.selectItem(app.currentUser.filters.kids);
+        this._kidsSelection.selectItems(app.currentUser.filters.kids.map(kids => kids.id));
 
       app.currentUser.filters.smoking !== null &&
-        this._smokeSelection.selectItem(app.currentUser.filters.smoking);
+        this._smokeSelection.selectItems(
+          app.currentUser.filters.smoking.map(smoking => smoking.id),
+        );
 
       app.currentUser.filters.sponsor
         ? (this._sponsorSwitcher.value = true)
@@ -308,6 +375,10 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
     return this._regionSelection;
   }
 
+  public get additionalExpanded() {
+    return this._additionalExpanded;
+  }
+
   public open = async () => {
     this.visible = true;
   };
@@ -348,11 +419,11 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       ageTo: 100,
       gender: this._genderSwitcher.value as HorizontalSelectorItem[],
       approved: true,
-      alco: app.currentUser.filters?.alco || null,
+      alco: app.currentUser.filters?.alco || [],
       goal: app.currentUser.filters?.goal || [],
       keepter: app.currentUser.filters?.keepter || null,
-      kids: app.currentUser.filters?.kids || null,
-      smoking: app.currentUser.filters?.smoking || null,
+      kids: app.currentUser.filters?.kids || [],
+      smoking: app.currentUser.filters?.smoking || [],
       sponsor: app.currentUser.filters?.sponsor || null,
     };
 
@@ -380,12 +451,11 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
     newFilters.ageFromNumber = parseInt(this._fromAgeInput.value, 10) || 18;
     newFilters.ageToNumber = parseInt(this._toAgeInput.value, 10) || 100;
 
-    newFilters.alco = this._alcoSelection.value !== undefined ? this._alcoSelection.value : null;
+    newFilters.alco = this._alcoSelection.value as HorizontalSelectorItem[];
     newFilters.goal = this._goalsSelection.value as HorizontalSelectorItem[];
     newFilters.keepter = this._keepterSwitcher.value ? this._keepterSwitcher.value : null;
-    newFilters.kids = this._kidsSelection.value !== undefined ? this._kidsSelection.value : null;
-    newFilters.smoking =
-      this._smokeSelection.value !== undefined ? this._smokeSelection.value : null;
+    newFilters.kids = this._kidsSelection.value as HorizontalSelectorItem[];
+    newFilters.smoking = this._smokeSelection.value as HorizontalSelectorItem[];
     newFilters.sponsor =
       this._sponsorSwitcher.value !== undefined ? this.sponsorSwitcher.value : null;
 
@@ -488,15 +558,15 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
     this.forceUpdate();
   };
 
-  public onSmokeChange = async (item: dropDownItem) => {
+  public onSmokeChange = async (item: HorizontalSelectorItem | HorizontalSelectorItem[]) => {
     this.forceUpdate();
   };
 
-  public onAlcoChange = async (item: dropDownItem) => {
+  public onAlcoChange = async (item: HorizontalSelectorItem | HorizontalSelectorItem[]) => {
     this.forceUpdate();
   };
 
-  public onKidsChange = async (item: dropDownItem) => {
+  public onKidsChange = async (item: HorizontalSelectorItem | HorizontalSelectorItem[]) => {
     this.forceUpdate();
   };
 
@@ -512,6 +582,12 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       this._sponsorSwitcher.value = false;
     }
     this.forceUpdate();
+  };
+
+  public onExpandPress = async () => {
+    this._additionalExpanded = !this._additionalExpanded;
+    this.forceUpdate();
+    this.filterScroll?.scrollToEnd({animated: true});
   };
 }
 

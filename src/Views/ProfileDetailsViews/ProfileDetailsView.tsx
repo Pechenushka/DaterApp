@@ -89,6 +89,51 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
     );
   }
 
+  public getAlcoItem(alco: number) {
+    return (
+      <View key={`alco${alco}`} style={ProfileDetailsStyles.goalItemContainerExternal}>
+        <ShadowWrapperView>
+          <View style={[BaseStyles.row, BaseStyles.alignCenter, BaseStyles.p5]}>
+            <Image style={BaseStyles.defaultIcon} source={ICONS.alcoArray[alco]} />
+            <View style={ProfileDetailsStyles.goalItemContainerInternal}>
+              <Text style={ProfileDetailsStyles.goalItemText}>{_.lang.alco[alco]}</Text>
+            </View>
+          </View>
+        </ShadowWrapperView>
+      </View>
+    );
+  }
+
+  public getKidsItem(kids: number) {
+    return (
+      <View key={`kids${kids}`} style={ProfileDetailsStyles.goalItemContainerExternal}>
+        <ShadowWrapperView>
+          <View style={[BaseStyles.row, BaseStyles.alignCenter, BaseStyles.p5]}>
+            <Image style={BaseStyles.defaultIcon} source={ICONS.kidsArray[kids]} />
+            <View style={ProfileDetailsStyles.goalItemContainerInternal}>
+              <Text style={ProfileDetailsStyles.goalItemText}>{_.lang.kids[kids]}</Text>
+            </View>
+          </View>
+        </ShadowWrapperView>
+      </View>
+    );
+  }
+
+  public getSmokingItem(smoking: number) {
+    return (
+      <View key={`smoking${smoking}`} style={ProfileDetailsStyles.goalItemContainerExternal}>
+        <ShadowWrapperView>
+          <View style={[BaseStyles.row, BaseStyles.alignCenter, BaseStyles.p5]}>
+            <Image style={BaseStyles.defaultIcon} source={ICONS.smokingArray[smoking]} />
+            <View style={ProfileDetailsStyles.goalItemContainerInternal}>
+              <Text style={ProfileDetailsStyles.goalItemText}>{_.lang.smoking[smoking]}</Text>
+            </View>
+          </View>
+        </ShadowWrapperView>
+      </View>
+    );
+  }
+
   public getExpectationsBlock() {
     if (this.model.userInfo === null) {
       return;
@@ -268,29 +313,12 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                   BaseStyles.mt20,
                   BaseStyles.ml20,
                 ]}>
-                {this.model.userInfo.kids !== null && (
-                  <View style={[ProfileDetailsStyles.profilePropContainer]}>
-                    <Text style={ProfileDetailsStyles.profileInfoText}>
-                      {_.lang.kids[this.model.userInfo.kids]}
-                    </Text>
-                  </View>
-                )}
+                {this.model.userInfo.kids !== null && this.getKidsItem(this.model.userInfo.kids)}
 
-                {this.model.userInfo.alco !== null && (
-                  <View style={[ProfileDetailsStyles.profilePropContainer]}>
-                    <Text style={ProfileDetailsStyles.profileInfoText}>
-                      {_.lang.alco[this.model.userInfo.alco]}
-                    </Text>
-                  </View>
-                )}
+                {this.model.userInfo.alco !== null && this.getAlcoItem(this.model.userInfo.alco)}
 
-                {this.model.userInfo.smoking !== null && (
-                  <View style={[ProfileDetailsStyles.profilePropContainer]}>
-                    <Text style={ProfileDetailsStyles.profileInfoText}>
-                      {_.lang.smoking[this.model.userInfo.smoking]}
-                    </Text>
-                  </View>
-                )}
+                {this.model.userInfo.smoking !== null &&
+                  this.getSmokingItem(this.model.userInfo.smoking)}
 
                 {this.model.userInfo.sponsor && (
                   <View
