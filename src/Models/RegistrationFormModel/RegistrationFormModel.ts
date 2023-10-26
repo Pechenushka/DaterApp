@@ -134,6 +134,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       placeholder: _.lang.chose_country,
       listLoader: this.countryLoad,
       onSelectionChange: this.onCountryChange,
+      needSearch: true,
     });
 
     this._regionSelection = new DropDownModel({
@@ -142,6 +143,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       placeholder: _.lang.chose_region,
       onSelectionChange: this.onRegionChange,
       disabled: true,
+      needSearch: true,
     });
 
     this._citySelection = new DropDownModel({
@@ -150,6 +152,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       placeholder: _.lang.chose_city,
       onSelectionChange: this.onCityChange,
       disabled: true,
+      needSearch: true,
     });
 
     this._agreementSwitcher = new SwitcherModel({
@@ -666,7 +669,7 @@ class RegistrationFormModel extends BaseModel<registrationFormModelProps> {
       name: name,
       password: password,
       email: email,
-      gender: gender.id === 1 ? 'male' : 'female',
+      gender: gender.id === 1 ? 'female' : 'male',
       birthDate: dateTimeStamp,
       telegram: '',
       phone: '',

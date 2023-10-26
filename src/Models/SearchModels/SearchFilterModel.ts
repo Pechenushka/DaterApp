@@ -61,6 +61,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       listLoader: this.countryLoad,
       onSelectionChange: this.onCountryChange,
       defaultItem: {id: 0, name: _.lang.all_countries},
+      needSearch: true,
     });
 
     this._regionSelection = new DropDownModel({
@@ -70,6 +71,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       onSelectionChange: this.onRegionChange,
       disabled: true,
       defaultItem: {id: 0, name: _.lang.all_regions},
+      needSearch: true,
     });
 
     this._citySelection = new DropDownModel({
@@ -79,6 +81,7 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
       onSelectionChange: this.onCityChange,
       disabled: true,
       defaultItem: {id: 0, name: _.lang.all_cities},
+      needSearch: true,
     });
     this._genderSwitcher = new HorizontalSelectorModel({
       id: '_sexSelection',
@@ -434,11 +437,11 @@ class SearchFilterModel extends BaseModel<searchFilterModelProps> {
     newFilters.location.region =
       this._regionSelection.value !== undefined
         ? this._regionSelection.value
-        : {id: 0, name: _.lang.all_cities};
+        : {id: 0, name: _.lang.all_regions};
     newFilters.location.city =
       this._citySelection.value !== undefined
         ? this._citySelection.value
-        : {id: 0, name: _.lang.all_regions};
+        : {id: 0, name: _.lang.all_cities};
 
     let fromTimeStamp = new Date().setFullYear(
       new Date().getFullYear() - parseInt(this._fromAgeInput.value, 10) || 18,

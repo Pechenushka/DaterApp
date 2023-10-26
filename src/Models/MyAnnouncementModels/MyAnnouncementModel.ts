@@ -57,6 +57,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       placeholder: _.lang.chose_country,
       listLoader: this.countryLoad,
       onSelectionChange: this.onCountryChange,
+      needSearch: true,
     });
 
     this._regionSelection = new DropDownModel({
@@ -65,6 +66,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       placeholder: _.lang.chose_region,
       onSelectionChange: this.onRegionChange,
       disabled: true,
+      needSearch: true,
     });
 
     this._citySelection = new DropDownModel({
@@ -73,6 +75,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       placeholder: _.lang.chose_city,
       onSelectionChange: this.onCityChange,
       disabled: true,
+      needSearch: true,
     });
 
     this._sexSelection = new HorizontalSelectorModel({

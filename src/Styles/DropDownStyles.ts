@@ -58,6 +58,37 @@ const DropDownStyles = StyleSheet.create({
     borderRadius: 8,
     maxHeight: '80%',
   },
+
+  searchInputContainer: {
+    width: '100%',
+    borderRadius: 8,
+    backgroundColor: COLORS.INPUT_BG,
+    height: hp(45),
+    marginTop: hp(20),
+  },
+
+  searchInputText: {
+    fontFamily: 'Roboto-Regular',
+    color: COLORS.BLACK,
+    fontSize: hp(18),
+    width: '100%',
+  },
+
+  searchClearButtonIcon: {
+    resizeMode: 'contain',
+    height: hp(22),
+    width: hp(22),
+  },
+
+  searchClearButtonContainer: {
+    position: 'absolute',
+    top: hp(26),
+    right: hp(10),
+    padding: hp(3),
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: COLORS.PLACEHOLDER,
+  },
 });
 
 export {DropDownStyles};

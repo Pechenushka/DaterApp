@@ -1,4 +1,8 @@
 import {BaseModel, baseModelProps} from '../../../Core/BaseModel';
+import {_} from '../../../Core/Localization';
+import {ICONS} from '../../../constants/icons';
+import {SimpleButtonModel} from '../Buttons/SimpleButtonModel';
+import {TextInputModel} from './TextInputModel';
 
 type dropDownModelProps = baseModelProps & {
   placeholder: string;
@@ -8,6 +12,7 @@ type dropDownModelProps = baseModelProps & {
   disabled?: boolean;
   defaultItem?: dropDownItem;
   onListReady?: () => Promise<any>;
+  needSearch?: boolean;
 };
 
 export type dropDownItem = {id: number; name: string};
@@ -18,11 +23,28 @@ class DropDownModel extends BaseModel<dropDownModelProps> {
   private _value: dropDownItem | undefined = undefined;
   private _opened: boolean = false;
   private _disabled: boolean;
+  private _searchInput: TextInputModel;
+  private _searchResult: Array<dropDownItem> = [];
+  private _clearSearchButton: SimpleButtonModel;
   constructor(props: dropDownModelProps) {
     super(props);
     this._list = props.defaultItem !== undefined ? [props.defaultItem, ...props.list] : props.list;
     this._placeholder = props.placeholder;
     this._disabled = props.disabled !== undefined ? props.disabled : false;
+    this._searchInput = new TextInputModel({
+      id: '_searchInput',
+      onChangeText: this.onSeacrhInputChange,
+      placeholder: _.lang.search,
+      secure: false,
+      showLeftIcon: true,
+      leftIcon: ICONS.searchIconBlack,
+      maxLength: 50,
+    });
+    this._clearSearchButton = new SimpleButtonModel({
+      id: '_clearSearchButton',
+      onPress: this.onClearSearchPress,
+      icon: ICONS.closeIcon,
+    });
     this.initValues();
   }
 
@@ -60,6 +82,22 @@ class DropDownModel extends BaseModel<dropDownModelProps> {
     }
     this._disabled = Val;
     this.forceUpdate();
+  }
+
+  public get searchInput() {
+    return this._searchInput;
+  }
+
+  public get needSearch() {
+    return this.props.needSearch;
+  }
+
+  public get searchResult() {
+    return this._searchResult;
+  }
+
+  public get clearSearchButton() {
+    return this._clearSearchButton;
   }
 
   public set listLoader(Val: () => Promise<dropDownItem[]>) {
@@ -105,6 +143,20 @@ class DropDownModel extends BaseModel<dropDownModelProps> {
   public setToDefault = async () => {
     this._value = undefined;
     this._list = [];
+  };
+
+  public onSeacrhInputChange = async (newVal: string) => {
+    const serchRes = this._list.filter(item => {
+      return item.name.includes(newVal);
+    });
+    this._searchResult = serchRes;
+    this.forceUpdate();
+  };
+
+  public onClearSearchPress = () => {
+    this._searchInput.value = '';
+    this._searchResult = [];
+    this.forceUpdate();
   };
 }
 
