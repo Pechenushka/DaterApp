@@ -157,6 +157,20 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
               />
             );
           })}
+          {(this.model.userInfo.fromAge || this.model.userInfo.toAge) && (
+            <>
+              <Text style={[ProfileDetailsStyles.profileInfoText]}>{_.lang.in_age}</Text>
+              <Text style={[ProfileDetailsStyles.profileInfoText]}>
+                {' '}
+                {this.model.userInfo.fromAge
+                  ? _.lang.get_from_age(this.model.userInfo.fromAge)
+                  : null}
+              </Text>
+              <Text style={[ProfileDetailsStyles.profileInfoText]}>
+                {this.model.userInfo.toAge ? _.lang.get_to_age(this.model.userInfo.toAge) : null}
+              </Text>
+            </>
+          )}
         </View>
       </>
     );

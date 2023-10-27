@@ -11,14 +11,13 @@ import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
 import {TextInputView} from '../Components/Inputs/TextInputView';
 import {DropDownView} from '../Components/Inputs/DropDownView';
 import {RegistrationScreenStyles} from '../../Styles/RegistrationScreenStyles';
-import {app} from '../../Core/AppImpl';
-import {ICONS} from '../../constants/icons';
 import {SimpleButtonView} from '../Components/Buttons/SimpleButtonView';
 import {COLORS} from '../../constants/colors';
 import {_} from '../../Core/Localization';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
 import {SwitcherView} from '../Components/Inputs/SwitcherView';
 import {HorizontalSelectorView} from '../Components/Inputs/HorizontalSelectorView';
+import {SearchStyles} from '../../Styles/SearchStyles';
 
 type myAnnouncementViewProps = baseComponentProps & {};
 
@@ -60,12 +59,12 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
           </View>
         </View>
         <ScrollView
-          style={BaseStyles.w100}
-          contentContainerStyle={[MyAnnouncementStyles.scrollContentContainer]}>
-          {/* <Text style={[MyAnnouncementStyles.mainTitleText]}>
-            {this.model.editMode ? _.lang.your_announcement : 'Create announcement'}
-          </Text> */}
-
+          style={[BaseStyles.w100]}
+          contentContainerStyle={[
+            MyAnnouncementStyles.scrollContentContainer,
+            BaseStyles.pb150,
+            BaseStyles.pt10,
+          ]}>
           <View style={[MyAnnouncementStyles.inputFormContainer]}>
             <View style={BaseStyles.w95}>
               <Text style={[MyAnnouncementStyles.describeInputTitleText]}>
@@ -136,6 +135,26 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
                 TextStyle={RegistrationScreenStyles.genderPickerItemText}
                 {...this.childProps(this.model.sexSelection)}
               />
+              <View style={[RegistrationScreenStyles.dateContainer]}>
+                <Text style={[MyAnnouncementStyles.dateText]}>{_.lang.expected_age}:</Text>
+                <TextInputView
+                  styles={{
+                    container: SearchStyles.filterModalAgeInputContainer,
+                    icon: {},
+                    text: {},
+                  }}
+                  {...this.childProps(this.model.fromAgeInput)}
+                />
+                <Text>-</Text>
+                <TextInputView
+                  styles={{
+                    container: SearchStyles.filterModalAgeInputContainer,
+                    icon: {},
+                    text: {},
+                  }}
+                  {...this.childProps(this.model.toAgeInput)}
+                />
+              </View>
               <View style={RegistrationScreenStyles.goalsItem}>
                 <View style={RegistrationScreenStyles.goaltTitleItem}>
                   <Text>{_.lang.your_dating_goals}:</Text>
@@ -201,19 +220,11 @@ class MyAnnouncementView extends TypedBaseComponent<myAnnouncementViewProps, MyA
               </View>
             </View>
           </View>
-          {this.model.editMode ? (
-            <SimpleButtonView
-              styles={MyAnnouncementStyles.submitButtonContainer}
-              textStyles={MyAnnouncementStyles.submitButtonText}
-              {...this.childProps(this.model.editButton)}
-            />
-          ) : (
-            <SimpleButtonView
-              styles={MyAnnouncementStyles.submitButtonContainer}
-              textStyles={MyAnnouncementStyles.submitButtonText}
-              {...this.childProps(this.model.submitButton)}
-            />
-          )}
+          <SimpleButtonView
+            styles={MyAnnouncementStyles.submitButtonContainer}
+            textStyles={MyAnnouncementStyles.submitButtonText}
+            {...this.childProps(this.model.editButton)}
+          />
         </ScrollView>
       </View>
     );

@@ -378,6 +378,10 @@ const spa: localizationPackType = {
   you_block_each_other: '¡Se bloquean unos a otros!',
   you_block_this_user: '¡Bloqueas a este usuario!',
   you_blocked_by_user: '¡Estás bloqueado por este usuario!',
+  expected_age: `edad preferida`,
+  get_from_age: age => `desde ${age}`,
+  get_to_age: age => `a ${age}`,
+  in_age: `en edad`,
 };
 
 export {spa};

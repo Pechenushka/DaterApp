@@ -407,6 +407,8 @@ class SearchModel extends BaseModel<searchModelProps> {
         kids: nextUser.props.kids,
         smoking: nextUser.props.smoking,
         sponsor: nextUser.props.sponsor,
+        fromAge: nextUser.props.fromAge,
+        toAge: nextUser.props.toAge,
       };
       this._profileDetailsModal.forceUpdate();
       const index = this.list.findIndex(item => item.id === nextUser.id);
@@ -450,6 +452,8 @@ class SearchModel extends BaseModel<searchModelProps> {
         kids: prevUser.props.kids,
         smoking: prevUser.props.smoking,
         sponsor: prevUser.props.sponsor,
+        fromAge: prevUser.props.fromAge,
+        toAge: prevUser.props.toAge,
       };
       this._profileDetailsModal.forceUpdate();
       const index = this.list.findIndex(item => item.id === prevUser.id);

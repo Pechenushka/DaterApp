@@ -106,6 +106,8 @@ export type searchItemDataType = {
   kids: number;
   sponsor: boolean;
   keepter: boolean;
+  fromAge: number | null;
+  toAge: number | null;
 };
 
 export type userStatusResponseDataType = baseResponse & {
@@ -152,6 +154,8 @@ export type userDetailsDataType = {
   kids: number;
   sponsor: boolean;
   keepter: boolean;
+  fromAge: number | null;
+  toAge: number | null;
 };
 
 export type userMeetingDataType = baseResponse & {
@@ -168,6 +172,8 @@ export type userMeetingDataType = baseResponse & {
     kids: number;
     sponsor: boolean;
     keepter: boolean;
+    fromAge: number | null;
+    toAge: number | null;
   };
 };
 

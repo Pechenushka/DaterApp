@@ -378,6 +378,10 @@ const fra: localizationPackType = {
   you_block_each_other: 'Vous vous bloquez !',
   you_block_this_user: 'Vous bloquez cet utilisateur !',
   you_blocked_by_user: 'Vous êtes bloqué par cet utilisateur !',
+  expected_age: `Âge préféré`,
+  get_from_age: age => `à partir de ${age}`,
+  get_to_age: age => `à ${age}`,
+  in_age: `en âge`,
 };
 
 export {fra};

@@ -147,6 +147,8 @@ class SearchItemModel extends BaseModel<searchItemModelProps> {
         kids: this.props.kids,
         smoking: this.props.smoking,
         sponsor: this.props.sponsor,
+        fromAge: this.props.fromAge,
+        toAge: this.props.toAge,
       });
     SetVisit(this.props.authorId, 0);
     // app.navigator.goToProfileDetailsScreen(this.authorId);

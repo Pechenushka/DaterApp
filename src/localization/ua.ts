@@ -379,6 +379,10 @@ const ua: localizationPackType = {
   you_block_each_other: 'Ви заблокували один одного!',
   you_block_this_user: 'Ви заблокували цього користувача!',
   you_blocked_by_user: 'Ви заблоковані цим користувачем!',
+  expected_age: `Бажаний вік`,
+  get_from_age: age => `з ${age}`,
+  get_to_age: age => `до ${age}`,
+  in_age: `у віці`,
 };
 
 export {ua};

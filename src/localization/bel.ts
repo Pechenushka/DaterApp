@@ -378,6 +378,10 @@ const bel: localizationPackType = {
   you_block_each_other: 'Вы блакуеце адзін аднаго!',
   you_block_this_user: 'Вы заблакіравалі гэтага карыстальніка!',
   you_blocked_by_user: 'Вы заблакіраваны гэтым карыстальнікам!',
+  expected_age: `Упадабаны ўзрост`,
+  get_from_age: age => `ад ${age}`,
+  get_to_age: age => `да ${age}`,
+  in_age: `ва ўзросце`,
 };
 
 export {bel};

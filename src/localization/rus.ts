@@ -380,6 +380,10 @@ const rus: localizationPackType = {
   you_block_each_other: 'Вы заблокировали друг друга!',
   you_block_this_user: 'Вы заблокировали этого пользователя!',
   you_blocked_by_user: 'Вы заблокированы этим пользователем!',
+  expected_age: `предпочитаемый возраст`,
+  get_from_age: age => `от ${age}`,
+  get_to_age: age => `до ${age}`,
+  in_age: `в возрасте`,
 };
 
 export {rus};

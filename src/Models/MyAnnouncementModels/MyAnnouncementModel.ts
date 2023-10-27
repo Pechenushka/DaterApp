@@ -18,7 +18,6 @@ type myAnnouncementModelProps = baseModelProps & {};
 
 class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
   private _discribeInput: TextInputModel;
-  private _submitButton: SimpleButtonModel;
   private _editButton: SimpleButtonModel;
   private _backButton: SimpleButtonModel;
 
@@ -33,6 +32,8 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
   private _kidsSelection: DropDownModel;
   private _sponsorSwitcher: SwitcherModel;
   private _keepterSwitcher: SwitcherModel;
+  private _fromAgeInput: TextInputModel;
+  private _toAgeInput: TextInputModel;
 
   private _previewLabelModel: LabelModel;
   private _previewLocationLabelModel: LabelModel;
@@ -96,6 +97,22 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       ],
       onSelectionChange: this.onSexChange,
       multiselection: true,
+    });
+
+    this._fromAgeInput = new TextInputModel({
+      id: '_fromAgeInput',
+      onChangeText: this.onFromAgeChange,
+      keyboardType: 'numeric',
+      onBlur: this.onFromAgeBlur,
+      defaultValue: '',
+    });
+
+    this._toAgeInput = new TextInputModel({
+      id: '_toAgeInput',
+      onChangeText: this.onToAgeChange,
+      keyboardType: 'numeric',
+      onBlur: this.onToAgeBlur,
+      defaultValue: '',
     });
 
     this._goalsSelection = new HorizontalSelectorModel({
@@ -194,12 +211,6 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
           : '',
     });
 
-    this._submitButton = new SimpleButtonModel({
-      id: '_submitButton',
-      onPress: this.onSubbmitPress,
-      text: 'SUBMIT',
-    });
-
     this._editButton = new SimpleButtonModel({
       id: '_editButton',
       onPress: this.onEditButtonPress,
@@ -265,10 +276,6 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
     return this._previewLocationLabelModel;
   }
 
-  public get submitButton() {
-    return this._submitButton;
-  }
-
   public get editButton() {
     return this._editButton;
   }
@@ -299,6 +306,14 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
   public get backButton() {
     return this._backButton;
+  }
+
+  public get toAgeInput() {
+    return this._toAgeInput;
+  }
+
+  public get fromAgeInput() {
+    return this._fromAgeInput;
   }
 
   public onCountryChange = async (item: dropDownItem) => {
@@ -398,69 +413,27 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
     this._previewLabelModel.text = newValue.trim();
   };
 
-  public onSubbmitPress = async () => {
-    this._submitButton.disabled = true;
-    const [text, country, region, city, goal, lookingfor] = [
-      this._discribeInput.value.trim(),
-      this._countrySelection.value,
-      this._regionSelection.value,
-      this._citySelection.value,
-      this._goalsSelection.value as HorizontalSelectorItem[],
-      this._sexSelection.value as HorizontalSelectorItem[],
-    ];
-    if (app.currentUser.location === undefined) {
-      app.notification.showError(_.lang.warning, 'Set up location please');
-      this._submitButton.disabled = false;
-      return;
-    }
-    if (country !== undefined) {
-      if (region === undefined) {
-        app.notification.showError(_.lang.warning, 'Select region');
-        this._submitButton.disabled = false;
-        return;
-      }
-
-      if (city === undefined) {
-        app.notification.showError(_.lang.warning, 'Select city');
-        this._submitButton.disabled = false;
-        return;
-      }
-    }
-    const meetingBody = {
-      authorId: app.currentUser.userId,
-      timestamp: new Date().getTime(),
-      countryId: country === undefined ? app.currentUser.location.country.id : country.id,
-      regionId: region === undefined ? app.currentUser.location.region.id : region.id,
-      cityId: city === undefined ? app.currentUser.location.city.id : city.id,
-      text: text || '',
-      lookingfor: lookingfor === undefined ? null : lookingfor.map(item => item.id),
-      goal: goal === undefined ? null : goal.map(item => item.id),
-    };
-
-    const res = await loadData(UserDataProvider.CreateMeeting, meetingBody);
-    if (res === null) {
-      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
-      this._submitButton.disabled = false;
-      return;
-    }
-
-    if (res.statusCode !== 200) {
-      app.notification.showError(`${res.statusCode}`, res.statusMessage);
-      this._submitButton.disabled = false;
-      return;
-    }
-    app.notification.showSuccess('Hooray', 'Your announcment succesfuly added');
-    app.navigator.goToMainProfileScreen();
-    this._submitButton.disabled = false;
-  };
-
   public onBackButtonPress = async () => {
     app.navigator.goToMainProfileScreen();
   };
 
   public onEditButtonPress = async () => {
     this._editButton.disabled = true;
-    const [text, country, region, city, goal, lookingfor, alco, smoking, kids, sponsor, keepter] = [
+    const [
+      text,
+      country,
+      region,
+      city,
+      goal,
+      lookingfor,
+      alco,
+      smoking,
+      kids,
+      sponsor,
+      keepter,
+      fromAge,
+      toAge,
+    ] = [
       this._discribeInput.value.trim(),
       this._countrySelection.value,
       this._regionSelection.value,
@@ -472,6 +445,8 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       this._kidsSelection.value,
       this._sponsorSwitcher.value,
       this._keepterSwitcher.value,
+      parseInt(this._fromAgeInput.value, 10) || null,
+      parseInt(this._toAgeInput.value, 10) || null,
     ];
 
     if (app.currentUser.location === undefined) {
@@ -507,8 +482,10 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
       kids: kids && kids.id >= 0 ? kids.id : null,
       sponsor,
       keepter,
+      fromAge,
+      toAge,
     };
-
+    console.log('meetingBody', meetingBody);
     const res = await loadData(UserDataProvider.EditMeeting, meetingBody);
     if (res === null) {
       app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
@@ -595,9 +572,55 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
         );
         selectedCity && this._citySelection.selectItem(selectedCity);
       };
+
+      this._fromAgeInput.value = `${loadResult.data.fromAge || ''}`;
+      this._toAgeInput.value = `${loadResult.data.toAge || ''}`;
     }
 
     this.loading = false;
+  };
+
+  public onFromAgeChange = async (newValue: string) => {
+    this._fromAgeInput.value = await this.sanityzeText(newValue);
+  };
+
+  public onToAgeChange = async (newValue: string) => {
+    this._toAgeInput.value = await this.sanityzeText(newValue);
+  };
+
+  public onFromAgeBlur = async () => {
+    this._fromAgeInput.value =
+      parseInt(this._fromAgeInput.value, 10) < 18
+        ? '18'
+        : isNaN(parseInt(this._fromAgeInput.value, 10))
+        ? ''
+        : this._fromAgeInput.value;
+  };
+
+  public onToAgeBlur = async () => {
+    this._toAgeInput.value =
+      parseInt(this._toAgeInput.value, 10) < 18
+        ? '18'
+        : isNaN(parseInt(this._toAgeInput.value, 10))
+        ? ''
+        : this._toAgeInput.value;
+  };
+
+  public sanityzeText = async (value: string) => {
+    let sanityzed = value.replace(/\D/g, '');
+    if (parseInt(sanityzed, 10) > 100) {
+      sanityzed = '100';
+    }
+
+    if (sanityzed.length > 1 && sanityzed.startsWith('0')) {
+      sanityzed = sanityzed.substring(1);
+    }
+
+    if (sanityzed.length > 1 && parseInt(sanityzed, 10) < 18) {
+      sanityzed = '18';
+    }
+
+    return sanityzed;
   };
 }
 

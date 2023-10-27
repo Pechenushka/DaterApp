@@ -204,6 +204,10 @@ export type localizationPackType = {
   you_block_this_user: string;
   you_blocked_by_user: string;
   you_block_each_other: string;
+  expected_age: string;
+  get_from_age: (age: number) => string;
+  get_to_age: (age: number) => string;
+  in_age: string;
 };
 
 export type localizationEnum =

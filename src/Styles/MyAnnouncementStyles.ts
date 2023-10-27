@@ -178,6 +178,12 @@ const MyAnnouncementStyles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+
+  dateText: {
+    fontSize: hp(14),
+    color: COLORS.BLACK,
+    marginRight: hp(15),
+  },
 });
 
 export {MyAnnouncementStyles};

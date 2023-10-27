@@ -104,8 +104,8 @@ class ProfileDetailsModalView extends TypedBaseComponent<
 
     return (
       <>
-        <View style={[ProfileDetailsStyles.profilePreviewContainer]}>
-          <Text style={ProfileDetailsStyles.profileInfoText}> {_.lang.i_looking_for} </Text>
+        <View style={[ProfileDetailsStyles.profilePreviewContainer, BaseStyles.w90]}>
+          <Text style={ProfileDetailsStyles.profileInfoText}>{_.lang.i_looking_for} </Text>
           {this.model.userData.lookingfor.map(loking => {
             return (
               <Image
@@ -115,6 +115,20 @@ class ProfileDetailsModalView extends TypedBaseComponent<
               />
             );
           })}
+          {(this.model.userData.fromAge || this.model.userData.toAge) && (
+            <>
+              <Text style={[ProfileDetailsStyles.profileInfoText]}>{_.lang.in_age}</Text>
+              <Text style={[ProfileDetailsStyles.profileInfoText]}>
+                {' '}
+                {this.model.userData.fromAge
+                  ? _.lang.get_from_age(this.model.userData.fromAge)
+                  : null}
+              </Text>
+              <Text style={[ProfileDetailsStyles.profileInfoText]}>
+                {this.model.userData.toAge ? _.lang.get_to_age(this.model.userData.toAge) : null}
+              </Text>
+            </>
+          )}
         </View>
       </>
     );

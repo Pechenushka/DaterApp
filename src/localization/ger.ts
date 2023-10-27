@@ -390,6 +390,10 @@ const ger: localizationPackType = {
   you_block_each_other: 'Ihr blockiert euch gegenseitig!',
   you_block_this_user: 'Sie blockieren diesen Benutzer!',
   you_blocked_by_user: 'Sie wurden von diesem Benutzer blockiert!',
+  expected_age: `wunschalter`,
+  get_from_age: age => `ab ${age}`,
+  get_to_age: age => `bis ${age}`,
+  in_age: `im alter`,
 };
 
 export {ger};

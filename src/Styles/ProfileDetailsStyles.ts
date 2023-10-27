@@ -99,6 +99,7 @@ const ProfileDetailsStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingBottom: hp(5),
+    flexWrap: 'wrap',
   },
 
   profilePropContainer: {

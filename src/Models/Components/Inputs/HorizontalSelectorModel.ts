@@ -63,7 +63,9 @@ class HorizontalSelectorModel extends BaseModel<horizontalSelectorModelProps> {
     items.forEach(item => {
       const findedItem = this.list.find(listItem => item === listItem.id);
       if (findedItem) {
-        this._activeItems.push(findedItem);
+        if (!this._activeItems.includes(findedItem)) {
+          this._activeItems.push(findedItem);
+        }
       }
     });
   };

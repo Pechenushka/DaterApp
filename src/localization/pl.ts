@@ -379,6 +379,10 @@ const pl: localizationPackType = {
   you_block_each_other: 'Blokujecie się nawzajem!',
   you_block_this_user: 'Blokujesz tego użytkownika!',
   you_blocked_by_user: 'Zablokowałeś tego użytkownika!',
+  expected_age: `Preferowany wiek`,
+  get_from_age: age => `od ${age}`,
+  get_to_age: age => `do ${age}`,
+  in_age: `w wieku`,
 };
 
 export {pl};
