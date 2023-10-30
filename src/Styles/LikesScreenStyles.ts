@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {concat} from 'react-native-reanimated';
 import {COLORS} from '../constants/colors';
 import {hp} from '../constants/Dimensions';
 

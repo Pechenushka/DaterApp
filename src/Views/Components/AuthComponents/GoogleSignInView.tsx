@@ -4,11 +4,9 @@ import {
   componentPropsWithModel,
 } from '../../../Core/BaseComponent';
 import React from 'react';
-import {TouchableOpacity, View} from 'react-native';
 import {STYLES} from '../../../Styles/Styles';
 import {GoogleSignInModel} from '../../../Models/Components/AuthComponents/GoogleSignInModel';
-import {GoogleSigninButton} from 'react-native-google-signin';
-import {COLORS} from '../../../constants/colors';
+import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
 
 type googleSignInViewProps = baseComponentProps & {
   styles?: Object;

@@ -1,5 +1,5 @@
 import {BaseModel, baseModelProps} from '../../../Core/BaseModel';
-import {GoogleSignin} from 'react-native-google-signin';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {loadData, UserDataProvider} from '../../../DataProvider/UserDataProvider';
 import {app} from '../../../Core/AppImpl';
 import {CreateNewAccountScreen} from '../../../Screens/CreateNewAccountScreen';
