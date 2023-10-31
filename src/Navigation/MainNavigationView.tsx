@@ -12,6 +12,8 @@ import {DrawerContentView} from './DrawerContent/DrawerContentView';
 import {MainNavigationModel} from './MainNavigationModel';
 import {PhotoViewerView} from '../Views/Components/PhotoViewer/PhotoViewerView';
 import {PopupNotificationView} from '../Views/Components/Popups/PopupNotificationView';
+import {Platform} from 'react-native';
+import deviceInfoModule from 'react-native-device-info';
 
 type mainNavigationViewProps = baseComponentProps & {};
 
@@ -27,7 +29,14 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
         <app.stacks.stackDrawer.Navigator
           drawerPosition={'left'}
           drawerType={'front'}
-          screenOptions={{headerShown: false, gestureHandlerProps: {enabled: true}}}
+          screenOptions={{
+            headerShown: false,
+            gestureHandlerProps: {enabled: true},
+            animationEnabled:
+              Platform.OS == 'android' && parseInt(deviceInfoModule.getSystemVersion()) > 9
+                ? false
+                : true,
+          }}
           drawerContent={() => (
             <DrawerContentView {...this.childProps(this.model.drawerContentModel)} />
           )}
