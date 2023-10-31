@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {ActivityIndicator, FlatList, RefreshControl, ScrollView, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, RefreshControl, Text, View} from 'react-native';
 import {LikesModel} from '../../Models/LikesModels/LikesModel';
 import {TaberView} from '../Components/Filters/TaberView';
 import {LikesScreenStyles} from '../../Styles/LikesScreenStyles';

@@ -4,7 +4,7 @@ import {
   componentPropsWithModel,
 } from '../../Core/BaseComponent';
 import React from 'react';
-import {ActivityIndicator, FlatList, RefreshControl, ScrollView, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, RefreshControl, Text, View} from 'react-native';
 import {ChatListModel} from '../../Models/ChatListModels/ChatListModel';
 import {ChatsStyles} from '../../Styles/ChatsStyles';
 import {COLORS} from '../../constants/colors';

@@ -1,4 +1,3 @@
-import {Alert} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {ICONS} from '../../constants/icons';
 import {app} from '../../Core/AppImpl';
