@@ -119,25 +119,29 @@ class Navigator {
   }
 
   public async handleBackground(state: string) {
-    switch (state) {
-      case 'start':
-        // restore user data
-        await app.currentUser.restoreUserData();
-        await this.navigationUserStartApp();
-        this._startAppWithBackground = false;
-        await SocketHandler.connect();
-        break;
-      case 'active':
-        await app.currentUser.restoreUserData();
-        await this.navigationUserStartApp();
-        this._startAppWithBackground = false;
-        await SocketHandler.connect();
-        break;
-      case 'background':
-        await app.currentUser.saveUser();
-        SocketHandler.disconnect();
-        this.saveNavigatorState();
-        break;
+    try {
+      switch (state) {
+        case 'start':
+          // restore user data
+          await app.currentUser.restoreUserData();
+          await this.navigationUserStartApp();
+          this._startAppWithBackground = false;
+          await SocketHandler.connect();
+          break;
+        case 'active':
+          await app.currentUser.restoreUserData();
+          await this.navigationUserStartApp();
+          this._startAppWithBackground = false;
+          await SocketHandler.connect();
+          break;
+        case 'background':
+          await app.currentUser.saveUser();
+          SocketHandler.disconnect();
+          this.saveNavigatorState();
+          break;
+      }
+    } catch (error: any) {
+      crashlytics().recordError(error, 'handleBackground error');
     }
   }
 

@@ -24,7 +24,7 @@ class LikesScreen extends BaseLayoutView<LikesController> {
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'LikesScreen';
   }
 

@@ -22,7 +22,7 @@ class ChatScreen extends BaseLayoutView<ChatController> {
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'ChatScreen';
   }
 

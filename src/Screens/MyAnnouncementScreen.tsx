@@ -24,7 +24,7 @@ class MyAnnouncementScreen extends BaseLayoutView<MyAnnouncementController> {
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'MyAnnouncementScreen';
   }
   public get shadowHeader() {

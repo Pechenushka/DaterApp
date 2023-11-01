@@ -21,7 +21,7 @@ class PhotoAccessRequestsScreen extends BaseLayoutView<PhotoAccessRequestsContro
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'PhotoAccessRequestsScreen';
   }
 

@@ -28,7 +28,7 @@ class MainProfileScreen extends BaseLayoutView<HomeController> {
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'MainProfileScreen';
   }
 

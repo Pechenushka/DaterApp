@@ -20,7 +20,7 @@ class SearchFeedScreen extends BaseLayoutView<SearchController> {
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'SearchFeedScreen';
   }
 

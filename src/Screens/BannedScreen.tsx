@@ -17,7 +17,7 @@ class BannedScreen extends BaseLayoutView<BannedController> {
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'BannedScreen';
   }
 

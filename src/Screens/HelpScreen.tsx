@@ -22,7 +22,7 @@ class HelpScreen extends BaseLayoutView<HelpController> {
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'HelpScreen';
   }
 

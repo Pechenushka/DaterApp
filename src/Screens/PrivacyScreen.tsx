@@ -18,7 +18,7 @@ class PrivacyScreen extends BaseLayoutView<PrivacyConctroller> {
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'PrivacyScreen';
   }
 

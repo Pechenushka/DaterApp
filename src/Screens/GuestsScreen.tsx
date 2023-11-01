@@ -22,7 +22,7 @@ class GuestsScreen extends BaseLayoutView<GuestsController> {
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'GuestsScreen';
   }
 

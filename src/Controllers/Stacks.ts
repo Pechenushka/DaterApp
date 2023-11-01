@@ -1,18 +1,10 @@
 import {createDrawerNavigator, DrawerNavigationOptions} from '@react-navigation/drawer';
 import {
   TypedNavigator,
-  StackNavigationState,
   DefaultNavigatorOptions,
-  StackRouterOptions,
   DrawerNavigationState,
   DrawerRouterOptions,
 } from '@react-navigation/native';
-import {StackNavigationOptions} from '@react-navigation/stack';
-
-import {
-  StackNavigationEventMap,
-  StackNavigationConfig,
-} from '@react-navigation/stack/lib/typescript/src/types';
 import {
   DrawerNavigationConfig,
   DrawerNavigationEventMap,
@@ -34,23 +26,8 @@ import {TermsOfUseScreen} from '../Screens/TermsOfUseScreen';
 import {PhotoGalleryScreen} from '../Screens/PhotoGalleryScreen';
 import {PhotoAccessRequestsScreen} from '../Screens/PhotoAccessRequestsScreen';
 import {GuestsScreen} from '../Screens/GuestsScreen';
-import {HelpModel} from '../Models/HelpModels/HelpModel';
 import {HelpScreen} from '../Screens/HelpScreen';
 
-type typedStackNavigator = TypedNavigator<
-  Record<string, object | undefined>,
-  StackNavigationState<Record<string, object | undefined>>,
-  StackNavigationOptions,
-  StackNavigationEventMap,
-  ({
-    initialRouteName,
-    children,
-    screenOptions,
-    ...rest
-  }: DefaultNavigatorOptions<StackNavigationOptions> &
-    StackRouterOptions &
-    StackNavigationConfig) => JSX.Element
->;
 type typedDrawerNavigator = TypedNavigator<
   Record<string, object | undefined>,
   DrawerNavigationState<Record<string, object | undefined>>,

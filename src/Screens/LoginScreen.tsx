@@ -24,7 +24,7 @@ class LoginScreen extends BaseLayoutView<LoginController> {
     super.componentDidMount();
   }
 
-  get screenName() {
+  public get screenName() {
     return 'LoginScreen';
   }
 

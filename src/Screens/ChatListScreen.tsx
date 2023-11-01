@@ -24,8 +24,8 @@ class ChatListScreen extends BaseLayoutView<ChatListController> {
     super.componentDidMount();
   }
 
-  get screenName() {
-    return 'ChatListScreen';
+  public get screenName() {
+    return 'ChatScreen';
   }
 
   public get showHeaderLeftComponent() {

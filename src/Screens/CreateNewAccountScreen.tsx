@@ -24,7 +24,7 @@ class CreateNewAccountScreen extends BaseLayoutView<RegistrationController> {
     this._refMod && this._refMod.updateAnyWay();
   };
 
-  get screenName() {
+  public get screenName() {
     return 'CreateNewAccountScreen';
   }
 

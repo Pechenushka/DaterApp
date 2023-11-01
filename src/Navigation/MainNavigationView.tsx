@@ -29,9 +29,11 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
         <app.stacks.stackDrawer.Navigator
           drawerPosition={'left'}
           drawerType={'front'}
+          initialRouteName={Stacks.initialRouteName}
           screenOptions={{
             headerShown: false,
             gestureHandlerProps: {enabled: true},
+
             animationEnabled:
               Platform.OS == 'android' && parseInt(deviceInfoModule.getSystemVersion()) > 9
                 ? false
@@ -39,18 +41,21 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
           }}
           drawerContent={() => (
             <DrawerContentView {...this.childProps(this.model.drawerContentModel)} />
-          )}
-          initialRouteName={Stacks.initialRouteName}>
-          {app.stacks.screens.map(item => (
-            <app.stacks.stackDrawer.Screen
-              key={item.Screen.name}
-              name={item.Screen.name}
-              options={item.options}>
-              {props => (
-                <item.Screen {...props} {...this.childProps(app.setScreenModel(item.Screen))} />
-              )}
-            </app.stacks.stackDrawer.Screen>
-          ))}
+          )}>
+          {app.stacks.screens.map(item => {
+            return (
+              <app.stacks.stackDrawer.Screen
+                key={item.scrrenName}
+                name={item.scrrenName}
+                options={item.options}>
+                {props => {
+                  return (
+                    <item.Screen {...props} {...this.childProps(app.setScreenModel(item.Screen))} />
+                  );
+                }}
+              </app.stacks.stackDrawer.Screen>
+            );
+          })}
         </app.stacks.stackDrawer.Navigator>
         <PhotoViewerView {...this.childProps(app.photoViewer)} />
         <PopupNotificationView {...this.childProps(app.notification)} />
