@@ -6,7 +6,7 @@ import {
 import React from 'react';
 import {STYLES} from '../../../Styles/Styles';
 import {GoogleSignInModel} from '../../../Models/Components/AuthComponents/GoogleSignInModel';
-import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
+import {GoogleSigninButton} from 'react-native-google-signin';
 
 type googleSignInViewProps = baseComponentProps & {
   styles?: Object;
