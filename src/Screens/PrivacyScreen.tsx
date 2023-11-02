@@ -14,6 +14,8 @@ class PrivacyScreen extends BaseLayoutView<PrivacyConctroller> {
     super(props, PrivacyConctroller);
   }
 
+  static screenName = 'PrivacyScreen';
+
   async componentDidMount() {
     super.componentDidMount();
   }

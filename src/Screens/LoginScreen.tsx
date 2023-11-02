@@ -16,6 +16,8 @@ class LoginScreen extends BaseLayoutView<LoginController> {
     super(props, LoginController);
   }
 
+  static screenName = 'LoginScreen';
+
   public updateModel = () => {
     this._refMod && this._refMod.updateAnyWay();
   };

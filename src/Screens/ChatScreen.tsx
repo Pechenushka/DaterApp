@@ -14,6 +14,8 @@ class ChatScreen extends BaseLayoutView<ChatController> {
     super(props, ChatController);
   }
 
+  static screenName = 'ChatScreen';
+
   public get allowGoBack() {
     return true;
   }

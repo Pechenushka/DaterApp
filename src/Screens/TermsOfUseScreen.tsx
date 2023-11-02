@@ -19,6 +19,8 @@ class TermsOfUseScreen extends BaseLayoutView<TermsOfUseController> {
     super.componentDidMount();
   }
 
+  static screenName = 'TermsOfUseScreen';
+
   public get screenName() {
     return 'TermsOfUseScreen';
   }

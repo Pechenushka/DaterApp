@@ -16,6 +16,8 @@ class LikesScreen extends BaseLayoutView<LikesController> {
     super(props, LikesController);
   }
 
+  static screenName = 'LikesScreen';
+
   public get allowGoBack() {
     return true;
   }

@@ -38,6 +38,7 @@ class FireBaseHandler {
         app.currentUser.fcm = res.data.fcm;
       }
     } catch (error) {
+      console.log('ERROR', error);
       FireBaseHandler.logError(error);
     }
   }

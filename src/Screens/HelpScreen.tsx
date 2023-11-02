@@ -14,6 +14,8 @@ class HelpScreen extends BaseLayoutView<HelpController> {
     super(props, HelpController);
   }
 
+  static screenName = 'HelpScreen';
+
   public get allowGoBack() {
     return true;
   }

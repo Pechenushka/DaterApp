@@ -16,6 +16,8 @@ class CreateNewAccountScreen extends BaseLayoutView<RegistrationController> {
     super(props, RegistrationController);
   }
 
+  static screenName = 'CreateNewAccountScreen';
+
   async componentDidMount() {
     super.componentDidMount();
   }

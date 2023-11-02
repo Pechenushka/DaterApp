@@ -17,6 +17,8 @@ class PhotoGalleryScreen extends BaseLayoutView<PhotoGalleryController> {
     super(props, PhotoGalleryController);
   }
 
+  static screenName = 'PhotoGalleryScreen';
+
   async componentDidMount() {
     super.componentDidMount();
   }

@@ -106,7 +106,7 @@ class Stacks {
     return this._screens;
   }
 
-  public static initialRouteName = LoaderScreen.name;
+  public static initialRouteName = LoaderScreen.screenName;
 }
 
 export {Stacks};

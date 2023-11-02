@@ -20,6 +20,8 @@ class MainProfileScreen extends BaseLayoutView<HomeController> {
     super(props, HomeController);
   }
 
+  static screenName = 'MainProfileScreen';
+
   public get allowGoBack() {
     return false;
   }

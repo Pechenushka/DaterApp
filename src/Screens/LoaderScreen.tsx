@@ -11,6 +11,8 @@ class LoaderScreen extends BaseScreen<SplashController> {
     super(props, SplashController);
   }
 
+  static screenName = 'LoaderScreen';
+
   public get screenName() {
     return 'LoaderScreen';
   }

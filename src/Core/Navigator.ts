@@ -53,7 +53,7 @@ class Navigator {
         isBackground: false,
       },
     };
-    this._currentScreen = LoaderScreen.name;
+    this._currentScreen = LoaderScreen.screenName;
     this._startAppWithBackground = false;
   }
 
@@ -66,7 +66,9 @@ class Navigator {
   }
   public get prevScreen() {
     const length = this._state.prevScreens.length;
-    return length > 1 ? this._state.prevScreens[length - 2].impl.name : LoaderScreen.name;
+    return length > 1
+      ? this._state.prevScreens[length - 2].impl.screenName
+      : LoaderScreen.screenName;
   }
 
   public set state(value) {
@@ -82,19 +84,27 @@ class Navigator {
   }
 
   public navigate(screenImpl: baseScreenCreator, params: object = {}) {
-    if (this._navigation === null) {
-      return;
+    try {
+      console.log('Navigation to ', screenImpl.screenName);
+      if (this._navigation === null) {
+        console.log('this._navigation === null ');
+        return;
+      }
+      if (this._currentScreen === screenImpl.screenName) {
+        console.log('this._currentScreen === screenImpl.screenName');
+        return;
+      }
+      this._currentScreen = screenImpl.screenName;
+      const route: navigationRouteParamsType = {
+        name: screenImpl.screenName,
+        params,
+      };
+      console.log('this._navigation.dispatch');
+      this._navigation.dispatch(CommonActions.navigate(route));
+      this.pushScreenToHistory(screenImpl, params);
+    } catch (error) {
+      console.log('ERROR', error);
     }
-    if (this._currentScreen === screenImpl.name) {
-      return;
-    }
-    this._currentScreen = screenImpl.name;
-    const route: navigationRouteParamsType = {
-      name: screenImpl.name,
-      params,
-    };
-    this._navigation.dispatch(CommonActions.navigate(route));
-    this.pushScreenToHistory(screenImpl, params);
   }
 
   public navigateToMainStack(screenImpl: baseScreenCreator, params: object = {}) {
@@ -141,6 +151,7 @@ class Navigator {
           break;
       }
     } catch (error: any) {
+      console.log('ERROR', error);
       crashlytics().recordError(error, 'handleBackground error');
     }
   }

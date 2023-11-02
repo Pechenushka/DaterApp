@@ -16,6 +16,8 @@ class ChatListScreen extends BaseLayoutView<ChatListController> {
     super(props, ChatListController);
   }
 
+  static screenName = 'ChatListScreen';
+
   public get allowGoBack() {
     return true;
   }
@@ -25,7 +27,7 @@ class ChatListScreen extends BaseLayoutView<ChatListController> {
   }
 
   public get screenName() {
-    return 'ChatScreen';
+    return 'ChatListScreen';
   }
 
   public get showHeaderLeftComponent() {

@@ -16,6 +16,8 @@ class MyAnnouncementScreen extends BaseLayoutView<MyAnnouncementController> {
     super(props, MyAnnouncementController);
   }
 
+  static screenName = 'MyAnnouncementScreen';
+
   public get allowGoBack() {
     return true;
   }

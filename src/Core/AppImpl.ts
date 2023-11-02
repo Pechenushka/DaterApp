@@ -93,17 +93,17 @@ class MainApp implements AppImpl {
   public setScreenModel(modelImpl: baseScreenCreator) {
     if (Navigator.alwaysCreateNewScreens.find(impl => impl === modelImpl) !== undefined) {
       return new BaseScreenModel({
-        id: modelImpl.name,
-        screenName: modelImpl.name,
+        id: modelImpl.screenName,
+        screenName: modelImpl.screenName,
       });
     }
-    let model = this._screenModels[modelImpl.name];
+    let model = this._screenModels[modelImpl.screenName];
     if (model === undefined) {
       model = new BaseScreenModel({
-        id: modelImpl.name,
-        screenName: modelImpl.name,
+        id: modelImpl.screenName,
+        screenName: modelImpl.screenName,
       });
-      this._screenModels[modelImpl.name] = model;
+      this._screenModels[modelImpl.screenName] = model;
     }
     return model;
   }

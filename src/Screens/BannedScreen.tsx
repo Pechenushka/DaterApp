@@ -13,6 +13,8 @@ class BannedScreen extends BaseLayoutView<BannedController> {
     super(props, BannedController);
   }
 
+  static screenName = 'BannedScreen';
+
   async componentDidMount() {
     super.componentDidMount();
   }

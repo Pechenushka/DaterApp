@@ -24,6 +24,7 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
 
   public render() {
     super.render();
+    console.log('app.navigator.navigation = ref');
     return (
       <NavigationContainer ref={ref => (app.navigator.navigation = ref)}>
         <app.stacks.stackDrawer.Navigator
@@ -33,7 +34,6 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
           screenOptions={{
             headerShown: false,
             gestureHandlerProps: {enabled: true},
-
             animationEnabled:
               Platform.OS == 'android' && parseInt(deviceInfoModule.getSystemVersion()) > 9
                 ? false
@@ -45,8 +45,8 @@ class MainNavigationView extends TypedBaseComponent<mainNavigationViewProps, Mai
           {app.stacks.screens.map(item => {
             return (
               <app.stacks.stackDrawer.Screen
-                key={item.scrrenName}
-                name={item.scrrenName}
+                key={item.Screen.screenName}
+                name={item.Screen.screenName}
                 options={item.options}>
                 {props => {
                   return (

@@ -14,6 +14,8 @@ class GuestsScreen extends BaseLayoutView<GuestsController> {
     super(props, GuestsController);
   }
 
+  static screenName = 'GuestsScreen';
+
   public get allowGoBack() {
     return true;
   }

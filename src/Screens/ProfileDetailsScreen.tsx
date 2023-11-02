@@ -23,6 +23,8 @@ class ProfileDetailsScreen extends BaseLayoutView<ProfileDetailsController> {
     super.componentDidMount();
   }
 
+  static screenName = 'ProfileDetailsScreen';
+
   public get screenName() {
     return 'ProfileDetailsScreen';
   }

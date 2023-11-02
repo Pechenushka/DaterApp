@@ -3,6 +3,7 @@ import React from 'react';
 import {AppRegistry} from 'react-native';
 import App from './App';
 import {app} from './src/Core/AppImpl';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 //messaging().setBackgroundMessageHandler(
 //    async (message) => {
@@ -16,5 +17,9 @@ import {app} from './src/Core/AppImpl';
 function getApp() {
   return <App id={'app'} model={app.model} appName={app.model.appName} />;
 }
-
-AppRegistry.registerComponent(app.model.appName, () => getApp);
+try {
+  AppRegistry.registerComponent(app.model.appName, () => getApp);
+} catch (error) {
+  console.log('ERROR', error);
+  crashlytics().recordError(error, 'registerComponent error');
+}

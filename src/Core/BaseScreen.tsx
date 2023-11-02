@@ -11,7 +11,10 @@ export type baseScreenCreator = new (
   controllerImpl: new (props: baseControllerProps) => BaseController,
 ) => BaseScreen<BaseController>;
 
-abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<baseScreenProps, BaseScreenModel> {
+abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<
+  baseScreenProps,
+  BaseScreenModel
+> {
   /**
    *
    * @params C
@@ -31,6 +34,8 @@ abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<b
   public get id() {
     return this.screenName;
   }
+
+  static screenName: string;
 
   /**
    *
@@ -63,7 +68,10 @@ abstract class BaseScreen<C extends BaseController> extends TypedBaseComponent<b
     return {...super.childProps(model, ...parentIds), screen: this};
   }
 
-  public childPropsWithFreeKey<M extends BaseModel<baseModelProps>>(model: M, ...parentIds: string[]) {
+  public childPropsWithFreeKey<M extends BaseModel<baseModelProps>>(
+    model: M,
+    ...parentIds: string[]
+  ) {
     return {...super.childPropsWithFreeKey(model, ...parentIds), screen: this};
   }
 
