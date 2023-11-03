@@ -382,6 +382,8 @@ const itl: localizationPackType = {
   get_from_age: age => `da ${age}`,
   get_to_age: age => `a ${age}`,
   in_age: `nell'età`,
+  announcement_edited: 'Il tuo profilo è stato modificato con successo',
+  report_this_message: 'Segnala questo messaggio',
 };
 
 export {itl};

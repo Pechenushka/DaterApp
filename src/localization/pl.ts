@@ -383,6 +383,8 @@ const pl: localizationPackType = {
   get_from_age: age => `od ${age}`,
   get_to_age: age => `do ${age}`,
   in_age: `w wieku`,
+  announcement_edited: 'Twój profil został pomyślnie edytowany',
+  report_this_message: 'Zgłoś tę wiadomość',
 };
 
 export {pl};

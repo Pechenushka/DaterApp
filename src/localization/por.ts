@@ -381,6 +381,8 @@ const por: localizationPackType = {
   get_from_age: age => `a partir de ${age}`,
   get_to_age: age => `para ${age}`,
   in_age: `na idade`,
+  announcement_edited: 'Seu perfil foi editado com sucesso',
+  report_this_message: 'Denunciar esta mensagem',
 };
 
 export {por};

@@ -382,6 +382,8 @@ const bel: localizationPackType = {
   get_from_age: age => `ад ${age}`,
   get_to_age: age => `да ${age}`,
   in_age: `ва ўзросце`,
+  announcement_edited: 'Ваш профіль быў паспяхова адрэдагаваны',
+  report_this_message: 'Паскардзіцца на гэта паведамленне',
 };
 
 export {bel};

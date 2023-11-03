@@ -382,6 +382,8 @@ const spa: localizationPackType = {
   get_from_age: age => `desde ${age}`,
   get_to_age: age => `a ${age}`,
   in_age: `en edad`,
+  announcement_edited: 'Tu perfil editado exitosamente',
+  report_this_message: 'Reportar este mensaje',
 };
 
 export {spa};

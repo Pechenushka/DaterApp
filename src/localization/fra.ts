@@ -382,6 +382,8 @@ const fra: localizationPackType = {
   get_from_age: age => `à partir de ${age}`,
   get_to_age: age => `à ${age}`,
   in_age: `en âge`,
+  announcement_edited: 'Votre profil a été modifié avec succès',
+  report_this_message: 'Signaler ce message',
 };
 
 export {fra};

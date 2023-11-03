@@ -166,7 +166,7 @@ const SearchStyles = StyleSheet.create({
     width: '95%',
     marginTop: hp(40),
     alignItems: 'center',
-    marginLeft: hp(-90),
+    marginLeft: hp(20),
     padding: hp(5),
   },
 
@@ -205,11 +205,11 @@ const SearchStyles = StyleSheet.create({
     width: '95%',
     alignItems: 'center',
     paddingBottom: hp(10),
-    marginLeft: 40,
+    marginLeft: hp(20),
   },
 
   mainInfoConainer: {
-    marginLeft: hp(-90),
+    marginLeft: hp(20),
   },
 });
 

@@ -394,6 +394,8 @@ const ger: localizationPackType = {
   get_from_age: age => `ab ${age}`,
   get_to_age: age => `bis ${age}`,
   in_age: `im alter`,
+  announcement_edited: 'Ihr Profil wurde erfolgreich bearbeitet',
+  report_this_message: 'Melden Sie diese Nachricht',
 };
 
 export {ger};

@@ -383,6 +383,8 @@ const ua: localizationPackType = {
   get_from_age: age => `з ${age}`,
   get_to_age: age => `до ${age}`,
   in_age: `у віці`,
+  announcement_edited: 'Ваша анкета успішно відредагована',
+  report_this_message: 'Поскаржитись на це повідомлення',
 };
 
 export {ua};

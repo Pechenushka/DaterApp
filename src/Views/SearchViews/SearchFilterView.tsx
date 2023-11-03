@@ -42,7 +42,7 @@ class SearchFilterView extends TypedBaseComponent<searchFilterViewProps, SearchF
             <Text style={SearchStyles.filterModalMainTilte}>{_.lang.filters}</Text>
 
             <ScrollView
-              contentContainerStyle={[BaseStyles.w95, BaseStyles.ai_c, {marginLeft: -30}]}
+              contentContainerStyle={[BaseStyles.w95, BaseStyles.ai_fs]}
               ref={ref => {
                 //@ts-ignore
                 this.model.filterScroll = ref;

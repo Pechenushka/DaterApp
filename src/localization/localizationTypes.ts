@@ -208,6 +208,8 @@ export type localizationPackType = {
   get_from_age: (age: number) => string;
   get_to_age: (age: number) => string;
   in_age: string;
+  announcement_edited: string;
+  report_this_message: string;
 };
 
 export type localizationEnum =

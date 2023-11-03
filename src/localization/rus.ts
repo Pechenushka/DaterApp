@@ -384,6 +384,8 @@ const rus: localizationPackType = {
   get_from_age: age => `от ${age}`,
   get_to_age: age => `до ${age}`,
   in_age: `в возрасте`,
+  announcement_edited: 'Ваш профиль успешно отредактирован',
+  report_this_message: 'Пожаловаться на это сообщение',
 };
 
 export {rus};

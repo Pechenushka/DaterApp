@@ -13,6 +13,7 @@ import {RoundAvatarView} from '../Components/Avatars/RoundAvatarView';
 import {BaseStyles} from '../../Styles/BaseStyles';
 import {TextInputView} from '../Components/Inputs/TextInputView';
 import {MyAnnouncementStyles} from '../../Styles/MyAnnouncementStyles';
+import {_} from '../../Core/Localization';
 
 type messageReportModalViewProps = baseComponentProps & {};
 
@@ -43,7 +44,7 @@ class MessageReportModalView extends TypedBaseComponent<
               />
               <View style={BaseStyles.w90}>
                 <Text style={[BaseStyles.mt20, BaseStyles.fs18, BaseStyles.fontBold]}>
-                  Report this message:
+                  {_.lang.report_this_message}
                 </Text>
                 <View style={[BaseStyles.row, BaseStyles.mt20, BaseStyles.mb10]}>
                   <RoundAvatarView id="userAvatar" size={50} imagePath={this.model.authorAvatar} />

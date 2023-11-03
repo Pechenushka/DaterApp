@@ -507,7 +507,7 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
     if (city !== undefined) {
       app.currentUser.location.city = city;
     }
-    app.notification.showSuccess(_.lang.success, 'Your announcment succesfuly edited');
+    app.notification.showSuccess(_.lang.success, _.lang.announcement_edited);
     app.navigator.goToMainProfileScreen();
     this._editButton.disabled = false;
   };
