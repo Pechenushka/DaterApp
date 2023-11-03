@@ -20,6 +20,5 @@ function getApp() {
 try {
   AppRegistry.registerComponent(app.model.appName, () => getApp);
 } catch (error) {
-  console.log('ERROR', error);
   crashlytics().recordError(error, 'registerComponent error');
 }

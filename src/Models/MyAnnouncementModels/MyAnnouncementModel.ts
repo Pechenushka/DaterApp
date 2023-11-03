@@ -514,67 +514,72 @@ class MyAnnouncementModel extends BaseModel<myAnnouncementModelProps> {
 
   public loadExistingAnnouncment = async () => {
     this.loading = true;
-    const loadResult = await loadData(UserDataProvider.GetUserMeeting, {
-      authorId: app.currentUser.userId,
-    });
-    if (loadResult === null) {
-      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
-      this.loading = false;
-      return;
-    }
-    if (loadResult.statusCode === 200) {
-      this.editMode = true;
-      this._discribeInput.value = loadResult.data.text;
-      this.previewLabelModel.text = loadResult.data.text;
-      this.previewLocationLabelModel.text = `${loadResult.data.countryName}, ${loadResult.data.regionName}, ${loadResult.data.cityName}`;
+    try {
+      const loadResult = await loadData(UserDataProvider.GetUserMeeting, {
+        authorId: app.currentUser.userId,
+      });
+      if (loadResult === null) {
+        app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
+        this.loading = false;
+        return;
+      }
+      if (loadResult.statusCode === 200) {
+        this.editMode = true;
+        this._discribeInput.value = loadResult.data.text;
+        this.previewLabelModel.text = loadResult.data.text;
+        this.previewLocationLabelModel.text = `${loadResult.data.countryName}, ${loadResult.data.regionName}, ${loadResult.data.cityName}`;
 
-      this._sexSelection.selectItems(loadResult.data.lookingfor);
-      this._goalsSelection.selectItems(loadResult.data.goal);
+        this._sexSelection.selectItems(loadResult.data.lookingfor || []);
+        this._goalsSelection.selectItems(loadResult.data.goal || []);
 
-      const selectedAlco = this._alcoSelection.list.find(el => el.id === loadResult.data.alco);
-      this._alcoSelection.selectItem(selectedAlco);
+        const selectedAlco = this._alcoSelection.list.find(el => el.id === loadResult.data.alco);
+        this._alcoSelection.selectItem(selectedAlco);
 
-      const selectedSmoking = this._smokeSelection.list.find(
-        el => el.id === loadResult.data.smoking,
-      );
-      this._smokeSelection.selectItem(selectedSmoking);
+        const selectedSmoking = this._smokeSelection.list.find(
+          el => el.id === loadResult.data.smoking,
+        );
+        this._smokeSelection.selectItem(selectedSmoking);
 
-      const selectedKids = this._kidsSelection.list.find(el => el.id === loadResult.data.kids);
-      this._kidsSelection.selectItem(selectedKids);
+        const selectedKids = this._kidsSelection.list.find(el => el.id === loadResult.data.kids);
+        this._kidsSelection.selectItem(selectedKids);
 
-      this._sponsorSwitcher.value =
-        loadResult.data.sponsor !== null ? loadResult.data.sponsor : false;
+        this._sponsorSwitcher.value =
+          loadResult.data.sponsor !== null ? loadResult.data.sponsor : false;
 
-      this._keepterSwitcher.value =
-        loadResult.data.keepter !== null ? loadResult.data.keepter : false;
+        this._keepterSwitcher.value =
+          loadResult.data.keepter !== null ? loadResult.data.keepter : false;
 
-      const selectedCountry = this._countrySelection.list.find(
-        el => el.name === loadResult.data.countryName,
-      );
-      selectedCountry && this._countrySelection.selectItem(selectedCountry);
-
-      this._countrySelection.onListReady = async () => {
         const selectedCountry = this._countrySelection.list.find(
           el => el.name === loadResult.data.countryName,
         );
         selectedCountry && this._countrySelection.selectItem(selectedCountry);
-      };
-      this._regionSelection.onListReady = async () => {
-        const selectedRegion = this._regionSelection.list.find(
-          el => el.name === loadResult.data.regionName,
-        );
-        selectedRegion && this._regionSelection.selectItem(selectedRegion);
-      };
 
-      this._citySelection.onListReady = async () => {
-        const selectedCity = this._citySelection.list.find(
-          el => el.name === loadResult.data.cityName,
-        );
-        selectedCity && this._citySelection.selectItem(selectedCity);
-      };
+        this._countrySelection.onListReady = async () => {
+          const selectedCountry = this._countrySelection.list.find(
+            el => el.name === loadResult.data.countryName,
+          );
+          selectedCountry && this._countrySelection.selectItem(selectedCountry);
+        };
+        this._regionSelection.onListReady = async () => {
+          const selectedRegion = this._regionSelection.list.find(
+            el => el.name === loadResult.data.regionName,
+          );
+          selectedRegion && this._regionSelection.selectItem(selectedRegion);
+        };
 
-      this._fromAgeInput.value = `${loadResult.data.fromAge || ''}`;
-      this._toAgeInput.value = `${loadResult.data.toAge || ''}`;
+        this._citySelection.onListReady = async () => {
+          const selectedCity = this._citySelection.list.find(
+            el => el.name === loadResult.data.cityName,
+          );
+          selectedCity && this._citySelection.selectItem(selectedCity);
+        };
+
+        this._fromAgeInput.value = `${loadResult.data.fromAge || ''}`;
+        this._toAgeInput.value = `${loadResult.data.toAge || ''}`;
+      }
+    } catch (error) {
+      this.loading = false;
+      app.notification.showError(_.lang.warning, _.lang.servers_are_not_allowed);
     }
 
     this.loading = false;

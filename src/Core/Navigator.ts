@@ -85,13 +85,10 @@ class Navigator {
 
   public navigate(screenImpl: baseScreenCreator, params: object = {}) {
     try {
-      console.log('Navigation to ', screenImpl.screenName);
       if (this._navigation === null) {
-        console.log('this._navigation === null ');
         return;
       }
       if (this._currentScreen === screenImpl.screenName) {
-        console.log('this._currentScreen === screenImpl.screenName');
         return;
       }
       this._currentScreen = screenImpl.screenName;
@@ -99,11 +96,10 @@ class Navigator {
         name: screenImpl.screenName,
         params,
       };
-      console.log('this._navigation.dispatch');
       this._navigation.dispatch(CommonActions.navigate(route));
       this.pushScreenToHistory(screenImpl, params);
-    } catch (error) {
-      console.log('ERROR', error);
+    } catch (error: any) {
+      crashlytics().recordError(error, 'navigate error');
     }
   }
 
