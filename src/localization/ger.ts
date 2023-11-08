@@ -396,6 +396,10 @@ const ger: localizationPackType = {
   in_age: `im alter`,
   announcement_edited: 'Ihr Profil wurde erfolgreich bearbeitet',
   report_this_message: 'Melden Sie diese Nachricht',
+  dear_users: 'Liebe Benutzer!',
+  support_text:
+    'Um weiterhin eine kostenlose App zu sein, brauchen wir Ihre Unterstützung. Wir schränken Ihre Nutzung der Anwendung nicht ein. Unterstützen Sie uns auf Patreon',
+  support_us: 'Unterstütze uns!',
 };
 
 export {ger};

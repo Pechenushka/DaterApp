@@ -389,6 +389,10 @@ const eng: localizationPackType = {
   in_age: `in age`,
   announcement_edited: 'Your profile successfuly edited',
   report_this_message: 'Report this message',
+  dear_users: 'Dear users!',
+  support_text:
+    'In order to continue to be a free app, we need your support. We do not limit your use of the application. Support us on patreon',
+  support_us: 'Support Us!',
 };
 
 export {eng};

@@ -243,7 +243,7 @@ class PhotoGalleryView extends TypedBaseComponent<photoGalleryViewProps, PhotoGa
                     </>
                   ) : (
                     <>
-                      {this.model.revardCount > 0 ? (
+                      {this.model.revardCount > 0 || true ? ( // temporary disable ads
                         <>
                           <Text style={PhotoGalleryStyles.addAnonPhotoModalHint}>
                             {_.lang.now_you_can_add_anon_photo}

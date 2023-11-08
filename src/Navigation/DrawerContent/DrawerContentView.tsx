@@ -82,11 +82,11 @@ class DrawerContentView extends TypedBaseComponent<drawerContentViewProps, Drawe
               <Text style={this.styles.label}>{_.lang.terms_of_use_title}</Text>
             </TouchableOpacity>
           </View>
-          <View style={this.styles.container}>
+          {/* <View style={this.styles.container}>
             <TouchableOpacity style={this.styles.button} onPress={this.onTelegramPress}>
               <Text style={this.styles.label}>{_.lang.our_telegram}</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
           <View style={this.styles.container}>
             <TouchableOpacity style={this.styles.button} onPress={this.onHelpPress}>
               <Text style={this.styles.label}>{_.lang.help}</Text>

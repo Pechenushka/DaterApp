@@ -384,6 +384,9 @@ const itl: localizationPackType = {
   in_age: `nell'età`,
   announcement_edited: 'Il tuo profilo è stato modificato con successo',
   report_this_message: 'Segnala questo messaggio',
+  dear_users: 'Cari utenti!',
+  support_text: `Per continuare ad essere un'app gratuita, abbiamo bisogno del tuo supporto. Non limitiamo l'utilizzo dell'applicazione. Sostienici su Patreon`,
+  support_us: 'Supportaci!',
 };
 
 export {itl};

@@ -6,7 +6,7 @@ import {app} from '../../Core/AppImpl';
 import {appSettings} from '../../Common/AppSettings';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
 import {_} from '../../Core/Localization';
-import {Alert} from 'react-native';
+import {Alert, Linking} from 'react-native';
 import {LoginScreen} from '../../Screens/LoginScreen';
 import {GuestsScreen} from '../../Screens/GuestsScreen';
 import {HelpScreen} from '../../Screens/HelpScreen';
@@ -25,6 +25,7 @@ class HomeModel extends BaseModel<homeModelProps> {
   private _toPhotoAccessRequests: SimpleButtonModel;
   private _userStatus: boolean | null | undefined = true;
   private _deleteAvatar: SimpleButtonModel;
+  private _supportButton: SimpleButtonModel;
   constructor(props: homeModelProps) {
     super(props);
     this._toChats = new SimpleButtonModel({
@@ -92,6 +93,13 @@ class HomeModel extends BaseModel<homeModelProps> {
       onPress: this.onDeleteAvatarPress,
       icon: ICONS.deleteIcon,
     });
+
+    this._supportButton = new SimpleButtonModel({
+      id: '_supportButton',
+      onPress: this.onSupportButtonPress,
+      text: _.lang.support_us,
+    });
+
     this.updateRequestCount();
   }
 
@@ -139,6 +147,10 @@ class HomeModel extends BaseModel<homeModelProps> {
     return this._toSearch;
   }
 
+  public get supportButton() {
+    return this._supportButton;
+  }
+
   public toResponsesPress = () => {
     console.log('toResponses');
   };
@@ -173,6 +185,10 @@ class HomeModel extends BaseModel<homeModelProps> {
 
   public toChatsPress = () => {
     app.navigator.goToChatListScreen();
+  };
+
+  public onSupportButtonPress = () => {
+    Linking.openURL('https://www.patreon.com/SMSoft');
   };
 
   public changeAvatar = async () => {

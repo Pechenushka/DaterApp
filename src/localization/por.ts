@@ -383,6 +383,10 @@ const por: localizationPackType = {
   in_age: `na idade`,
   announcement_edited: 'Seu perfil foi editado com sucesso',
   report_this_message: 'Denunciar esta mensagem',
+  dear_users: 'Caros usuários!',
+  support_text:
+    'Para continuar sendo um aplicativo gratuito, precisamos do seu apoio. Não limitamos o uso do aplicativo. Apoie-nos no Patreon',
+  support_us: 'Apoie-nos!',
 };
 
 export {por};

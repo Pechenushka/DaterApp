@@ -134,7 +134,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                     {app.currentUser.location.city.name}
                   </Text>
                 )}
-                <View style={[HomeScreenStyles.contactsContainer]}>
+                {/* <View style={[HomeScreenStyles.contactsContainer]}>
                   <Text style={[HomeScreenStyles.contactsTitleText]}>{_.lang.contacts}</Text>
                   <View style={[HomeScreenStyles.infoItemContainer]}>
                     <Image source={ICONS.emailIconDetail} style={[BaseStyles.defaultIcon]} />
@@ -155,6 +155,15 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                       </Text>
                     </View>
                   )}
+                </View> */}
+                <View style={[HomeScreenStyles.supportContainer]}>
+                  <Text style={[HomeScreenStyles.supportTitleText]}>{_.lang.dear_users}</Text>
+                  <Text style={[HomeScreenStyles.supportText]}>{_.lang.support_text}</Text>
+                  <SimpleButtonView
+                    styles={[HomeScreenStyles.supportButtonContainer]}
+                    textStyles={[HomeScreenStyles.supportButtonText]}
+                    {...this.childProps(this.model.supportButton)}
+                  />
                 </View>
                 <View style={[BaseStyles.row]}>
                   <View style={[HomeScreenStyles.actionButtonColum]}>

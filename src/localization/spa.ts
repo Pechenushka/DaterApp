@@ -384,6 +384,10 @@ const spa: localizationPackType = {
   in_age: `en edad`,
   announcement_edited: 'Tu perfil editado exitosamente',
   report_this_message: 'Reportar este mensaje',
+  dear_users: 'Queridos usuarios!',
+  support_text:
+    'Para seguir siendo una aplicación gratuita, necesitamos su apoyo. No limitamos su uso de la aplicación. Apóyanos en Patreon',
+  support_us: '¡Apoyanos!',
 };
 
 export {spa};

@@ -170,6 +170,33 @@ const HomeScreenStyles = StyleSheet.create({
     width: hp(320),
     flexDirection: 'row',
   },
+
+  supportContainer: {
+    alignItems: 'center',
+    width: '90%',
+    marginVertical: hp(20),
+  },
+
+  supportTitleText: {
+    fontSize: hp(20),
+    fontWeight: 'bold',
+  },
+
+  supportText: {
+    fontSize: hp(16),
+  },
+
+  supportButtonContainer: {
+    backgroundColor: COLORS.MAIN_BLUE,
+    borderRadius: 12,
+    padding: hp(10),
+    marginTop: hp(15),
+  },
+
+  supportButtonText: {
+    color: COLORS.WHITE,
+    fontWeight: 'bold',
+  },
 });
 
 export {HomeScreenStyles};

@@ -210,6 +210,9 @@ export type localizationPackType = {
   in_age: string;
   announcement_edited: string;
   report_this_message: string;
+  support_us: string;
+  dear_users: string;
+  support_text: string;
 };
 
 export type localizationEnum =

@@ -385,6 +385,10 @@ const pl: localizationPackType = {
   in_age: `w wieku`,
   announcement_edited: 'Twój profil został pomyślnie edytowany',
   report_this_message: 'Zgłoś tę wiadomość',
+  dear_users: 'Drodzy użytkownicy!',
+  support_text:
+    'Aby nadal być bezpłatną aplikacją, potrzebujemy Twojego wsparcia. Nie ograniczamy Twojego korzystania z aplikacji. Wesprzyj nas na Patreonie',
+  support_us: 'Wesprzyj nas!',
 };
 
 export {pl};

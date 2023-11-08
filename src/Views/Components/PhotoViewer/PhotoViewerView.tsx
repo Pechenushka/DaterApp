@@ -68,7 +68,7 @@ class PhotoViewerView extends TypedBaseComponent<photoViewerViewProps, PhotoView
             <View style={PhotoViewerStyles.bottomContantContainer}>
               <Image style={PhotoViewerStyles.anonIcon} source={ICONS.anonymusIcon} />
 
-              {this.model.rewardCount > 0 ? (
+              {this.model.rewardCount > 0 || true ? ( // temporary disable ads
                 <>
                   <Text style={PhotoViewerStyles.anonHint}>
                     {_.lang.now_you_can_make_photo_access_request}

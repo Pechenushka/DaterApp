@@ -384,6 +384,9 @@ const fra: localizationPackType = {
   in_age: `en âge`,
   announcement_edited: 'Votre profil a été modifié avec succès',
   report_this_message: 'Signaler ce message',
+  dear_users: 'Chers utilisateurs !',
+  support_text: `Afin de continuer à être une application gratuite, nous avons besoin de votre soutien. Nous ne limitons pas votre utilisation de l'application. Soutenez-nous sur Patreon`,
+  support_us: 'Soutenez-nous !',
 };
 
 export {fra};
