@@ -248,7 +248,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
               </View> */}
               </View>
             </View>
-            <View style={[]}>
+            <View style={[{top: -50}]}>
               <BannerAd
                 unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/7617680070'}
                 size={BannerAdSize.BANNER}
