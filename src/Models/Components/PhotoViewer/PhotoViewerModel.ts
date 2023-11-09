@@ -24,7 +24,7 @@ class PhotoViewerModel extends BaseModel<photoViewerModelProps> {
   private _rewardCount: number = 0;
   private timeoutId: any = null;
 
-  private adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-6052303679653895/6126869230';
+  private adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-6052303679653895/6928475667';
   private rewarded = RewardedAd.createForAdRequest(this.adUnitId, {
     requestNonPersonalizedAdsOnly: true,
   });

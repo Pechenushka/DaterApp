@@ -228,7 +228,7 @@ class ProfileDetailsModalView extends TypedBaseComponent<
                   </View>
                   <View style={[{}]}>
                     <BannerAd
-                      unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'}
+                      unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/9124475738'}
                       size={BannerAdSize.BANNER}
                     />
                   </View>

@@ -135,13 +135,13 @@ android {
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
-    namespace "com.dater"
+    namespace "com.meebo"
     defaultConfig {
-        applicationId "com.dater"
+        applicationId "com.meebo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 38
-        versionName "1.9.0"
+        versionCode 1
+        versionName "1.0.0"
     }
     splits {
         abi {

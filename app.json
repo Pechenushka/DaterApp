@@ -1,8 +1,8 @@
 {
-  "name": "Dater",
-  "displayName": "Dater",
+  "name": "Meebo",
+  "displayName": "Meebo",
   "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-6052303679653895~2495583086",
-    "ios_app_id": "ca-app-pub-6052303679653895~2495583086"
+    "android_app_id": "ca-app-pub-6052303679653895~9582559164",
+    "ios_app_id": "ca-app-pub-6052303679653895~9582559164"
   }
 }

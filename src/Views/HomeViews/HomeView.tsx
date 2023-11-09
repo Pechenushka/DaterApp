@@ -250,7 +250,7 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
             </View>
             <View style={[{top: -50}]}>
               <BannerAd
-                unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/7617680070'}
+                unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/6931510947'}
                 size={BannerAdSize.BANNER}
               />
             </View>

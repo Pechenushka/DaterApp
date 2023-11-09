@@ -299,14 +299,15 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                         {this.model.userInfo.email}
                       </Text>
                     </View>
-                    {this.model.userInfo.phone !== undefined && this.model.userInfo.phone !== '' && (
-                      <View style={[HomeScreenStyles.infoItemContainer]}>
-                        <Image source={ICONS.phoneIcon} style={[BaseStyles.defaultIcon]} />
-                        <Text style={[HomeScreenStyles.infoItemText]}>
-                          {this.model.userInfo.phone}
-                        </Text>
-                      </View>
-                    )}
+                    {this.model.userInfo.phone !== undefined &&
+                      this.model.userInfo.phone !== '' && (
+                        <View style={[HomeScreenStyles.infoItemContainer]}>
+                          <Image source={ICONS.phoneIcon} style={[BaseStyles.defaultIcon]} />
+                          <Text style={[HomeScreenStyles.infoItemText]}>
+                            {this.model.userInfo.phone}
+                          </Text>
+                        </View>
+                      )}
                     {this.model.userInfo.telegram !== undefined &&
                       this.model.userInfo.telegram !== '' && (
                         <View style={[HomeScreenStyles.infoItemContainer]}>
@@ -441,7 +442,7 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
               <View style={[BaseStyles.mt20]}>{this.getBlockedAlert()}</View>
               <View style={[]}>
                 <BannerAd
-                  unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/3770804609'}
+                  unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-6052303679653895/9124475738'}
                   size={BannerAdSize.BANNER}
                 />
               </View>

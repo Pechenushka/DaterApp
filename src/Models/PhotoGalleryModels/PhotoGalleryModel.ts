@@ -29,7 +29,7 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
   private _fullscreenUrl: string = '';
   private timeoutId: any = null;
 
-  private adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-6052303679653895/5794465817';
+  private adUnitId = __DEV__ ? TestIds.REWARDED : 'ca-app-pub-6052303679653895/6928475667';
   private rewarded = RewardedAd.createForAdRequest(this.adUnitId, {
     requestNonPersonalizedAdsOnly: true,
   });
