@@ -90,9 +90,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:557289905378:android:641648fa83b091e580d2bb",
+        "mobilesdk_app_id": "1:557289905378:android:c0578464219c087a80d2bb",
         "android_client_info": {
-          "package_name": "com.meebo"
+          "package_name": "com.meebodates"
         }
       },
       "oauth_client": [
