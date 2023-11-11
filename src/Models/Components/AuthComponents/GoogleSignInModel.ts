@@ -18,7 +18,7 @@ class GoogleSignInModel extends BaseModel<googleSignInModelProps> {
   public onPress = async () => {
     try {
       GoogleSignin.configure({
-        webClientId: '632932715313-46jldg0jkapnhvse9j3u1hd4mdnss1aj.apps.googleusercontent.com',
+        webClientId: '557289905378-7kijm9m8tonl97a37gqetcvn1oc0j63n.apps.googleusercontent.com',
       });
       const signinobj = await GoogleSignin.signIn();
 
@@ -67,6 +67,7 @@ class GoogleSignInModel extends BaseModel<googleSignInModelProps> {
         return;
       }
     } catch (error: any) {
+      console.log(error);
       crashlytics().recordError(error, 'Google sign in onPress error');
     }
   };
