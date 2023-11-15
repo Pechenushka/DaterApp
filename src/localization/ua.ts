@@ -389,6 +389,7 @@ const ua: localizationPackType = {
   support_text:
     'Щоб і надалі залишатися безкоштовним додатком, нам потрібна ваша підтримка. Ми не обмежуємо ваше використання додатку. Підтримайте нас на Patreon',
   support_us: 'Підтримайте нас!',
+  bymecoffe: 'Buy me a coffee',
 };
 
 export {ua};

@@ -159,11 +159,18 @@ class HomeView extends TypedBaseComponent<homeViewProps, HomeModel> {
                 <View style={[HomeScreenStyles.supportContainer]}>
                   <Text style={[HomeScreenStyles.supportTitleText]}>{_.lang.dear_users}</Text>
                   <Text style={[HomeScreenStyles.supportText]}>{_.lang.support_text}</Text>
-                  <SimpleButtonView
-                    styles={[HomeScreenStyles.supportButtonContainer]}
-                    textStyles={[HomeScreenStyles.supportButtonText]}
-                    {...this.childProps(this.model.supportButton)}
-                  />
+                  <View style={[BaseStyles.row]}>
+                    <SimpleButtonView
+                      styles={[HomeScreenStyles.supportButtonContainer]}
+                      textStyles={[HomeScreenStyles.supportButtonText]}
+                      {...this.childProps(this.model.supportButton)}
+                    />
+                    <SimpleButtonView
+                      styles={[HomeScreenStyles.supportButtonContainer]}
+                      textStyles={[HomeScreenStyles.supportButtonText]}
+                      {...this.childProps(this.model.byemecoffeButton)}
+                    />
+                  </View>
                 </View>
                 <View style={[BaseStyles.row]}>
                   <View style={[HomeScreenStyles.actionButtonColum]}>

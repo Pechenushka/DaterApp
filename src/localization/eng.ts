@@ -393,6 +393,7 @@ const eng: localizationPackType = {
   support_text:
     'In order to continue to be a free app, we need your support. We do not limit your use of the application. Support us on patreon',
   support_us: 'Support Us!',
+  bymecoffe: 'Buy me a coffee',
 };
 
 export {eng};

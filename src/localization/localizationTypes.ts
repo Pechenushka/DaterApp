@@ -213,6 +213,7 @@ export type localizationPackType = {
   support_us: string;
   dear_users: string;
   support_text: string;
+  bymecoffe: string;
 };
 
 export type localizationEnum =

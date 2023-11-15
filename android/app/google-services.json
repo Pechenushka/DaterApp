@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "557289905378-7kijm9m8tonl97a37gqetcvn1oc0j63n.apps.googleusercontent.com",
+          "client_id": "557289905378-l4a67hkr9v9apnogj6k1v5ph6iq7ncpn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +27,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "557289905378-7kijm9m8tonl97a37gqetcvn1oc0j63n.apps.googleusercontent.com",
+              "client_id": "557289905378-l4a67hkr9v9apnogj6k1v5ph6iq7ncpn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -44,7 +44,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "557289905378-7kijm9m8tonl97a37gqetcvn1oc0j63n.apps.googleusercontent.com",
+          "client_id": "557289905378-l4a67hkr9v9apnogj6k1v5ph6iq7ncpn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -57,7 +57,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "557289905378-7kijm9m8tonl97a37gqetcvn1oc0j63n.apps.googleusercontent.com",
+              "client_id": "557289905378-l4a67hkr9v9apnogj6k1v5ph6iq7ncpn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -73,15 +73,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "557289905378-70f4fgu63rnt16g52qp0h8tkp58e5siq.apps.googleusercontent.com",
+          "client_id": "557289905378-cf69j7sijap36djh9go18jo8pes8c1od.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.meebodates",
-            "certificate_hash": "4ba23aa7ef8c760f90db08d50e7838f3d87a0633"
+            "certificate_hash": "46682b965120f081567b133ef554575c112376a2"
           }
         },
         {
-          "client_id": "557289905378-7kijm9m8tonl97a37gqetcvn1oc0j63n.apps.googleusercontent.com",
+          "client_id": "557289905378-l4a67hkr9v9apnogj6k1v5ph6iq7ncpn.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -94,7 +94,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "557289905378-7kijm9m8tonl97a37gqetcvn1oc0j63n.apps.googleusercontent.com",
+              "client_id": "557289905378-l4a67hkr9v9apnogj6k1v5ph6iq7ncpn.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

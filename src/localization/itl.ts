@@ -387,6 +387,7 @@ const itl: localizationPackType = {
   dear_users: 'Cari utenti!',
   support_text: `Per continuare ad essere un'app gratuita, abbiamo bisogno del tuo supporto. Non limitiamo l'utilizzo dell'applicazione. Sostienici su Patreon`,
   support_us: 'Supportaci!',
+  bymecoffe: 'Buy me a coffee',
 };
 
 export {itl};

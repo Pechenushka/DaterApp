@@ -390,6 +390,7 @@ const rus: localizationPackType = {
   support_text:
     'Чтобы и дальше оставаться бесплатным приложением, нам нужна ваша поддержка. Мы не ограничиваем ваше использование приложения. Поддержите нас на Patreon',
   support_us: 'Поддержи нас!',
+  bymecoffe: 'Buy me a coffee',
 };
 
 export {rus};

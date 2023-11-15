@@ -26,6 +26,8 @@ class HomeModel extends BaseModel<homeModelProps> {
   private _userStatus: boolean | null | undefined = true;
   private _deleteAvatar: SimpleButtonModel;
   private _supportButton: SimpleButtonModel;
+  private _byemecoffeButton: SimpleButtonModel;
+
   constructor(props: homeModelProps) {
     super(props);
     this._toChats = new SimpleButtonModel({
@@ -100,6 +102,12 @@ class HomeModel extends BaseModel<homeModelProps> {
       text: _.lang.support_us,
     });
 
+    this._byemecoffeButton = new SimpleButtonModel({
+      id: '_byemecoffeButton',
+      onPress: this.onByMeCoffeButtonPress,
+      text: _.lang.bymecoffe,
+    });
+
     this.updateRequestCount();
   }
 
@@ -151,6 +159,10 @@ class HomeModel extends BaseModel<homeModelProps> {
     return this._supportButton;
   }
 
+  public get byemecoffeButton() {
+    return this._byemecoffeButton;
+  }
+
   public toResponsesPress = () => {
     console.log('toResponses');
   };
@@ -189,6 +201,10 @@ class HomeModel extends BaseModel<homeModelProps> {
 
   public onSupportButtonPress = () => {
     Linking.openURL('https://www.patreon.com/SMSoft');
+  };
+
+  public onByMeCoffeButtonPress = () => {
+    Linking.openURL('https://www.buymeacoffee.com/smsoft');
   };
 
   public changeAvatar = async () => {

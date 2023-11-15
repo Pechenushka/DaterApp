@@ -388,6 +388,7 @@ const spa: localizationPackType = {
   support_text:
     'Para seguir siendo una aplicación gratuita, necesitamos su apoyo. No limitamos su uso de la aplicación. Apóyanos en Patreon',
   support_us: '¡Apoyanos!',
+  bymecoffe: 'Buy me a coffee',
 };
 
 export {spa};

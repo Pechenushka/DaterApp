@@ -400,6 +400,7 @@ const ger: localizationPackType = {
   support_text:
     'Um weiterhin eine kostenlose App zu sein, brauchen wir Ihre Unterstützung. Wir schränken Ihre Nutzung der Anwendung nicht ein. Unterstützen Sie uns auf Patreon',
   support_us: 'Unterstütze uns!',
+  bymecoffe: 'Buy me a coffee',
 };
 
 export {ger};

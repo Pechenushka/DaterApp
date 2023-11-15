@@ -388,6 +388,7 @@ const bel: localizationPackType = {
   support_text:
     'Каб працягваць заставацца бясплатным дадаткам, нам патрэбна ваша падтрымка. Мы не абмяжоўваем выкарыстанне вамі прыкладання. Падтрымайце нас на Patreon',
   support_us: 'Падтрымайце нас!',
+  bymecoffe: 'Buy me a coffee',
 };
 
 export {bel};

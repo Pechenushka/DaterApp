@@ -191,6 +191,7 @@ const HomeScreenStyles = StyleSheet.create({
     borderRadius: 12,
     padding: hp(10),
     marginTop: hp(15),
+    marginHorizontal: hp(15),
   },
 
   supportButtonText: {
