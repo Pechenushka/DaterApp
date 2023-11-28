@@ -10,6 +10,8 @@ class SocketHandler {
     if (app.currentUser && app.currentUser.userId !== -1) {
       SocketHandler.socket = io(appSettings.apiEndpoint, {
         query: {id: app.currentUser.userId, name: app.currentUser.userName},
+        reconnectionAttempts: 3,
+        transports: ['websocket'],
       });
       await SocketHandler.socket.connect();
       SocketHandler.socket.on('messageInCountryChat', (params: any) => {

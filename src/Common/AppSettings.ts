@@ -1,8 +1,8 @@
 class AppSettings {
-  private prod = false;
+  private prod = true;
   public get apiEndpoint() {
     if (this.prod) {
-      return 'http://116.202.31.73:3001/';
+      return 'http://84.246.80.159:3001/';
     }
     return 'https://9tvfjlnb-3001.euw.devtunnels.ms/';
   }
