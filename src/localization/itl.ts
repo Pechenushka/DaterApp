@@ -293,6 +293,7 @@ const itl: localizationPackType = {
     'Reindirizzato dalla schermata dei Mi piace',
     'Reindirizzamento dalla schermata della chat',
     'Reindirizzamento dalla schermata degli ospiti',
+    'Reindirizzato dalla richiesta di accesso alle foto',
   ],
   my_guests: 'I miei ospiti',
   my_visits: 'Le mie visite',

@@ -8,6 +8,7 @@ import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {RewardedAd, RewardedAdEventType, TestIds} from 'react-native-google-mobile-ads';
 import {appSettings} from '../../Common/AppSettings';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
+import mime from 'mime';
 
 type photoGalleryModelProps = baseModelProps & {};
 
@@ -229,38 +230,47 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           app.notification.showError(_.lang.warning, 'wrong photo format');
           return;
         }
-        let data = new FormData();
-        data.append('image', {
-          uri: pickedPhoto.assets[0].uri,
-          type: 'image/png',
-          name: pickedPhoto.assets[0].fileName,
-        });
-        data.append('userId', app.currentUser.userId);
-        data.append('token', app.currentUser.token);
-        const response = await fetch(`${appSettings.apiEndpoint}users/add-photo`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          body: data,
-        });
-        const res = await response.json();
-        if (res === null) {
-          app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
-          return;
-        }
+        if (pickedPhoto.assets[0].uri !== undefined) {
+          let newImageUri = '';
+          if (pickedPhoto.assets[0].uri.includes('file:///')) {
+            newImageUri = pickedPhoto.assets[0].uri;
+          } else {
+            newImageUri = 'file:///' + pickedPhoto.assets[0].uri.split('file:/').join('');
+          }
 
-        if (res.statusCode !== 200) {
-          app.notification.showError(_.lang.warning, res.statusMessage);
-          return;
-        }
-        if (res.statusCode === 200) {
-          this._photoList.push({checked: false, url: res.data.url});
-          this.forceUpdate();
+          let data = new FormData();
+          data.append('image', {
+            uri: newImageUri,
+            type: mime.getType(newImageUri),
+            name: newImageUri.split('/').pop(),
+          });
+          data.append('userId', app.currentUser.userId);
+          data.append('token', app.currentUser.token);
+          const response = await fetch(`${appSettings.apiEndpoint}users/add-photo`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            body: data,
+          });
+          const res = await response.json();
+          if (res === null) {
+            app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
+            return;
+          }
+
+          if (res.statusCode !== 200) {
+            app.notification.showError(_.lang.warning, res.statusMessage);
+            return;
+          }
+          if (res.statusCode === 200) {
+            this._photoList.push({checked: false, url: res.data.url});
+            this.forceUpdate();
+          }
         }
       }
     } catch (error) {
-      console.log(error);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
     }
   };
 
@@ -281,44 +291,55 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           this._chooseAnonPhotoButton.disabled = false;
           return;
         }
-        let data = new FormData();
-        data.append('image', {
-          uri: pickedPhoto.assets[0].uri,
-          type: 'image/png',
-          name: pickedPhoto.assets[0].fileName,
-        });
-        data.append('userId', app.currentUser.userId);
-        data.append('token', app.currentUser.token);
 
-        const response = await fetch(`${appSettings.apiEndpoint}users/add-anon-photo`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          body: data,
-        });
+        if (pickedPhoto.assets[0].uri !== undefined) {
+          let newImageUri = '';
+          if (pickedPhoto.assets[0].uri.includes('file:///')) {
+            newImageUri = pickedPhoto.assets[0].uri;
+          } else {
+            newImageUri = 'file:///' + pickedPhoto.assets[0].uri.split('file:/').join('');
+          }
 
-        const res = await response.json();
-        if (res === null) {
-          app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
-          this._chooseAnonPhotoButton.disabled = false;
-          return;
-        }
+          let data = new FormData();
+          data.append('image', {
+            uri: newImageUri,
+            type: mime.getType(newImageUri),
+            name: newImageUri.split('/').pop(),
+          });
+          data.append('userId', app.currentUser.userId);
+          data.append('token', app.currentUser.token);
 
-        if (res.statusCode !== 200) {
-          app.notification.showError(_.lang.warning, res.statusMessage);
-          this._chooseAnonPhotoButton.disabled = false;
-          return;
-        }
-        if (res.statusCode === 200) {
-          this._photoAnonList.push({checked: false, url: res.data.url});
-          this.revardCount -= 1;
-          this._chooseAnonPhotoButton.disabled = false;
-          this.forceUpdate();
+          const response = await fetch(`${appSettings.apiEndpoint}users/add-anon-photo`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            body: data,
+          });
+
+          const res = await response.json();
+          if (res === null) {
+            app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
+            this._chooseAnonPhotoButton.disabled = false;
+            return;
+          }
+
+          if (res.statusCode !== 200) {
+            app.notification.showError(_.lang.warning, res.statusMessage);
+            this._chooseAnonPhotoButton.disabled = false;
+            return;
+          }
+          if (res.statusCode === 200) {
+            this._photoAnonList.push({checked: false, url: res.data.url});
+            this.revardCount -= 1;
+            this._chooseAnonPhotoButton.disabled = false;
+            this.forceUpdate();
+          }
         }
       }
     } catch (error) {
       console.log(error);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       this._chooseAnonPhotoButton.disabled = false;
     }
   };
@@ -436,30 +457,39 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           app.notification.showError(_.lang.warning, 'Wrong avatar format');
           return;
         }
-        let data = new FormData();
-        data.append('image', {
-          uri: pickedAvatar.assets[0].uri,
-          type: 'image/png',
-          name: pickedAvatar.assets[0].fileName,
-        });
-        data.append('userId', app.currentUser.userId);
-        data.append('token', app.currentUser.token);
+        if (pickedAvatar.assets[0].uri !== undefined) {
+          let newImageUri = '';
+          if (pickedAvatar.assets[0].uri.includes('file:///')) {
+            newImageUri = pickedAvatar.assets[0].uri;
+          } else {
+            newImageUri = 'file:///' + pickedAvatar.assets[0].uri.split('file:/').join('');
+          }
 
-        const response = await fetch(`${appSettings.apiEndpoint}users/set-avatar`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          body: data,
-        });
-        if (response.ok) {
-          const result = await response.json();
-          app.currentUser.avatar = result.data.url;
-          this.forceUpdate();
+          let data = new FormData();
+          data.append('image', {
+            uri: newImageUri,
+            type: mime.getType(newImageUri),
+            name: newImageUri.split('/').pop(),
+          });
+          data.append('userId', app.currentUser.userId);
+          data.append('token', app.currentUser.token);
+
+          const response = await fetch(`${appSettings.apiEndpoint}users/set-avatar`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            body: data,
+          });
+          if (response.ok) {
+            const result = await response.json();
+            app.currentUser.avatar = result.data.url;
+            this.forceUpdate();
+          }
         }
       }
     } catch (error) {
-      console.log(error);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
     }
   };
 }

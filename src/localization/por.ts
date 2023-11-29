@@ -292,6 +292,7 @@ const por: localizationPackType = {
     'Redirecionado da tela de curtidas',
     'Redirecionado da tela de bate-papo',
     'Redirecionado da tela de convidados',
+    'Redirecionado da solicitação de acesso à foto',
   ],
   my_guests: 'Meus Convidados',
   my_visits: 'Minhas Visitas',

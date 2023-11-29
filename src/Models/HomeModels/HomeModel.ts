@@ -10,6 +10,7 @@ import {Alert, Linking} from 'react-native';
 import {LoginScreen} from '../../Screens/LoginScreen';
 import {GuestsScreen} from '../../Screens/GuestsScreen';
 import {HelpScreen} from '../../Screens/HelpScreen';
+import mime from 'mime';
 
 type homeModelProps = baseModelProps & {};
 
@@ -212,6 +213,7 @@ class HomeModel extends BaseModel<homeModelProps> {
       const pickedAvatar = await launchImageLibrary({
         mediaType: 'photo',
       });
+
       if (pickedAvatar.assets !== undefined && pickedAvatar.assets.length > 0) {
         if (
           pickedAvatar.assets[0].fileName &&
@@ -220,30 +222,39 @@ class HomeModel extends BaseModel<homeModelProps> {
           app.notification.showError(_.lang.warning, 'Wrong avatar format');
           return;
         }
-        let data = new FormData();
-        data.append('image', {
-          uri: pickedAvatar.assets[0].uri,
-          type: 'image/png',
-          name: pickedAvatar.assets[0].fileName,
-        });
-        data.append('userId', app.currentUser.userId);
-        data.append('token', app.currentUser.token);
+        if (pickedAvatar.assets[0].uri !== undefined) {
+          let newImageUri = '';
+          if (pickedAvatar.assets[0].uri.includes('file:///')) {
+            newImageUri = pickedAvatar.assets[0].uri;
+          } else {
+            newImageUri = 'file:///' + pickedAvatar.assets[0].uri.split('file:/').join('');
+          }
 
-        const response = await fetch(`${appSettings.apiEndpoint}users/set-avatar`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          body: data,
-        });
-        if (response.ok) {
-          const result = await response.json();
-          app.currentUser.avatar = result.data.url;
-          this.checkUserStatus();
+          let data = new FormData();
+          data.append('image', {
+            uri: newImageUri,
+            type: mime.getType(newImageUri),
+            name: newImageUri.split('/').pop(),
+          });
+          data.append('userId', app.currentUser.userId);
+          data.append('token', app.currentUser.token);
+
+          const response = await fetch(`${appSettings.apiEndpoint}users/set-avatar`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            body: data,
+          });
+          if (response.ok) {
+            const result = await response.json();
+            app.currentUser.avatar = result.data.url;
+            this.checkUserStatus();
+          }
         }
       }
     } catch (error) {
-      console.log(error);
+      app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
     }
   };
 

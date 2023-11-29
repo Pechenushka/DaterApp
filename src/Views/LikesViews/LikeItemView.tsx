@@ -26,33 +26,6 @@ class LikeItemView extends TypedBaseComponent<likeItemViewProps, LikeItemModel> 
     super(props);
   }
 
-  public getExpectationsIcon() {
-    if (this.model.lookingfor === 0) {
-      return <Image source={ICONS.maleIcon} style={[BaseStyles.defaultIcon]} />;
-    }
-
-    if (this.model.lookingfor === 1) {
-      return <Image source={ICONS.femaleIcon} style={[BaseStyles.defaultIcon]} />;
-    }
-
-    if (this.model.lookingfor === 2) {
-      return (
-        <View style={[BaseStyles.row]}>
-          <Image source={ICONS.maleIcon} style={[BaseStyles.defaultIcon]} />
-          <Text>{_.lang.or}</Text>
-          <Image source={ICONS.femaleIcon} style={[BaseStyles.defaultIcon]} />
-        </View>
-      );
-    }
-
-    return (
-      <Image
-        source={this.model.authorGender === 'male' ? ICONS.femaleIcon : ICONS.maleIcon}
-        style={[BaseStyles.defaultIcon]}
-      />
-    );
-  }
-
   public getStatusIcon = () => {
     switch (this.model.tab) {
       case 0:

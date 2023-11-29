@@ -293,6 +293,7 @@ const spa: localizationPackType = {
     'Redirigido desde la pantalla de me gusta',
     'Redirigido desde la pantalla de chat',
     'Redirigido desde la pantalla de invitados',
+    'Redirigido desde Solicitud de Acceso a la Foto',
   ],
   my_guests: 'Mis Invitados',
   my_visits: 'Mis Visitas',

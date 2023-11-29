@@ -294,6 +294,7 @@ const pl: localizationPackType = {
     'Przekierowano z ekranu polubień',
     'Przekierowano z ekranu czatu',
     'Przekierowano z ekranu gości',
+    'Przekierowano z prośby o dostęp do zdjęć',
   ],
   my_guests: 'Moi Goście',
   my_visits: 'Moje Wizyty',

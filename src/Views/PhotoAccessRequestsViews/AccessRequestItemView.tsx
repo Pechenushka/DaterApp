@@ -138,7 +138,13 @@ class AccessRequestItemView extends TypedBaseComponent<
             </>
           ) : (
             <>
-              <RoundAvatarView id={'Author'} imagePath={this.model.avatar} size={65} />
+              <TouchableOpacity
+                onPress={() => {
+                  this.model.onAvatartPress(this.model.requestor_id);
+                }}>
+                <RoundAvatarView id={'Author'} imagePath={this.model.avatar} size={65} />
+              </TouchableOpacity>
+
               <View style={[BaseStyles.w100, BaseStyles.row, BaseStyles.jc_c]}>
                 <Text
                   style={[AccessRequestsStyles.requestItemNameText]}
@@ -189,7 +195,13 @@ class AccessRequestItemView extends TypedBaseComponent<
             </>
           ) : (
             <>
-              <RoundAvatarView id={'Author'} imagePath={this.model.avatar} size={65} />
+              <TouchableOpacity
+                onPress={() => {
+                  this.model.onAvatartPress(this.model.author_id);
+                }}>
+                <RoundAvatarView id={'Author'} imagePath={this.model.avatar} size={65} />
+              </TouchableOpacity>
+
               <View style={[BaseStyles.w100, BaseStyles.row, BaseStyles.jc_c]}>
                 <Text
                   style={[AccessRequestsStyles.requestItemNameText]}

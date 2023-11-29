@@ -298,6 +298,7 @@ const eng: localizationPackType = {
     'Redirected from likes screen',
     'Redirected from chat screen',
     'Redirected from guests screen',
+    'Redirected from Photo Access Request',
   ],
   my_guests: 'My Guests',
   my_visits: 'My Visits',

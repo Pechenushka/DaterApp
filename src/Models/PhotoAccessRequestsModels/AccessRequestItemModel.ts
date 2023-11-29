@@ -4,6 +4,7 @@ import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {photoAccessRequestItem} from '../../Core/DataTypes/BaseTypes';
 import {_} from '../../Core/Localization';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
+import {SetVisit} from '../../Common/Helpers';
 
 type accessRequestItemModelProps = baseModelProps &
   photoAccessRequestItem & {
@@ -113,6 +114,11 @@ class AccessRequestItemModel extends BaseModel<accessRequestItemModelProps> {
       return;
     }
     this.props.deleteItemFromList(this.requestId);
+  };
+
+  public onAvatartPress = async (userId: number) => {
+    app.navigator.goToProfileDetailsScreen(userId);
+    SetVisit(userId, 4);
   };
 }
 

@@ -305,6 +305,7 @@ const ger: localizationPackType = {
     'Umgeleitet vom Likes-Bildschirm',
     'Vom Chat-Bildschirm umgeleitet',
     'Vom Gästebildschirm umgeleitet',
+    'Umgeleitet von Fotozugriffsanfrage',
   ],
   my_guests: 'Meine Gäste',
   my_visits: 'Meine Besuche',

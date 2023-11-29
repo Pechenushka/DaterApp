@@ -293,6 +293,7 @@ const fra: localizationPackType = {
     `Redirigé depuis l'écran "J'aime"`,
     `Redirigé depuis l'écran de chat`,
     `Redirigé depuis l'écran des invités`,
+    `Redirigé depuis une demande d'accès aux photos`,
   ],
   my_guests: 'Mes invités',
   my_visits: 'Mes visites',
