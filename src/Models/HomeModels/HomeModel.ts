@@ -10,7 +10,7 @@ import {Alert, Linking} from 'react-native';
 import {LoginScreen} from '../../Screens/LoginScreen';
 import {GuestsScreen} from '../../Screens/GuestsScreen';
 import {HelpScreen} from '../../Screens/HelpScreen';
-import mime from 'mime';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 type homeModelProps = baseModelProps & {};
 
@@ -229,21 +229,15 @@ class HomeModel extends BaseModel<homeModelProps> {
           } else {
             newImageUri = 'file:///' + pickedAvatar.assets[0].uri.split('file:/').join('');
           }
-          console.log('pickedAvatar.assets[0].uri', pickedAvatar.assets[0]);
+
           let data = new FormData();
           data.append('image', {
             uri: pickedAvatar.assets[0].uri,
-            type: mime.getType(newImageUri),
+            type: pickedAvatar.assets[0].type,
             name: pickedAvatar.assets[0].fileName,
           });
           data.append('userId', app.currentUser.userId);
           data.append('token', app.currentUser.token);
-
-          console.log('Result', {
-            uri: pickedAvatar.assets[0].uri,
-            type: mime.getType(newImageUri),
-            name: pickedAvatar.assets[0].fileName,
-          });
 
           const response = await fetch(`${appSettings.apiEndpoint}users/set-avatar`, {
             method: 'POST',
@@ -259,7 +253,8 @@ class HomeModel extends BaseModel<homeModelProps> {
           }
         }
       }
-    } catch (error) {
+    } catch (error: any) {
+      crashlytics().recordError(error, 'changeAvatar error');
       app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
     }
   };

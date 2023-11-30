@@ -8,7 +8,7 @@ import {SimpleButtonModel} from '../Components/Buttons/SimpleButtonModel';
 import {RewardedAd, RewardedAdEventType, TestIds} from 'react-native-google-mobile-ads';
 import {appSettings} from '../../Common/AppSettings';
 import {loadData, UserDataProvider} from '../../DataProvider/UserDataProvider';
-import mime from 'mime';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 type photoGalleryModelProps = baseModelProps & {};
 
@@ -241,7 +241,7 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           let data = new FormData();
           data.append('image', {
             uri: pickedPhoto.assets[0].uri,
-            type: mime.getType(newImageUri),
+            type: pickedPhoto.assets[0].type,
             name: pickedPhoto.assets[0].fileName,
           });
           data.append('userId', app.currentUser.userId);
@@ -269,7 +269,8 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           }
         }
       }
-    } catch (error) {
+    } catch (error: any) {
+      crashlytics().recordError(error, 'onAddPhotoPress error');
       app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
     }
   };
@@ -303,7 +304,7 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           let data = new FormData();
           data.append('image', {
             uri: pickedPhoto.assets[0].uri,
-            type: mime.getType(newImageUri),
+            type: pickedPhoto.assets[0].type,
             name: pickedPhoto.assets[0].fileName,
           });
           data.append('userId', app.currentUser.userId);
@@ -337,8 +338,8 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           }
         }
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      crashlytics().recordError(error, 'onAddPhotoPress error');
       app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
       this._chooseAnonPhotoButton.disabled = false;
     }
@@ -468,7 +469,7 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           let data = new FormData();
           data.append('image', {
             uri: pickedAvatar.assets[0].uri,
-            type: mime.getType(newImageUri),
+            type: pickedAvatar.assets[0].type,
             name: pickedAvatar.assets[0].fileName,
           });
           data.append('userId', app.currentUser.userId);
@@ -488,7 +489,8 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
           }
         }
       }
-    } catch (error) {
+    } catch (error: any) {
+      crashlytics().recordError(error, 'changeAvatar error');
       app.notification.showError(_.lang.warning, _.lang.something_went_wrong);
     }
   };
