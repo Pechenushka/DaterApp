@@ -240,9 +240,9 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
 
           let data = new FormData();
           data.append('image', {
-            uri: newImageUri,
+            uri: pickedPhoto.assets[0].uri,
             type: mime.getType(newImageUri),
-            name: newImageUri.split('/').pop(),
+            name: pickedPhoto.assets[0].fileName,
           });
           data.append('userId', app.currentUser.userId);
           data.append('token', app.currentUser.token);
@@ -302,9 +302,9 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
 
           let data = new FormData();
           data.append('image', {
-            uri: newImageUri,
+            uri: pickedPhoto.assets[0].uri,
             type: mime.getType(newImageUri),
-            name: newImageUri.split('/').pop(),
+            name: pickedPhoto.assets[0].fileName,
           });
           data.append('userId', app.currentUser.userId);
           data.append('token', app.currentUser.token);
@@ -467,9 +467,9 @@ class PhotoGalleryModel extends BaseModel<photoGalleryModelProps> {
 
           let data = new FormData();
           data.append('image', {
-            uri: newImageUri,
+            uri: pickedAvatar.assets[0].uri,
             type: mime.getType(newImageUri),
-            name: newImageUri.split('/').pop(),
+            name: pickedAvatar.assets[0].fileName,
           });
           data.append('userId', app.currentUser.userId);
           data.append('token', app.currentUser.token);

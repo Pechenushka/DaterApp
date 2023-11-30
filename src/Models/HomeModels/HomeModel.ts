@@ -229,15 +229,21 @@ class HomeModel extends BaseModel<homeModelProps> {
           } else {
             newImageUri = 'file:///' + pickedAvatar.assets[0].uri.split('file:/').join('');
           }
-
+          console.log('pickedAvatar.assets[0].uri', pickedAvatar.assets[0]);
           let data = new FormData();
           data.append('image', {
-            uri: newImageUri,
+            uri: pickedAvatar.assets[0].uri,
             type: mime.getType(newImageUri),
-            name: newImageUri.split('/').pop(),
+            name: pickedAvatar.assets[0].fileName,
           });
           data.append('userId', app.currentUser.userId);
           data.append('token', app.currentUser.token);
+
+          console.log('Result', {
+            uri: pickedAvatar.assets[0].uri,
+            type: mime.getType(newImageUri),
+            name: pickedAvatar.assets[0].fileName,
+          });
 
           const response = await fetch(`${appSettings.apiEndpoint}users/set-avatar`, {
             method: 'POST',
