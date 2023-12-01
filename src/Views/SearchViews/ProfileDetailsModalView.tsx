@@ -259,20 +259,22 @@ class ProfileDetailsModalView extends TypedBaseComponent<
                   </View>
                   {this.getExpectationsBlock()}
                   {this.model.userData.goal !== undefined &&
-                    this.model.userData.goal !== null &&
-                    this.model.userData.goal.length && (
-                      <View style={BaseStyles.w90}>
-                        <Text style={ProfileDetailsStyles.profileInfoText}>
-                          {_.lang.dating_goals}
-                          {': '}
-                        </Text>
-                        <View style={[BaseStyles.row, BaseStyles.wrap]}>
-                          {this.model.userData.goal.map(goal => {
-                            return this.getGoalItem(goal);
-                          })}
-                        </View>
+                  this.model.userData.goal !== null &&
+                  this.model.userData.goal.length ? (
+                    <View style={BaseStyles.w90}>
+                      <Text style={ProfileDetailsStyles.profileInfoText}>
+                        {_.lang.dating_goals}
+                        {': '}
+                      </Text>
+                      <View style={[BaseStyles.row, BaseStyles.wrap]}>
+                        {this.model.userData.goal.map(goal => {
+                          return this.getGoalItem(goal);
+                        })}
                       </View>
-                    )}
+                    </View>
+                  ) : (
+                    <></>
+                  )}
                   <View style={ProfileDetailsStyles.profileMainTextWrapper}>
                     {this.model.userData.text !== '' && (
                       <View style={ProfileDetailsStyles.profileMainTextContainer}>

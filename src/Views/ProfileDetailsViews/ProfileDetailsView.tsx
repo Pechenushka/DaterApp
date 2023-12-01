@@ -268,20 +268,22 @@ class ProfileDetailsView extends TypedBaseComponent<profileDetailsViewProps, Pro
                 </View>
                 {this.getExpectationsBlock()}
                 {this.model.userInfo.goal !== undefined &&
-                  this.model.userInfo.goal !== null &&
-                  this.model.userInfo.goal.length && (
-                    <View style={[BaseStyles.w90]}>
-                      <Text style={ProfileDetailsStyles.profileInfoText}>
-                        {_.lang.dating_goals}
-                        {': '}
-                      </Text>
-                      <View style={[BaseStyles.row, BaseStyles.wrap]}>
-                        {this.model.userInfo.goal.map(goal => {
-                          return this.getGoalItem(goal);
-                        })}
-                      </View>
+                this.model.userInfo.goal !== null &&
+                this.model.userInfo.goal.length ? (
+                  <View style={[BaseStyles.w90]}>
+                    <Text style={ProfileDetailsStyles.profileInfoText}>
+                      {_.lang.dating_goals}
+                      {': '}
+                    </Text>
+                    <View style={[BaseStyles.row, BaseStyles.wrap]}>
+                      {this.model.userInfo.goal.map(goal => {
+                        return this.getGoalItem(goal);
+                      })}
                     </View>
-                  )}
+                  </View>
+                ) : (
+                  <></>
+                )}
 
                 <View style={MyAnnouncementStyles.previewMainTextWrapper}>
                   {this.model.userInfo.text !== '' && (

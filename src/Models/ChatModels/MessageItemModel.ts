@@ -3,6 +3,7 @@ import {app} from '../../Core/AppImpl';
 import {BaseModel, baseModelProps} from '../../Core/BaseModel';
 import {messageItemDataType} from '../../Core/DataTypes/BaseTypes';
 import {chatListItemType} from '../ChatListModels/ChatListItemModel';
+import {SetVisit} from '../../Common/Helpers';
 
 type messageItemModelProps = baseModelProps &
   messageItemDataType & {
@@ -68,6 +69,7 @@ class MessageItemModel extends BaseModel<messageItemModelProps> {
 
   public onUserAvatarPress = () => {
     app.navigator.goToProfileDetailsScreen(this.authorId);
+    SetVisit(this.authorId, 2);
   };
 
   public onMessagePress = async () => {
